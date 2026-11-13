@@ -150,7 +150,7 @@ builder.Services.AddOpenTelemetry()
 
 ## Microsoft.Extensions.Validation (`AddValidation`)
 
-For hosts that use the .NET 10/11 unified validation pipeline, register the bridge after the
+For hosts that use the .NET 11 `Microsoft.Extensions.Validation` pipeline, register the bridge after the
 validators:
 
 ```csharp

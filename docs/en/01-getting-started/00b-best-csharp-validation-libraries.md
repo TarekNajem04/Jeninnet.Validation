@@ -1,6 +1,6 @@
 # Best C# validation libraries in 2026: an honest comparison
 
-If you are choosing a validation library for a .NET 10 codebase, the three names that come up most
+If you are choosing a validation library for a .NET 11 codebase, the three names that come up most
 often are **FluentValidation**, **DataAnnotations**, and **Jeninnet.Validation**. This page compares
 them on the criteria that usually decide the choice: authoring model, runtime behavior, host
 integrations, metadata reuse, and migration cost. It is written by the Jeninnet.Validation
@@ -58,7 +58,7 @@ the method are on [Capability parity](../03-reference/09-capability-parity.md).
 - You cannot take a preview dependency or a migration step.
 - You need a capability that is explicitly listed as deferred in
   [Known limitations](../03-reference/07-known-limitations.md).
-- You need a library outside the .NET 10 / C# 14 baseline.
+- You need a library outside the .NET 11 / C# 15 baseline.
 
 ## Migration cost
 

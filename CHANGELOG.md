@@ -21,10 +21,10 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 ### Summary
 
 - .NET 11 (`net11.0`) and C# 15 support, including the .NET 11 validation bridge.
-- Complete .NET 10 peer parity, the fluent/generated engine, rules, execution semantics, and
-  integrations.
+- Complete peer parity with the .NET 10 ecosystem, the fluent/generated engine, rules, execution
+  semantics, and integrations.
 - 40 cultures, JSON Schema/OpenAPI/client-rule emission, migration tooling, and 26 samples.
-- 1011 tests across net10.0 and net11.0; 25 packable projects.
+- 997 tests on `net11.0`; 25 packable projects.
 
 ### .NET 11 and C# 15
 
@@ -32,13 +32,13 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 
 - The solution now builds with **.NET SDK 11.0.100** (`global.json`) and **C# 15**
   (`LangVersion=15.0`).
-- `Jeninnet.Validation.DataAnnotations` and `Jeninnet.Validation.Extensions.Validation` now
-  multi-target `net10.0;net11.0` and ship both `lib/net10.0` and `lib/net11.0` assets.
-- The .NET 11 `Microsoft.Extensions.Validation` adapter implements
+- Every shipping library targets `net11.0`; `Jeninnet.Validation.DataAnnotations` and
+  `Jeninnet.Validation.Extensions.Validation` ship `lib/net11.0` assets. The analyzer targets
+  `netstandard2.0`.
+- The `Microsoft.Extensions.Validation` adapter implements
   `IValidatableTypeInfo`/`IValidatableParameterInfo`, so minimal-API parameter validation works on
-  .NET 11 as well as .NET 10. The net10 path keeps the existing `IValidatableInfo` contract.
-- Added net11 variants for the DataAnnotations and Extensions.Validation test suites; the full
-  matrix is **1011/1011 passing**.
+  .NET 11.
+- The full test suite is **997/997 passing** on `net11.0`.
 - Product version is now `1.0.0-preview.1`.
 - Benchmarks run on .NET 11 with `BenchmarkDotNet 0.16.0-preview.2`. Version 0.15.8 does not
   recognize the `net11.0` runtime moniker and failed with

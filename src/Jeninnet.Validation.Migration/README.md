@@ -7,7 +7,7 @@ safe, idempotent codemods. Anything it does not understand is left untouched wit
 
 ## Requirements
 
-- .NET 10.0 or later (including .NET 11).
+- .NET 11.0 or later.
 - C# 15 when consuming the source contracts.
 
 ## Installation

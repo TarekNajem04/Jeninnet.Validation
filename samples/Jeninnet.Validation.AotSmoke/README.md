@@ -37,7 +37,7 @@ dotnet publish samples/Jeninnet.Validation.AotSmoke/Jeninnet.Validation.AotSmoke
 ./out/aot-smoke/Jeninnet.Validation.AotSmoke
 ```
 
-NativeAOT prerequisites: the .NET 10 SDK plus a C/C++ toolchain (`clang` and
+NativeAOT prerequisites: the .NET 11 SDK plus a C/C++ toolchain (`clang` and
 `zlib1g-dev` on Linux, Visual Studio C++ tools on Windows).
 
 ## CI

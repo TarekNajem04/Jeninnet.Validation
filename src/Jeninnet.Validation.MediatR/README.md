@@ -6,7 +6,7 @@ throws, exposes the result to the handler, or maps it to a result type.
 
 ## Requirements
 
-- .NET 10.0 or later (including .NET 11).
+- .NET 11.0 or later.
 - C# 15 when consuming the source contracts.
 
 ## Installation

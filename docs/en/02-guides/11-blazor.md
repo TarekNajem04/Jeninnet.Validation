@@ -150,8 +150,8 @@ from `client/src`; keep those copies in sync when updating the browser runtime.
 - The resolver uses cached reflection to walk nested objects and `IList` collections. Arrays and
   `IList` implementations are supported; other collection shapes fall back to the root identifier.
 - The component renders nothing; it only coordinates validation state.
-- `EditContext.ValidateAsync` is available on .NET 11; on .NET 10 this package's explicit
-  `ValidateAsync` path is the supported async form route.
+- `EditContext.ValidateAsync` is available on .NET 11; this package's explicit `ValidateAsync` path
+  remains the supported async form.
 
 ## Verify
 

@@ -7,7 +7,7 @@ right fields.
 
 ## Requirements
 
-- .NET 10.0 or later (including .NET 11).
+- .NET 11.0 or later.
 - C# 15 when consuming the source contracts.
 
 ## Installation
@@ -86,7 +86,7 @@ contains `MustAsync`/`CustomAsync` rules:
 }
 ```
 
-`EditContext.Validate()` is synchronous on .NET 10, so async mode deliberately
+`EditContext.Validate()` is synchronous, so async mode deliberately
 does not use `OnValidSubmit`; `Validate()` throws a guidance exception when
 async mode is enabled. The component also exposes `PendingValidation` when
 field-change validation is enabled, so a submit handler can await the pending

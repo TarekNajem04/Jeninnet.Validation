@@ -1,6 +1,6 @@
 # Introduction
 
-Jeninnet.Validation is a validation framework for .NET 10+ and .NET 11 applications. It gives you two authoring
+Jeninnet.Validation is a validation framework for .NET 11 applications. It gives you two authoring
 styles over one execution engine:
 
 - **Fluent authoring** — derive from `Validator<T>` and declare rules with `RuleFor`.

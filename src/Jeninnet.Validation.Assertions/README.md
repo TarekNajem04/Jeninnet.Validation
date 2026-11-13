@@ -6,7 +6,7 @@ with the failed expectation and the actual errors, so any test framework can con
 
 ## Requirements
 
-- .NET 10.0 or later (including .NET 11).
+- .NET 11.0 or later.
 - C# 15 when consuming the source contracts.
 
 ## Installation

@@ -15,8 +15,8 @@ Two scopes are published:
 
 | Scope | Result | Purpose |
 |---|---|---|
-| ReportGenerator, all assemblies | **82.1% line / 69.4% branch / 81.8% method** (2026-11-12, 25 assemblies) | Broad baseline including analyzer tooling |
-| Sonar runtime scope (last measured) | **82.1% coverage** (line 84.3%, branch 77.2%) | Quality gate on runtime code |
+| ReportGenerator, all assemblies | **79.1% line / 65.2% branch / 84.6% method** (2026-11-12, 25 assemblies) | Broad baseline including analyzer tooling |
+| SonarCloud runtime scope (2026-11-13) | **80.2% coverage** (line 83.4%, branch 73.6%) | Quality gate on runtime code |
 
 Sonar excludes analyzer/code-fix tooling, metadata-only attributes, benchmarks, tests, and
 `IRuleDefinition.cs` from coverage; duplication excludes the same tooling. The gate requires

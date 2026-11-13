@@ -52,9 +52,8 @@ dotnet new install ./templates/jeninnet-validator
 dotnet new jeninnet-validator -n MyCompany.Validation -o src/MyCompany.Validation
 ```
 
-The generated class library targets .NET 10 by default (it runs unchanged on .NET 11) and
-references `Jeninnet.Validation` `1.0.0-preview.1`. Replace the sample `Customer` rules with your
-own.
+The generated class library targets .NET 11 and references `Jeninnet.Validation`
+`1.0.0-preview.1`. Replace the sample `Customer` rules with your own.
 
 ## Register validators
 

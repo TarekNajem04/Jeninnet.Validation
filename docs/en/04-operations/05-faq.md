@@ -111,7 +111,7 @@ Reference `Jeninnet.Validation.Abstractions` for `IValidator<T>`, `ValidationRes
 
 **Which .NET versions are supported?**
 
-.NET 10 or .NET 11, with C# 15.
+.NET 11, with C# 15.
 
 **Which version should I reference?**
 

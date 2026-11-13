@@ -18,6 +18,6 @@ the deeper guide for the underlying concept.
 
 ## Conventions
 
-- Examples target .NET 10/11 and the preview package `1.0.0-preview.1`.
+- Examples target .NET 11 and the preview package `1.0.0-preview.1`.
 - Register validators as `IValidator<T>` (scoped or singleton).
 - Use the async path when the validator has async rules.
