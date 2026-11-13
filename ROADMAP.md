@@ -25,7 +25,7 @@ and `Not planned`.
 
 | Release line | Status | Scope |
 |---|---|---|
-| `1.0.0-preview.1` | **Current — unreleased** | .NET 11 + C# 15 platform, .NET 10 peer parity, stable-release gates |
+| `1.0.0-preview.1` | **Current — released 2026-11-13** | .NET 11 + C# 15 platform, .NET 10 peer parity, stable-release gates |
 | `1.0.0-preview.2` … `preview.N` | **Conditional** | Post-preview fixes and API feedback; no new scope |
 | `1.0.0-rc.1` … `rc.N` | **Conditional** | Release-candidate hardening; release-blocking fixes only |
 | `1.0.0` | **Planned** | First stable release |
@@ -35,11 +35,10 @@ and `Not planned`.
 
 ---
 
-# 1.0.0-preview.1 — Current, unreleased
+# 1.0.0-preview.1 — Current, released 2026-11-13
 
 **Goal:** ship the first public preview with .NET 11 + C# 15 support, complete .NET 10 peer parity,
-and the stable-release evidence in place. The version remains `1.0.0-preview.1` until the first
-package publication.
+and the stable-release evidence in place. The preview was published to NuGet on 2026-11-13.
 
 ## Version snapshot
 

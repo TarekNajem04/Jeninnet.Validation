@@ -9,14 +9,14 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 
 | Version | Status |
 |---|---|
-| `1.0.0-preview.1` | Current, unreleased |
+| `1.0.0-preview.1` | Current, released 2026-11-13 |
 | `Pre-1.0.0` | Historical development (2026-06 – 2026-11) |
 
 ---
 
-## 1.0.0-preview.1 — Unreleased
+## 1.0.0-preview.1 — 2026-11-13
 
-**Status:** Unreleased. The version remains `1.0.0-preview.1` until the first package publication.
+**Status:** Released. Published to NuGet as `1.0.0-preview.1` on 2026-11-13.
 
 ### Summary
 

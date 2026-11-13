@@ -13,7 +13,8 @@
 
 **📖 Documentation:** [tareknajem04.github.io/Jeninnet.Validation](https://tareknajem04.github.io/Jeninnet.Validation/) — the complete reference book, guides, API reference, and samples.
 
-- **Status:** `1.0.0-preview.1` — current preview.
+- **Status:** `1.0.0-preview.1` — current preview, published on
+  [NuGet](https://www.nuget.org/packages/Jeninnet.Validation/).
 - **Documentation:** [Jeninnet.Validation reference book](https://tareknajem04.github.io/Jeninnet.Validation/)
   ([source](docs/en/README.md)) and the
   [Why Jeninnet?](docs/en/01-getting-started/00-why-jeninnet.md) decision page.
@@ -106,6 +107,8 @@ dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.1
 ```
 
 ```csharp
+namespace MyApp.Models;
+
 using Jeninnet.Validation.Attributes;
 
 [Validate]
@@ -126,6 +129,7 @@ public partial class User
 using Jeninnet.Validation.Abstractions;
 using Jeninnet.Validation.Catalog;
 using Microsoft.Extensions.DependencyInjection;
+using MyApp.Models;
 
 var services = new ServiceCollection();
 services.AddValidation();
