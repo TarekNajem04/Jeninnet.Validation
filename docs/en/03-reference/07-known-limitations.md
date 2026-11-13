@@ -105,6 +105,8 @@ These are deliberate boundaries or tracked follow-ups, not surprises.
 
 - `[Validate]` supports classes, `struct`, and `record struct` models. It does not discover
   validation rules on fields or static properties.
+- Models must declare a namespace. The generator emits validators under
+  `<model namespace>.Validators`; a model in the global namespace is not supported in this preview.
 - Open generic model declarations are rejected with `VAL0022`; use a non-generic model or a fluent
   validator. This avoids ambiguous generated type names and DI registrations.
 - `[After]` / `[Before]` parse against the property type (`DateTime`, `DateTimeOffset`, `DateOnly`,
