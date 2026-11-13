@@ -33,6 +33,15 @@ architecture suite pins the direction.
 The happy path is allocation-free after warmup: the collector and root data are per-thread pooled,
 and the default rule selection returns the original array.
 
+## Rule model and extensibility
+
+Built-in rules are sealed concrete leaves over open abstract bases. Sealing keeps the execution hot
+path devirtualizable and prevents a subclass from claiming built-in metadata while changing the
+built-in behavior. Extend through `Must`/`Custom`, `RuleTemplate`,
+`SyncValidateRule`/`AsyncValidateRule`, or the rule interfaces; `IRuleBuilder.AddRule` /
+`AddAsyncRule` plug a custom rule into the fluent chain. See
+[Why built-in rules are sealed](../02-guides/07-custom-rules.md#why-built-in-rules-are-sealed).
+
 ## Metadata pipeline
 
 Fluent and generated validators implement `IValidationDescriptorProvider`. `Describe()` returns a

@@ -270,9 +270,16 @@ are marked `serverOnly` in client-rules output and remain advisory in JSON Schem
 | `Custom(delegate)` | — | caller-supplied | Can emit multiple errors with distinct keys, codes, and severities. |
 | `CustomAsync(delegate)` | — | caller-supplied | Async path only; honors cancellation. |
 | `Rule(template)` | — | template-supplied | Reusable `RuleTemplate<TValue>` / `RuleTemplate<T, TValue>` with message, key, severity, code, and named parameters. |
+| `AddRule(rule)` | — | rule-supplied | Adds a reusable `ISyncValidationRule<T>`; see [Reusable rule classes](../02-guides/07-custom-rules.md#reusable-rule-classes). |
+| `AddAsyncRule(rule)` | — | rule-supplied | Adds a reusable `IAsyncValidationRule<T>`; async path only. |
 
 An exception thrown by a custom delegate becomes an `Invalid` failure with error code
 `CustomValidationException`. See [Custom rules](../02-guides/07-custom-rules.md).
+
+Built-in rule leaves are sealed by design. Extend them through `SyncValidateRule<T, TProperty>`,
+`AsyncValidateRule<T, TProperty>`, the rule interfaces, `Custom`/`CustomAsync`, or `RuleTemplate`; do
+not inherit a concrete built-in. The rationale and the full extension-point table are in
+[Why built-in rules are sealed](../02-guides/07-custom-rules.md#why-built-in-rules-are-sealed).
 
 Sanitization (`[Sanitize]`, `Sanitize.Trim`, `SanitizeOptions`) is preprocessing, not a rule: it
 has no row in this table, no message key, and no descriptor or client-rule entry. It runs before

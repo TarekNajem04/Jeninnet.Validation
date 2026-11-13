@@ -33,6 +33,19 @@ compile time. A fully typed fluent API is available for dynamic rules, dependenc
 cross-cutting scenarios. Both authoring paths feed one engine and are pinned by executable parity
 tests.
 
+## Documentation
+
+The complete reference book is published at
+**[tareknajem04.github.io/Jeninnet.Validation](https://tareknajem04.github.io/Jeninnet.Validation/)**.
+
+| I want to… | Read |
+| --- | --- |
+| Install and validate my first model | [Getting started](docs/en/01-getting-started/03-quick-start.md) |
+| Use the fluent API | [Fluent authoring](docs/en/02-guides/01-fluent-authoring.md) |
+| Use attributes and the source generator | [Attribute authoring](docs/en/02-guides/02-attribute-authoring.md) |
+| Write a custom rule or extend the rule model | [Custom rules](docs/en/02-guides/07-custom-rules.md) |
+| Look up a rule or the public API | [Rule reference](docs/en/03-reference/02-rule-reference.md) · [API reference](docs/en/03-reference/08-api-reference.md) |
+
 ## Why Jeninnet?
 
 - **Compare first.** [Best C# validation libraries in 2026](docs/en/01-getting-started/00b-best-csharp-validation-libraries.md) — an honest comparison with FluentValidation and DataAnnotations, including when not to choose Jeninnet.
@@ -44,6 +57,10 @@ tests.
   before the code runs.
 - **AOT + 0 B/op.** No runtime reflection on the validation path; the happy path is allocation-free
   ([benchmarks](docs/en/04-operations/06-benchmarks.md), [audit](docs/en/04-operations/07-allocation-audit.md)).
+- **Extensible without forking.** Built-in rules are sealed to keep the hot path devirtualizable and
+  the metadata truthful; extend through `Custom`/`CustomAsync`, `RuleTemplate`,
+  `SyncValidateRule`/`AsyncValidateRule`, or the rule interfaces
+  ([custom rules](docs/en/02-guides/07-custom-rules.md#why-built-in-rules-are-sealed)).
 - **40 cultures and real integrations.** Multi-source localization, ICU plural/select, ASP.NET Core,
   MediatR, DataAnnotations, Blazor, GraphQL, gRPC, and desktop `INotifyDataErrorInfo`.
 - **Migration in minutes.** The optional `jeninnet` tool reports a readiness score, applies safe

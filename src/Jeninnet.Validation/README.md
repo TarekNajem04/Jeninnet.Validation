@@ -109,6 +109,21 @@ JSON Schema, OpenAPI constraints, and client-rule payloads.
 - ASP.NET Core, MVC, Blazor, MediatR, DataAnnotations, GraphQL, gRPC, and OpenAPI integrations.
 - JSON Schema, client-rule export, and a dependency-free browser evaluator.
 
+## Extensibility
+
+Built-in rule classes are sealed by design: they protect the zero-allocation hot path and the exact
+metadata that JSON Schema, OpenAPI, and client rules rely on. Extend the model instead of inheriting
+a concrete rule:
+
+- `Must`/`MustAsync` for one-off predicates and `Custom`/`CustomAsync` for multi-error logic.
+- `RuleTemplate<TValue>` for reusable predicates with messages and parameters.
+- `SyncValidateRule<T, TProperty>` / `AsyncValidateRule<T, TProperty>` for reusable rule classes,
+  registered through `IRuleBuilder.AddRule`/`AddAsyncRule`.
+- `ISyncValidationRule<T>` / `IAsyncValidationRule<T>` for full control.
+
+See [Custom rules](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/02-guides/07-custom-rules.md#why-built-in-rules-are-sealed)
+for the rationale, the extension-point table, and complete examples.
+
 ## Packages
 
 The repository ships modular packages. Install only the integrations you need:
