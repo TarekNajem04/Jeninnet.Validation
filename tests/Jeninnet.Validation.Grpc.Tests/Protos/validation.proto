@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option csharp_namespace = "Jeninnet.Validation.Grpc.Tests";
+package jeninnet.validation.tests;
+
+service ValidationTest {
+  rpc Create (CreateRequestMessage) returns (CreateReplyMessage);
+  rpc Strict (StrictRequestMessage) returns (CreateReplyMessage);
+  rpc AsyncCheck (AsyncRequestMessage) returns (CreateReplyMessage);
+}
+
+message CreateRequestMessage {
+  string name = 1;
+  string email = 2;
+}
+
+message StrictRequestMessage {
+  string name = 1;
+}
+
+message AsyncRequestMessage {
+  string code = 1;
+}
+
+message CreateReplyMessage {
+  string name = 1;
+}

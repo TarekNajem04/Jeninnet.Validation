@@ -1,0 +1,5 @@
+#nullable enable
+Jeninnet.Validation.Extensions.Validation.JeninnetValidationServiceCollectionExtensions
+static Jeninnet.Validation.Extensions.Validation.JeninnetValidationServiceCollectionExtensions.AddJeninnetValidation(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static Jeninnet.Validation.Extensions.Validation.JeninnetValidationServiceCollectionExtensions.AddJeninnetValidation(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, params System.Type![]! modelTypes) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static Jeninnet.Validation.Extensions.Validation.JeninnetValidationServiceCollectionExtensions.AddJeninnetValidation<TModel>(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!

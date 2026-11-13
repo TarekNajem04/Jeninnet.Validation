@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    
+    <PropertyGroup>
+        <RootNamespace>Jeninnet.Validation.Sample.CleanArchitecture.Domain</RootNamespace>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+
+</Project>

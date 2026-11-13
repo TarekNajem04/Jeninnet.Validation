@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <AssemblyName>Jeninnet.Validation.Localization.AspNetCore</AssemblyName>
+        <RootNamespace>Jeninnet.Validation.Localization.AspNetCore</RootNamespace>
+        <Description>ASP.NET Core IStringLocalizer bridge and explicit culture control for Jeninnet.Validation messages.</Description>
+        <!-- NU5104: the sibling Jeninnet.Localization packages are still prerelease. -->
+        <NoWarn>$(NoWarn);NU5104</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Jeninnet.Localization.Abstractions" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Jeninnet.Validation.Abstractions\Jeninnet.Validation.Abstractions.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,6 @@
+{
+  "NotEmpty": "{PropertyName} يجب ألا يكون فارغاً.",
+  "Email": "{PropertyName} ليس عنوان بريد إلكتروني صالح.",
+  "GreaterThan": "{PropertyName} يجب أن يكون أكبر من {ComparisonValue}.",
+  "InclusiveBetween": "{PropertyName} يجب أن يكون بين {From} و {To}."
+}

@@ -1,0 +1,139 @@
+#nullable enable
+Jeninnet.Validation.Analyzers.AttributeMisuseAnalyzer
+Jeninnet.Validation.Analyzers.AttributeMisuseAnalyzer.AttributeMisuseAnalyzer() -> void
+Jeninnet.Validation.Analyzers.CollectionRuleAnalyzer
+Jeninnet.Validation.Analyzers.CollectionRuleAnalyzer.CollectionRuleAnalyzer() -> void
+Jeninnet.Validation.Analyzers.RuleForMemberNameAnalyzer
+Jeninnet.Validation.Analyzers.RuleForMemberNameAnalyzer.RuleForMemberNameAnalyzer() -> void
+Jeninnet.Validation.Analyzers.RuleSuggestionAnalyzer
+Jeninnet.Validation.Analyzers.RuleSuggestionAnalyzer.RuleSuggestionAnalyzer() -> void
+Jeninnet.Validation.Analyzers.SyncAdapterAsyncValidatorAnalyzer
+Jeninnet.Validation.Analyzers.SyncAdapterAsyncValidatorAnalyzer.SyncAdapterAsyncValidatorAnalyzer() -> void
+Jeninnet.Validation.Analyzers.SyncValidateAnalyzer
+Jeninnet.Validation.Analyzers.SyncValidateAnalyzer.SyncValidateAnalyzer() -> void
+Jeninnet.Validation.Analyzers.TautologicalRuleAnalyzer
+Jeninnet.Validation.Analyzers.TautologicalRuleAnalyzer.TautologicalRuleAnalyzer() -> void
+Jeninnet.Validation.Analyzers.ValidationRuleAnalyzer
+Jeninnet.Validation.Analyzers.ValidationRuleAnalyzer.ValidationRuleAnalyzer() -> void
+Jeninnet.Validation.CodeFixes.AddNotEmptySuggestionCodeFix
+Jeninnet.Validation.CodeFixes.AddNotEmptySuggestionCodeFix.AddNotEmptySuggestionCodeFix() -> void
+Jeninnet.Validation.CodeFixes.AddNotNullBeforeNumericRuleCodeFix
+Jeninnet.Validation.CodeFixes.AddNotNullBeforeNumericRuleCodeFix.AddNotNullBeforeNumericRuleCodeFix() -> void
+Jeninnet.Validation.CodeFixes.AddNotNullSuggestionCodeFix
+Jeninnet.Validation.CodeFixes.AddNotNullSuggestionCodeFix.AddNotNullSuggestionCodeFix() -> void
+Jeninnet.Validation.CodeFixes.ConvertToBooleanLiteralCodeFix
+Jeninnet.Validation.CodeFixes.ConvertToBooleanLiteralCodeFix.ConvertToBooleanLiteralCodeFix() -> void
+Jeninnet.Validation.CodeFixes.ConvertToDateOnlyLiteralCodeFix
+Jeninnet.Validation.CodeFixes.ConvertToDateOnlyLiteralCodeFix.ConvertToDateOnlyLiteralCodeFix() -> void
+Jeninnet.Validation.CodeFixes.ConvertToDateTimeLiteralCodeFix
+Jeninnet.Validation.CodeFixes.ConvertToDateTimeLiteralCodeFix.ConvertToDateTimeLiteralCodeFix() -> void
+Jeninnet.Validation.CodeFixes.ConvertToDecimalLiteralCodeFix
+Jeninnet.Validation.CodeFixes.ConvertToDecimalLiteralCodeFix.ConvertToDecimalLiteralCodeFix() -> void
+Jeninnet.Validation.CodeFixes.ConvertToEnumLiteralCodeFix
+Jeninnet.Validation.CodeFixes.ConvertToEnumLiteralCodeFix.ConvertToEnumLiteralCodeFix() -> void
+Jeninnet.Validation.CodeFixes.ConvertToGuidLiteralCodeFix
+Jeninnet.Validation.CodeFixes.ConvertToGuidLiteralCodeFix.ConvertToGuidLiteralCodeFix() -> void
+Jeninnet.Validation.CodeFixes.ConvertToTimeSpanLiteralCodeFix
+Jeninnet.Validation.CodeFixes.ConvertToTimeSpanLiteralCodeFix.ConvertToTimeSpanLiteralCodeFix() -> void
+Jeninnet.Validation.CodeFixes.FixLengthAndNotEmptyConflictCodeFix
+Jeninnet.Validation.CodeFixes.FixLengthAndNotEmptyConflictCodeFix.FixLengthAndNotEmptyConflictCodeFix() -> void
+Jeninnet.Validation.CodeFixes.RemoveConflictingRuleCodeFix
+Jeninnet.Validation.CodeFixes.RemoveConflictingRuleCodeFix.RemoveConflictingRuleCodeFix() -> void
+Jeninnet.Validation.CodeFixes.SwapInclusiveBetweenParametersCodeFix
+Jeninnet.Validation.CodeFixes.SwapInclusiveBetweenParametersCodeFix.SwapInclusiveBetweenParametersCodeFix() -> void
+Jeninnet.Validation.CodeFixes.UseNameofForRuleForMemberCodeFix
+Jeninnet.Validation.CodeFixes.UseNameofForRuleForMemberCodeFix.UseNameofForRuleForMemberCodeFix() -> void
+Jeninnet.Validation.CodeFixes.UseValidateAsyncCodeFix
+Jeninnet.Validation.CodeFixes.UseValidateAsyncCodeFix.UseValidateAsyncCodeFix() -> void
+Jeninnet.Validation.Diagnostics.DiagnosticDescriptors
+Jeninnet.Validation.Generators.GeneratorModel.GeneratorDiagnostics
+Jeninnet.Validation.Generators.ValidatorGenerator
+Jeninnet.Validation.Generators.ValidatorGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext context) -> void
+Jeninnet.Validation.Generators.ValidatorGenerator.ValidatorGenerator() -> void
+override Jeninnet.Validation.Analyzers.AttributeMisuseAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext! context) -> void
+override Jeninnet.Validation.Analyzers.AttributeMisuseAnalyzer.SupportedDiagnostics.get -> System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.DiagnosticDescriptor!>
+override Jeninnet.Validation.Analyzers.CollectionRuleAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext! context) -> void
+override Jeninnet.Validation.Analyzers.CollectionRuleAnalyzer.SupportedDiagnostics.get -> System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.DiagnosticDescriptor!>
+override Jeninnet.Validation.Analyzers.RuleForMemberNameAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext! context) -> void
+override Jeninnet.Validation.Analyzers.RuleForMemberNameAnalyzer.SupportedDiagnostics.get -> System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.DiagnosticDescriptor!>
+override Jeninnet.Validation.Analyzers.RuleSuggestionAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext! context) -> void
+override Jeninnet.Validation.Analyzers.RuleSuggestionAnalyzer.SupportedDiagnostics.get -> System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.DiagnosticDescriptor!>
+override Jeninnet.Validation.Analyzers.SyncAdapterAsyncValidatorAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext! context) -> void
+override Jeninnet.Validation.Analyzers.SyncAdapterAsyncValidatorAnalyzer.SupportedDiagnostics.get -> System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.DiagnosticDescriptor!>
+override Jeninnet.Validation.Analyzers.SyncValidateAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext! context) -> void
+override Jeninnet.Validation.Analyzers.SyncValidateAnalyzer.SupportedDiagnostics.get -> System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.DiagnosticDescriptor!>
+override Jeninnet.Validation.Analyzers.TautologicalRuleAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext! context) -> void
+override Jeninnet.Validation.Analyzers.TautologicalRuleAnalyzer.SupportedDiagnostics.get -> System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.DiagnosticDescriptor!>
+override Jeninnet.Validation.Analyzers.ValidationRuleAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext! context) -> void
+override Jeninnet.Validation.Analyzers.ValidationRuleAnalyzer.SupportedDiagnostics.get -> System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.DiagnosticDescriptor!>
+override Jeninnet.Validation.CodeFixes.AddNotEmptySuggestionCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>
+override Jeninnet.Validation.CodeFixes.AddNotEmptySuggestionCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!
+override Jeninnet.Validation.CodeFixes.AddNotEmptySuggestionCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!
+override Jeninnet.Validation.CodeFixes.AddNotNullBeforeNumericRuleCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>
+override Jeninnet.Validation.CodeFixes.AddNotNullBeforeNumericRuleCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!
+override Jeninnet.Validation.CodeFixes.AddNotNullBeforeNumericRuleCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!
+override Jeninnet.Validation.CodeFixes.AddNotNullSuggestionCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>
+override Jeninnet.Validation.CodeFixes.AddNotNullSuggestionCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!
+override Jeninnet.Validation.CodeFixes.AddNotNullSuggestionCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!
+override Jeninnet.Validation.CodeFixes.ConvertToBooleanLiteralCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>
+override Jeninnet.Validation.CodeFixes.ConvertToBooleanLiteralCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!
+override Jeninnet.Validation.CodeFixes.ConvertToBooleanLiteralCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!
+override Jeninnet.Validation.CodeFixes.ConvertToDateOnlyLiteralCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>
+override Jeninnet.Validation.CodeFixes.ConvertToDateOnlyLiteralCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!
+override Jeninnet.Validation.CodeFixes.ConvertToDateOnlyLiteralCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!
+override Jeninnet.Validation.CodeFixes.ConvertToDateTimeLiteralCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>
+override Jeninnet.Validation.CodeFixes.ConvertToDateTimeLiteralCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!
+override Jeninnet.Validation.CodeFixes.ConvertToDateTimeLiteralCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!
+override Jeninnet.Validation.CodeFixes.ConvertToDecimalLiteralCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>
+override Jeninnet.Validation.CodeFixes.ConvertToDecimalLiteralCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!
+override Jeninnet.Validation.CodeFixes.ConvertToDecimalLiteralCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!
+override Jeninnet.Validation.CodeFixes.ConvertToEnumLiteralCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>
+override Jeninnet.Validation.CodeFixes.ConvertToEnumLiteralCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!
+override Jeninnet.Validation.CodeFixes.ConvertToEnumLiteralCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!
+override Jeninnet.Validation.CodeFixes.ConvertToGuidLiteralCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>
+override Jeninnet.Validation.CodeFixes.ConvertToGuidLiteralCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!
+override Jeninnet.Validation.CodeFixes.ConvertToGuidLiteralCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!
+override Jeninnet.Validation.CodeFixes.ConvertToTimeSpanLiteralCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>
+override Jeninnet.Validation.CodeFixes.ConvertToTimeSpanLiteralCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!
+override Jeninnet.Validation.CodeFixes.ConvertToTimeSpanLiteralCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!
+override Jeninnet.Validation.CodeFixes.FixLengthAndNotEmptyConflictCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>
+override Jeninnet.Validation.CodeFixes.FixLengthAndNotEmptyConflictCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!
+override Jeninnet.Validation.CodeFixes.FixLengthAndNotEmptyConflictCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!
+override Jeninnet.Validation.CodeFixes.RemoveConflictingRuleCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>
+override Jeninnet.Validation.CodeFixes.RemoveConflictingRuleCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!
+override Jeninnet.Validation.CodeFixes.RemoveConflictingRuleCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!
+override Jeninnet.Validation.CodeFixes.SwapInclusiveBetweenParametersCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>
+override Jeninnet.Validation.CodeFixes.SwapInclusiveBetweenParametersCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!
+override Jeninnet.Validation.CodeFixes.SwapInclusiveBetweenParametersCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!
+override Jeninnet.Validation.CodeFixes.UseNameofForRuleForMemberCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>
+override Jeninnet.Validation.CodeFixes.UseNameofForRuleForMemberCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!
+override Jeninnet.Validation.CodeFixes.UseNameofForRuleForMemberCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!
+override Jeninnet.Validation.CodeFixes.UseValidateAsyncCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>
+override Jeninnet.Validation.CodeFixes.UseValidateAsyncCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!
+override Jeninnet.Validation.CodeFixes.UseValidateAsyncCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!
+static Jeninnet.Validation.Generators.GeneratorModel.GeneratorDiagnostics.ReportInvalidRuleParameter(Microsoft.CodeAnalysis.SourceProductionContext context, Microsoft.CodeAnalysis.Compilation! compilation, Microsoft.CodeAnalysis.Location! location, string! rawValue, Microsoft.CodeAnalysis.ITypeSymbol! targetType, string! ruleName) -> void
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.AsyncOnlyValidatorInSyncAdapter -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.CollectionElementValidatorNotFound -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.CollectionRuleRequiresCollection -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.ConflictingRules -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.InvalidConditionMethod -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.InvalidCustomValidator -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.InvalidDateTimeValue -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.InvalidLifecycleHook -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.InvalidRuleCombination -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.InvalidRuleParameter -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.NestedValidatorNotFound -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.RedundantNotNull -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.RuleAppliedToIncompatibleType -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.RuleForMemberNameMismatch -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.RuleNotAllowedOnNullableType -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.RuleParameterOutOfRange -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.RuleParameterTypeMismatch -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.SimplifyRuls -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.SuggestNotEmptyForString -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.SuggestNotNullForNullable -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.SyncValidateOnAsyncOnlyValidator -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.TargetPropertyNotFound -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.TautologicalRule -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.UnsupportedAttributeArgumentType -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.UnsupportedGenericModel -> Microsoft.CodeAnalysis.DiagnosticDescriptor!

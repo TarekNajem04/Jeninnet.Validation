@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<messages>
+  <Required>{PropertyName} is required.</Required>
+  <NotEmpty>{PropertyName} must not be empty.</NotEmpty>
+  <Email>{PropertyName} must be a valid email address.</Email>
+  <Length>{PropertyName} must be between {From} and {To} characters.</Length>
+  <Range>{PropertyName} must be between {From} and {To}.</Range>
+  <GreaterThan>{PropertyName} must be greater than {ComparisonValue}.</GreaterThan>
+  <InclusiveBetween>{PropertyName} must be between {From} and {To}.</InclusiveBetween>
+</messages>

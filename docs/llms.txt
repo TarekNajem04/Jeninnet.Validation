@@ -1,0 +1,61 @@
+# Jeninnet.Validation
+
+> A modular validation framework for .NET 10 / C# 14: fluent and attribute authoring, a Roslyn
+> source generator, deterministic execution, a zero-allocation happy path, and first-class
+> integrations for ASP.NET Core, Blazor, MediatR, GraphQL, gRPC, OpenAPI, JSON Schema, and
+> desktop view models.
+
+## Start here
+
+- [Best C# validation libraries in 2026](https://tareknajem04.github.io/Jeninnet.Validation/en/01-getting-started/00b-best-csharp-validation-libraries.html)
+- [Why Jeninnet.Validation?](https://tareknajem04.github.io/Jeninnet.Validation/en/01-getting-started/00-why-jeninnet.html)
+- [Introduction](https://tareknajem04.github.io/Jeninnet.Validation/en/01-getting-started/01-introduction.html)
+- [Installation](https://tareknajem04.github.io/Jeninnet.Validation/en/01-getting-started/02-installation.html)
+- [Quick start](https://tareknajem04.github.io/Jeninnet.Validation/en/01-getting-started/03-quick-start.html)
+- [Mental model](https://tareknajem04.github.io/Jeninnet.Validation/en/01-getting-started/04-mental-model.html)
+- [API reference](https://tareknajem04.github.io/Jeninnet.Validation/api/Jeninnet.Validation.html)
+
+## Comparison and evidence
+
+- [Capability parity](https://tareknajem04.github.io/Jeninnet.Validation/en/03-reference/09-capability-parity.html)
+- [Peer benchmarks](https://tareknajem04.github.io/Jeninnet.Validation/en/04-operations/10-peer-benchmarks.html)
+- [Benchmarks](https://tareknajem04.github.io/Jeninnet.Validation/en/04-operations/06-benchmarks.html)
+- [Allocation audit](https://tareknajem04.github.io/Jeninnet.Validation/en/04-operations/07-allocation-audit.html)
+- [Known limitations](https://tareknajem04.github.io/Jeninnet.Validation/en/03-reference/07-known-limitations.html)
+
+## Guides
+
+- [Fluent authoring](https://tareknajem04.github.io/Jeninnet.Validation/en/02-guides/01-fluent-authoring.html)
+- [Attribute authoring](https://tareknajem04.github.io/Jeninnet.Validation/en/02-guides/02-attribute-authoring.html)
+- [Rules and messages](https://tareknajem04.github.io/Jeninnet.Validation/en/02-guides/03-rules-and-messages.html)
+- [ASP.NET Core](https://tareknajem04.github.io/Jeninnet.Validation/en/02-guides/08-aspnet-core.html)
+- [Blazor](https://tareknajem04.github.io/Jeninnet.Validation/en/02-guides/11-blazor.html)
+- [MediatR](https://tareknajem04.github.io/Jeninnet.Validation/en/02-guides/09-mediatr.html)
+- [JSON Schema, OpenAPI, and client rules](https://tareknajem04.github.io/Jeninnet.Validation/en/02-guides/12-schema-openapi-client.html)
+- [Localization](https://tareknajem04.github.io/Jeninnet.Validation/en/02-guides/13-localization.html)
+
+## Migration
+
+- [From FluentValidation](https://tareknajem04.github.io/Jeninnet.Validation/en/02-guides/15-migration-from-fluentvalidation.html)
+- [From DataAnnotations](https://tareknajem04.github.io/Jeninnet.Validation/en/02-guides/16-migration-from-dataannotations.html)
+
+## Packages
+
+- `Jeninnet.Validation` - core engine and fluent/attribute authoring.
+- `Jeninnet.Validation.Abstractions` - public contracts.
+- `Jeninnet.Validation.AspNetCore` - minimal API endpoint filter and MVC integration.
+- `Jeninnet.Validation.Blazor` - `EditContext` adapter.
+- `Jeninnet.Validation.DataAnnotations` - DataAnnotations bridge.
+- `Jeninnet.Validation.JsonSchema` - JSON Schema generation.
+- `Jeninnet.Validation.OpenApi` - OpenAPI constraints.
+- `Jeninnet.Validation.MediatR` - MediatR pipeline behavior.
+- `Jeninnet.Validation.GraphQL` - HotChocolate field middleware.
+- `Jeninnet.Validation.Grpc` - gRPC interceptor.
+- `Jeninnet.Validation.Observable` - `INotifyDataErrorInfo` adapter.
+- `Jeninnet.Validation.Localization` - 40 message packs.
+
+## Source
+
+- [GitHub repository](https://github.com/TarekNajem04/Jeninnet.Validation)
+- [NuGet package](https://www.nuget.org/packages/Jeninnet.Validation)
+- [License (MIT)](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/LICENSE)

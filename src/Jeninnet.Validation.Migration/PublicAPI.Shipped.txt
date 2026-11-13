@@ -1,0 +1,3 @@
+#nullable enable
+Jeninnet.Validation.Migration.MigrationCli
+static Jeninnet.Validation.Migration.MigrationCli.Run(string![]! args) -> int

@@ -1,0 +1,187 @@
+name: Publish NuGet Packages
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: read
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  PACKAGES_DIR: artifacts/packages
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish to NuGet
+    runs-on: windows-latest
+    environment:
+      name: production
+
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+      # ---------------------------------------------------------
+      # 1) Checkout repository
+      # ---------------------------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+
+      # ---------------------------------------------------------
+      # 2) Setup .NET
+      # ---------------------------------------------------------
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v6.1.0
+        with:
+          global-json-file: global.json
+
+      # ---------------------------------------------------------
+      # 3) Resolve Version from Tag
+      # ---------------------------------------------------------
+      - name: Resolve version
+        id: version
+        shell: bash
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Publishing version: $VERSION"
+
+      # ---------------------------------------------------------
+      # 4) Verify the central product version matches the Tag.
+      #    Version is owned by Directory.Build.props and evaluated
+      #    through MSBuild so every packable project shares it.
+      # ---------------------------------------------------------
+      - name: Verify product version
+        shell: pwsh
+        run: |
+          $expected = "${{ steps.version.outputs.version }}"
+          $actual = (dotnet msbuild src/Jeninnet.Validation/Jeninnet.Validation.csproj -getProperty:Version -nologo).Trim()
+
+          if ([string]::IsNullOrWhiteSpace($actual)) {
+            throw "Validation failed: the evaluated MSBuild Version is empty."
+          }
+
+          if ($actual -ne $expected) {
+            throw "Validation failed: product version '$actual' does not match tag version '$expected'."
+          }
+
+          Write-Host "Version verified: $actual"
+
+      # ---------------------------------------------------------
+      # 5) Build and Test
+      # ---------------------------------------------------------
+      - name: Restore dependencies
+        run: dotnet restore Jeninnet.Validation.slnx
+
+      - name: Build solution
+        run: dotnet build Jeninnet.Validation.slnx --configuration Release --no-restore
+
+      - name: Run tests
+        run: >
+          dotnet test Jeninnet.Validation.slnx
+          --configuration Release
+          --no-build
+          --no-restore
+          --logger "console;verbosity=normal"
+
+      # ---------------------------------------------------------
+      # 6) Pack all packable projects (samples/tests are non-packable)
+      # ---------------------------------------------------------
+      - name: Create output directory
+        shell: bash
+        run: mkdir -p ${{ env.PACKAGES_DIR }}
+
+      - name: Pack projects
+        run: dotnet pack Jeninnet.Validation.slnx --configuration Release --no-build --no-restore /p:EnablePackageValidation=true --output ${{ env.PACKAGES_DIR }}
+
+      # ---------------------------------------------------------
+      # 7) Upload and Publish
+      # ---------------------------------------------------------
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: nuget-packages-${{ steps.version.outputs.version }}
+          path: ${{ env.PACKAGES_DIR }}
+          retention-days: 30
+
+      - name: NuGet login (OIDC)
+        uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841
+        id: login
+        with:
+          user: ${{ vars.NUGET_USER }}
+
+      # Symbols ride along with this push: NuGet pairs each sibling .snupkg and only
+      # uploads it when the package upload itself succeeds. A separate
+      # `dotnet nuget push *.snupkg` step must NOT exist: on a re-run for an
+      # already-published version it would overwrite the published symbols with PDBs
+      # from a different build (different commit), and nuget.org rejects that with
+      # "The uploaded symbols package contains pdb(s) for a corresponding dll(s)
+      # not found in the nuget package." (NuGet/Home#10475).
+      - name: Push packages to NuGet
+        shell: bash
+        env:
+          NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
+        run: |
+          if [ -z "$NUGET_API_KEY" ]; then
+            echo "::error::NuGet returned an empty API key; cannot publish."
+            exit 1
+          fi
+
+          # The glob must stay outside the quotes so bash expands it. A quoted
+          # pattern reaches dotnet nuget push as a literal path.
+          dotnet nuget push "${{ env.PACKAGES_DIR }}"/*.nupkg \
+            --api-key "$NUGET_API_KEY" \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
+
+      # ---------------------------------------------------------
+      # 8) Create GitHub Release
+      #    A versioned notes file, when present, becomes the release body.
+      #    Otherwise GitHub generates the notes from the commit range.
+      # ---------------------------------------------------------
+      - name: Resolve release notes
+        id: release_notes
+        shell: bash
+        run: |
+          NOTES=".github/release-notes/v${{ steps.version.outputs.version }}.md"
+          if [ -f "$NOTES" ]; then
+            echo "file=$NOTES" >> "$GITHUB_OUTPUT"
+            echo "Using release notes: $NOTES"
+          else
+            echo "file=" >> "$GITHUB_OUTPUT"
+            echo "No release notes file for v${{ steps.version.outputs.version }}; GitHub will generate notes."
+          fi
+
+      - name: Create GitHub release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          NOTES="${{ steps.release_notes.outputs.file }}"
+
+          if [ -n "$NOTES" ]; then
+            gh release create "v$VERSION" \
+              ${{ env.PACKAGES_DIR }}/*.nupkg \
+              ${{ env.PACKAGES_DIR }}/*.snupkg \
+              --title "v$VERSION" \
+              --notes-file "$NOTES"
+          else
+            gh release create "v$VERSION" \
+              ${{ env.PACKAGES_DIR }}/*.nupkg \
+              ${{ env.PACKAGES_DIR }}/*.snupkg \
+              --title "v$VERSION" \
+              --generate-notes
+          fi

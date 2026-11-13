@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <!--
+        Package Version Strategy
+        1.0.0  initial release
+        1.2.0  new features
+        1.1.1  bug fix
+        2.0.0  breaking change        
+    -->
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <UseLocalAnalyzers>true</UseLocalAnalyzers>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\Jeninnet.Validation\Jeninnet.Validation.csproj" />
+    </ItemGroup>
+
+    <!-- Analyzers -->
+    <Choose>
+        <When Condition=" '$(UseLocalAnalyzers)' == 'True' ">
+            <ItemGroup>
+                <ProjectReference Include="..\..\src\Jeninnet.Validation.Analyzers\Jeninnet.Validation.Analyzers.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+            </ItemGroup>
+        </When>
+        <Otherwise>
+            <ItemGroup>
+                <PackageReference Include="Jeninnet.Validation.Analyzers" IncludeAssets="all" PrivateAssets="all" />
+            </ItemGroup>
+        </Otherwise>
+    </Choose>
+
+</Project>

@@ -1,0 +1,58 @@
+#nullable enable
+Jeninnet.Validation.AspNetCore.DisableValidationAttribute
+Jeninnet.Validation.AspNetCore.DisableValidationAttribute.DisableValidationAttribute() -> void
+Jeninnet.Validation.AspNetCore.JeninnetValidationFilter
+Jeninnet.Validation.AspNetCore.JeninnetValidationFilter.JeninnetValidationFilter(Jeninnet.Validation.AspNetCore.MvcValidationOptions! options) -> void
+Jeninnet.Validation.AspNetCore.JeninnetValidationFilter.OnActionExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext! context, Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate! next) -> System.Threading.Tasks.Task!
+Jeninnet.Validation.AspNetCore.JeninnetValidationRuleSetsAttribute
+Jeninnet.Validation.AspNetCore.JeninnetValidationRuleSetsAttribute.JeninnetValidationRuleSetsAttribute(params string![]! ruleSets) -> void
+Jeninnet.Validation.AspNetCore.JeninnetValidationRuleSetsAttribute.RuleSets.get -> System.Collections.Generic.IReadOnlyList<string!>!
+Jeninnet.Validation.AspNetCore.MvcValidationExtensions
+Jeninnet.Validation.AspNetCore.MvcValidationOptions
+Jeninnet.Validation.AspNetCore.MvcValidationOptions.IncludeErrorCodes.get -> bool
+Jeninnet.Validation.AspNetCore.MvcValidationOptions.IncludeErrorCodes.set -> void
+Jeninnet.Validation.AspNetCore.MvcValidationOptions.IncludeSeverities.get -> bool
+Jeninnet.Validation.AspNetCore.MvcValidationOptions.IncludeSeverities.set -> void
+Jeninnet.Validation.AspNetCore.MvcValidationOptions.ModelStateKeySelector.get -> System.Func<Jeninnet.Validation.ValidationError, string!>?
+Jeninnet.Validation.AspNetCore.MvcValidationOptions.ModelStateKeySelector.set -> void
+Jeninnet.Validation.AspNetCore.MvcValidationOptions.MvcValidationOptions() -> void
+Jeninnet.Validation.AspNetCore.MvcValidationOptions.ProblemOptions.get -> Jeninnet.Validation.AspNetCore.ValidationProblemOptions!
+Jeninnet.Validation.AspNetCore.MvcValidationOptions.ProblemOptions.set -> void
+Jeninnet.Validation.AspNetCore.SkipJeninnetValidationAttribute
+Jeninnet.Validation.AspNetCore.SkipJeninnetValidationAttribute.SkipJeninnetValidationAttribute() -> void
+Jeninnet.Validation.AspNetCore.ValidationEndpointExtensions
+Jeninnet.Validation.AspNetCore.ValidationEndpointFilter
+Jeninnet.Validation.AspNetCore.ValidationEndpointFilter.InvokeAsync(Microsoft.AspNetCore.Http.EndpointFilterInvocationContext! context, Microsoft.AspNetCore.Http.EndpointFilterDelegate! next) -> System.Threading.Tasks.ValueTask<object?>
+Jeninnet.Validation.AspNetCore.ValidationEndpointFilter.ValidationEndpointFilter(System.Reflection.MethodInfo? method) -> void
+Jeninnet.Validation.AspNetCore.ValidationEndpointFilter<T>
+Jeninnet.Validation.AspNetCore.ValidationEndpointFilter<T>.InvokeAsync(Microsoft.AspNetCore.Http.EndpointFilterInvocationContext! context, Microsoft.AspNetCore.Http.EndpointFilterDelegate! next) -> System.Threading.Tasks.ValueTask<object?>
+Jeninnet.Validation.AspNetCore.ValidationEndpointFilter<T>.ValidationEndpointFilter(System.IServiceProvider! services) -> void
+Jeninnet.Validation.AspNetCore.ValidationExceptionHandler
+Jeninnet.Validation.AspNetCore.ValidationExceptionHandler.TryHandleAsync(Microsoft.AspNetCore.Http.HttpContext! httpContext, System.Exception! exception, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask<bool>
+Jeninnet.Validation.AspNetCore.ValidationExceptionHandler.ValidationExceptionHandler(Jeninnet.Validation.AspNetCore.ValidationProblemOptions! options) -> void
+Jeninnet.Validation.AspNetCore.ValidationProblemExtensions
+Jeninnet.Validation.AspNetCore.ValidationProblemOptions
+Jeninnet.Validation.AspNetCore.ValidationProblemOptions.CorrelationIdHeader.get -> string?
+Jeninnet.Validation.AspNetCore.ValidationProblemOptions.CorrelationIdHeader.set -> void
+Jeninnet.Validation.AspNetCore.ValidationProblemOptions.IncludeCorrelationId.get -> bool
+Jeninnet.Validation.AspNetCore.ValidationProblemOptions.IncludeCorrelationId.set -> void
+Jeninnet.Validation.AspNetCore.ValidationProblemOptions.IncludeDuration.get -> bool
+Jeninnet.Validation.AspNetCore.ValidationProblemOptions.IncludeDuration.set -> void
+Jeninnet.Validation.AspNetCore.ValidationProblemOptions.IncludeErrorCodes.get -> bool
+Jeninnet.Validation.AspNetCore.ValidationProblemOptions.IncludeErrorCodes.set -> void
+Jeninnet.Validation.AspNetCore.ValidationProblemOptions.IncludeModelType.get -> bool
+Jeninnet.Validation.AspNetCore.ValidationProblemOptions.IncludeModelType.set -> void
+Jeninnet.Validation.AspNetCore.ValidationProblemOptions.IncludeSeverities.get -> bool
+Jeninnet.Validation.AspNetCore.ValidationProblemOptions.IncludeSeverities.set -> void
+Jeninnet.Validation.AspNetCore.ValidationProblemOptions.Title.get -> string?
+Jeninnet.Validation.AspNetCore.ValidationProblemOptions.Title.set -> void
+Jeninnet.Validation.AspNetCore.ValidationProblemOptions.ValidationProblemOptions() -> void
+static Jeninnet.Validation.AspNetCore.MvcValidationExtensions.AddMvcValidation(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, System.Action<Jeninnet.Validation.AspNetCore.MvcValidationOptions!>? configure = null) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static Jeninnet.Validation.AspNetCore.ValidationEndpointExtensions.AddRequestValidation(this Microsoft.AspNetCore.Builder.RouteHandlerBuilder! builder) -> Microsoft.AspNetCore.Builder.RouteHandlerBuilder!
+static Jeninnet.Validation.AspNetCore.ValidationEndpointExtensions.AddRequestValidation<T>(this Microsoft.AspNetCore.Builder.RouteHandlerBuilder! builder) -> Microsoft.AspNetCore.Builder.RouteHandlerBuilder!
+static Jeninnet.Validation.AspNetCore.ValidationEndpointExtensions.AddRequestValidation<T>(this Microsoft.AspNetCore.Routing.RouteGroupBuilder! builder) -> Microsoft.AspNetCore.Routing.RouteGroupBuilder!
+static Jeninnet.Validation.AspNetCore.ValidationEndpointExtensions.AddValidationEndpoints(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, System.Action<Jeninnet.Validation.AspNetCore.ValidationProblemOptions!>? configure = null) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static Jeninnet.Validation.AspNetCore.ValidationProblemExtensions.BuildProblemExtensions(Microsoft.AspNetCore.Http.HttpContext! httpContext, Jeninnet.Validation.AspNetCore.ValidationProblemOptions? options = null, string? modelType = null, System.TimeSpan? duration = null) -> System.Collections.Generic.IDictionary<string!, object?>!
+static Jeninnet.Validation.AspNetCore.ValidationProblemExtensions.EnrichProblem(Microsoft.AspNetCore.Mvc.ValidationProblemDetails! problem, Microsoft.AspNetCore.Http.HttpContext! httpContext, Jeninnet.Validation.AspNetCore.ValidationProblemOptions? options = null, string? modelType = null, System.TimeSpan? duration = null) -> void
+static Jeninnet.Validation.AspNetCore.ValidationProblemExtensions.ToProblemErrors(this Jeninnet.Validation.ValidationResult result, Jeninnet.Validation.AspNetCore.ValidationProblemOptions? options = null) -> System.Collections.Generic.IDictionary<string!, string![]!>!
+static Jeninnet.Validation.AspNetCore.ValidationProblemExtensions.ToProblemErrors(this System.Collections.Generic.IEnumerable<Jeninnet.Validation.ValidationError>! errors, Jeninnet.Validation.AspNetCore.ValidationProblemOptions? options = null) -> System.Collections.Generic.IDictionary<string!, string![]!>!

@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Jeninnet.Validation.Sample.MinimalApi": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:4348;http://localhost:4349"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "NotEmpty": "{PropertyName} يجب ألا يكون فارغاً.",
+  "Email": "{PropertyName} يجب أن يكون بريداً إلكترونياً صالحاً.",
+  "Length": "{PropertyName} طول غير صالح.",
+  "MinimumLength": "{PropertyName} يجب أن يكون على الأقل {MinLength} حرفاً.",
+  "MaximumLength": "{PropertyName} يجب أن يكون على الأكثر {MaxLength} حرفاً.",
+  "Matches": "{PropertyName} ليس بالتنسيق الصحيح.",
+  "InclusiveBetween": "{PropertyName} يجب أن يكون بين {From} و {To}.",
+  "GreaterThan": "{PropertyName} يجب أن يكون أكبر من {ComparisonValue}.",
+  "EmailAddress": "{PropertyName} يجب أن يكون بريداً إلكترونياً صالحاً."
+}

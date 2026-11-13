@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <UseLocalAnalyzers>true</UseLocalAnalyzers>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Jeninnet.Localization.Core" />
+        <PackageReference Include="Jeninnet.Localization.Providers.Xml" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Jeninnet.Validation\Jeninnet.Validation.csproj" />
+
+        <ProjectReference Include="..\Jeninnet.Validation.Sample.Localization.Base\Jeninnet.Validation.Sample.Localization.Base.csproj" />
+        <ProjectReference Include="..\Jeninnet.Validation.Sample.Localization.Infrastructure\Jeninnet.Validation.Sample.Localization.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="Messages\**\*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+</Project>

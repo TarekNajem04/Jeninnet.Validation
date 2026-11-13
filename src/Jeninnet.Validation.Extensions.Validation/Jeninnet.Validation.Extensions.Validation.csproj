@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <AssemblyName>Jeninnet.Validation.Extensions.Validation</AssemblyName>
+        <RootNamespace>Jeninnet.Validation.Extensions.Validation</RootNamespace>
+        <Description>Microsoft.Extensions.Validation bridge for Jeninnet.Validation validators.</Description>
+        <IsAotCompatible>true</IsAotCompatible>
+        <!-- Microsoft.Extensions.Validation explicitly marks its metadata interfaces as evaluation-only. -->
+        <NoWarn>$(NoWarn);ASP0029</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Jeninnet.Validation.Extensions.Validation.Tests" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Jeninnet.Validation\Jeninnet.Validation.csproj" />
+        <ProjectReference Include="..\Jeninnet.Validation.Abstractions\Jeninnet.Validation.Abstractions.csproj" />
+        <ProjectReference Include="..\Jeninnet.Validation.DataAnnotations\Jeninnet.Validation.DataAnnotations.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,208 @@
+#nullable enable
+Jeninnet.Validation.Abstractions.IAsyncValidator<T>
+Jeninnet.Validation.Abstractions.IAsyncValidator<T>.ValidateAsync(T instance, System.Collections.Generic.IEnumerable<string!>! ruleSets, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+Jeninnet.Validation.Abstractions.IAsyncValidator<T>.ValidateAsync(T instance, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+Jeninnet.Validation.Abstractions.IGeneratedValidator
+Jeninnet.Validation.Abstractions.IPropertyRuleDefinition
+Jeninnet.Validation.Abstractions.IPropertyRuleDefinition.PropertyName.get -> string!
+Jeninnet.Validation.Abstractions.IRuleDefinition
+Jeninnet.Validation.Abstractions.IRuleDefinition.ErrorMessage.get -> string?
+Jeninnet.Validation.Abstractions.ISyncValidator<T>
+Jeninnet.Validation.Abstractions.ISyncValidator<T>.Validate(T instance) -> Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.Abstractions.ISyncValidator<T>.Validate(T instance, System.Collections.Generic.IEnumerable<string!>! ruleSets) -> Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.Abstractions.IValidator<T>
+Jeninnet.Validation.AsyncOnlyValidatorAttribute
+Jeninnet.Validation.AsyncOnlyValidatorAttribute.AsyncOnlyValidatorAttribute() -> void
+Jeninnet.Validation.AsyncValidatorInvokedSynchronouslyException
+Jeninnet.Validation.AsyncValidatorInvokedSynchronouslyException.AsyncRuleCount.get -> int
+Jeninnet.Validation.AsyncValidatorInvokedSynchronouslyException.AsyncValidatorInvokedSynchronouslyException(string! validatorTypeName, int asyncRuleCount) -> void
+Jeninnet.Validation.AsyncValidatorInvokedSynchronouslyException.AsyncValidatorInvokedSynchronouslyException(string! validatorTypeName, int asyncRuleCount, System.Exception! innerException) -> void
+Jeninnet.Validation.AsyncValidatorInvokedSynchronouslyException.ValidatorTypeName.get -> string!
+Jeninnet.Validation.CascadeMode
+Jeninnet.Validation.CascadeMode.Continue = 0 -> Jeninnet.Validation.CascadeMode
+Jeninnet.Validation.CascadeMode.Stop = 1 -> Jeninnet.Validation.CascadeMode
+Jeninnet.Validation.Configuration.MessageParameterNames
+Jeninnet.Validation.Configuration.ValidationMessageKeys
+Jeninnet.Validation.IValidationDiagnosticsScope
+Jeninnet.Validation.IValidationDiagnosticsScope.Complete(Jeninnet.Validation.ValidationResult result) -> void
+Jeninnet.Validation.IValidationDiagnosticsScope.Fail(System.Exception! exception) -> void
+Jeninnet.Validation.IValidationDiagnosticsSink
+Jeninnet.Validation.IValidationDiagnosticsSink.Begin(System.Type! modelType, string? validatorName, System.Collections.Generic.IEnumerable<string!>? ruleSets, bool isAsync) -> Jeninnet.Validation.IValidationDiagnosticsScope?
+Jeninnet.Validation.MessageId
+Jeninnet.Validation.MessageId.Id.get -> string!
+Jeninnet.Validation.MessageId.Id.init -> void
+Jeninnet.Validation.MessageId.MessageId() -> void
+Jeninnet.Validation.MessageId.MessageId(string! Id) -> void
+Jeninnet.Validation.Metadata.IValidationDescriptor
+Jeninnet.Validation.Metadata.IValidationDescriptor.Members.get -> System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.Metadata.IValidationMemberDescriptor!>!
+Jeninnet.Validation.Metadata.IValidationDescriptor.RulesForMember(string! memberName) -> System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.Metadata.IValidationRuleDescriptor!>!
+Jeninnet.Validation.Metadata.IValidationDescriptor.ValidatedType.get -> System.Type?
+Jeninnet.Validation.Metadata.IValidationDescriptor.ValidatorName.get -> string!
+Jeninnet.Validation.Metadata.IValidationDescriptorProvider
+Jeninnet.Validation.Metadata.IValidationDescriptorProvider.Describe() -> Jeninnet.Validation.Metadata.IValidationDescriptor!
+Jeninnet.Validation.Metadata.IValidationMemberDescriptor
+Jeninnet.Validation.Metadata.IValidationMemberDescriptor.Name.get -> string!
+Jeninnet.Validation.Metadata.IValidationMemberDescriptor.Rules.get -> System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.Metadata.IValidationRuleDescriptor!>!
+Jeninnet.Validation.Metadata.IValidationRuleDescriptor
+Jeninnet.Validation.Metadata.IValidationRuleDescriptor.CustomState.get -> object?
+Jeninnet.Validation.Metadata.IValidationRuleDescriptor.DisplayName.get -> string?
+Jeninnet.Validation.Metadata.IValidationRuleDescriptor.ErrorCode.get -> string?
+Jeninnet.Validation.Metadata.IValidationRuleDescriptor.HasCondition.get -> bool
+Jeninnet.Validation.Metadata.IValidationRuleDescriptor.Kind.get -> string!
+Jeninnet.Validation.Metadata.IValidationRuleDescriptor.MessageKey.get -> string?
+Jeninnet.Validation.Metadata.IValidationRuleDescriptor.Parameters.get -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!
+Jeninnet.Validation.Metadata.IValidationRuleDescriptor.Severity.get -> Jeninnet.Validation.ValidationErrorSeverity
+Jeninnet.Validation.Metadata.IValidationSchemaRuleMetadata
+Jeninnet.Validation.Metadata.IValidationSchemaRuleMetadata.IsCollection.get -> bool
+Jeninnet.Validation.Metadata.IValidationSchemaRuleMetadata.Kind.get -> string!
+Jeninnet.Validation.Metadata.IValidationSchemaRuleMetadata.NestedDescriptor.get -> Jeninnet.Validation.Metadata.IValidationDescriptor?
+Jeninnet.Validation.Metadata.ValidationDescriptor
+Jeninnet.Validation.Metadata.ValidationDescriptor.Members.get -> System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.Metadata.IValidationMemberDescriptor!>!
+Jeninnet.Validation.Metadata.ValidationDescriptor.RulesForMember(string! memberName) -> System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.Metadata.IValidationRuleDescriptor!>!
+Jeninnet.Validation.Metadata.ValidationDescriptor.ValidatedType.get -> System.Type?
+Jeninnet.Validation.Metadata.ValidationDescriptor.ValidationDescriptor(string! validatorName, System.Collections.Generic.IEnumerable<Jeninnet.Validation.Metadata.IValidationMemberDescriptor!>! members, System.Type? validatedType = null) -> void
+Jeninnet.Validation.Metadata.ValidationDescriptor.ValidatorName.get -> string!
+Jeninnet.Validation.Metadata.ValidationMemberDescriptor
+Jeninnet.Validation.Metadata.ValidationMemberDescriptor.MemberType.get -> System.Type?
+Jeninnet.Validation.Metadata.ValidationMemberDescriptor.Name.get -> string!
+Jeninnet.Validation.Metadata.ValidationMemberDescriptor.Rules.get -> System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.Metadata.IValidationRuleDescriptor!>!
+Jeninnet.Validation.Metadata.ValidationMemberDescriptor.ValidationMemberDescriptor(string! name, System.Collections.Generic.IEnumerable<Jeninnet.Validation.Metadata.IValidationRuleDescriptor!>! rules, System.Type? memberType = null) -> void
+Jeninnet.Validation.Metadata.ValidationRuleDescriptor
+Jeninnet.Validation.Metadata.ValidationRuleDescriptor.CustomState.get -> object?
+Jeninnet.Validation.Metadata.ValidationRuleDescriptor.DisplayName.get -> string?
+Jeninnet.Validation.Metadata.ValidationRuleDescriptor.ErrorCode.get -> string?
+Jeninnet.Validation.Metadata.ValidationRuleDescriptor.HasCondition.get -> bool
+Jeninnet.Validation.Metadata.ValidationRuleDescriptor.Kind.get -> string!
+Jeninnet.Validation.Metadata.ValidationRuleDescriptor.MessageKey.get -> string?
+Jeninnet.Validation.Metadata.ValidationRuleDescriptor.NestedDescriptor.get -> Jeninnet.Validation.Metadata.IValidationDescriptor?
+Jeninnet.Validation.Metadata.ValidationRuleDescriptor.Parameters.get -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!
+Jeninnet.Validation.Metadata.ValidationRuleDescriptor.Severity.get -> Jeninnet.Validation.ValidationErrorSeverity
+Jeninnet.Validation.Metadata.ValidationRuleDescriptor.ValidationRuleDescriptor(string! kind, string? messageKey = null, Jeninnet.Validation.ValidationErrorSeverity severity = Jeninnet.Validation.ValidationErrorSeverity.Error, bool hasCondition = false, System.Collections.Generic.IReadOnlyDictionary<string!, object?>? parameters = null, string? errorCode = null, string? displayName = null, object? customState = null, Jeninnet.Validation.Metadata.IValidationDescriptor? nestedDescriptor = null) -> void
+Jeninnet.Validation.ValidationDiagnostics
+Jeninnet.Validation.ValidationError
+Jeninnet.Validation.ValidationError.CustomState.get -> object?
+Jeninnet.Validation.ValidationError.ErrorCode.get -> string?
+Jeninnet.Validation.ValidationError.MemberName.get -> string!
+Jeninnet.Validation.ValidationError.Message.get -> string?
+Jeninnet.Validation.ValidationError.MessageId.get -> Jeninnet.Validation.MessageId
+Jeninnet.Validation.ValidationError.MessageKey.get -> string?
+Jeninnet.Validation.ValidationError.MessageParameters.get -> System.Collections.Generic.IDictionary<string!, object!>?
+Jeninnet.Validation.ValidationError.Severity.get -> Jeninnet.Validation.ValidationErrorSeverity
+Jeninnet.Validation.ValidationError.ValidationError() -> void
+Jeninnet.Validation.ValidationError.ValidationError(string! memberName, Jeninnet.Validation.MessageId messageId, string? messageKey = null, System.Collections.Generic.IDictionary<string!, object!>? messageParameters = null, string? message = null, string? errorCode = null, Jeninnet.Validation.ValidationErrorSeverity severity = Jeninnet.Validation.ValidationErrorSeverity.Error, object? customState = null) -> void
+Jeninnet.Validation.ValidationError.ValidationError(string! memberName, string? message, string? errorCode = null, System.Collections.Generic.IDictionary<string!, object!>? messageParameters = null, Jeninnet.Validation.ValidationErrorSeverity severity = Jeninnet.Validation.ValidationErrorSeverity.Error, object? customState = null) -> void
+Jeninnet.Validation.ValidationErrorCollector
+Jeninnet.Validation.ValidationErrorCollector.Add(Jeninnet.Validation.ValidationError error) -> void
+Jeninnet.Validation.ValidationErrorCollector.Add(string! memberName, Jeninnet.Validation.MessageId messageId) -> void
+Jeninnet.Validation.ValidationErrorCollector.Add(string! memberName, Jeninnet.Validation.MessageId messageId, System.Collections.Generic.IDictionary<string!, object!>? messageParameters, string? message, string? errorCode) -> void
+Jeninnet.Validation.ValidationErrorCollector.Add(string! memberName, Jeninnet.Validation.MessageId messageId, object![]? messageParameters, string? message, string? errorCode, Jeninnet.Validation.ValidationErrorSeverity severity) -> void
+Jeninnet.Validation.ValidationErrorCollector.Add(string! memberName, Jeninnet.Validation.MessageId messageId, string? message, string? errorCode) -> void
+Jeninnet.Validation.ValidationErrorCollector.Add(string! memberName, Jeninnet.Validation.MessageId messageId, string? message, string? errorCode, Jeninnet.Validation.ValidationErrorSeverity severity) -> void
+Jeninnet.Validation.ValidationErrorCollector.Add(string! memberName, Jeninnet.Validation.MessageId messageId, string? messageKey, System.Collections.Generic.IDictionary<string!, object!>? messageParameters, string? message, string? errorCode, Jeninnet.Validation.ValidationErrorSeverity severity, object? customState = null) -> void
+Jeninnet.Validation.ValidationErrorCollector.Add(string! memberName, string? message) -> void
+Jeninnet.Validation.ValidationErrorCollector.Add(string! memberName, string? message, Jeninnet.Validation.ValidationErrorSeverity severity) -> void
+Jeninnet.Validation.ValidationErrorCollector.AddRange(Jeninnet.Validation.ValidationErrorCollector! other) -> void
+Jeninnet.Validation.ValidationErrorCollector.AddRange(System.Collections.Generic.IEnumerable<Jeninnet.Validation.ValidationError>! errors) -> void
+Jeninnet.Validation.ValidationErrorCollector.Clear() -> void
+Jeninnet.Validation.ValidationErrorCollector.Count.get -> int
+Jeninnet.Validation.ValidationErrorCollector.GetEnumerator() -> System.Collections.Generic.IEnumerator<Jeninnet.Validation.ValidationError>!
+Jeninnet.Validation.ValidationErrorCollector.HasErrors() -> bool
+Jeninnet.Validation.ValidationErrorCollector.ToList() -> System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.ValidationError>!
+Jeninnet.Validation.ValidationErrorCollector.this[int index].get -> Jeninnet.Validation.ValidationError
+Jeninnet.Validation.ValidationErrorSeverity
+Jeninnet.Validation.ValidationErrorSeverity.Error = 2 -> Jeninnet.Validation.ValidationErrorSeverity
+Jeninnet.Validation.ValidationErrorSeverity.Info = 0 -> Jeninnet.Validation.ValidationErrorSeverity
+Jeninnet.Validation.ValidationErrorSeverity.Warning = 1 -> Jeninnet.Validation.ValidationErrorSeverity
+Jeninnet.Validation.ValidationException
+Jeninnet.Validation.ValidationException.Errors.get -> System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.ValidationError>!
+Jeninnet.Validation.ValidationException.ValidationException() -> void
+Jeninnet.Validation.ValidationException.ValidationException(System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.ValidationError>! errors) -> void
+Jeninnet.Validation.ValidationException.ValidationException(string! message) -> void
+Jeninnet.Validation.ValidationException.ValidationException(string! message, System.Exception! innerException) -> void
+Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.ValidationResult.Errors.get -> System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.ValidationError>!
+Jeninnet.Validation.ValidationResult.IsValid.get -> bool
+Jeninnet.Validation.ValidationResult.ValidationResult() -> void
+const Jeninnet.Validation.Configuration.MessageParameterNames.CollectionIndex = "CollectionIndex" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.ComparisonProperty = "ComparisonProperty" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.ComparisonValue = "ComparisonValue" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.Count = "Count" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.Country = "Country" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.EnumType = "EnumType" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.ExactLength = "ExactLength" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.Extensions = "Extensions" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.From = "From" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.Length = "Length" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.Max = "Max" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.Min = "Min" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.MinLength = "MinLength" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.MissingRequirements = "MissingRequirements" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.Pattern = "Pattern" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.Policy = "Policy" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.Precision = "Precision" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.PropertyName = "PropertyName" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.PropertyPath = "PropertyPath" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.PropertyValue = "PropertyValue" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.Scale = "Scale" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.To = "To" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.TotalLength = "TotalLength" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.Value = "Value" -> string!
+const Jeninnet.Validation.Configuration.MessageParameterNames.Values = "Values" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.AFTER = "After" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.BASE64_STRING = "Base64String" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.BEFORE = "Before" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.BETWEEN = "Between" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.COMPARABLE = "Comparable" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.CONTAINS = "Contains" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.COUNT = "Count" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.CREDIT_CARD = "CreditCard" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.EMAIL = "Email" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.EMPTY = "Empty" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.ENDS_WITH = "EndsWith" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.ENUM = "Enum" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.EQUAL = "Equal" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.EXACT_LENGTH = "ExactLength" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.EXCLUSIVE_BETWEEN = "ExclusiveBetween" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.FILE_EXTENSIONS = "FileExtensions" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.GREATER_THAN = "GreaterThan" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.GREATER_THAN_OR_EQUAL = "GreaterThanOrEqual" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.IBAN = "Iban" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.IN = "In" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.INCLUSIVE_BETWEEN = "InclusiveBetween" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.INVALID = "Invalid" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.IP_ADDRESS = "IPAddress" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.IS_ENUM_NAME = "IsEnumName" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.LENGTH = "Length" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.LESS_THAN = "LessThan" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.LESS_THAN_OR_EQUAL = "LessThanOrEqual" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.MAX_COUNT = "MaxCount" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.MIN_COUNT = "MinCount" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.MUST = "Must" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.MUST_ASYNC = "MustAsync" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.NATIONAL_ID = "NationalId" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.NOT_DEFAULT = "NotDefault" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.NOT_EMPTY = "NotEmpty" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.NOT_EQUAL = "NotEqual" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.NOT_IN = "NotIn" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.NOT_NULL = "NotNull" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.NULL = "Null" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.PASSWORD_STRENGTH = "PasswordStrength" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.PHONE = "Phone" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.POSTAL_CODE = "PostalCode" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.PRECISION_SCALE = "PrecisionScale" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.RANGE = "Range" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.REGEX = "Regex" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.STARTS_WITH = "StartsWith" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.ULID = "Ulid" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.URL = "Url" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.UUID = "Uuid" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.VAT_NUMBER = "VatNumber" -> string!
+static Jeninnet.Validation.MessageId.Invalid.get -> Jeninnet.Validation.MessageId
+static Jeninnet.Validation.MessageId.None.get -> Jeninnet.Validation.MessageId
+static Jeninnet.Validation.Metadata.ValidationRuleDescriptor.EmptyParameters.get -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!
+static Jeninnet.Validation.ValidationDiagnostics.IsEnabled.get -> bool
+static Jeninnet.Validation.ValidationDiagnostics.Sink.get -> Jeninnet.Validation.IValidationDiagnosticsSink?
+static Jeninnet.Validation.ValidationDiagnostics.Sink.set -> void
+static Jeninnet.Validation.ValidationResult.FromErrors(Jeninnet.Validation.ValidationErrorCollector! errors) -> Jeninnet.Validation.ValidationResult
+static Jeninnet.Validation.ValidationResult.Success.get -> Jeninnet.Validation.ValidationResult
+static readonly Jeninnet.Validation.ValidationErrorCollector.Empty -> Jeninnet.Validation.ValidationErrorCollector!

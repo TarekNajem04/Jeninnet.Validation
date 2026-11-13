@@ -1,0 +1,6 @@
+{
+  "NotEmpty": "{PropertyName} must not be empty.",
+  "Email": "{PropertyName} is not a valid email address.",
+  "GreaterThan": "{PropertyName} must be greater than {ComparisonValue}.",
+  "InclusiveBetween": "{PropertyName} must be between {From} and {To}."
+}

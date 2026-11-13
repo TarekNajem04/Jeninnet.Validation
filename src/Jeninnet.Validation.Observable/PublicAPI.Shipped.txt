@@ -1,0 +1,25 @@
+#nullable enable
+Jeninnet.Validation.Observable.ObservableValidationAdapter<TModel>
+Jeninnet.Validation.Observable.ObservableValidationAdapter<TModel>.ClearErrors() -> void
+Jeninnet.Validation.Observable.ObservableValidationAdapter<TModel>.Dispose() -> void
+Jeninnet.Validation.Observable.ObservableValidationAdapter<TModel>.ErrorsChanged -> System.EventHandler<System.ComponentModel.DataErrorsChangedEventArgs!>?
+Jeninnet.Validation.Observable.ObservableValidationAdapter<TModel>.GetErrors(string? propertyName) -> System.Collections.IEnumerable!
+Jeninnet.Validation.Observable.ObservableValidationAdapter<TModel>.GetValidationErrors(string? propertyName) -> System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.ValidationError>!
+Jeninnet.Validation.Observable.ObservableValidationAdapter<TModel>.HasErrors.get -> bool
+Jeninnet.Validation.Observable.ObservableValidationAdapter<TModel>.Model.get -> TModel!
+Jeninnet.Validation.Observable.ObservableValidationAdapter<TModel>.ObservableValidationAdapter(TModel! model, Jeninnet.Validation.Abstractions.IValidator<TModel!>! validator, Jeninnet.Validation.Observable.ObservableValidationOptions? options = null) -> void
+Jeninnet.Validation.Observable.ObservableValidationAdapter<TModel>.PendingValidation.get -> System.Threading.Tasks.Task?
+Jeninnet.Validation.Observable.ObservableValidationAdapter<TModel>.Validate() -> bool
+Jeninnet.Validation.Observable.ObservableValidationAdapter<TModel>.ValidateAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<bool>
+Jeninnet.Validation.Observable.ObservableValidationOptions
+Jeninnet.Validation.Observable.ObservableValidationOptions.MinimumSeverity.get -> Jeninnet.Validation.ValidationErrorSeverity
+Jeninnet.Validation.Observable.ObservableValidationOptions.MinimumSeverity.set -> void
+Jeninnet.Validation.Observable.ObservableValidationOptions.ObservableValidationOptions() -> void
+Jeninnet.Validation.Observable.ObservableValidationOptions.PropertyChangedDebounce.get -> System.TimeSpan?
+Jeninnet.Validation.Observable.ObservableValidationOptions.PropertyChangedDebounce.set -> void
+Jeninnet.Validation.Observable.ObservableValidationOptions.SkipIfValid.get -> bool
+Jeninnet.Validation.Observable.ObservableValidationOptions.SkipIfValid.set -> void
+Jeninnet.Validation.Observable.ObservableValidationOptions.UseAsyncValidation.get -> bool
+Jeninnet.Validation.Observable.ObservableValidationOptions.UseAsyncValidation.set -> void
+Jeninnet.Validation.Observable.ObservableValidationOptions.ValidateOnPropertyChanged.get -> bool
+Jeninnet.Validation.Observable.ObservableValidationOptions.ValidateOnPropertyChanged.set -> void

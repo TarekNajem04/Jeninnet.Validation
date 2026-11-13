@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
+        <!-- The repository heuristic suppresses CS1591 for *.Tests projects; this suite is
+             named *ArchitectureTests, so the suppression is declared explicitly. -->
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="MSTest" />
+        <PackageReference Include="MSTest.TestAdapter" />
+        <PackageReference Include="coverlet.collector" PrivateAssets="all" />
+        <PackageReference Include="Jeninnet.Assertions" />
+        <PackageReference Include="Jeninnet.Assertions.MSTest" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Jeninnet.Validation\Jeninnet.Validation.csproj" />
+        <ProjectReference Include="..\..\src\Jeninnet.Validation.Abstractions\Jeninnet.Validation.Abstractions.csproj" />
+        <ProjectReference Include="..\..\src\Jeninnet.Validation.Analyzers\Jeninnet.Validation.Analyzers.csproj" />
+        <ProjectReference Include="..\..\src\Jeninnet.Validation.Assertions\Jeninnet.Validation.Assertions.csproj" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <DisableArtifacts>true</DisableArtifacts>
+    </PropertyGroup>
+
+</Project>

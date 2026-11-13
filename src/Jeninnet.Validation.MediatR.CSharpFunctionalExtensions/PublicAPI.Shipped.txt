@@ -1,0 +1,6 @@
+#nullable enable
+Jeninnet.Validation.MediatR.CSharpFunctionalExtensions.CSharpFunctionalExtensionsMediatRExtensions
+Jeninnet.Validation.MediatR.CSharpFunctionalExtensions.CSharpFunctionalExtensionsValidationResultMapper<TValue>
+Jeninnet.Validation.MediatR.CSharpFunctionalExtensions.CSharpFunctionalExtensionsValidationResultMapper<TValue>.CSharpFunctionalExtensionsValidationResultMapper() -> void
+Jeninnet.Validation.MediatR.CSharpFunctionalExtensions.CSharpFunctionalExtensionsValidationResultMapper<TValue>.Map(Jeninnet.Validation.ValidationResult result) -> CSharpFunctionalExtensions.Result<TValue>
+static Jeninnet.Validation.MediatR.CSharpFunctionalExtensions.CSharpFunctionalExtensionsMediatRExtensions.UseCSharpFunctionalExtensionsAdapter<TValue>(this Jeninnet.Validation.MediatR.MediatRValidationOptions! options) -> Jeninnet.Validation.MediatR.MediatRValidationOptions!

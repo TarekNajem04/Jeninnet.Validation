@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tareknajem04.github.io/Jeninnet.Validation/sitemap.xml

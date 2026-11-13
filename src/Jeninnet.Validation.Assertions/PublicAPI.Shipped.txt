@@ -1,0 +1,31 @@
+#nullable enable
+Jeninnet.Validation.Assertions.MemberAssertions
+Jeninnet.Validation.Assertions.MemberAssertions.ContainingMessage(string! messageFragment) -> Jeninnet.Validation.Assertions.MemberAssertions!
+Jeninnet.Validation.Assertions.MemberAssertions.ContainsRule(string! messageKey) -> Jeninnet.Validation.Assertions.MemberAssertions!
+Jeninnet.Validation.Assertions.MemberAssertions.WithCount(int expectedCount) -> Jeninnet.Validation.Assertions.MemberAssertions!
+Jeninnet.Validation.Assertions.MemberAssertions.WithCustomState(object? expectedState) -> Jeninnet.Validation.Assertions.MemberAssertions!
+Jeninnet.Validation.Assertions.MemberAssertions.WithErrorCode(string! errorCode) -> Jeninnet.Validation.Assertions.MemberAssertions!
+Jeninnet.Validation.Assertions.MemberAssertions.WithSeverity(Jeninnet.Validation.ValidationErrorSeverity severity) -> Jeninnet.Validation.Assertions.MemberAssertions!
+Jeninnet.Validation.Assertions.TestValidationResult<T>
+Jeninnet.Validation.Assertions.TestValidationResult<T>.Instance.get -> T
+Jeninnet.Validation.Assertions.TestValidationResult<T>.Result.get -> Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.Assertions.TestValidationResult<T>.ShouldHaveValidationErrorFor(string! memberName) -> Jeninnet.Validation.Assertions.MemberAssertions!
+Jeninnet.Validation.Assertions.TestValidationResult<T>.ShouldHaveValidationErrors() -> Jeninnet.Validation.Assertions.ValidationResultAssertions!
+Jeninnet.Validation.Assertions.TestValidationResult<T>.ShouldNotHaveValidationErrorFor(string! memberName) -> Jeninnet.Validation.Assertions.TestValidationResult<T>!
+Jeninnet.Validation.Assertions.TestValidationResult<T>.ShouldNotHaveValidationErrors() -> Jeninnet.Validation.Assertions.TestValidationResult<T>!
+Jeninnet.Validation.Assertions.ValidationAssertionException
+Jeninnet.Validation.Assertions.ValidationAssertionException.ValidationAssertionException() -> void
+Jeninnet.Validation.Assertions.ValidationAssertionException.ValidationAssertionException(string! message) -> void
+Jeninnet.Validation.Assertions.ValidationAssertionException.ValidationAssertionException(string! message, System.Exception! innerException) -> void
+Jeninnet.Validation.Assertions.ValidationAssertionExtensions
+Jeninnet.Validation.Assertions.ValidationResultAssertions
+Jeninnet.Validation.Assertions.ValidationResultAssertions.ContainingMessage(string! messageFragment) -> Jeninnet.Validation.Assertions.ValidationResultAssertions!
+Jeninnet.Validation.Assertions.ValidationResultAssertions.ForMember(string! memberName) -> Jeninnet.Validation.Assertions.MemberAssertions!
+Jeninnet.Validation.Assertions.ValidationResultAssertions.ShouldNotHaveErrors() -> Jeninnet.Validation.Assertions.ValidationResultAssertions!
+Jeninnet.Validation.Assertions.ValidationResultAssertions.WithErrorCode(string! errorCode) -> Jeninnet.Validation.Assertions.ValidationResultAssertions!
+Jeninnet.Validation.Assertions.ValidationResultAssertions.WithErrorCount(int expectedCount) -> Jeninnet.Validation.Assertions.ValidationResultAssertions!
+Jeninnet.Validation.Assertions.ValidationResultAssertions.WithSeverity(Jeninnet.Validation.ValidationErrorSeverity severity) -> Jeninnet.Validation.Assertions.ValidationResultAssertions!
+static Jeninnet.Validation.Assertions.ValidationAssertionExtensions.ShouldHaveValidationErrors(this Jeninnet.Validation.ValidationResult result) -> Jeninnet.Validation.Assertions.ValidationResultAssertions!
+static Jeninnet.Validation.Assertions.ValidationAssertionExtensions.ShouldNotHaveValidationErrors(this Jeninnet.Validation.ValidationResult result) -> Jeninnet.Validation.Assertions.ValidationResultAssertions!
+static Jeninnet.Validation.Assertions.ValidationAssertionExtensions.TestValidate<T>(this Jeninnet.Validation.Abstractions.ISyncValidator<T>! validator, T instance) -> Jeninnet.Validation.Assertions.TestValidationResult<T>!
+static Jeninnet.Validation.Assertions.ValidationAssertionExtensions.TestValidateAsync<T>(this Jeninnet.Validation.Abstractions.IAsyncValidator<T>! validator, T instance, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.Assertions.TestValidationResult<T>!>

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IncludeBuildOutput>true</IncludeBuildOutput>
+        <AssemblyName>Jeninnet.Validation.Diagnostics</AssemblyName>
+        <RootNamespace>Jeninnet.Validation.Diagnostics</RootNamespace>
+        <Description>Optional OpenTelemetry-compatible ActivitySource and Meter instrumentation for Jeninnet.Validation.</Description>
+        <IsAotCompatible>true</IsAotCompatible>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Jeninnet.Validation.Abstractions\Jeninnet.Validation.Abstractions.csproj" />
+    </ItemGroup>
+
+</Project>

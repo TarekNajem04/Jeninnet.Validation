@@ -1,0 +1,12 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <!--
+        Shared OpenAPI adapter helpers. Imported by the NSwag and Swashbuckle packages so both
+        compile one property-name resolver and one scalar-constraint applicator without a runtime
+        assembly dependency.
+    -->
+    <ItemGroup>
+        <Compile Include="$(MSBuildThisFileDirectory)ISchemaConstraintTarget.cs" Link="ISchemaConstraintTarget.cs" />
+        <Compile Include="$(MSBuildThisFileDirectory)SchemaConstraintWriter.cs" Link="SchemaConstraintWriter.cs" />
+        <Compile Include="$(MSBuildThisFileDirectory)SchemaPropertyNameResolver.cs" Link="SchemaPropertyNameResolver.cs" />
+    </ItemGroup>
+</Project>

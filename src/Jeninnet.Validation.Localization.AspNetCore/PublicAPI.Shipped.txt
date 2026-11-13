@@ -1,0 +1,20 @@
+#nullable enable
+Jeninnet.Validation.Localization.AspNetCore.IValidationMessageResolver
+Jeninnet.Validation.Localization.AspNetCore.IValidationMessageResolver.ResolveAsync(Jeninnet.Validation.ValidationError error, System.Globalization.CultureInfo? culture = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<string?>
+Jeninnet.Validation.Localization.AspNetCore.ServiceCollectionExtensions
+Jeninnet.Validation.Localization.AspNetCore.StringLocalizerValidationMessageResolver
+Jeninnet.Validation.Localization.AspNetCore.StringLocalizerValidationMessageResolver.ResolveAsync(Jeninnet.Validation.ValidationError error, System.Globalization.CultureInfo? culture = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<string?>
+Jeninnet.Validation.Localization.AspNetCore.StringLocalizerValidationMessageResolver.StringLocalizerValidationMessageResolver(Microsoft.Extensions.Localization.IStringLocalizerFactory! localizerFactory, Jeninnet.Validation.Localization.AspNetCore.StringLocalizerValidationOptions! options, System.Collections.Generic.IEnumerable<Jeninnet.Localization.Abstractions.IMessageLocalizer!>! packLocalizers, System.Collections.Generic.IEnumerable<Jeninnet.Localization.Abstractions.IMessageFormatter!>! formatters) -> void
+Jeninnet.Validation.Localization.AspNetCore.StringLocalizerValidationOptions
+Jeninnet.Validation.Localization.AspNetCore.StringLocalizerValidationOptions.DefaultCulture.get -> string?
+Jeninnet.Validation.Localization.AspNetCore.StringLocalizerValidationOptions.DefaultCulture.set -> void
+Jeninnet.Validation.Localization.AspNetCore.StringLocalizerValidationOptions.DisableLocalization.get -> bool
+Jeninnet.Validation.Localization.AspNetCore.StringLocalizerValidationOptions.DisableLocalization.set -> void
+Jeninnet.Validation.Localization.AspNetCore.StringLocalizerValidationOptions.ForceCulture.get -> string?
+Jeninnet.Validation.Localization.AspNetCore.StringLocalizerValidationOptions.ForceCulture.set -> void
+Jeninnet.Validation.Localization.AspNetCore.StringLocalizerValidationOptions.ResourceType.get -> System.Type?
+Jeninnet.Validation.Localization.AspNetCore.StringLocalizerValidationOptions.ResourceType.set -> void
+Jeninnet.Validation.Localization.AspNetCore.StringLocalizerValidationOptions.StringLocalizerValidationOptions() -> void
+Jeninnet.Validation.Localization.AspNetCore.ValidationMessageResolverExtensions
+static Jeninnet.Validation.Localization.AspNetCore.ServiceCollectionExtensions.AddJeninnetStringLocalizer(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, System.Action<Jeninnet.Validation.Localization.AspNetCore.StringLocalizerValidationOptions!>? configure = null) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static Jeninnet.Validation.Localization.AspNetCore.ValidationMessageResolverExtensions.ResolveValidationErrorsAsync(this Jeninnet.Validation.Localization.AspNetCore.IValidationMessageResolver! resolver, System.Collections.Generic.IEnumerable<Jeninnet.Validation.ValidationError>! errors, System.Globalization.CultureInfo? culture = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<System.Collections.Generic.IReadOnlyList<string?>!>

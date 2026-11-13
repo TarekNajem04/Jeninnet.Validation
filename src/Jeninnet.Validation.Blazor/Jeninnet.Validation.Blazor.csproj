@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <AssemblyName>Jeninnet.Validation.Blazor</AssemblyName>
+        <RootNamespace>Jeninnet.Validation.Blazor</RootNamespace>
+        <Description>Blazor EditContext adapter that runs Jeninnet.Validation validators and maps errors to field identifiers.</Description>
+        <!--
+            RS0041: the Razor source generator emits BuildRenderTree inside a #nullable disable
+            region, so its RenderTreeBuilder parameter is necessarily oblivious. The generated
+            member is tracked with the analyzer's '~' marker in PublicAPI.Shipped.txt; the
+            warning is suppressed here because the generated code cannot be annotated.
+        -->
+        <NoWarn>$(NoWarn);RS0041</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Jeninnet.Validation.Abstractions\Jeninnet.Validation.Abstractions.csproj" />
+        <ProjectReference Include="..\Jeninnet.Validation.ClientRules\Jeninnet.Validation.ClientRules.csproj" />
+    </ItemGroup>
+
+</Project>

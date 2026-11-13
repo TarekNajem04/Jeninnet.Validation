@@ -1,0 +1,156 @@
+- name: Home
+  href: index.md
+
+- name: Book contents
+  href: en/README.md
+
+- name: Getting started
+  items:
+    - name: Best C# validation libraries (comparison)
+      href: en/01-getting-started/00b-best-csharp-validation-libraries.md
+    - name: Why Jeninnet?
+      href: en/01-getting-started/00-why-jeninnet.md
+    - name: Introduction
+      href: en/01-getting-started/01-introduction.md
+    - name: Installation
+      href: en/01-getting-started/02-installation.md
+    - name: Quick start
+      href: en/01-getting-started/03-quick-start.md
+    - name: Mental model
+      href: en/01-getting-started/04-mental-model.md
+
+- name: Guides
+  items:
+    - name: Fluent authoring
+      href: en/02-guides/01-fluent-authoring.md
+    - name: Attribute authoring
+      href: en/02-guides/02-attribute-authoring.md
+    - name: Rules and messages
+      href: en/02-guides/03-rules-and-messages.md
+    - name: Rule sets and cascade
+      href: en/02-guides/04-rule-sets-and-cascade.md
+    - name: Conditions and dependent rules
+      href: en/02-guides/05-conditions-and-dependent-rules.md
+    - name: Collections and nesting
+      href: en/02-guides/06-collections-and-nesting.md
+    - name: Custom rules
+      href: en/02-guides/07-custom-rules.md
+    - name: ASP.NET Core
+      href: en/02-guides/08-aspnet-core.md
+    - name: MediatR
+      href: en/02-guides/09-mediatr.md
+    - name: DataAnnotations
+      href: en/02-guides/10-dataannotations.md
+    - name: Blazor
+      href: en/02-guides/11-blazor.md
+    - name: Schema, OpenAPI, and client rules
+      href: en/02-guides/12-schema-openapi-client.md
+    - name: Localization
+      href: en/02-guides/13-localization.md
+    - name: Testing
+      href: en/02-guides/14-testing.md
+    - name: Migration from FluentValidation
+      href: en/02-guides/15-migration-from-fluentvalidation.md
+    - name: Migration from DataAnnotations
+      href: en/02-guides/16-migration-from-dataannotations.md
+    - name: Dependency injection and lifetimes
+      href: en/02-guides/17-dependency-injection.md
+    - name: Error handling
+      href: en/02-guides/18-error-handling.md
+    - name: Lifecycle hooks
+      href: en/02-guides/19-lifecycle-hooks.md
+    - name: Inheritance and polymorphism
+      href: en/02-guides/20-inheritance-and-polymorphism.md
+    - name: INotifyDataErrorInfo (WPF, MAUI, Avalonia)
+      href: en/02-guides/21-inotify-data-error-info.md
+    - name: HotChocolate GraphQL
+      href: en/02-guides/22-graphql.md
+    - name: gRPC
+      href: en/02-guides/23-grpc.md
+
+- name: Cookbook
+  items:
+    - name: Cookbook index
+      href: en/05-cookbook/README.md
+    - name: Minimal API request
+      href: en/05-cookbook/01-minimal-api.md
+    - name: MVC controller
+      href: en/05-cookbook/02-mvc.md
+    - name: MediatR command
+      href: en/05-cookbook/03-mediatr.md
+    - name: Blazor form
+      href: en/05-cookbook/04-blazor.md
+    - name: Rule sets and partial updates
+      href: en/05-cookbook/05-rule-sets-and-partial-updates.md
+    - name: Custom rules with context
+      href: en/05-cookbook/06-custom-rules-with-context.md
+    - name: Localized messages
+      href: en/05-cookbook/07-localized-messages.md
+    - name: Testing validators
+      href: en/05-cookbook/08-testing-validators.md
+    - name: Schema, OpenAPI, and client rules
+      href: en/05-cookbook/09-schema-openapi-client.md
+    - name: Desktop view model
+      href: en/05-cookbook/10-inotify-data-error-info.md
+
+- name: Reference
+  items:
+    - name: Capability parity
+      href: en/03-reference/09-capability-parity.md
+    - name: Architecture
+      href: en/03-reference/00-architecture.md
+    - name: Core API
+      href: en/03-reference/01-core-api.md
+    - name: Rule reference
+      href: en/03-reference/02-rule-reference.md
+    - name: Diagnostics
+      href: en/03-reference/03-diagnostics.md
+    - name: Metadata
+      href: en/03-reference/04-metadata.md
+    - name: Integration packages
+      href: en/03-reference/05-integration-packages.md
+    - name: Compatibility and versions
+      href: en/03-reference/06-compatibility-and-versions.md
+    - name: Known limitations
+      href: en/03-reference/07-known-limitations.md
+    - name: API reference
+      href: en/03-reference/08-api-reference.md
+
+- name: Operations
+  items:
+    - name: Peer benchmarks
+      href: en/04-operations/10-peer-benchmarks.md
+    - name: Performance
+      href: en/04-operations/01-performance.md
+    - name: AOT and trimming
+      href: en/04-operations/02-aot-and-trimming.md
+    - name: Coverage and quality
+      href: en/04-operations/03-coverage-and-quality.md
+    - name: Troubleshooting
+      href: en/04-operations/04-troubleshooting.md
+    - name: FAQ
+      href: en/04-operations/05-faq.md
+    - name: Benchmarks
+      href: en/04-operations/06-benchmarks.md
+    - name: Allocation audit
+      href: en/04-operations/07-allocation-audit.md
+    - name: Production checklist
+      href: en/04-operations/08-production-checklist.md
+    - name: Security and data exposure
+      href: en/04-operations/09-security.md
+    - name: Swashbuckle 11 and .NET 11 migration
+      href: en/04-operations/11-swashbuckle-11-migration.md
+
+- name: Appendix
+  items:
+    - name: Glossary
+      href: en/appendix/01-glossary.md
+    - name: Package map
+      href: en/appendix/02-package-map.md
+    - name: Samples
+      href: en/appendix/03-samples.md
+    - name: Cheat sheet
+      href: en/appendix/04-cheat-sheet.md
+
+- name: API Reference
+  href: api/

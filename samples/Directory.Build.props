@@ -1,0 +1,14 @@
+<Project>
+
+    <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+    <!--
+        Sample applications demonstrate the packages; they are never published as packages.
+        Setting this here (rather than in each sample) keeps the public-API analyzer and the
+        package-validation gates scoped to the shipping src packages.
+    -->
+    <PropertyGroup>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+</Project>

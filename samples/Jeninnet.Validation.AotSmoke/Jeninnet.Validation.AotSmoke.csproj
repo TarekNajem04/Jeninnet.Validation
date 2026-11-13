@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <IsPackable>false</IsPackable>
+        <PublishAot>true</PublishAot>
+        <InvariantGlobalization>false</InvariantGlobalization>
+        <!--
+            NU1903: Microsoft.DotNet.ILCompiler 10.0.8 (pinned by the .NET 10 SDK's AOT pack)
+            is affected by GHSA-p3jp-9v83-76w9. The ILCompiler is a build-time tool, not shipped
+            application code, so the sample keeps the SDK-pinned compiler. Remove this
+            suppression once the SDK's AOT pack references a patched version.
+            Exception reviewed: 2026-11-09. Expiry: 2027-01-31.
+        -->
+        <NoWarn>$(NoWarn);NU1903</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Jeninnet.Localization.Abstractions" />
+        <PackageReference Include="Jeninnet.Localization.Core" />
+        <PackageReference Include="Jeninnet.Localization.Providers.Memory" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Jeninnet.Validation\Jeninnet.Validation.csproj" />
+        <ProjectReference Include="..\..\src\Jeninnet.Validation.Abstractions\Jeninnet.Validation.Abstractions.csproj" />
+        <ProjectReference Include="..\..\src\Jeninnet.Validation.Analyzers\Jeninnet.Validation.Analyzers.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <DisableArtifacts>true</DisableArtifacts>
+    </PropertyGroup>
+
+</Project>

@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+  </PropertyGroup>
+  <ItemGroup>
+        <PackageReference Include="Jeninnet.Localization.Abstractions" />
+        <PackageReference Include="Jeninnet.Localization.Core" />
+    <ProjectReference Include="..\..\src\Jeninnet.Validation\Jeninnet.Validation.csproj" />
+    <ProjectReference Include="..\Jeninnet.Validation.Sample.Localization.Base\Jeninnet.Validation.Sample.Localization.Base.csproj" />
+  </ItemGroup>
+</Project>

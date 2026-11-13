@@ -1,0 +1,31 @@
+#nullable enable
+Jeninnet.Validation.MediatR.IValidationResultMapper<TResponse>
+Jeninnet.Validation.MediatR.IValidationResultMapper<TResponse>.Map(Jeninnet.Validation.ValidationResult result) -> TResponse
+Jeninnet.Validation.MediatR.MediatRValidationFailureStrategy
+Jeninnet.Validation.MediatR.MediatRValidationFailureStrategy.Continue = 1 -> Jeninnet.Validation.MediatR.MediatRValidationFailureStrategy
+Jeninnet.Validation.MediatR.MediatRValidationFailureStrategy.Result = 2 -> Jeninnet.Validation.MediatR.MediatRValidationFailureStrategy
+Jeninnet.Validation.MediatR.MediatRValidationFailureStrategy.Throw = 0 -> Jeninnet.Validation.MediatR.MediatRValidationFailureStrategy
+Jeninnet.Validation.MediatR.MediatRValidationOptions
+Jeninnet.Validation.MediatR.MediatRValidationOptions.FailureStrategy.get -> Jeninnet.Validation.MediatR.MediatRValidationFailureStrategy
+Jeninnet.Validation.MediatR.MediatRValidationOptions.FailureStrategy.set -> void
+Jeninnet.Validation.MediatR.MediatRValidationOptions.MediatRValidationOptions() -> void
+Jeninnet.Validation.MediatR.MediatRValidationOptions.RuleSets.get -> System.Collections.Generic.IList<string!>!
+Jeninnet.Validation.MediatR.MediatRValidationOptions.UseResultAdapter<TResponse>(Jeninnet.Validation.MediatR.IValidationResultMapper<TResponse>! mapper) -> Jeninnet.Validation.MediatR.MediatRValidationOptions!
+Jeninnet.Validation.MediatR.MediatRValidationRuleSetsAttribute
+Jeninnet.Validation.MediatR.MediatRValidationRuleSetsAttribute.MediatRValidationRuleSetsAttribute(params string![]! ruleSets) -> void
+Jeninnet.Validation.MediatR.MediatRValidationRuleSetsAttribute.RuleSets.get -> System.Collections.Generic.IReadOnlyList<string!>!
+Jeninnet.Validation.MediatR.MediatRValidationServiceCollectionExtensions
+Jeninnet.Validation.MediatR.ValidationBehavior<TRequest, TResponse>
+Jeninnet.Validation.MediatR.ValidationBehavior<TRequest, TResponse>.Handle(TRequest request, MediatR.RequestHandlerDelegate<TResponse>! next, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<TResponse>!
+Jeninnet.Validation.MediatR.ValidationBehavior<TRequest, TResponse>.ValidationBehavior(System.Collections.Generic.IEnumerable<Jeninnet.Validation.Abstractions.IValidator<TRequest>!>! validators, Jeninnet.Validation.MediatR.MediatRValidationOptions! options, Jeninnet.Validation.MediatR.ValidationResultAccessor! accessor) -> void
+Jeninnet.Validation.MediatR.ValidationErrorFormatter
+Jeninnet.Validation.MediatR.ValidationResultAccessor
+Jeninnet.Validation.MediatR.ValidationResultAccessor.Result.get -> Jeninnet.Validation.ValidationResult?
+Jeninnet.Validation.MediatR.ValidationResultAccessor.Result.set -> void
+Jeninnet.Validation.MediatR.ValidationResultAccessor.ValidationResultAccessor() -> void
+static Jeninnet.Validation.MediatR.MediatRValidationServiceCollectionExtensions.AddValidationPipeline(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, System.Action<Jeninnet.Validation.MediatR.MediatRValidationOptions!>? configure = null) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static Jeninnet.Validation.MediatR.ValidationErrorFormatter.Format(Jeninnet.Validation.ValidationError error) -> string!
+static Jeninnet.Validation.MediatR.ValidationErrorFormatter.GetCode(Jeninnet.Validation.ValidationError error) -> string!
+static Jeninnet.Validation.MediatR.ValidationErrorFormatter.GetMessage(Jeninnet.Validation.ValidationError error) -> string!
+static Jeninnet.Validation.MediatR.ValidationErrorFormatter.GetMetadata(Jeninnet.Validation.ValidationError error) -> System.Collections.Generic.Dictionary<string!, object!>!
+static Jeninnet.Validation.MediatR.ValidationErrorFormatter.JoinMessages(Jeninnet.Validation.ValidationResult result, string! separator = "; ") -> string!

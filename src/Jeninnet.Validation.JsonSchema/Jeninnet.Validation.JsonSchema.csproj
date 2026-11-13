@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <AssemblyName>Jeninnet.Validation.JsonSchema</AssemblyName>
+        <RootNamespace>Jeninnet.Validation.JsonSchema</RootNamespace>
+        <Description>JSON Schema (draft 2020-12) generation from Jeninnet.Validation descriptors.</Description>
+        <IsAotCompatible>true</IsAotCompatible>
+    </PropertyGroup>
+
+    <Import Project="..\shared\JsonValueFactory\JsonValueFactory.projitems" />
+
+    <ItemGroup>
+        <ProjectReference Include="..\Jeninnet.Validation.Abstractions\Jeninnet.Validation.Abstractions.csproj" />
+    </ItemGroup>
+
+</Project>

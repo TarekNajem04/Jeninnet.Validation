@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Jeninnet",
+  "classifications": [ "Validation", "Library" ],
+  "identity": "Jeninnet.Validation.ValidatorTemplate",
+  "name": "Jeninnet Validation Library",
+  "description": "A class library with a sample Jeninnet.Validation model and fluent or attribute validator.",
+  "shortName": "jeninnet-validator",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "JeninnetValidationTemplate",
+  "preferNameDirectory": true
+}

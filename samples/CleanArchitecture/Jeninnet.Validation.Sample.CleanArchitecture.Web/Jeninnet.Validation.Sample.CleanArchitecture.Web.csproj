@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <UseLocalAnalyzers>true</UseLocalAnalyzers>
+        <RootNamespace>Jeninnet.Validation.Sample.CleanArchitecture.Web</RootNamespace>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Jeninnet.Validation.Sample.CleanArchitecture.Infrastructure\Jeninnet.Validation.Sample.CleanArchitecture.Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>

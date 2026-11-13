@@ -1,0 +1,4 @@
+#nullable enable
+Jeninnet.Validation.Extensions.Validation.OptionsValidationExtensions
+static Jeninnet.Validation.Extensions.Validation.OptionsValidationExtensions.AddValidatedOptions<T>(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static Jeninnet.Validation.Extensions.Validation.OptionsValidationExtensions.AddValidatedOptions<T>(this Microsoft.Extensions.Options.OptionsBuilder<T!>! builder) -> Microsoft.Extensions.Options.OptionsBuilder<T!>!

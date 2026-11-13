@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <AssemblyName>Jeninnet.Validation.ClientRules</AssemblyName>
+        <RootNamespace>Jeninnet.Validation.ClientRules</RootNamespace>
+        <Description>Deterministic client-side validation rule export (JSON, TypeScript, JavaScript) from Jeninnet.Validation descriptors.</Description>
+        <IsAotCompatible>true</IsAotCompatible>
+    </PropertyGroup>
+
+    <Import Project="..\shared\JsonValueFactory\JsonValueFactory.projitems" />
+
+    <ItemGroup>
+        <ProjectReference Include="..\Jeninnet.Validation.Abstractions\Jeninnet.Validation.Abstractions.csproj" />
+    </ItemGroup>
+
+</Project>

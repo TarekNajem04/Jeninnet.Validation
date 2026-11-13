@@ -1,0 +1,38 @@
+#nullable enable
+Jeninnet.Validation.Blazor.EditContextValidationCoordinator<TModel>
+Jeninnet.Validation.Blazor.EditContextValidationCoordinator<TModel>.Clear() -> void
+Jeninnet.Validation.Blazor.EditContextValidationCoordinator<TModel>.Dispose() -> void
+Jeninnet.Validation.Blazor.EditContextValidationCoordinator<TModel>.EditContextValidationCoordinator(Microsoft.AspNetCore.Components.Forms.EditContext! editContext, Jeninnet.Validation.Abstractions.IValidator<TModel!>! validator, TModel! model, Jeninnet.Validation.Blazor.EditContextValidationOptions! options) -> void
+Jeninnet.Validation.Blazor.EditContextValidationCoordinator<TModel>.EditContextValidationCoordinator(Microsoft.AspNetCore.Components.Forms.EditContext! editContext, Jeninnet.Validation.Abstractions.IValidator<TModel!>! validator, TModel! model, bool validateOnFieldChanged = false) -> void
+Jeninnet.Validation.Blazor.EditContextValidationCoordinator<TModel>.PendingValidation.get -> System.Threading.Tasks.Task?
+Jeninnet.Validation.Blazor.EditContextValidationCoordinator<TModel>.Validate() -> void
+Jeninnet.Validation.Blazor.EditContextValidationCoordinator<TModel>.ValidateAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<bool>
+Jeninnet.Validation.Blazor.EditContextValidationOptions
+Jeninnet.Validation.Blazor.EditContextValidationOptions.EditContextValidationOptions() -> void
+Jeninnet.Validation.Blazor.EditContextValidationOptions.FieldChangedDebounce.get -> System.TimeSpan?
+Jeninnet.Validation.Blazor.EditContextValidationOptions.FieldChangedDebounce.set -> void
+Jeninnet.Validation.Blazor.EditContextValidationOptions.SkipIfModelStateValid.get -> bool
+Jeninnet.Validation.Blazor.EditContextValidationOptions.SkipIfModelStateValid.set -> void
+Jeninnet.Validation.Blazor.EditContextValidationOptions.UseAsyncValidation.get -> bool
+Jeninnet.Validation.Blazor.EditContextValidationOptions.UseAsyncValidation.set -> void
+Jeninnet.Validation.Blazor.EditContextValidationOptions.ValidateOnFieldChanged.get -> bool
+Jeninnet.Validation.Blazor.EditContextValidationOptions.ValidateOnFieldChanged.set -> void
+Jeninnet.Validation.Blazor.FieldIdentifierResolver
+Jeninnet.Validation.Blazor.JeninnetValidator<TModel>
+Jeninnet.Validation.Blazor.JeninnetValidator<TModel>.Dispose() -> void
+Jeninnet.Validation.Blazor.JeninnetValidator<TModel>.FieldChangedDebounce.get -> System.TimeSpan?
+Jeninnet.Validation.Blazor.JeninnetValidator<TModel>.FieldChangedDebounce.set -> void
+Jeninnet.Validation.Blazor.JeninnetValidator<TModel>.JeninnetValidator() -> void
+Jeninnet.Validation.Blazor.JeninnetValidator<TModel>.PendingValidation.get -> System.Threading.Tasks.Task?
+Jeninnet.Validation.Blazor.JeninnetValidator<TModel>.SkipIfModelStateValid.get -> bool
+Jeninnet.Validation.Blazor.JeninnetValidator<TModel>.SkipIfModelStateValid.set -> void
+Jeninnet.Validation.Blazor.JeninnetValidator<TModel>.UseAsyncValidation.get -> bool
+Jeninnet.Validation.Blazor.JeninnetValidator<TModel>.UseAsyncValidation.set -> void
+Jeninnet.Validation.Blazor.JeninnetValidator<TModel>.ValidateAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<bool>
+Jeninnet.Validation.Blazor.JeninnetValidator<TModel>.ValidateOnFieldChanged.get -> bool
+Jeninnet.Validation.Blazor.JeninnetValidator<TModel>.ValidateOnFieldChanged.set -> void
+Jeninnet.Validation.Blazor.JeninnetValidator<TModel>.Validator.get -> Jeninnet.Validation.Abstractions.IValidator<TModel!>?
+Jeninnet.Validation.Blazor.JeninnetValidator<TModel>.Validator.set -> void
+override Jeninnet.Validation.Blazor.JeninnetValidator<TModel>.OnParametersSet() -> void
+static Jeninnet.Validation.Blazor.FieldIdentifierResolver.Resolve(object! model, string! memberName) -> Microsoft.AspNetCore.Components.Forms.FieldIdentifier
+~override Jeninnet.Validation.Blazor.JeninnetValidator<TModel>.BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder) -> void

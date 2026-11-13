@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <AssemblyName>Jeninnet.Validation.DataAnnotations</AssemblyName>
+        <RootNamespace>Jeninnet.Validation.DataAnnotations</RootNamespace>
+        <Description>DataAnnotations bridge that runs Jeninnet.Validation validators inside MVC, Blazor, and IValidatableObject pipelines.</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Jeninnet.Validation.Abstractions\Jeninnet.Validation.Abstractions.csproj" />
+        <ProjectReference Include="..\Jeninnet.Validation\Jeninnet.Validation.csproj" />
+    </ItemGroup>
+
+</Project>

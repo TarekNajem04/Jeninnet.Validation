@@ -1,0 +1,105 @@
+#nullable enable
+Jeninnet.Validation.Attributes.IbanAttribute
+Jeninnet.Validation.Attributes.IbanAttribute.Country.get -> string?
+Jeninnet.Validation.Attributes.IbanAttribute.IbanAttribute(string? country = null, string? message = null) -> void
+Jeninnet.Validation.Attributes.NationalIdAttribute
+Jeninnet.Validation.Attributes.NationalIdAttribute.Country.get -> string!
+Jeninnet.Validation.Attributes.NationalIdAttribute.NationalIdAttribute(string! country, string? message = null) -> void
+Jeninnet.Validation.Attributes.PasswordStrengthAttribute
+Jeninnet.Validation.Attributes.PasswordStrengthAttribute.PasswordStrengthAttribute(Jeninnet.Validation.Attributes.PasswordStrengthPreset preset = Jeninnet.Validation.Attributes.PasswordStrengthPreset.Strong, string? message = null) -> void
+Jeninnet.Validation.Attributes.PasswordStrengthAttribute.Preset.get -> Jeninnet.Validation.Attributes.PasswordStrengthPreset
+Jeninnet.Validation.Attributes.PasswordStrengthPreset
+Jeninnet.Validation.Attributes.PasswordStrengthPreset.Basic = 0 -> Jeninnet.Validation.Attributes.PasswordStrengthPreset
+Jeninnet.Validation.Attributes.PasswordStrengthPreset.Strict = 2 -> Jeninnet.Validation.Attributes.PasswordStrengthPreset
+Jeninnet.Validation.Attributes.PasswordStrengthPreset.Strong = 1 -> Jeninnet.Validation.Attributes.PasswordStrengthPreset
+Jeninnet.Validation.Attributes.PostalCodeAttribute
+Jeninnet.Validation.Attributes.PostalCodeAttribute.Country.get -> string!
+Jeninnet.Validation.Attributes.PostalCodeAttribute.PostalCodeAttribute(string! country, string? message = null) -> void
+Jeninnet.Validation.Attributes.UlidAttribute
+Jeninnet.Validation.Attributes.UlidAttribute.UlidAttribute(string? message = null) -> void
+Jeninnet.Validation.Attributes.UuidAttribute
+Jeninnet.Validation.Attributes.UuidAttribute.UuidAttribute(string? message = null) -> void
+Jeninnet.Validation.Attributes.VatNumberAttribute
+Jeninnet.Validation.Attributes.VatNumberAttribute.Country.get -> string!
+Jeninnet.Validation.Attributes.VatNumberAttribute.VatNumberAttribute(string! country, string? message = null) -> void
+Jeninnet.Validation.Fluent.RuleBuilderDomainExtensions
+Jeninnet.Validation.Rules.IbanRule<T, TProperty>
+Jeninnet.Validation.Rules.IbanRule<T, TProperty>.Country.get -> string?
+Jeninnet.Validation.Rules.IbanRule<T, TProperty>.IbanRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string? country, string? message, string? messageKey = "Iban") -> void
+Jeninnet.Validation.Rules.IbanRule<T>
+Jeninnet.Validation.Rules.IbanRule<T>.IbanRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, string? country = null, string? message = null) -> void
+Jeninnet.Validation.Rules.NationalIdRule<T, TProperty>
+Jeninnet.Validation.Rules.NationalIdRule<T, TProperty>.Country.get -> string!
+Jeninnet.Validation.Rules.NationalIdRule<T, TProperty>.NationalIdRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string! country, string? message, string? messageKey = "NationalId") -> void
+Jeninnet.Validation.Rules.NationalIdRule<T>
+Jeninnet.Validation.Rules.NationalIdRule<T>.NationalIdRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, string! country, string? message = null) -> void
+Jeninnet.Validation.Rules.PasswordPolicy
+Jeninnet.Validation.Rules.PasswordPolicy.DisallowCommonPasswords.get -> bool
+Jeninnet.Validation.Rules.PasswordPolicy.DisallowCommonPasswords.init -> void
+Jeninnet.Validation.Rules.PasswordPolicy.DisallowWhitespace.get -> bool
+Jeninnet.Validation.Rules.PasswordPolicy.DisallowWhitespace.init -> void
+Jeninnet.Validation.Rules.PasswordPolicy.FindViolations(string! value) -> System.Collections.Generic.IReadOnlyList<string!>!
+Jeninnet.Validation.Rules.PasswordPolicy.MaxLength.get -> int
+Jeninnet.Validation.Rules.PasswordPolicy.MaxLength.init -> void
+Jeninnet.Validation.Rules.PasswordPolicy.MinLength.get -> int
+Jeninnet.Validation.Rules.PasswordPolicy.MinLength.init -> void
+Jeninnet.Validation.Rules.PasswordPolicy.Name.get -> string!
+Jeninnet.Validation.Rules.PasswordPolicy.Name.init -> void
+Jeninnet.Validation.Rules.PasswordPolicy.RequireDigit.get -> bool
+Jeninnet.Validation.Rules.PasswordPolicy.RequireDigit.init -> void
+Jeninnet.Validation.Rules.PasswordPolicy.RequireLowercase.get -> bool
+Jeninnet.Validation.Rules.PasswordPolicy.RequireLowercase.init -> void
+Jeninnet.Validation.Rules.PasswordPolicy.RequireSymbol.get -> bool
+Jeninnet.Validation.Rules.PasswordPolicy.RequireSymbol.init -> void
+Jeninnet.Validation.Rules.PasswordPolicy.RequireUppercase.get -> bool
+Jeninnet.Validation.Rules.PasswordPolicy.RequireUppercase.init -> void
+Jeninnet.Validation.Rules.PasswordStrengthRule<T, TProperty>
+Jeninnet.Validation.Rules.PasswordStrengthRule<T, TProperty>.PasswordStrengthRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, Jeninnet.Validation.Rules.PasswordPolicy? policy, string? message, string? messageKey = "PasswordStrength") -> void
+Jeninnet.Validation.Rules.PasswordStrengthRule<T, TProperty>.Policy.get -> Jeninnet.Validation.Rules.PasswordPolicy!
+Jeninnet.Validation.Rules.PasswordStrengthRule<T>
+Jeninnet.Validation.Rules.PasswordStrengthRule<T>.PasswordStrengthRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, Jeninnet.Validation.Rules.PasswordPolicy? policy = null, string? message = null) -> void
+Jeninnet.Validation.Rules.PostalCodeRule<T, TProperty>
+Jeninnet.Validation.Rules.PostalCodeRule<T, TProperty>.Country.get -> string!
+Jeninnet.Validation.Rules.PostalCodeRule<T, TProperty>.PostalCodeRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string! country, string? message, string? messageKey = "PostalCode") -> void
+Jeninnet.Validation.Rules.PostalCodeRule<T>
+Jeninnet.Validation.Rules.PostalCodeRule<T>.PostalCodeRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, string! country, string? message = null) -> void
+Jeninnet.Validation.Rules.UlidRule<T, TProperty>
+Jeninnet.Validation.Rules.UlidRule<T, TProperty>.UlidRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string? message, string? messageKey = "Ulid") -> void
+Jeninnet.Validation.Rules.UlidRule<T>
+Jeninnet.Validation.Rules.UlidRule<T>.UlidRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, string? message = null) -> void
+Jeninnet.Validation.Rules.UuidRule<T, TProperty>
+Jeninnet.Validation.Rules.UuidRule<T, TProperty>.UuidRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string? message, string? messageKey = "Uuid") -> void
+Jeninnet.Validation.Rules.UuidRule<T>
+Jeninnet.Validation.Rules.UuidRule<T>.UuidRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, string? message = null) -> void
+Jeninnet.Validation.Rules.VatNumberRule<T, TProperty>
+Jeninnet.Validation.Rules.VatNumberRule<T, TProperty>.Country.get -> string!
+Jeninnet.Validation.Rules.VatNumberRule<T, TProperty>.VatNumberRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string! country, string? message, string? messageKey = "VatNumber") -> void
+Jeninnet.Validation.Rules.VatNumberRule<T>
+Jeninnet.Validation.Rules.VatNumberRule<T>.VatNumberRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, string! country, string? message = null) -> void
+override Jeninnet.Validation.Rules.IbanRule<T, TProperty>.GetMessageParameters(Jeninnet.Validation.Core.ValidationContext<T> context) -> System.Collections.Generic.IDictionary<string!, object!>?
+override Jeninnet.Validation.Rules.IbanRule<T, TProperty>.GetMetadataParameters() -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!
+override Jeninnet.Validation.Rules.IbanRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.NationalIdRule<T, TProperty>.GetMessageParameters(Jeninnet.Validation.Core.ValidationContext<T> context) -> System.Collections.Generic.IDictionary<string!, object!>?
+override Jeninnet.Validation.Rules.NationalIdRule<T, TProperty>.GetMetadataParameters() -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!
+override Jeninnet.Validation.Rules.NationalIdRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.PasswordStrengthRule<T, TProperty>.GetMessageParameters(Jeninnet.Validation.Core.ValidationContext<T> context) -> System.Collections.Generic.IDictionary<string!, object!>?
+override Jeninnet.Validation.Rules.PasswordStrengthRule<T, TProperty>.GetMetadataParameters() -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!
+override Jeninnet.Validation.Rules.PasswordStrengthRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.PostalCodeRule<T, TProperty>.GetMessageParameters(Jeninnet.Validation.Core.ValidationContext<T> context) -> System.Collections.Generic.IDictionary<string!, object!>?
+override Jeninnet.Validation.Rules.PostalCodeRule<T, TProperty>.GetMetadataParameters() -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!
+override Jeninnet.Validation.Rules.PostalCodeRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.UlidRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.UuidRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.VatNumberRule<T, TProperty>.GetMessageParameters(Jeninnet.Validation.Core.ValidationContext<T> context) -> System.Collections.Generic.IDictionary<string!, object!>?
+override Jeninnet.Validation.Rules.VatNumberRule<T, TProperty>.GetMetadataParameters() -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!
+override Jeninnet.Validation.Rules.VatNumberRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+static Jeninnet.Validation.Fluent.RuleBuilderDomainExtensions.Iban<T>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>! builder, string? country = null, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>!
+static Jeninnet.Validation.Fluent.RuleBuilderDomainExtensions.NationalId<T>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>! builder, string! country, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>!
+static Jeninnet.Validation.Fluent.RuleBuilderDomainExtensions.PasswordStrength<T>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>! builder, Jeninnet.Validation.Rules.PasswordPolicy? policy = null, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>!
+static Jeninnet.Validation.Fluent.RuleBuilderDomainExtensions.PostalCode<T>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>! builder, string! country, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>!
+static Jeninnet.Validation.Fluent.RuleBuilderDomainExtensions.Ulid<T>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>! builder, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>!
+static Jeninnet.Validation.Fluent.RuleBuilderDomainExtensions.Uuid<T>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>! builder, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>!
+static Jeninnet.Validation.Fluent.RuleBuilderDomainExtensions.VatNumber<T>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>! builder, string! country, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>!
+static Jeninnet.Validation.Rules.PasswordPolicy.Basic.get -> Jeninnet.Validation.Rules.PasswordPolicy!
+static Jeninnet.Validation.Rules.PasswordPolicy.Strict.get -> Jeninnet.Validation.Rules.PasswordPolicy!
+static Jeninnet.Validation.Rules.PasswordPolicy.Strong.get -> Jeninnet.Validation.Rules.PasswordPolicy!

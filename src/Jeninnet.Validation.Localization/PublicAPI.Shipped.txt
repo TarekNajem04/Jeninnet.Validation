@@ -1,0 +1,22 @@
+#nullable enable
+Jeninnet.Validation.Localization.DefaultValidationMessageProvider
+Jeninnet.Validation.Localization.DefaultValidationMessageProvider.DefaultValidationMessageProvider() -> void
+Jeninnet.Validation.Localization.DefaultValidationMessageProvider.DefaultValidationMessageProvider(Jeninnet.Validation.Localization.ValidationMessagePackOptions? options) -> void
+Jeninnet.Validation.Localization.DefaultValidationMessageProvider.GetMessageTemplateAsync(string! key, System.Globalization.CultureInfo! culture, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<string?>
+Jeninnet.Validation.Localization.ServiceCollectionExtensions
+Jeninnet.Validation.Localization.ValidationMessageLocalizerExtensions
+Jeninnet.Validation.Localization.ValidationMessagePack
+Jeninnet.Validation.Localization.ValidationMessagePack.Culture.get -> string!
+Jeninnet.Validation.Localization.ValidationMessagePack.Messages.get -> System.Collections.Generic.IReadOnlyDictionary<string!, string!>!
+Jeninnet.Validation.Localization.ValidationMessagePack.ValidationMessagePack(string! culture, System.Collections.Generic.IReadOnlyDictionary<string!, string!>! messages) -> void
+Jeninnet.Validation.Localization.ValidationMessagePackOptions
+Jeninnet.Validation.Localization.ValidationMessagePackOptions.AddPack(Jeninnet.Validation.Localization.ValidationMessagePack! pack) -> Jeninnet.Validation.Localization.ValidationMessagePackOptions!
+Jeninnet.Validation.Localization.ValidationMessagePackOptions.AddPack(string! culture, System.Collections.Generic.IReadOnlyDictionary<string!, string!>! messages) -> Jeninnet.Validation.Localization.ValidationMessagePackOptions!
+Jeninnet.Validation.Localization.ValidationMessagePackOptions.Override(string! culture, string! key, string! template) -> Jeninnet.Validation.Localization.ValidationMessagePackOptions!
+Jeninnet.Validation.Localization.ValidationMessagePackOptions.ValidationMessagePackOptions() -> void
+static Jeninnet.Validation.Localization.DefaultValidationMessageProvider.Arabic.get -> System.Collections.Generic.IReadOnlyDictionary<string!, string!>!
+static Jeninnet.Validation.Localization.DefaultValidationMessageProvider.English.get -> System.Collections.Generic.IReadOnlyDictionary<string!, string!>!
+static Jeninnet.Validation.Localization.DefaultValidationMessageProvider.SupportedCultures.get -> System.Collections.Generic.IReadOnlyCollection<string!>!
+static Jeninnet.Validation.Localization.ServiceCollectionExtensions.AddDefaultMessagePacks(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static Jeninnet.Validation.Localization.ServiceCollectionExtensions.AddDefaultMessagePacks(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, System.Action<Jeninnet.Validation.Localization.ValidationMessagePackOptions!>! configure) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static Jeninnet.Validation.Localization.ValidationMessageLocalizerExtensions.LocalizeValidationErrorAsync(this Jeninnet.Localization.Abstractions.IMessageLocalizer! localizer, Jeninnet.Validation.ValidationError error, System.Globalization.CultureInfo? culture = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<string?>

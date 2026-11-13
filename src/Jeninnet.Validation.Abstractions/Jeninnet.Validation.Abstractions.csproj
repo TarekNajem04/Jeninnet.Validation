@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <!--
+        Package Version Strategy
+        1.0.0  initial release
+        1.2.0  new features
+        1.1.1  bug fix
+        2.0.0  breaking change        
+    -->
+    <PropertyGroup>
+        <!-- 
+          DisableGlobalFramework:
+          This flag allows a project to opt out of the default TargetFramework 
+          defined in Directory.Build.props. Our solution sets a global framework 
+          (e.g., net10.0) for most projects, but some libraries—such as analyzers, 
+          generators, or multi-targeted runtime components—need to define their own 
+          TargetFrameworks without being overridden by the global setting.
+
+          Setting <DisableGlobalFramework>true</DisableGlobalFramework> tells the 
+          Directory.Build.props file: “Do not apply the global TargetFramework to 
+          this project; let this project control its own frameworks.”
+        -->
+        <DisableGlobalFramework>false</DisableGlobalFramework>
+        <IsPackable>true</IsPackable>
+        <IncludeBuildOutput>true</IncludeBuildOutput>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <AssemblyName>Jeninnet.Validation.Abstractions</AssemblyName>
+        <RootNamespace>Jeninnet.Validation</RootNamespace>
+        <Description>Abstractions for a high-performance validation framework.</Description>
+        <IsAotCompatible>true</IsAotCompatible>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Update="About.md">
+            <PackagePath>\</PackagePath>
+            <Pack>true</Pack>
+        </None>
+    </ItemGroup>
+
+</Project>

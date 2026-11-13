@@ -1,0 +1,15 @@
+#nullable enable
+Jeninnet.Validation.ClientRules.ClientRulesOptions
+Jeninnet.Validation.ClientRules.ClientRulesOptions.ClientRulesOptions() -> void
+Jeninnet.Validation.ClientRules.ClientRulesOptions.IncludedValidators.get -> System.Collections.Generic.ISet<string!>!
+Jeninnet.Validation.ClientRules.ClientRulesOptions.MessageResolver.get -> System.Func<Jeninnet.Validation.Metadata.IValidationRuleDescriptor!, string?>?
+Jeninnet.Validation.ClientRules.ClientRulesOptions.MessageResolver.set -> void
+Jeninnet.Validation.ClientRules.ClientRulesOptions.SchemaVersion.get -> string!
+Jeninnet.Validation.ClientRules.ClientRulesOptions.SchemaVersion.set -> void
+Jeninnet.Validation.ClientRules.ClientRulesWriter
+static Jeninnet.Validation.ClientRules.ClientRulesWriter.Write(System.Collections.Generic.IEnumerable<Jeninnet.Validation.Metadata.IValidationDescriptor!>! descriptors, Jeninnet.Validation.ClientRules.ClientRulesOptions? options = null) -> System.Text.Json.Nodes.JsonObject!
+static Jeninnet.Validation.ClientRules.ClientRulesWriter.Write(System.Collections.Generic.IEnumerable<Jeninnet.Validation.Metadata.IValidationDescriptorProvider!>! providers, Jeninnet.Validation.ClientRules.ClientRulesOptions? options = null) -> System.Text.Json.Nodes.JsonObject!
+static Jeninnet.Validation.ClientRules.ClientRulesWriter.WriteJavaScript(System.Collections.Generic.IEnumerable<Jeninnet.Validation.Metadata.IValidationDescriptor!>! descriptors, Jeninnet.Validation.ClientRules.ClientRulesOptions? options = null) -> string!
+static Jeninnet.Validation.ClientRules.ClientRulesWriter.WriteToString(System.Collections.Generic.IEnumerable<Jeninnet.Validation.Metadata.IValidationDescriptor!>! descriptors, Jeninnet.Validation.ClientRules.ClientRulesOptions? options = null) -> string!
+static Jeninnet.Validation.ClientRules.ClientRulesWriter.WriteToString(System.Collections.Generic.IEnumerable<Jeninnet.Validation.Metadata.IValidationDescriptorProvider!>! providers, Jeninnet.Validation.ClientRules.ClientRulesOptions? options = null) -> string!
+static Jeninnet.Validation.ClientRules.ClientRulesWriter.WriteTypeScript(System.Collections.Generic.IEnumerable<Jeninnet.Validation.Metadata.IValidationDescriptor!>! descriptors, Jeninnet.Validation.ClientRules.ClientRulesOptions? options = null) -> string!

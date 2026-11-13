@@ -1,0 +1,11 @@
+{
+  "NotEmpty": "{PropertyName} must not be empty.",
+  "Email": "{PropertyName} must be a valid email address.",
+  "Length": "{PropertyName} has an invalid length.",
+  "MinimumLength": "{PropertyName} must be at least {MinLength} characters.",
+  "MaximumLength": "{PropertyName} must be at most {MaxLength} characters.",
+  "Matches": "{PropertyName} is not in the correct format.",
+  "InclusiveBetween": "{PropertyName} must be between {From} and {To}.",
+  "GreaterThan": "{PropertyName} must be greater than {ComparisonValue}.",
+  "EmailAddress": "{PropertyName} must be a valid email address."
+}

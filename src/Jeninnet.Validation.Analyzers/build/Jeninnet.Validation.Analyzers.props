@@ -1,0 +1,14 @@
+<Project>
+    <!--
+        Emit the build-time client-rules catalog by default. Consumers can opt out with
+        <JeninnetEmitClientRules>false</JeninnetEmitClientRules>.
+        CompilerVisibleProperty makes the value available to the incremental generator.
+    -->
+    <PropertyGroup>
+        <JeninnetEmitClientRules Condition="'$(JeninnetEmitClientRules)' == ''">true</JeninnetEmitClientRules>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <CompilerVisibleProperty Include="JeninnetEmitClientRules" />
+    </ItemGroup>
+</Project>

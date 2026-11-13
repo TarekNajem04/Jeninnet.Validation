@@ -1,0 +1,7 @@
+#nullable enable
+Jeninnet.Validation.OpenApi.Swashbuckle.JeninnetValidationSchemaFilter
+Jeninnet.Validation.OpenApi.Swashbuckle.JeninnetValidationSchemaFilter.Apply(Microsoft.OpenApi.IOpenApiSchema! schema, Swashbuckle.AspNetCore.SwaggerGen.SchemaFilterContext! context) -> void
+Jeninnet.Validation.OpenApi.Swashbuckle.JeninnetValidationSchemaFilter.JeninnetValidationSchemaFilter(Jeninnet.Validation.OpenApi.ValidationSchemaRegistry! registry) -> void
+Jeninnet.Validation.OpenApi.Swashbuckle.SwashbuckleValidationExtensions
+static Jeninnet.Validation.OpenApi.Swashbuckle.SwashbuckleValidationExtensions.AddSchemaConstraintsFromValidators(this Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions! options, Jeninnet.Validation.OpenApi.ValidationSchemaRegistry! registry) -> Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions!
+static Jeninnet.Validation.OpenApi.Swashbuckle.SwashbuckleValidationExtensions.AddSchemaConstraintsFromValidators(this Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions! options, params Jeninnet.Validation.Metadata.IValidationDescriptorProvider![]! validators) -> Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions!

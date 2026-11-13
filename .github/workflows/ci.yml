@@ -1,0 +1,389 @@
+name: CI
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'samples/**'
+      - 'client/**'
+      - 'docs/**'
+      - 'scripts/**'
+      - 'scripts/api/**'
+      - 'scripts/localization/**'
+      - '**.csproj'
+      - '**.slnx'
+      - '**/PublicAPI.*.txt'
+      - '**/ValidationMessageKeys.cs'
+      - '**/MessageKeyAllowList.json'
+      - 'src/Jeninnet.Validation.Localization/Resources/*.json'
+      - 'Directory.Build.props'
+      - 'Directory.Build.targets'
+      - 'Directory.Packages.props'
+      - 'global.json'
+      - 'README.md'
+      - '.editorconfig'
+      - '.github/workflows/ci.yml'
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'samples/**'
+      - 'client/**'
+      - 'docs/**'
+      - 'scripts/**'
+      - 'scripts/api/**'
+      - 'scripts/localization/**'
+      - '**.csproj'
+      - '**.slnx'
+      - '**/PublicAPI.*.txt'
+      - '**/ValidationMessageKeys.cs'
+      - '**/MessageKeyAllowList.json'
+      - 'src/Jeninnet.Validation.Localization/Resources/*.json'
+      - 'Directory.Build.props'
+      - 'Directory.Build.targets'
+      - 'Directory.Packages.props'
+      - 'global.json'
+      - 'README.md'
+      - '.editorconfig'
+      - '.github/workflows/ci.yml'
+
+permissions:
+  contents: read
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  format:
+
+    name: Format
+
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 20
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Setup .NET SDK (global.json)
+        uses: actions/setup-dotnet@v6.1.0
+        with:
+          global-json-file: global.json
+
+      - name: Restore
+        run: dotnet restore Jeninnet.Validation.slnx
+
+      # dotnet format loads a design-time build. Source generators must already be
+      # built, otherwise generated validator types are missing on a clean checkout.
+      - name: Build (generated sources)
+        run: dotnet build Jeninnet.Validation.slnx --configuration Debug --no-restore
+
+      - name: Verify formatting
+        run: dotnet format Jeninnet.Validation.slnx --verify-no-changes --no-restore
+
+      - name: Check source headers
+        shell: pwsh
+        run: pwsh scripts/quality/check-source-headers.ps1
+
+  api-baselines:
+
+    name: Public API baselines
+
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 20
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Setup .NET SDK (global.json)
+        uses: actions/setup-dotnet@v6.1.0
+        with:
+          global-json-file: global.json
+
+      - name: Restore
+        run: dotnet restore Jeninnet.Validation.slnx
+
+      - name: Build (RS0016/RS0017 gate)
+        run: dotnet build Jeninnet.Validation.slnx --configuration Release --no-restore
+
+      - name: Check baseline files
+        shell: pwsh
+        run: pwsh scripts/api/check-public-api-baselines.ps1
+
+      - name: Exercise the API gate
+        shell: pwsh
+        run: pwsh scripts/api/test-public-api-gate.ps1
+
+  message-keys:
+
+    name: Message key catalog
+
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 20
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Check message-key catalog
+        shell: pwsh
+        run: pwsh scripts/localization/check-message-keys.ps1
+
+      - name: Upload catalog report
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: message-keys-report
+          path: artifacts/message-keys/
+          if-no-files-found: error
+
+  client:
+
+    name: Client runtime
+
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 10
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+
+      - name: Test client evaluator
+        run: npm test --prefix client
+
+  build-and-test:
+
+    name: Build & Test (${{ matrix.os }})
+
+    runs-on: ${{ matrix.os }}
+
+    timeout-minutes: 60
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        os:
+          - windows-latest
+          - ubuntu-latest
+          - macos-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET SDK (global.json)
+        uses: actions/setup-dotnet@v6.1.0
+        with:
+          global-json-file: global.json
+
+      - name: Restore
+        run: dotnet restore Jeninnet.Validation.slnx
+
+      - name: Build
+        run: dotnet build Jeninnet.Validation.slnx --configuration Release --no-restore
+
+      - name: Test
+        run: >
+          dotnet test Jeninnet.Validation.slnx
+          --configuration Release
+          --no-build
+          --blame-hang-timeout 3m
+          --logger "trx;LogFileName=results.trx"
+          --results-directory TestResults/${{ matrix.os }}
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: test-results-${{ matrix.os }}
+          path: TestResults/${{ matrix.os }}
+
+  dependency-review:
+
+    name: Dependency Review
+
+    if: github.event_name == 'pull_request'
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: read
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Review dependency changes
+        uses: actions/dependency-review-action@v5.0.0
+        with:
+          fail-on-severity: high
+
+  vulnerability-check:
+
+    name: Vulnerability Check
+
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 20
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Setup .NET SDK (global.json)
+        uses: actions/setup-dotnet@v6.1.0
+        with:
+          global-json-file: global.json
+
+      - name: Restore
+        run: dotnet restore Jeninnet.Validation.slnx
+
+      - name: Audit NuGet dependencies
+        shell: pwsh
+        run: ./scripts/security/check-vulnerable-packages.ps1
+
+  architecture:
+
+    name: Architecture Tests
+
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 30
+
+    needs:
+      - build-and-test
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Setup .NET SDK (global.json)
+        uses: actions/setup-dotnet@v6.1.0
+        with:
+          global-json-file: global.json
+
+      - name: Restore
+        run: dotnet restore Jeninnet.Validation.slnx
+
+      - name: Build
+        run: dotnet build Jeninnet.Validation.slnx --configuration Release --no-restore
+
+      - name: Run architecture tests
+        run: >
+          dotnet test Jeninnet.Validation.slnx
+          --configuration Release
+          --no-build
+          --filter "FullyQualifiedName~Architecture"
+
+  package-validation:
+
+    name: Package Validation
+
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 45
+
+    needs:
+      - build-and-test
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET SDK (global.json)
+        uses: actions/setup-dotnet@v6.1.0
+        with:
+          global-json-file: global.json
+
+      - name: Restore
+        run: dotnet restore Jeninnet.Validation.slnx
+
+      - name: Build
+        run: dotnet build Jeninnet.Validation.slnx --configuration Release --no-restore
+
+      - name: Pack with Validation
+        run: |
+          dotnet pack Jeninnet.Validation.slnx --configuration Release --no-build --no-restore /p:EnablePackageValidation=true --output artifacts/packages
+
+      - name: Verify package contents
+        shell: pwsh
+        run: ./scripts/package/check-package-contents.ps1 -PackagesPath artifacts/packages
+
+      - name: Verify package version
+        shell: pwsh
+        run: |
+          $version = (dotnet msbuild src/Jeninnet.Validation/Jeninnet.Validation.csproj -getProperty:Version -nologo).Trim()
+
+          if ([string]::IsNullOrWhiteSpace($version)) {
+            throw "The evaluated MSBuild Version is empty."
+          }
+
+          foreach ($package in Get-ChildItem artifacts/packages -Filter *.nupkg) {
+            if ($package.BaseName -notlike "*.$version") {
+              throw "Package '$($package.Name)' does not match the evaluated version '$version'."
+            }
+          }
+
+          Write-Host "All packages match version $version."
+
+      - name: Consumer package smoke test
+        shell: pwsh
+        run: ./scripts/package/check-consumer-smoke.ps1 -PackagesPath artifacts/packages
+
+      - name: Publish dry run to a local feed
+        shell: pwsh
+        run: |
+          $feed = Join-Path $env:RUNNER_TEMP "jeninnet-dry-run-feed"
+          New-Item -ItemType Directory -Force -Path $feed | Out-Null
+
+          foreach ($package in Get-ChildItem artifacts/packages -Filter *.nupkg) {
+            dotnet nuget push $package.FullName --source $feed --no-symbols
+
+            if ($LASTEXITCODE -ne 0) {
+              throw "Local-feed push failed for '$($package.Name)' with exit code $LASTEXITCODE."
+            }
+          }
+
+          Write-Host "Local-feed publish dry run passed."

@@ -1,0 +1,9 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <!--
+        Shared composite-rule helpers. Imported by the core validation project so the logic
+        is compiled once and stays consistent across rule containers.
+    -->
+    <ItemGroup>
+        <Compile Include="$(MSBuildThisFileDirectory)CompositeRuleHelper.cs" Link="CompositeRuleHelper.cs" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+#nullable enable
+Jeninnet.Validation.MediatR.FluentResults.FluentResultsMediatRExtensions
+Jeninnet.Validation.MediatR.FluentResults.FluentResultsValidationResultMapper<TValue>
+Jeninnet.Validation.MediatR.FluentResults.FluentResultsValidationResultMapper<TValue>.FluentResultsValidationResultMapper() -> void
+Jeninnet.Validation.MediatR.FluentResults.FluentResultsValidationResultMapper<TValue>.Map(Jeninnet.Validation.ValidationResult result) -> FluentResults.Result<TValue>!
+static Jeninnet.Validation.MediatR.FluentResults.FluentResultsMediatRExtensions.UseFluentResultsAdapter<TValue>(this Jeninnet.Validation.MediatR.MediatRValidationOptions! options) -> Jeninnet.Validation.MediatR.MediatRValidationOptions!

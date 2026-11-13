@@ -1,0 +1,9 @@
+#nullable enable
+Jeninnet.Validation.OpenApi.NSwag.JeninnetValidationSchemaProcessor
+Jeninnet.Validation.OpenApi.NSwag.JeninnetValidationSchemaProcessor.JeninnetValidationSchemaProcessor(Jeninnet.Validation.OpenApi.ValidationSchemaRegistry! registry) -> void
+Jeninnet.Validation.OpenApi.NSwag.JeninnetValidationSchemaProcessor.Process(NJsonSchema.Generation.SchemaProcessorContext! context) -> void
+Jeninnet.Validation.OpenApi.NSwag.NSwagValidationExtensions
+static Jeninnet.Validation.OpenApi.NSwag.NSwagValidationExtensions.AddSchemaConstraintsFromValidators(this NJsonSchema.Generation.JsonSchemaGeneratorSettings! settings, Jeninnet.Validation.OpenApi.ValidationSchemaRegistry! registry) -> NJsonSchema.Generation.JsonSchemaGeneratorSettings!
+static Jeninnet.Validation.OpenApi.NSwag.NSwagValidationExtensions.AddSchemaConstraintsFromValidators(this NJsonSchema.Generation.JsonSchemaGeneratorSettings! settings, params Jeninnet.Validation.Metadata.IValidationDescriptorProvider![]! validators) -> NJsonSchema.Generation.JsonSchemaGeneratorSettings!
+static Jeninnet.Validation.OpenApi.NSwag.NSwagValidationExtensions.AddSchemaConstraintsFromValidators(this NSwag.Generation.OpenApiDocumentGeneratorSettings! settings, Jeninnet.Validation.OpenApi.ValidationSchemaRegistry! registry) -> NSwag.Generation.OpenApiDocumentGeneratorSettings!
+static Jeninnet.Validation.OpenApi.NSwag.NSwagValidationExtensions.AddSchemaConstraintsFromValidators(this NSwag.Generation.OpenApiDocumentGeneratorSettings! settings, params Jeninnet.Validation.Metadata.IValidationDescriptorProvider![]! validators) -> NSwag.Generation.OpenApiDocumentGeneratorSettings!

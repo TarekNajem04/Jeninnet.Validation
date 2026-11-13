@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <IsPackable>false</IsPackable>
+        <NoWarn>$(NoWarn);VAL0011;VAL0012</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Jeninnet.Localization.Abstractions" />
+        <PackageReference Include="Jeninnet.Localization.Core" />
+        <PackageReference Include="Jeninnet.Localization.Providers.Memory" />
+        <PackageReference Include="BenchmarkDotNet" />
+        <PackageReference Include="FluentValidation" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Jeninnet.Validation\Jeninnet.Validation.csproj" />
+        <ProjectReference Include="..\Jeninnet.Validation.Abstractions\Jeninnet.Validation.Abstractions.csproj" />
+        <ProjectReference Include="..\Jeninnet.Validation.Localization\Jeninnet.Validation.Localization.csproj" />
+        <ProjectReference Include="..\Jeninnet.Validation.Analyzers\Jeninnet.Validation.Analyzers.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <DisableArtifacts>true</DisableArtifacts>
+    </PropertyGroup>
+</Project>

@@ -1,0 +1,13 @@
+#nullable enable
+Jeninnet.Validation.Grpc.GrpcValidationOptions
+Jeninnet.Validation.Grpc.GrpcValidationOptions.GrpcValidationOptions() -> void
+Jeninnet.Validation.Grpc.GrpcValidationOptions.RuleSets.get -> System.Collections.Generic.IList<string!>!
+Jeninnet.Validation.Grpc.GrpcValidationRuleSetsAttribute
+Jeninnet.Validation.Grpc.GrpcValidationRuleSetsAttribute.GrpcValidationRuleSetsAttribute(params string![]! ruleSets) -> void
+Jeninnet.Validation.Grpc.GrpcValidationRuleSetsAttribute.RuleSets.get -> System.Collections.Generic.IReadOnlyList<string!>!
+Jeninnet.Validation.Grpc.GrpcValidationServiceCollectionExtensions
+Jeninnet.Validation.Grpc.ValidationInterceptor
+Jeninnet.Validation.Grpc.ValidationInterceptor.ValidationInterceptor() -> void
+override Jeninnet.Validation.Grpc.ValidationInterceptor.ServerStreamingServerHandler<TRequest, TResponse>(TRequest! request, Grpc.Core.IServerStreamWriter<TResponse!>! responseStream, Grpc.Core.ServerCallContext! context, Grpc.Core.ServerStreamingServerMethod<TRequest!, TResponse!>! continuation) -> System.Threading.Tasks.Task!
+override Jeninnet.Validation.Grpc.ValidationInterceptor.UnaryServerHandler<TRequest, TResponse>(TRequest! request, Grpc.Core.ServerCallContext! context, Grpc.Core.UnaryServerMethod<TRequest!, TResponse!>! continuation) -> System.Threading.Tasks.Task<TResponse!>!
+static Jeninnet.Validation.Grpc.GrpcValidationServiceCollectionExtensions.AddJeninnetGrpcValidation(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, System.Action<Jeninnet.Validation.Grpc.GrpcValidationOptions!>? configure = null) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!

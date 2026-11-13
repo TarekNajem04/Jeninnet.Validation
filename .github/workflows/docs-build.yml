@@ -1,0 +1,148 @@
+name: Documentation
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - '**/*.md'
+      - 'src/**'
+      - '**/PublicAPI.*.txt'
+      - 'Directory.Build.props'
+      - 'Directory.Build.targets'
+      - 'Directory.Packages.props'
+      - 'global.json'
+      - '.config/dotnet-tools.json'
+      - 'scripts/docs/**'
+      - '.github/workflows/docs-build.yml'
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - '**/*.md'
+      - 'src/**'
+      - '**/PublicAPI.*.txt'
+      - 'Directory.Build.props'
+      - 'Directory.Build.targets'
+      - 'Directory.Packages.props'
+      - 'global.json'
+      - '.config/dotnet-tools.json'
+      - 'scripts/docs/**'
+      - '.github/workflows/docs-build.yml'
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+  # Temporary until GitHub fully migrates Actions to Node 24.
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  docs-checks:
+
+    name: Docs Checks
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6.1.0
+        with:
+          global-json-file: global.json
+
+      - name: Check documentation links
+        shell: pwsh
+        run: pwsh scripts/docs/check-doc-links.ps1
+
+      - name: Check README claims
+        shell: pwsh
+        run: pwsh scripts/docs/check-readme-claims.ps1
+
+      - name: Check Arabic text
+        shell: pwsh
+        run: pwsh scripts/docs/check-arabic-text.ps1
+
+  api-reference:
+
+    name: API Reference
+
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 30
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET SDK (global.json)
+        uses: actions/setup-dotnet@v6.1.0
+        with:
+          global-json-file: global.json
+
+      - name: Restore tools
+        run: dotnet tool restore
+
+      - name: Restore solution
+        run: dotnet restore Jeninnet.Validation.slnx
+
+      - name: Generate API metadata
+        run: dotnet docfx metadata docs/docfx.json --warningsAsErrors
+
+      - name: Build API documentation
+        run: dotnet docfx build docs/docfx.json --warningsAsErrors
+
+      - name: Check API coverage
+        shell: pwsh
+        run: pwsh scripts/docs/check-api-reference.ps1
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: docs/_site
+
+  deploy:
+
+    name: Deploy GitHub Pages
+
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    needs:
+      - api-reference
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5.0.1

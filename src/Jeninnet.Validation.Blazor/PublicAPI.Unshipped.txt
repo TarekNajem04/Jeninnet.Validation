@@ -1,0 +1,5 @@
+#nullable enable
+Jeninnet.Validation.Blazor.StaticSsr.JeninnetStaticSsrValidation
+static Jeninnet.Validation.Blazor.StaticSsr.JeninnetStaticSsrValidation.For(Jeninnet.Validation.Metadata.IValidationDescriptor! descriptor, string! memberName, System.Func<Jeninnet.Validation.Metadata.IValidationRuleDescriptor!, string?>? messageResolver = null) -> System.Collections.Generic.IReadOnlyDictionary<string!, object!>!
+static Jeninnet.Validation.Blazor.StaticSsr.JeninnetStaticSsrValidation.FormAttributes() -> System.Collections.Generic.IReadOnlyDictionary<string!, object!>!
+static Jeninnet.Validation.Blazor.StaticSsr.JeninnetStaticSsrValidation.MessageFor(string! memberName) -> System.Collections.Generic.IReadOnlyDictionary<string!, object!>!

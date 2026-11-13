@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <AssemblyName>Jeninnet.Validation.OpenApi.NSwag</AssemblyName>
+        <RootNamespace>Jeninnet.Validation.OpenApi.NSwag</RootNamespace>
+        <Description>NSwag/NJsonSchema schema processor that applies Jeninnet.Validation constraints to generated OpenAPI schemas.</Description>
+    </PropertyGroup>
+
+    <Import Project="..\shared\OpenApi\OpenApi.projitems" />
+
+    <ItemGroup>
+        <PackageReference Include="NSwag.Generation" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Jeninnet.Validation.Abstractions\Jeninnet.Validation.Abstractions.csproj" />
+        <ProjectReference Include="..\Jeninnet.Validation.JsonSchema\Jeninnet.Validation.JsonSchema.csproj" />
+        <ProjectReference Include="..\Jeninnet.Validation.OpenApi\Jeninnet.Validation.OpenApi.csproj" />
+    </ItemGroup>
+
+</Project>

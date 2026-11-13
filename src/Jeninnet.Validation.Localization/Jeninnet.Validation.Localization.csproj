@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <DisableGlobalFramework>false</DisableGlobalFramework>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IncludeBuildOutput>true</IncludeBuildOutput>
+        <AssemblyName>Jeninnet.Validation.Localization</AssemblyName>
+        <RootNamespace>Jeninnet.Validation.Localization</RootNamespace>
+        <Description>Built-in validation message packs for Jeninnet.Validation.</Description>
+        <IsAotCompatible>true</IsAotCompatible>
+        <!-- NU5104: the sibling Jeninnet.Localization packages are still prerelease. -->
+        <NoWarn>$(NoWarn);NU5104</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Jeninnet.Localization.Abstractions" />
+        <PackageReference Include="Jeninnet.Localization.Core" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Jeninnet.Validation.Abstractions\Jeninnet.Validation.Abstractions.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="Resources\*.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Jeninnet.Validation.Tests" />
+    </ItemGroup>
+
+</Project>

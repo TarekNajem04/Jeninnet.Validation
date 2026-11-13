@@ -1,0 +1,37 @@
+<!--Directory.Build.targets-->
+<Project>
+
+    <!--
+        Public API baseline analyzer. This belongs in targets rather than props because
+        IsPackable is finalized by the project after Directory.Build.props is evaluated;
+        adding it in props would also instrument samples, benchmarks, and other non-shipping
+        projects that later opt out of packing.
+    -->
+    <ItemGroup Condition="'$(IsPackable)' == 'true'">
+        <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" PrivateAssets="all" />
+    </ItemGroup>
+
+    <!-- Ensure local feed folder exists before any pack -->
+    <Target Name="EnsureLocalArtifactsDirectory"
+            BeforeTargets="Pack">
+        <MakeDir Directories="$(LocalArtifacts)" />
+    </Target>
+
+    <!-- Copy ALL produced package files for analyzer meta package -->
+    <Target Name="PackAndCopyAnalyzerPackageToArtifacts"
+            AfterTargets="Pack"
+            Condition="'$(IsPackable)' == 'true' AND '$(IsTestProject)' != 'true' AND '$(IsTestPackage)' != 'true'">
+
+        <!-- Collect everything produced by Pack -->
+        <ItemGroup>
+            <!--<PackedFiles Include="$(PackageOutputPath)*.*" />-->
+            <PackedFiles Include="$(PackageOutputPath)*.nupkg" />
+        </ItemGroup>
+
+        <Copy
+            SourceFiles="@(PackedFiles)"
+            DestinationFolder="$(LocalArtifacts)"
+            SkipUnchangedFiles="true" />
+    </Target>
+
+</Project>

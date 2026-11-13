@@ -1,0 +1,85 @@
+﻿@page "/static-ssr"
+@inject IValidator<StaticSsrRegistration> Validator
+
+<PageTitle>Static SSR validation</PageTitle>
+
+<h1>Static SSR validation</h1>
+<p>
+    The form below is server-rendered. The browser module validates it before submission; the
+    server validates the posted model again.
+</p>
+
+@if(ServerErrors.Count > 0) {
+    <ul class="validation-summary">
+        @foreach(var error in ServerErrors) {
+            <li>@(string.IsNullOrWhiteSpace(error.Message) ? error.MessageKey : error.Message)</li>
+        }
+    </ul>
+}
+
+@{
+    var descriptor = ((IValidationDescriptorProvider)Validator).Describe();
+}
+
+<form method="post" @formname="register" @attributes="JeninnetStaticSsrValidation.FormAttributes()">
+    <AntiforgeryToken />
+
+    <div>
+        <label for="name">Name</label>
+        <input id="name"
+               name="Model.Name"
+               value="@Model?.Name"
+               @attributes="JeninnetStaticSsrValidation.For(descriptor, nameof(StaticSsrRegistration.Name))" />
+        <div @attributes="JeninnetStaticSsrValidation.MessageFor(nameof(StaticSsrRegistration.Name))"></div>
+    </div>
+
+    <div>
+        <label for="email">Email</label>
+        <input id="email"
+               name="Model.Email"
+               type="email"
+               value="@Model?.Email"
+               @attributes="JeninnetStaticSsrValidation.For(descriptor, nameof(StaticSsrRegistration.Email))" />
+        <div @attributes="JeninnetStaticSsrValidation.MessageFor(nameof(StaticSsrRegistration.Email))"></div>
+    </div>
+
+    <div>
+        <label for="age">Age</label>
+        <input id="age"
+               name="Model.Age"
+               type="number"
+               value="@Model?.Age"
+               @attributes="JeninnetStaticSsrValidation.For(descriptor, nameof(StaticSsrRegistration.Age))" />
+        <div @attributes="JeninnetStaticSsrValidation.MessageFor(nameof(StaticSsrRegistration.Age))"></div>
+    </div>
+
+    <div>
+        <label for="code">Code</label>
+        <input id="code"
+               name="Model.Code"
+               value="@Model?.Code"
+               @attributes="JeninnetStaticSsrValidation.For(descriptor, nameof(StaticSsrRegistration.Code))" />
+        <div @attributes="JeninnetStaticSsrValidation.MessageFor(nameof(StaticSsrRegistration.Code))"></div>
+    </div>
+
+    <button type="submit">Register</button>
+</form>
+
+@code {
+    [SupplyParameterFromForm(FormName = "register")]
+    private StaticSsrRegistration? Model { get; set; }
+
+    [CascadingParameter]
+    private HttpContext? HttpContext { get; set; }
+
+    private IReadOnlyList<ValidationError> ServerErrors { get; set; } = [];
+
+    protected override void OnInitialized() {
+        Model ??= new();
+
+        if(string.Equals(HttpContext?.Request.Method, "POST", StringComparison.OrdinalIgnoreCase)) {
+            var result = Validator.Validate(Model);
+            ServerErrors = result.Errors;
+        }
+    }
+}

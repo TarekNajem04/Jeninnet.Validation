@@ -1,0 +1,6 @@
+#nullable enable
+Jeninnet.Validation.MediatR.ErrorOr.ErrorOrMediatRExtensions
+Jeninnet.Validation.MediatR.ErrorOr.ErrorOrValidationResultMapper<TValue>
+Jeninnet.Validation.MediatR.ErrorOr.ErrorOrValidationResultMapper<TValue>.ErrorOrValidationResultMapper() -> void
+Jeninnet.Validation.MediatR.ErrorOr.ErrorOrValidationResultMapper<TValue>.Map(Jeninnet.Validation.ValidationResult result) -> ErrorOr.ErrorOr<TValue>
+static Jeninnet.Validation.MediatR.ErrorOr.ErrorOrMediatRExtensions.UseErrorOrResultAdapter<TValue>(this Jeninnet.Validation.MediatR.MediatRValidationOptions! options) -> Jeninnet.Validation.MediatR.MediatRValidationOptions!

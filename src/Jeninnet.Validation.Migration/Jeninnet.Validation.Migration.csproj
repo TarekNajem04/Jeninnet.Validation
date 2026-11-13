@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>jeninnet</ToolCommandName>
+        <AssemblyName>Jeninnet.Validation.Migration</AssemblyName>
+        <RootNamespace>Jeninnet.Validation.Migration</RootNamespace>
+        <Description>Migration assistant for Jeninnet.Validation: analyze FluentValidation and DataAnnotations usage, report convertible rules, and apply safe codemods with explicit TODO markers.</Description>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <!-- .NET tools do not use .NET Framework binding redirects. -->
+        <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+        <GenerateBindingRedirectsOutputType>false</GenerateBindingRedirectsOutputType>
+        <!-- Tool-only analyzer diagnostics: the shipped API is the CLI entry point. -->
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Jeninnet.Validation.Migration.Tests" />
+    </ItemGroup>
+
+</Project>

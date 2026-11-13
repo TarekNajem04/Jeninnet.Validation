@@ -1,0 +1,91 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <!--
+        Package Version Strategy
+        1.0.0  initial release
+        1.2.0  new features
+        1.1.1  bug fix
+        2.0.0  breaking change        
+    -->
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <AssemblyName>Jeninnet.Validation.Analyzers</AssemblyName>
+        <RootNamespace>Jeninnet.Validation</RootNamespace>
+
+        <IsPackable>true</IsPackable>
+
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+
+        <!-- Analyzer packages must place their assembly under analyzers/dotnet/cs. -->
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+        <DevelopmentDependency>true</DevelopmentDependency>
+        <IncludeSymbols>false</IncludeSymbols>
+        <Description>Roslyn source generator and compile-time misuse analyzers for Jeninnet.Validation attributes.</Description>
+        <PackageTags>validation;source-generator;roslyn;analyzer;dotnet</PackageTags>
+
+        <IncludeAnalyzer>true</IncludeAnalyzer>
+        <!-- Strongly recommended -->
+        <IsRoslynComponent>true</IsRoslynComponent>
+        <OutputItemType>Analyzer</OutputItemType>
+        <!-- The compiler/IDE supplies Roslyn at runtime; never ship or register a second copy. -->
+        <GenerateDependencyFile>false</GenerateDependencyFile>
+        <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" PrivateAssets="all" ExcludeAssets="runtime" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" ExcludeAssets="runtime" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" PrivateAssets="all" ExcludeAssets="runtime" />
+        <!--
+            Microsoft.CodeAnalysis 5.9 targets System.Collections.Immutable 10.0.x. Keep the
+            analyzer project on the same line so its ImmutableArray identity matches the Roslyn
+            host used by Visual Studio; the rest of the solution can stay on 11.0.0.
+        -->
+        <PackageReference Include="System.Collections.Immutable" VersionOverride="10.0.15" PrivateAssets="all" />
+    </ItemGroup>
+
+    <!--
+        Microsoft.CodeAnalysis.Analyzers adds AnalyzerReleases.*.md as AdditionalFiles
+        automatically. Keep them out of the default None item so DocFX does not see each
+        release-tracking file twice.
+    -->
+    <ItemGroup>
+        <None Remove="AnalyzerReleases.Shipped.md" />
+        <None Remove="AnalyzerReleases.Unshipped.md" />
+    </ItemGroup>
+
+    <!-- Package build props: enable the client-rules catalog without manual CompilerVisibleProperty. -->
+    <ItemGroup>
+        <None Include="build\Jeninnet.Validation.Analyzers.props"
+              Pack="true"
+              PackagePath="build\Jeninnet.Validation.Analyzers.props" />
+    </ItemGroup>
+
+    <!-- Pack the analyzer and source generator under the conventional analyzer path. -->
+    <PropertyGroup>
+        <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);AddAnalyzerToPackage</TargetsForTfmSpecificContentInPackage>
+    </PropertyGroup>
+
+    <Target Name="AddAnalyzerToPackage">
+        <ItemGroup>
+            <TfmSpecificPackageFile Include="$(TargetPath)"
+                                    PackagePath="analyzers/dotnet/cs" />
+            <TfmSpecificPackageFile Include="$(DocumentationFile)"
+                                    PackagePath="analyzers/dotnet/cs"
+                                    Condition="Exists('$(DocumentationFile)')" />
+        </ItemGroup>
+    </Target>
+
+    <PropertyGroup>
+        <DisableArtifacts>true</DisableArtifacts>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Jeninnet.Validation.Analyzers.Tests" />
+    </ItemGroup>
+    
+</Project>

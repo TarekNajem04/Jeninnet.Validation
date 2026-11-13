@@ -1,0 +1,46 @@
+﻿//
+// Copyright (c) Jeninnet.
+// Part of the Jeninnet Platform.
+// Repository: https://github.com/TarekNajem04/Jeninnet.Validation
+// Licensed under the MIT License.
+//
+#pragma warning disable IDE0130 // Namespace does not match folder structure
+namespace Jeninnet.Validation.Rules;
+
+/// <summary>
+/// A specialized, type-specific rule for ensuring that a string member is a valid email address.
+/// </summary>
+/// <typeparam name="T">The type being validated.</typeparam>
+/// <param name="accessor">The property accessor.</param>
+/// <param name="message"   >The optional error message.</param>
+/// <param name="messageKey">The key for the validation message.</param>
+public sealed class EmailRule<T>(IPropertyAccessor<T, string?> accessor, string? message, string? messageKey = ValidationMessageKeys.EMAIL)
+    : EmailRule<T, string?>(accessor, message, messageKey);
+
+/// <summary>
+/// A specialized, type-specific rule for ensuring that a string member is a valid email address.
+/// </summary>
+/// <typeparam name="T">The type being validated.</typeparam>
+/// <typeparam name="TProperty">The property type (string or nullable string).</typeparam>
+/// <param name="accessor">The property accessor.</param>
+/// <param name="message">The optional error message.</param>
+/// <param name="messageKey">The key for the validation message.</param>
+public class EmailRule<T, TProperty>(IPropertyAccessor<T, TProperty> accessor, string? message, string? messageKey = ValidationMessageKeys.EMAIL)
+    : SyncValidateRule<T, TProperty>(accessor, message, messageKey) {
+    /// <summary>
+    /// Validates the specified value.
+    /// </summary>
+    /// <param name="value">The value to validate.</param>
+    /// <param name="context">The validation context.</param>
+    /// <param name="errors">The collector for validation errors.</param>
+    protected override void ValidateValue(TProperty value, in ValidationContext<T> context, ValidationErrorCollector errors) {
+        ArgumentNullException.ThrowIfNull(errors);
+        if(value is not string s || string.IsNullOrEmpty(s)) {
+            return;
+        }
+
+        if(!StringRegexes.Email.IsMatch(s)) {
+            AddError(errors, context);
+        }
+    }
+}

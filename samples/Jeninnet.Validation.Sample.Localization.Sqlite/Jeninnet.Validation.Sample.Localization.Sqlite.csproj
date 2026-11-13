@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <UseLocalAnalyzers>true</UseLocalAnalyzers>
+        <NoWarn>$(NoWarn);NU1903</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Jeninnet.Localization.Core" />
+        <PackageReference Include="Jeninnet.Localization.Providers.Database.SQLite" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+        <PackageReference Include="Microsoft.Data.Sqlite" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Jeninnet.Validation\Jeninnet.Validation.csproj" />
+
+        <ProjectReference Include="..\Jeninnet.Validation.Sample.Localization.Base\Jeninnet.Validation.Sample.Localization.Base.csproj" />
+    </ItemGroup>
+
+</Project>

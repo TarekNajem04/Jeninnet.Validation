@@ -1,0 +1,96 @@
+{
+    "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
+
+    "metadata": [
+        {
+            "src": [
+                {
+                    "src": "../src",
+                    "files": [
+                        "Jeninnet.Validation/Jeninnet.Validation.csproj",
+                        "Jeninnet.Validation.Abstractions/Jeninnet.Validation.Abstractions.csproj",
+                        "Jeninnet.Validation.Analyzers/Jeninnet.Validation.Analyzers.csproj",
+                        "Jeninnet.Validation.Assertions/Jeninnet.Validation.Assertions.csproj",
+                        "Jeninnet.Validation.Localization/Jeninnet.Validation.Localization.csproj",
+                        "Jeninnet.Validation.Localization.AspNetCore/Jeninnet.Validation.Localization.AspNetCore.csproj",
+                        "Jeninnet.Validation.AspNetCore/Jeninnet.Validation.AspNetCore.csproj",
+                        "Jeninnet.Validation.Extensions.Validation/Jeninnet.Validation.Extensions.Validation.csproj",
+                        "Jeninnet.Validation.JsonSchema/Jeninnet.Validation.JsonSchema.csproj",
+                        "Jeninnet.Validation.OpenApi/Jeninnet.Validation.OpenApi.csproj",
+                        "Jeninnet.Validation.OpenApi.NSwag/Jeninnet.Validation.OpenApi.NSwag.csproj",
+                        "Jeninnet.Validation.OpenApi.Swashbuckle/Jeninnet.Validation.OpenApi.Swashbuckle.csproj",
+                        "Jeninnet.Validation.ClientRules/Jeninnet.Validation.ClientRules.csproj",
+                        "Jeninnet.Validation.Rules.Domain/Jeninnet.Validation.Rules.Domain.csproj",
+                        "Jeninnet.Validation.Diagnostics/Jeninnet.Validation.Diagnostics.csproj",
+                        "Jeninnet.Validation.MediatR/Jeninnet.Validation.MediatR.csproj",
+                        "Jeninnet.Validation.MediatR.ErrorOr/Jeninnet.Validation.MediatR.ErrorOr.csproj",
+                        "Jeninnet.Validation.MediatR.FluentResults/Jeninnet.Validation.MediatR.FluentResults.csproj",
+                        "Jeninnet.Validation.MediatR.CSharpFunctionalExtensions/Jeninnet.Validation.MediatR.CSharpFunctionalExtensions.csproj",
+                        "Jeninnet.Validation.Migration/Jeninnet.Validation.Migration.csproj",
+                        "Jeninnet.Validation.DataAnnotations/Jeninnet.Validation.DataAnnotations.csproj",
+                        "Jeninnet.Validation.Blazor/Jeninnet.Validation.Blazor.csproj",
+                        "Jeninnet.Validation.Observable/Jeninnet.Validation.Observable.csproj",
+                        "Jeninnet.Validation.GraphQL/Jeninnet.Validation.GraphQL.csproj",
+                        "Jeninnet.Validation.Grpc/Jeninnet.Validation.Grpc.csproj"
+                    ]
+                }
+            ],
+            "dest": "api",
+            "includePrivateMembers": false,
+            "disableGitFeatures": false,
+            "disableDefaultFilter": false,
+            "noRestore": false,
+            "properties": {
+                "UseRazorSourceGenerator": "false"
+            },
+            "namespaceLayout": "nested",
+            "memberLayout": "separatePages",
+            "allowCompilationErrors": false
+        }
+    ],
+
+    "build": {
+        "content": [
+            {
+                "files": [ "api/**.yml", "api/index.md" ]
+            },
+            {
+                "files": [ "index.md", "toc.yml", "en/**/*.md" ],
+                "exclude": [ "_site/**" ]
+            }
+        ],
+
+        "resource": [
+            {
+                "files": [ "llms.txt", "robots.txt" ]
+            }
+        ],
+
+        "output": "_site",
+
+        "template": [ "default", "modern" ],
+
+        "globalMetadata": {
+            "_appName": "Jeninnet.Validation",
+            "_appTitle": "Jeninnet.Validation Documentation",
+            "_enableSearch": true,
+            "_disableContribution": false,
+            "_gitContribute": {
+                "repo": "https://github.com/TarekNajem04/Jeninnet.Validation",
+                "branch": "main",
+                "apiSpecFolder": "docs/api"
+            },
+            "_gitUrlPattern": "github"
+        },
+
+        "sitemap": {
+            "baseUrl": "https://tareknajem04.github.io/Jeninnet.Validation"
+        },
+
+        "xref": [
+            "https://learn.microsoft.com/en-us/dotnet/.xrefmap.json"
+        ],
+
+        "pdf": false
+    }
+}

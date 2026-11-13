@@ -1,0 +1,137 @@
+﻿@typeparam TModel where TModel : class
+@using System.Diagnostics.CodeAnalysis
+@using System.Threading
+@using System.Threading.Tasks
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Forms
+@using Jeninnet.Validation.Abstractions
+@implements IDisposable
+@attribute [SuppressMessage("Major Code Smell", "S3881", Justification = "The component disposes only a managed coordinator; it owns no unmanaged resources and has no finalizer.")]
+
+@code {
+    [CascadingParameter]
+    private EditContext? EditContext { get; set; }
+
+    /// <summary>
+    /// Gets or sets an explicit validator. When omitted, <c>IValidator&lt;TModel&gt;</c>
+    /// is resolved from the service provider.
+    /// </summary>
+    [Parameter]
+    public IValidator<TModel>? Validator { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the model is validated on every field change.
+    /// </summary>
+    [Parameter]
+    public bool ValidateOnFieldChanged { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether validation runs through the asynchronous path.
+    /// Use <see cref="ValidateAsync"/> from <c>EditForm.OnSubmit</c> when enabled.
+    /// </summary>
+    [Parameter]
+    public bool UseAsyncValidation { get; set; }
+
+    /// <summary>
+    /// Gets or sets an optional delay before field-change validation starts.
+    /// Requires <see cref="UseAsyncValidation"/>; no delay is applied by default.
+    /// </summary>
+    [Parameter]
+    public TimeSpan? FieldChangedDebounce { get; set; }
+
+    /// <summary>
+    /// Gets or sets the double-validation toggle. When <see langword="true"/>, validation is
+    /// skipped while the edit context is already valid and the model has not changed.
+    /// </summary>
+    [Parameter]
+    public bool SkipIfModelStateValid { get; set; }
+
+    [Inject]
+    private IServiceProvider Services { get; set; } = default!;
+
+    private EditContextValidationCoordinator<TModel>? _coordinator;
+    private EditContext? _subscribedContext;
+    private IValidator<TModel>? _subscribedValidator;
+    private TModel? _subscribedModel;
+    private bool _subscribedValidateOnFieldChanged;
+    private bool _subscribedUseAsyncValidation;
+    private TimeSpan? _subscribedFieldChangedDebounce;
+    private bool _subscribedSkipIfModelStateValid;
+
+    /// <summary>
+    /// Gets the pending asynchronous field-change validation, if any.
+    /// </summary>
+    public Task? PendingValidation => _coordinator?.PendingValidation;
+
+    /// <summary>
+    /// Validates the model asynchronously and updates the edit context.
+    /// </summary>
+    /// <param name="cancellationToken">A token that can cancel the validation.</param>
+    /// <returns><see langword="true"/> when the model is valid; otherwise <see langword="false"/>.</returns>
+    public ValueTask<bool> ValidateAsync(CancellationToken cancellationToken = default) =>
+        _coordinator?.ValidateAsync(cancellationToken) ?? ValueTask.FromResult(true);
+
+    protected override void OnParametersSet() {
+        base.OnParametersSet();
+
+        if(EditContext is null || EditContext.Model is not TModel model) {
+            DisposeCoordinator();
+            return;
+        }
+
+        var validator = Validator ??
+                        Services.GetService(typeof(IValidator<TModel>)) as IValidator<TModel>;
+
+        if(validator is null) {
+            DisposeCoordinator();
+            return;
+        }
+
+        if(IsSubscribedTo(EditContext, validator, model)) {
+            return;
+        }
+
+        DisposeCoordinator();
+
+        _coordinator = new EditContextValidationCoordinator<TModel>(
+            EditContext,
+            validator,
+            model,
+            new EditContextValidationOptions {
+                ValidateOnFieldChanged = ValidateOnFieldChanged,
+                UseAsyncValidation = UseAsyncValidation,
+                FieldChangedDebounce = FieldChangedDebounce,
+                SkipIfModelStateValid = SkipIfModelStateValid
+            });
+
+        _subscribedContext = EditContext;
+        _subscribedValidator = validator;
+        _subscribedModel = model;
+        _subscribedValidateOnFieldChanged = ValidateOnFieldChanged;
+        _subscribedUseAsyncValidation = UseAsyncValidation;
+        _subscribedFieldChangedDebounce = FieldChangedDebounce;
+        _subscribedSkipIfModelStateValid = SkipIfModelStateValid;
+    }
+
+    public void Dispose() {
+        DisposeCoordinator();
+    }
+
+    private bool IsSubscribedTo(EditContext editContext, IValidator<TModel> validator, TModel model) =>
+        _coordinator is not null &&
+        ReferenceEquals(_subscribedContext, editContext) &&
+        ReferenceEquals(_subscribedValidator, validator) &&
+        ReferenceEquals(_subscribedModel, model) &&
+        _subscribedValidateOnFieldChanged == ValidateOnFieldChanged &&
+        _subscribedUseAsyncValidation == UseAsyncValidation &&
+        _subscribedFieldChangedDebounce == FieldChangedDebounce &&
+        _subscribedSkipIfModelStateValid == SkipIfModelStateValid;
+
+    private void DisposeCoordinator() {
+        _coordinator?.Dispose();
+        _coordinator = null;
+        _subscribedContext = null;
+        _subscribedValidator = null;
+        _subscribedModel = null;
+    }
+}

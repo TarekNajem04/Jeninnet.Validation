@@ -1,0 +1,13 @@
+#nullable enable
+Jeninnet.Validation.OpenApi.ValidationOpenApiExtensions
+Jeninnet.Validation.OpenApi.ValidationSchemaApplier
+Jeninnet.Validation.OpenApi.ValidationSchemaRegistry
+Jeninnet.Validation.OpenApi.ValidationSchemaRegistry.TryGet(System.Type! modelType, out Jeninnet.Validation.Metadata.IValidationDescriptor? descriptor) -> bool
+Jeninnet.Validation.OpenApi.ValidationSchemaRegistry.ValidationSchemaRegistry(System.Collections.Generic.IEnumerable<Jeninnet.Validation.Metadata.IValidationDescriptorProvider!>! providers) -> void
+Jeninnet.Validation.OpenApi.ValidationSchemaTransformer
+Jeninnet.Validation.OpenApi.ValidationSchemaTransformer.TransformAsync(Microsoft.OpenApi.OpenApiSchema! schema, Microsoft.AspNetCore.OpenApi.OpenApiSchemaTransformerContext! context, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task!
+Jeninnet.Validation.OpenApi.ValidationSchemaTransformer.ValidationSchemaTransformer(Jeninnet.Validation.OpenApi.ValidationSchemaRegistry! registry) -> void
+static Jeninnet.Validation.OpenApi.ValidationOpenApiExtensions.AddSchemaConstraintsFromValidators(this Microsoft.AspNetCore.OpenApi.OpenApiOptions! options) -> Microsoft.AspNetCore.OpenApi.OpenApiOptions!
+static Jeninnet.Validation.OpenApi.ValidationOpenApiExtensions.AddSchemaConstraintsFromValidators(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, params Jeninnet.Validation.Metadata.IValidationDescriptorProvider![]! validators) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static Jeninnet.Validation.OpenApi.ValidationSchemaApplier.Apply(Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints! constraints, Microsoft.OpenApi.OpenApiSchema! schema) -> void
+static Jeninnet.Validation.OpenApi.ValidationSchemaApplier.Apply(Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints! constraints, Microsoft.OpenApi.OpenApiSchema! schema, System.Text.Json.JsonSerializerOptions? options) -> void

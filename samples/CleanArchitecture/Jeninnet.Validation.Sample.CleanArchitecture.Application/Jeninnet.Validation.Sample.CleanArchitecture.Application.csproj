@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <RootNamespace>Jeninnet.Validation.Sample.CleanArchitecture.Application</RootNamespace>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Jeninnet.Validation.Sample.CleanArchitecture.Domain\Jeninnet.Validation.Sample.CleanArchitecture.Domain.csproj" />
+        <ProjectReference Include="..\..\..\src\Jeninnet.Validation\Jeninnet.Validation.csproj" />
+    </ItemGroup>
+</Project>

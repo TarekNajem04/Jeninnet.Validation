@@ -1,0 +1,4 @@
+# Test projects follow xUnit naming conventions (MethodName_WhenCondition_ExpectedResult)
+# Keep IDE1006 as suggestion so underscores in test method names are not build warnings
+[*.{cs,csx}]
+dotnet_diagnostic.IDE1006.severity = suggestion

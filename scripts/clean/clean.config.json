@@ -1,0 +1,51 @@
+{
+    "$schema": "./clean.schema.json",
+    "version": 2,
+
+    "directories": {
+        "include": [
+            "bin",
+            "obj",
+            "output",
+            "out",
+            "artifacts",
+            "BenchmarkDotNet.Artifacts",
+            "TestResults*",
+            "*Coverage*",
+            "_site",
+            "api",
+            "node_modules",
+            "packages",
+            ".vs",
+            ".vscode",
+            ".idea",
+            ".fleet",
+            ".sonarlint",
+            ".sonar",
+            ".sonarcloud",
+            ".sonarqube"
+        ],
+
+        "exclude": [
+            ".git",
+            ".github",
+            "private"
+        ]
+    },
+
+    "files": {
+        "include": [
+            "*.user",
+            "*.suo",
+            "*.userosscache",
+            "*.coverage",
+            "*.coveragexml",
+            "*.trx",
+            "coverage*.info",
+            "Thumbs.db",
+            ".DS_Store"
+        ],
+
+        "exclude": []
+    }
+}

@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <UseLocalAnalyzers>true</UseLocalAnalyzers>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Jeninnet.Validation\Jeninnet.Validation.csproj" />
+        <ProjectReference Include="..\..\src\Jeninnet.Validation.ClientRules\Jeninnet.Validation.ClientRules.csproj" />
+    </ItemGroup>
+</Project>

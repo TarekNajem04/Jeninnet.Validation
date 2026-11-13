@@ -1,0 +1,23 @@
+#nullable enable
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.EnableMetrics.get -> bool
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.EnableMetrics.set -> void
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.EnableTracing.get -> bool
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.EnableTracing.set -> void
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.IncludeRuleSets.get -> bool
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.IncludeRuleSets.set -> void
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.MeterName.get -> string!
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.MeterName.set -> void
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.SamplingProbability.get -> double
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.SamplingProbability.set -> void
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.SourceName.get -> string!
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.SourceName.set -> void
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.ValidationDiagnosticsOptions() -> void
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.Version.get -> string?
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.Version.set -> void
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsServiceCollectionExtensions
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsSink
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsSink.Begin(System.Type! modelType, string? validatorName, System.Collections.Generic.IEnumerable<string!>? ruleSets, bool isAsync) -> Jeninnet.Validation.IValidationDiagnosticsScope?
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsSink.Dispose() -> void
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsSink.ValidationDiagnosticsSink(Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions! options) -> void
+static Jeninnet.Validation.Diagnostics.ValidationDiagnosticsServiceCollectionExtensions.AddValidationDiagnostics(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, System.Action<Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions!>? configure = null) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!

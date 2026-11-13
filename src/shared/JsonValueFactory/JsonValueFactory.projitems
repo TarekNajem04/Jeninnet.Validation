@@ -1,0 +1,9 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <!--
+        Shared JSON value factory. Imported by the JSON Schema and client-rules writers
+        so both packages compile one implementation without a runtime assembly dependency.
+    -->
+    <ItemGroup>
+        <Compile Include="$(MSBuildThisFileDirectory)JsonValueFactory.cs" Link="JsonValueFactory.cs" />
+    </ItemGroup>
+</Project>

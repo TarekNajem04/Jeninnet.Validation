@@ -1,0 +1,83 @@
+name: AOT Smoke
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'samples/Jeninnet.Validation.AotSmoke/**'
+      - 'Directory.Build.props'
+      - 'Directory.Build.targets'
+      - 'Directory.Packages.props'
+      - 'global.json'
+      - '.github/workflows/aot-smoke.yml'
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'samples/Jeninnet.Validation.AotSmoke/**'
+      - 'Directory.Build.props'
+      - 'Directory.Build.targets'
+      - 'Directory.Packages.props'
+      - 'global.json'
+      - '.github/workflows/aot-smoke.yml'
+
+permissions:
+  contents: read
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+  # Temporary until GitHub fully migrates Actions to Node 24.
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+concurrency:
+  group: aot-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  nativeaot:
+
+    name: NativeAOT publish + run
+
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 30
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Setup .NET SDK (global.json)
+        uses: actions/setup-dotnet@v6.1.0
+        with:
+          global-json-file: global.json
+
+      - name: Install NativeAOT prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang zlib1g-dev
+
+      - name: Restore
+        run: dotnet restore Jeninnet.Validation.slnx
+
+      - name: Build shipping projects with trim/AOT analyzers (Release)
+        run: |
+          dotnet build src/Jeninnet.Validation.Abstractions/Jeninnet.Validation.Abstractions.csproj -c Release
+          dotnet build src/Jeninnet.Validation/Jeninnet.Validation.csproj -c Release
+
+      - name: Publish NativeAOT smoke app
+        run: dotnet publish samples/Jeninnet.Validation.AotSmoke/Jeninnet.Validation.AotSmoke.csproj -c Release -r linux-x64 --self-contained -o "$RUNNER_TEMP/aot-smoke"
+
+      - name: Run NativeAOT smoke app
+        working-directory: ${{ runner.temp }}/aot-smoke
+        run: ./Jeninnet.Validation.AotSmoke

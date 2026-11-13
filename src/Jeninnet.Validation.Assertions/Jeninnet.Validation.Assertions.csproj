@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <DisableGlobalFramework>false</DisableGlobalFramework>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IncludeBuildOutput>true</IncludeBuildOutput>
+        <AssemblyName>Jeninnet.Validation.Assertions</AssemblyName>
+        <RootNamespace>Jeninnet.Validation.Assertions</RootNamespace>
+        <Description>Stack-agnostic assertion helpers for Jeninnet.Validation.</Description>
+        <IsAotCompatible>true</IsAotCompatible>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Jeninnet.Validation\Jeninnet.Validation.csproj" />
+        <ProjectReference Include="..\Jeninnet.Validation.Abstractions\Jeninnet.Validation.Abstractions.csproj" />
+    </ItemGroup>
+
+</Project>

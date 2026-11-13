@@ -1,0 +1,824 @@
+#nullable enable
+Jeninnet.Validation.Attributes.AfterAttribute
+Jeninnet.Validation.Attributes.AfterAttribute.AfterAttribute(string! value, string? message = null) -> void
+Jeninnet.Validation.Attributes.AfterAttribute.Value.get -> string!
+Jeninnet.Validation.Attributes.Base64StringAttribute
+Jeninnet.Validation.Attributes.Base64StringAttribute.Base64StringAttribute(string? message = null) -> void
+Jeninnet.Validation.Attributes.BeforeAttribute
+Jeninnet.Validation.Attributes.BeforeAttribute.BeforeAttribute(string! value, string? message = null) -> void
+Jeninnet.Validation.Attributes.BeforeAttribute.Value.get -> string!
+Jeninnet.Validation.Attributes.Common.EnumAttribute
+Jeninnet.Validation.Attributes.Common.EnumAttribute.EnumAttribute(string? message = null) -> void
+Jeninnet.Validation.Attributes.Common.InAttribute
+Jeninnet.Validation.Attributes.Common.InAttribute.AllowedValues.get -> object![]!
+Jeninnet.Validation.Attributes.Common.InAttribute.InAttribute(object![]! allowedValues, string? message = null) -> void
+Jeninnet.Validation.Attributes.Common.NotInAttribute
+Jeninnet.Validation.Attributes.Common.NotInAttribute.DisallowedValues.get -> object![]!
+Jeninnet.Validation.Attributes.Common.NotInAttribute.NotInAttribute(object![]! disallowedValues, string? message = null) -> void
+Jeninnet.Validation.Attributes.Common.NotNullAttribute
+Jeninnet.Validation.Attributes.Common.NotNullAttribute.NotNullAttribute(string? message = null) -> void
+Jeninnet.Validation.Attributes.Common.ScalePrecisionAttribute
+Jeninnet.Validation.Attributes.Common.ScalePrecisionAttribute.IgnoreTrailingZeros.get -> bool
+Jeninnet.Validation.Attributes.Common.ScalePrecisionAttribute.IgnoreTrailingZeros.set -> void
+Jeninnet.Validation.Attributes.Common.ScalePrecisionAttribute.Precision.get -> int
+Jeninnet.Validation.Attributes.Common.ScalePrecisionAttribute.Scale.get -> int
+Jeninnet.Validation.Attributes.Common.ScalePrecisionAttribute.ScalePrecisionAttribute(int precision, int scale, string? message = null) -> void
+Jeninnet.Validation.Attributes.ContainsAttribute
+Jeninnet.Validation.Attributes.ContainsAttribute.ContainsAttribute(string! substring, string? message = null) -> void
+Jeninnet.Validation.Attributes.ContainsAttribute.Substring.get -> string!
+Jeninnet.Validation.Attributes.CountAttribute
+Jeninnet.Validation.Attributes.CountAttribute.CountAttribute(int min, int max, string? message = null) -> void
+Jeninnet.Validation.Attributes.CountAttribute.Max.get -> int
+Jeninnet.Validation.Attributes.CountAttribute.Min.get -> int
+Jeninnet.Validation.Attributes.CreditCardAttribute
+Jeninnet.Validation.Attributes.CreditCardAttribute.CreditCardAttribute(string? message = null) -> void
+Jeninnet.Validation.Attributes.CustomValidatorAttribute
+Jeninnet.Validation.Attributes.CustomValidatorAttribute.CustomValidatorAttribute(System.Type! validatorType, string! methodName, string? message = null) -> void
+Jeninnet.Validation.Attributes.CustomValidatorAttribute.IsAsync.get -> bool
+Jeninnet.Validation.Attributes.CustomValidatorAttribute.IsAsync.set -> void
+Jeninnet.Validation.Attributes.CustomValidatorAttribute.MethodName.get -> string!
+Jeninnet.Validation.Attributes.CustomValidatorAttribute.ValidatorType.get -> System.Type!
+Jeninnet.Validation.Attributes.EmailAttribute
+Jeninnet.Validation.Attributes.EmailAttribute.EmailAttribute(string? message = null) -> void
+Jeninnet.Validation.Attributes.EndsWithAttribute
+Jeninnet.Validation.Attributes.EndsWithAttribute.EndsWithAttribute(string! suffix, string? message = null) -> void
+Jeninnet.Validation.Attributes.EndsWithAttribute.Suffix.get -> string!
+Jeninnet.Validation.Attributes.EqualAttribute
+Jeninnet.Validation.Attributes.EqualAttribute.EqualAttribute(object! value, string? message = null) -> void
+Jeninnet.Validation.Attributes.EqualAttribute.Value.get -> object!
+Jeninnet.Validation.Attributes.ExactLengthAttribute
+Jeninnet.Validation.Attributes.ExactLengthAttribute.ExactLengthAttribute(int length, string? message = null) -> void
+Jeninnet.Validation.Attributes.ExactLengthAttribute.Length.get -> int
+Jeninnet.Validation.Attributes.ExclusiveBetweenAttribute
+Jeninnet.Validation.Attributes.ExclusiveBetweenAttribute.ExclusiveBetweenAttribute(object! min, object! max, string? message = null) -> void
+Jeninnet.Validation.Attributes.ExclusiveBetweenAttribute.Max.get -> object!
+Jeninnet.Validation.Attributes.ExclusiveBetweenAttribute.Min.get -> object!
+Jeninnet.Validation.Attributes.FileExtensionsAttribute
+Jeninnet.Validation.Attributes.FileExtensionsAttribute.AllowNonStandard.get -> bool
+Jeninnet.Validation.Attributes.FileExtensionsAttribute.AllowNonStandard.set -> void
+Jeninnet.Validation.Attributes.FileExtensionsAttribute.Extensions.get -> System.Collections.Generic.IReadOnlyList<string!>!
+Jeninnet.Validation.Attributes.FileExtensionsAttribute.FileExtensionsAttribute(params string![]! extensions) -> void
+Jeninnet.Validation.Attributes.FileExtensionsAttribute.IgnoreCase.get -> bool
+Jeninnet.Validation.Attributes.FileExtensionsAttribute.IgnoreCase.set -> void
+Jeninnet.Validation.Attributes.FileExtensionsAttribute.Message.get -> string?
+Jeninnet.Validation.Attributes.FileExtensionsAttribute.Message.set -> void
+Jeninnet.Validation.Attributes.ForEachAttribute
+Jeninnet.Validation.Attributes.ForEachAttribute.ForEachAttribute() -> void
+Jeninnet.Validation.Attributes.GreaterThanAttribute
+Jeninnet.Validation.Attributes.GreaterThanAttribute.GreaterThanAttribute(object! threshold, string? message = null) -> void
+Jeninnet.Validation.Attributes.GreaterThanAttribute.Threshold.get -> object!
+Jeninnet.Validation.Attributes.GreaterThanOrEqualAttribute
+Jeninnet.Validation.Attributes.GreaterThanOrEqualAttribute.GreaterThanOrEqualAttribute(object! threshold, string? message = null) -> void
+Jeninnet.Validation.Attributes.GreaterThanOrEqualAttribute.Threshold.get -> object!
+Jeninnet.Validation.Attributes.InclusiveBetweenAttribute
+Jeninnet.Validation.Attributes.InclusiveBetweenAttribute.InclusiveBetweenAttribute(object! min, object! max, string? message = null) -> void
+Jeninnet.Validation.Attributes.InclusiveBetweenAttribute.Max.get -> object!
+Jeninnet.Validation.Attributes.InclusiveBetweenAttribute.Min.get -> object!
+Jeninnet.Validation.Attributes.LengthAttribute
+Jeninnet.Validation.Attributes.LengthAttribute.LengthAttribute(int min, int max, string? message = null) -> void
+Jeninnet.Validation.Attributes.LengthAttribute.Max.get -> int
+Jeninnet.Validation.Attributes.LengthAttribute.Min.get -> int
+Jeninnet.Validation.Attributes.LessThanAttribute
+Jeninnet.Validation.Attributes.LessThanAttribute.LessThanAttribute(object! threshold, string? message = null) -> void
+Jeninnet.Validation.Attributes.LessThanAttribute.Threshold.get -> object!
+Jeninnet.Validation.Attributes.LessThanOrEqualAttribute
+Jeninnet.Validation.Attributes.LessThanOrEqualAttribute.LessThanOrEqualAttribute(object! threshold, string? message = null) -> void
+Jeninnet.Validation.Attributes.LessThanOrEqualAttribute.Threshold.get -> object!
+Jeninnet.Validation.Attributes.MaxCountAttribute
+Jeninnet.Validation.Attributes.MaxCountAttribute.Max.get -> int
+Jeninnet.Validation.Attributes.MaxCountAttribute.MaxCountAttribute(int max, string? message = null) -> void
+Jeninnet.Validation.Attributes.MaximumLengthAttribute
+Jeninnet.Validation.Attributes.MaximumLengthAttribute.Max.get -> int
+Jeninnet.Validation.Attributes.MaximumLengthAttribute.MaximumLengthAttribute(int max, string? message = null) -> void
+Jeninnet.Validation.Attributes.MinCountAttribute
+Jeninnet.Validation.Attributes.MinCountAttribute.Min.get -> int
+Jeninnet.Validation.Attributes.MinCountAttribute.MinCountAttribute(int min, string? message = null) -> void
+Jeninnet.Validation.Attributes.MinimumLengthAttribute
+Jeninnet.Validation.Attributes.MinimumLengthAttribute.Min.get -> int
+Jeninnet.Validation.Attributes.MinimumLengthAttribute.MinimumLengthAttribute(int min, string? message = null) -> void
+Jeninnet.Validation.Attributes.NestedAttribute
+Jeninnet.Validation.Attributes.NestedAttribute.NestedAttribute(string? typename = null, string? message = null) -> void
+Jeninnet.Validation.Attributes.NestedAttribute.Typename.get -> string?
+Jeninnet.Validation.Attributes.NestedAttribute.Typename.set -> void
+Jeninnet.Validation.Attributes.NotEmptyAttribute
+Jeninnet.Validation.Attributes.NotEmptyAttribute.NotEmptyAttribute(string? message = null) -> void
+Jeninnet.Validation.Attributes.NotEqualAttribute
+Jeninnet.Validation.Attributes.NotEqualAttribute.NotEqualAttribute(object! value, string? message = null) -> void
+Jeninnet.Validation.Attributes.NotEqualAttribute.Value.get -> object!
+Jeninnet.Validation.Attributes.OnFailureAttribute
+Jeninnet.Validation.Attributes.OnFailureAttribute.MethodName.get -> string!
+Jeninnet.Validation.Attributes.OnFailureAttribute.OnFailureAttribute(string! methodName) -> void
+Jeninnet.Validation.Attributes.PreValidateAttribute
+Jeninnet.Validation.Attributes.PreValidateAttribute.MethodName.get -> string!
+Jeninnet.Validation.Attributes.PreValidateAttribute.PreValidateAttribute(string! methodName) -> void
+Jeninnet.Validation.Attributes.PropertyAttribute
+Jeninnet.Validation.Attributes.PropertyAttribute.OtherProperty.get -> string!
+Jeninnet.Validation.Attributes.PropertyAttribute.PropertyAttribute(string! otherProperty, string? message = null) -> void
+Jeninnet.Validation.Attributes.PropertyEqualAttribute
+Jeninnet.Validation.Attributes.PropertyEqualAttribute.PropertyEqualAttribute(string! otherProperty, string? message = null) -> void
+Jeninnet.Validation.Attributes.PropertyGreaterThanAttribute
+Jeninnet.Validation.Attributes.PropertyGreaterThanAttribute.PropertyGreaterThanAttribute(string! otherProperty, string? message = null) -> void
+Jeninnet.Validation.Attributes.PropertyGreaterThanOrEqualAttribute
+Jeninnet.Validation.Attributes.PropertyGreaterThanOrEqualAttribute.PropertyGreaterThanOrEqualAttribute(string! otherProperty, string? message = null) -> void
+Jeninnet.Validation.Attributes.PropertyLessThanAttribute
+Jeninnet.Validation.Attributes.PropertyLessThanAttribute.PropertyLessThanAttribute(string! otherProperty, string? message = null) -> void
+Jeninnet.Validation.Attributes.PropertyLessThanOrEqualAttribute
+Jeninnet.Validation.Attributes.PropertyLessThanOrEqualAttribute.PropertyLessThanOrEqualAttribute(string! otherProperty, string? message = null) -> void
+Jeninnet.Validation.Attributes.PropertyNotEqualAttribute
+Jeninnet.Validation.Attributes.PropertyNotEqualAttribute.PropertyNotEqualAttribute(string! otherProperty, string? message = null) -> void
+Jeninnet.Validation.Attributes.RegexAttribute
+Jeninnet.Validation.Attributes.RegexAttribute.Pattern.get -> string!
+Jeninnet.Validation.Attributes.RegexAttribute.RegexAttribute(string! pattern, string? message = null) -> void
+Jeninnet.Validation.Attributes.RuleSetAttribute
+Jeninnet.Validation.Attributes.RuleSetAttribute.Name.get -> string!
+Jeninnet.Validation.Attributes.RuleSetAttribute.RuleSetAttribute(string! name) -> void
+Jeninnet.Validation.Attributes.StartsWithAttribute
+Jeninnet.Validation.Attributes.StartsWithAttribute.Prefix.get -> string!
+Jeninnet.Validation.Attributes.StartsWithAttribute.StartsWithAttribute(string! prefix, string? message = null) -> void
+Jeninnet.Validation.Attributes.String.IPAddressAttribute
+Jeninnet.Validation.Attributes.String.IPAddressAttribute.IPAddressAttribute(string? message = null) -> void
+Jeninnet.Validation.Attributes.String.PhoneAttribute
+Jeninnet.Validation.Attributes.String.PhoneAttribute.PhoneAttribute(string? message = null) -> void
+Jeninnet.Validation.Attributes.String.UrlAttribute
+Jeninnet.Validation.Attributes.String.UrlAttribute.UrlAttribute(string? message = null) -> void
+Jeninnet.Validation.Attributes.UnlessAsyncConditionAttribute
+Jeninnet.Validation.Attributes.UnlessAsyncConditionAttribute.MethodName.get -> string!
+Jeninnet.Validation.Attributes.UnlessAsyncConditionAttribute.UnlessAsyncConditionAttribute(string! methodName, string? message = null) -> void
+Jeninnet.Validation.Attributes.UnlessConditionAttribute
+Jeninnet.Validation.Attributes.UnlessConditionAttribute.MethodName.get -> string!
+Jeninnet.Validation.Attributes.UnlessConditionAttribute.UnlessConditionAttribute(string! methodName) -> void
+Jeninnet.Validation.Attributes.ValidateAttribute
+Jeninnet.Validation.Attributes.ValidateAttribute.TargetNamespace.get -> string?
+Jeninnet.Validation.Attributes.ValidateAttribute.ValidateAttribute(string? targetNamespace = null) -> void
+Jeninnet.Validation.Attributes.ValidationAttribute
+Jeninnet.Validation.Attributes.ValidationAttribute.CustomState.get -> string?
+Jeninnet.Validation.Attributes.ValidationAttribute.CustomState.set -> void
+Jeninnet.Validation.Attributes.ValidationAttribute.DisplayName.get -> string?
+Jeninnet.Validation.Attributes.ValidationAttribute.DisplayName.set -> void
+Jeninnet.Validation.Attributes.ValidationAttribute.ErrorCode.get -> string?
+Jeninnet.Validation.Attributes.ValidationAttribute.ErrorCode.set -> void
+Jeninnet.Validation.Attributes.ValidationAttribute.Message.get -> string?
+Jeninnet.Validation.Attributes.ValidationAttribute.OverridePropertyName.get -> string?
+Jeninnet.Validation.Attributes.ValidationAttribute.OverridePropertyName.set -> void
+Jeninnet.Validation.Attributes.ValidationAttribute.RuleSet.get -> string?
+Jeninnet.Validation.Attributes.ValidationAttribute.RuleSet.set -> void
+Jeninnet.Validation.Attributes.ValidationAttribute.Severity.get -> Jeninnet.Validation.ValidationErrorSeverity
+Jeninnet.Validation.Attributes.ValidationAttribute.Severity.set -> void
+Jeninnet.Validation.Attributes.ValidationAttribute.ValidationAttribute(string? message = null) -> void
+Jeninnet.Validation.Attributes.WhenAsyncConditionAttribute
+Jeninnet.Validation.Attributes.WhenAsyncConditionAttribute.MethodName.get -> string!
+Jeninnet.Validation.Attributes.WhenAsyncConditionAttribute.WhenAsyncConditionAttribute(string! methodName, string? message = null) -> void
+Jeninnet.Validation.Attributes.WhenConditionAttribute
+Jeninnet.Validation.Attributes.WhenConditionAttribute.MethodName.get -> string!
+Jeninnet.Validation.Attributes.WhenConditionAttribute.WhenConditionAttribute(string! methodName) -> void
+Jeninnet.Validation.Configuration.ValidationConfiguration
+Jeninnet.Validation.Configuration.ValidationOptions
+Jeninnet.Validation.Configuration.ValidationOptions.DefaultCascadeMode.get -> Jeninnet.Validation.CascadeMode
+Jeninnet.Validation.Configuration.ValidationOptions.DefaultCascadeMode.init -> void
+Jeninnet.Validation.Configuration.ValidationOptions.DefaultClassLevelCascadeMode.get -> Jeninnet.Validation.CascadeMode
+Jeninnet.Validation.Configuration.ValidationOptions.DefaultClassLevelCascadeMode.init -> void
+Jeninnet.Validation.Configuration.ValidationOptions.DisplayNameResolver.get -> System.Func<System.Type!, string!, string!>?
+Jeninnet.Validation.Configuration.ValidationOptions.DisplayNameResolver.init -> void
+Jeninnet.Validation.Configuration.ValidationOptions.DisplayNameResolverForInstance.get -> System.Func<System.Type!, string!, object?, string!>?
+Jeninnet.Validation.Configuration.ValidationOptions.DisplayNameResolverForInstance.init -> void
+Jeninnet.Validation.Core.CompositeValidator<T>
+Jeninnet.Validation.Core.CompositeValidator<T>.ClassLevelCascadeMode.get -> Jeninnet.Validation.CascadeMode
+Jeninnet.Validation.Core.CompositeValidator<T>.ClassLevelCascadeMode.set -> void
+Jeninnet.Validation.Core.CompositeValidator<T>.Validate(T instance) -> Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.Core.CompositeValidator<T>.Validate(T instance, Jeninnet.Validation.Core.ValidationContext<T> context) -> Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.Core.CompositeValidator<T>.Validate(T instance, Jeninnet.Validation.ValidationCallOptions! options) -> Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.Core.CompositeValidator<T>.Validate(T instance, System.Collections.Generic.IEnumerable<string!>? ruleSets) -> Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.Core.CompositeValidator<T>.ValidateAsync(T instance, Jeninnet.Validation.Core.ValidationContext<T> context, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+Jeninnet.Validation.Core.CompositeValidator<T>.ValidateAsync(T instance, Jeninnet.Validation.ValidationCallOptions! options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+Jeninnet.Validation.Core.CompositeValidator<T>.ValidateAsync(T instance, System.Collections.Generic.IEnumerable<string!>? ruleSets, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+Jeninnet.Validation.Core.CompositeValidator<T>.ValidateAsync(T instance, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+Jeninnet.Validation.Core.IAsyncValidationRule<T>
+Jeninnet.Validation.Core.IAsyncValidationRule<T>.ValidateAsync(Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>
+Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>.GetValue(T instance) -> TProperty
+Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>.Getter.get -> System.Func<T, TProperty>!
+Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>.MemberName.get -> string!
+Jeninnet.Validation.Core.ISyncValidationRule<T>
+Jeninnet.Validation.Core.ISyncValidationRule<T>.Validate(in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+Jeninnet.Validation.Core.IValidationContextValidator<T>
+Jeninnet.Validation.Core.IValidationContextValidator<T>.Validate(T instance, Jeninnet.Validation.Core.ValidationContext<T> context) -> Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.Core.IValidationContextValidator<T>.ValidateAsync(T instance, Jeninnet.Validation.Core.ValidationContext<T> context, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+Jeninnet.Validation.Core.IValidationMemberRule
+Jeninnet.Validation.Core.IValidationMemberRule.MemberName.get -> string?
+Jeninnet.Validation.Core.IValidationOptionsValidator<T>
+Jeninnet.Validation.Core.IValidationOptionsValidator<T>.Validate(T instance, Jeninnet.Validation.ValidationCallOptions! options) -> Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.Core.IValidationOptionsValidator<T>.ValidateAsync(T instance, Jeninnet.Validation.ValidationCallOptions! options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+Jeninnet.Validation.Core.IValidationRule<T>
+Jeninnet.Validation.Core.IValidatorFactory
+Jeninnet.Validation.Core.IValidatorFactory.Accessor<T, TProperty>(System.Func<T, TProperty>! getter, string! memberName) -> Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>!
+Jeninnet.Validation.Core.IValidatorFactory.AsNonNullable<T, TProperty>(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty?>! accessor) -> Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>!
+Jeninnet.Validation.Core.IValidatorFactory.NotNullAccessor<T, TProperty>(System.Func<T, TProperty>! getter, string! memberName) -> Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>!
+Jeninnet.Validation.Core.IValidatorFactory.ToNullable<T, TProperty>(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor) -> Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty?>!
+Jeninnet.Validation.Core.MemberRuleGroup<T>
+Jeninnet.Validation.Core.MemberRuleGroup<T>.AsyncRules.get -> System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.Core.IAsyncValidationRule<T>!>!
+Jeninnet.Validation.Core.MemberRuleGroup<T>.CascadeMode.get -> Jeninnet.Validation.CascadeMode?
+Jeninnet.Validation.Core.MemberRuleGroup<T>.MemberName.get -> string!
+Jeninnet.Validation.Core.MemberRuleGroup<T>.MemberRuleGroup(string! memberName, Jeninnet.Validation.CascadeMode? cascadeMode = null, System.Collections.Generic.IEnumerable<Jeninnet.Validation.Core.ISyncValidationRule<T>!>? syncRules = null, System.Collections.Generic.IEnumerable<Jeninnet.Validation.Core.IAsyncValidationRule<T>!>? asyncRules = null) -> void
+Jeninnet.Validation.Core.MemberRuleGroup<T>.SyncRules.get -> System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.Core.ISyncValidationRule<T>!>!
+Jeninnet.Validation.Core.MemberRuleGroup<T>.Validate(in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+Jeninnet.Validation.Core.MemberRuleGroup<T>.ValidateAsync(Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+Jeninnet.Validation.Core.PropertyAccessor<T, TProperty>
+Jeninnet.Validation.Core.PropertyAccessor<T, TProperty>.GetValue(T instance) -> TProperty
+Jeninnet.Validation.Core.PropertyAccessor<T, TProperty>.Getter.get -> System.Func<T, TProperty>!
+Jeninnet.Validation.Core.PropertyAccessor<T, TProperty>.MemberName.get -> string!
+Jeninnet.Validation.Core.PropertyAccessor<T, TProperty>.PropertyAccessor() -> void
+Jeninnet.Validation.Core.PropertyAccessor<T, TProperty>.PropertyAccessor(System.Func<T, TProperty>! getter, string! memberName) -> void
+Jeninnet.Validation.Core.ValidationContext<T>
+Jeninnet.Validation.Core.ValidationContext<T>.FailFast.get -> bool
+Jeninnet.Validation.Core.ValidationContext<T>.FailFast.init -> void
+Jeninnet.Validation.Core.ValidationContext<T>.ForChild<TChild>(TChild child, string! memberName) -> Jeninnet.Validation.Core.ValidationContext<TChild>
+Jeninnet.Validation.Core.ValidationContext<T>.ForElement<TElement>(TElement instance, string! memberName, int index) -> Jeninnet.Validation.Core.ValidationContext<TElement>
+Jeninnet.Validation.Core.ValidationContext<T>.ForElement<TElement>(TElement instance, string! memberName, string! indexer) -> Jeninnet.Validation.Core.ValidationContext<TElement>
+Jeninnet.Validation.Core.ValidationContext<T>.GetFullPath(string! memberName) -> string!
+Jeninnet.Validation.Core.ValidationContext<T>.Instance.get -> T
+Jeninnet.Validation.Core.ValidationContext<T>.Instance.init -> void
+Jeninnet.Validation.Core.ValidationContext<T>.MemberPath.get -> string!
+Jeninnet.Validation.Core.ValidationContext<T>.MemberPath.init -> void
+Jeninnet.Validation.Core.ValidationContext<T>.Options.get -> Jeninnet.Validation.Configuration.ValidationOptions?
+Jeninnet.Validation.Core.ValidationContext<T>.Options.init -> void
+Jeninnet.Validation.Core.ValidationContext<T>.Root.get -> object?
+Jeninnet.Validation.Core.ValidationContext<T>.Root.init -> void
+Jeninnet.Validation.Core.ValidationContext<T>.RootData.get -> Jeninnet.Validation.RootContextData?
+Jeninnet.Validation.Core.ValidationContext<T>.RootData.init -> void
+Jeninnet.Validation.Core.ValidationContext<T>.RuleSets.get -> System.Collections.Generic.IEnumerable<string!>?
+Jeninnet.Validation.Core.ValidationContext<T>.RuleSets.init -> void
+Jeninnet.Validation.Core.ValidationContext<T>.ServiceProvider.get -> System.IServiceProvider?
+Jeninnet.Validation.Core.ValidationContext<T>.ServiceProvider.init -> void
+Jeninnet.Validation.Core.ValidationContext<T>.ValidationContext() -> void
+Jeninnet.Validation.Core.ValidationContext<T>.ValidationContext(T Instance, string! MemberPath, System.Collections.Generic.IEnumerable<string!>? RuleSets = null, bool FailFast = false, object? Root = null, Jeninnet.Validation.RootContextData? RootData = null, System.IServiceProvider? ServiceProvider = null, Jeninnet.Validation.Configuration.ValidationOptions? Options = null) -> void
+Jeninnet.Validation.Core.ValidationRuleMetadata
+Jeninnet.Validation.Core.ValidatorFactory
+Jeninnet.Validation.Extensions.ValidationServiceCollectionExtensions
+Jeninnet.Validation.Fluent.ApplyConditionTo
+Jeninnet.Validation.Fluent.ApplyConditionTo.AllValidators = 1 -> Jeninnet.Validation.Fluent.ApplyConditionTo
+Jeninnet.Validation.Fluent.ApplyConditionTo.CurrentValidator = 0 -> Jeninnet.Validation.Fluent.ApplyConditionTo
+Jeninnet.Validation.Fluent.ConditionalExtensions
+Jeninnet.Validation.Fluent.CustomRuleExtensions
+Jeninnet.Validation.Fluent.DependentRuleExtensions
+Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>
+Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>.Accessor.get -> Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>!
+Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>.AddAsyncRule(Jeninnet.Validation.Core.IAsyncValidationRule<T>! rule) -> void
+Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>.AddRule(Jeninnet.Validation.Core.ISyncValidationRule<T>! rule) -> void
+Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>.Cascade(Jeninnet.Validation.CascadeMode mode) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+Jeninnet.Validation.Fluent.InheritanceValidator<TBase>
+Jeninnet.Validation.Fluent.InheritanceValidator<TBase>.InheritanceValidator(Jeninnet.Validation.Fluent.InheritanceValidatorMap<TBase!>! map) -> void
+Jeninnet.Validation.Fluent.InheritanceValidator<TBase>.Validate(TBase! instance) -> Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.Fluent.InheritanceValidator<TBase>.Validate(TBase! instance, Jeninnet.Validation.Core.ValidationContext<TBase!> context) -> Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.Fluent.InheritanceValidator<TBase>.Validate(TBase! instance, System.Collections.Generic.IEnumerable<string!>! ruleSets) -> Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.Fluent.InheritanceValidator<TBase>.ValidateAsync(TBase! instance, Jeninnet.Validation.Core.ValidationContext<TBase!> context, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+Jeninnet.Validation.Fluent.InheritanceValidator<TBase>.ValidateAsync(TBase! instance, System.Collections.Generic.IEnumerable<string!>! ruleSets, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+Jeninnet.Validation.Fluent.InheritanceValidator<TBase>.ValidateAsync(TBase! instance, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+Jeninnet.Validation.Fluent.InheritanceValidatorMap<TBase>
+Jeninnet.Validation.Fluent.InheritanceValidatorMap<TBase>.Add<TDerived>(Jeninnet.Validation.Abstractions.IAsyncValidator<TDerived!>! validator) -> Jeninnet.Validation.Fluent.InheritanceValidatorMap<TBase!>!
+Jeninnet.Validation.Fluent.InheritanceValidatorMap<TBase>.Add<TDerived>(Jeninnet.Validation.Abstractions.ISyncValidator<TDerived!>! validator) -> Jeninnet.Validation.Fluent.InheritanceValidatorMap<TBase!>!
+Jeninnet.Validation.Fluent.InheritanceValidatorMap<TBase>.Add<TDerived>(Jeninnet.Validation.Abstractions.IValidator<TDerived!>! validator) -> Jeninnet.Validation.Fluent.InheritanceValidatorMap<TBase!>!
+Jeninnet.Validation.Fluent.InheritanceValidatorMap<TBase>.InheritanceValidatorMap() -> void
+Jeninnet.Validation.Fluent.PerRuleConditionExtensions
+Jeninnet.Validation.Fluent.RuleBuilder<T, TProperty>
+Jeninnet.Validation.Fluent.RuleBuilder<T, TProperty>.Accessor.get -> Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>!
+Jeninnet.Validation.Fluent.RuleBuilder<T, TProperty>.AddAsyncRule(Jeninnet.Validation.Core.IAsyncValidationRule<T>! rule) -> void
+Jeninnet.Validation.Fluent.RuleBuilder<T, TProperty>.AddRule(Jeninnet.Validation.Core.ISyncValidationRule<T>! rule) -> void
+Jeninnet.Validation.Fluent.RuleBuilder<T, TProperty>.Cascade(Jeninnet.Validation.CascadeMode mode) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+Jeninnet.Validation.Fluent.RuleBuilder<T, TProperty>.RuleBuilder(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>! parentBuilder) -> void
+Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions
+Jeninnet.Validation.Fluent.RuleBuilderCollectionFilterExtensions
+Jeninnet.Validation.Fluent.RuleBuilderCommonExtensions
+Jeninnet.Validation.Fluent.RuleBuilderComparisonExtensions
+Jeninnet.Validation.Fluent.RuleBuilderCountExtensions
+Jeninnet.Validation.Fluent.RuleBuilderDateTimeExtensions
+Jeninnet.Validation.Fluent.RuleBuilderElementExtensions
+Jeninnet.Validation.Fluent.RuleBuilderIncludeExtensions
+Jeninnet.Validation.Fluent.RuleBuilderInheritanceExtensions
+Jeninnet.Validation.Fluent.RuleBuilderNestedExtensions
+Jeninnet.Validation.Fluent.RuleBuilderOptionsExtensions
+Jeninnet.Validation.Fluent.RuleBuilderPropertyComparisonExtensions
+Jeninnet.Validation.Fluent.RuleBuilderStringExtensions
+Jeninnet.Validation.Fluent.RuleSetExtensions
+Jeninnet.Validation.Fluent.Validator<T>
+Jeninnet.Validation.Fluent.Validator<T>.InnerValidator.get -> Jeninnet.Validation.Core.CompositeValidator<T>!
+Jeninnet.Validation.Fluent.Validator<T>.Validate(T instance) -> Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.Fluent.Validator<T>.Validate(T instance, Jeninnet.Validation.Core.ValidationContext<T> context) -> Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.Fluent.Validator<T>.Validate(T instance, Jeninnet.Validation.ValidationCallOptions! options) -> Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.Fluent.Validator<T>.Validate(T instance, System.Action<Jeninnet.Validation.ValidationStrategy!>! configureStrategy) -> Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.Fluent.Validator<T>.Validate(T instance, System.Collections.Generic.IEnumerable<string!>! ruleSets) -> Jeninnet.Validation.ValidationResult
+Jeninnet.Validation.Fluent.Validator<T>.ValidateAndThrow(T instance) -> void
+Jeninnet.Validation.Fluent.Validator<T>.ValidateAndThrow(T instance, System.Collections.Generic.IEnumerable<string!>! ruleSets) -> void
+Jeninnet.Validation.Fluent.Validator<T>.ValidateAndThrowAsync(T instance, System.Collections.Generic.IEnumerable<string!>! ruleSets, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+Jeninnet.Validation.Fluent.Validator<T>.ValidateAndThrowAsync(T instance, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+Jeninnet.Validation.Fluent.Validator<T>.ValidateAsync(T instance, Jeninnet.Validation.Core.ValidationContext<T> context, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+Jeninnet.Validation.Fluent.Validator<T>.ValidateAsync(T instance, Jeninnet.Validation.ValidationCallOptions! options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+Jeninnet.Validation.Fluent.Validator<T>.ValidateAsync(T instance, System.Action<Jeninnet.Validation.ValidationStrategy!>! configureStrategy, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+Jeninnet.Validation.Fluent.Validator<T>.ValidateAsync(T instance, System.Collections.Generic.IEnumerable<string!>! ruleSets, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+Jeninnet.Validation.Fluent.Validator<T>.ValidateAsync(T instance, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+Jeninnet.Validation.Fluent.Validator<T>.Validator(Jeninnet.Validation.CascadeMode? ruleLevelCascadeMode = null) -> void
+Jeninnet.Validation.Fluent.ValidatorDefinition<T>
+Jeninnet.Validation.Fluent.ValidatorDefinition<T>.AsyncRules.get -> System.Collections.Generic.IEnumerable<Jeninnet.Validation.Core.IAsyncValidationRule<T>!>!
+Jeninnet.Validation.Fluent.ValidatorDefinition<T>.Build() -> Jeninnet.Validation.Core.CompositeValidator<T>!
+Jeninnet.Validation.Fluent.ValidatorDefinition<T>.ClassLevelCascadeMode.get -> Jeninnet.Validation.CascadeMode
+Jeninnet.Validation.Fluent.ValidatorDefinition<T>.ClassLevelCascadeMode.set -> void
+Jeninnet.Validation.Fluent.ValidatorDefinition<T>.Describe() -> Jeninnet.Validation.Metadata.IValidationDescriptor!
+Jeninnet.Validation.Fluent.ValidatorDefinition<T>.OnFailure(System.Action<Jeninnet.Validation.ValidationResult>! hook) -> void
+Jeninnet.Validation.Fluent.ValidatorDefinition<T>.OnFailureAsync(System.Func<Jeninnet.Validation.ValidationResult, System.Threading.CancellationToken, System.Threading.Tasks.ValueTask>! hook) -> void
+Jeninnet.Validation.Fluent.ValidatorDefinition<T>.PreValidate(System.Func<Jeninnet.Validation.Core.ValidationContext<T>, bool>! hook) -> void
+Jeninnet.Validation.Fluent.ValidatorDefinition<T>.PreValidateAsync(System.Func<Jeninnet.Validation.Core.ValidationContext<T>, System.Threading.CancellationToken, System.Threading.Tasks.ValueTask<bool>>! hook) -> void
+Jeninnet.Validation.Fluent.ValidatorDefinition<T>.SyncRules.get -> System.Collections.Generic.IEnumerable<Jeninnet.Validation.Core.ISyncValidationRule<T>!>!
+Jeninnet.Validation.Fluent.ValidatorDefinition<T>.ValidatorDefinition(Jeninnet.Validation.CascadeMode? ruleLevelCascadeMode = null) -> void
+Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>
+Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>.RuleFor<TProperty>(System.Func<T, TProperty?>! getter, string! memberName) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty?>!
+Jeninnet.Validation.Metadata.ValidationDescriptorBuilder
+Jeninnet.Validation.Metadata.ValidationDescriptorBuilder.AddRule(object! rule) -> Jeninnet.Validation.Metadata.ValidationDescriptorBuilder!
+Jeninnet.Validation.Metadata.ValidationDescriptorBuilder.Build() -> Jeninnet.Validation.Metadata.ValidationDescriptor!
+Jeninnet.Validation.Metadata.ValidationDescriptorBuilder.Member(string! memberName) -> Jeninnet.Validation.Metadata.ValidationMemberDescriptorBuilder!
+Jeninnet.Validation.Metadata.ValidationDescriptorBuilder.ValidationDescriptorBuilder(string! validatorName, System.Type? validatedType = null) -> void
+Jeninnet.Validation.Metadata.ValidationMemberDescriptorBuilder
+Jeninnet.Validation.Metadata.ValidationMemberDescriptorBuilder.MemberName.get -> string!
+Jeninnet.Validation.Metadata.ValidationMemberDescriptorBuilder.Rule(string! kind, string? messageKey = null, Jeninnet.Validation.ValidationErrorSeverity severity = Jeninnet.Validation.ValidationErrorSeverity.Error, bool hasCondition = false, System.Collections.Generic.IReadOnlyDictionary<string!, object?>? parameters = null, string? errorCode = null, string? displayName = null, object? customState = null) -> Jeninnet.Validation.Metadata.ValidationMemberDescriptorBuilder!
+Jeninnet.Validation.Metadata.ValidationMemberDescriptorBuilder.Rules.get -> System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.Metadata.IValidationRuleDescriptor!>!
+Jeninnet.Validation.RootContextData
+Jeninnet.Validation.RootContextData.Clear() -> void
+Jeninnet.Validation.RootContextData.Count.get -> int
+Jeninnet.Validation.RootContextData.GetOrAdd<TValue>(string! key, System.Func<TValue>! factory) -> TValue
+Jeninnet.Validation.RootContextData.RootContextData() -> void
+Jeninnet.Validation.RootContextData.TryGetValue(string! key, out object? value) -> bool
+Jeninnet.Validation.RootContextData.this[string! key].get -> object?
+Jeninnet.Validation.RootContextData.this[string! key].set -> void
+Jeninnet.Validation.Rules.AfterRule<T, TValue>
+Jeninnet.Validation.Rules.AfterRule<T, TValue>.AfterRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, TValue threshold, string? message, string? messageKey = "After") -> void
+Jeninnet.Validation.Rules.AsyncValidateRule<T, TProperty>
+Jeninnet.Validation.Rules.AsyncValidateRule<T, TProperty>.AsyncValidateRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string? message = null, string? messageKey = null) -> void
+Jeninnet.Validation.Rules.Base64StringRule<T, TProperty>
+Jeninnet.Validation.Rules.Base64StringRule<T, TProperty>.Base64StringRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string? message, string? messageKey = "Base64String") -> void
+Jeninnet.Validation.Rules.BeforeRule<T, TValue>
+Jeninnet.Validation.Rules.BeforeRule<T, TValue>.BeforeRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, TValue threshold, string? message, string? messageKey = "Before") -> void
+Jeninnet.Validation.Rules.BetweenRule<T, TValue>
+Jeninnet.Validation.Rules.BetweenRule<T, TValue>.BetweenRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, TValue min, TValue max, string? message, string? messageKey = "Between") -> void
+Jeninnet.Validation.Rules.BetweenRule<T, TValue>.Max.get -> TValue
+Jeninnet.Validation.Rules.BetweenRule<T, TValue>.Min.get -> TValue
+Jeninnet.Validation.Rules.ChildRulesRule<T, TValue>
+Jeninnet.Validation.Rules.ChildRulesRule<T, TValue>.ChildRulesRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue?>! accessor, System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.Core.ISyncValidationRule<TValue>!>! syncRules, System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.Core.IAsyncValidationRule<TValue>!>! asyncRules) -> void
+Jeninnet.Validation.Rules.ChildRulesRule<T, TValue>.Validate(in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+Jeninnet.Validation.Rules.ChildRulesRule<T, TValue>.ValidateAsync(Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+Jeninnet.Validation.Rules.ComparisonRule<T, TValue>
+Jeninnet.Validation.Rules.ComparisonRule<T, TValue>.ComparisonRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, TValue threshold, string? message, string? messageKey = null) -> void
+Jeninnet.Validation.Rules.ComparisonRuleBase<T, TValue>
+Jeninnet.Validation.Rules.ComparisonRuleBase<T, TValue>.ComparisonRuleBase(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, TValue threshold, string? message, string? messageKey = "Comparable") -> void
+Jeninnet.Validation.Rules.ComparisonRuleBase<T, TValue>.Threshold.get -> TValue
+Jeninnet.Validation.Rules.ConditionalRule<T>
+Jeninnet.Validation.Rules.ConditionalRule<T>.ConditionalRule(System.Func<T, Jeninnet.Validation.Core.ValidationContext<T>, bool>! condition, System.Collections.Generic.IEnumerable<Jeninnet.Validation.Core.ISyncValidationRule<T>!>? rules, System.Collections.Generic.IEnumerable<Jeninnet.Validation.Core.IAsyncValidationRule<T>!>? asyncRules) -> void
+Jeninnet.Validation.Rules.ConditionalRule<T>.ConditionalRule(System.Func<T, bool>? condition, System.Func<T, System.Threading.CancellationToken, System.Threading.Tasks.Task<bool>!>? asyncCondition, System.Collections.Generic.IEnumerable<Jeninnet.Validation.Core.ISyncValidationRule<T>!>? rules, System.Collections.Generic.IEnumerable<Jeninnet.Validation.Core.IAsyncValidationRule<T>!>? asyncRules) -> void
+Jeninnet.Validation.Rules.ConditionalRule<T>.Validate(in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+Jeninnet.Validation.Rules.ConditionalRule<T>.ValidateAsync(Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+Jeninnet.Validation.Rules.ContainsRule<T, TValue>
+Jeninnet.Validation.Rules.ContainsRule<T, TValue>.ContainsRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, string! substring, string? message, string? messageKey = "Contains") -> void
+Jeninnet.Validation.Rules.ContainsRule<T, TValue>.Substring.get -> string!
+Jeninnet.Validation.Rules.ContainsRule<T>
+Jeninnet.Validation.Rules.ContainsRule<T>.ContainsRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, string! substring, string? message, string? messageKey = "Contains") -> void
+Jeninnet.Validation.Rules.CountRule<T, TProperty>
+Jeninnet.Validation.Rules.CountRule<T, TProperty>.CountRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, int min, int max, string? message, string? messageKey = "Count") -> void
+Jeninnet.Validation.Rules.CountRule<T, TProperty>.Max.get -> int
+Jeninnet.Validation.Rules.CountRule<T, TProperty>.Min.get -> int
+Jeninnet.Validation.Rules.CreditCardRule<T, TProperty>
+Jeninnet.Validation.Rules.CreditCardRule<T, TProperty>.CreditCardRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string? message, string? messageKey = "CreditCard") -> void
+Jeninnet.Validation.Rules.CreditCardRule<T>
+Jeninnet.Validation.Rules.CreditCardRule<T>.CreditCardRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, string? message, string? messageKey = "CreditCard") -> void
+Jeninnet.Validation.Rules.CustomAsyncRule<T, TValue>
+Jeninnet.Validation.Rules.CustomAsyncRule<T, TValue>.CustomAsyncRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, Jeninnet.Validation.Rules.CustomValidationAsync<T, TValue>! validation, string? message = null, string? messageKey = null) -> void
+Jeninnet.Validation.Rules.CustomAsyncRule<T, TValue>.CustomAsyncRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, System.Func<TValue, System.IServiceProvider?, System.Threading.CancellationToken, System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>>! resultFactory, string? message = null, string? messageKey = null) -> void
+Jeninnet.Validation.Rules.CustomAsyncRule<T, TValue>.CustomAsyncRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, System.Func<TValue, System.IServiceProvider?, System.Threading.CancellationToken, System.Threading.Tasks.ValueTask<bool>>! predicate, string? message = null, string? messageKey = null) -> void
+Jeninnet.Validation.Rules.CustomRule<T, TValue>
+Jeninnet.Validation.Rules.CustomRule<T, TValue>.CustomRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, Jeninnet.Validation.Rules.CustomValidation<T, TValue>! validation, string? message = null, string? messageKey = null) -> void
+Jeninnet.Validation.Rules.CustomRule<T, TValue>.CustomRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, System.Func<TValue, System.IServiceProvider?, Jeninnet.Validation.ValidationResult>! resultFactory, string? message = null, string? messageKey = null) -> void
+Jeninnet.Validation.Rules.CustomRule<T, TValue>.CustomRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, System.Func<TValue, System.IServiceProvider?, bool>! predicate, string? message = null, string? messageKey = null) -> void
+Jeninnet.Validation.Rules.CustomValidation<T, TValue>
+Jeninnet.Validation.Rules.CustomValidationAsync<T, TValue>
+Jeninnet.Validation.Rules.DependentRule<T>
+Jeninnet.Validation.Rules.DependentRule<T>.DependentRule(Jeninnet.Validation.Core.ISyncValidationRule<T>? parentSync, Jeninnet.Validation.Core.IAsyncValidationRule<T>? parentAsync, System.Collections.Generic.IEnumerable<Jeninnet.Validation.Core.ISyncValidationRule<T>!>? syncRules, System.Collections.Generic.IEnumerable<Jeninnet.Validation.Core.IAsyncValidationRule<T>!>? asyncRules, Jeninnet.Validation.Core.MemberRuleGroup<T>! parentGroup) -> void
+Jeninnet.Validation.Rules.DependentRule<T>.Validate(in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+Jeninnet.Validation.Rules.DependentRule<T>.ValidateAsync(Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+Jeninnet.Validation.Rules.EmailRule<T, TProperty>
+Jeninnet.Validation.Rules.EmailRule<T, TProperty>.EmailRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string? message, string? messageKey = "Email") -> void
+Jeninnet.Validation.Rules.EmailRule<T>
+Jeninnet.Validation.Rules.EmailRule<T>.EmailRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, string? message, string? messageKey = "Email") -> void
+Jeninnet.Validation.Rules.EmptyRule<T, TValue>
+Jeninnet.Validation.Rules.EmptyRule<T, TValue>.EmptyRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, string? message, string? messageKey = "Empty") -> void
+Jeninnet.Validation.Rules.EndsWithRule<T, TProperty>
+Jeninnet.Validation.Rules.EndsWithRule<T, TProperty>.EndsWithRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string! suffix, string? message, string? messageKey = "EndsWith") -> void
+Jeninnet.Validation.Rules.EndsWithRule<T, TProperty>.Suffix.get -> string!
+Jeninnet.Validation.Rules.EndsWithRule<T>
+Jeninnet.Validation.Rules.EndsWithRule<T>.EndsWithRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, string! suffix, string? message, string? messageKey = "EndsWith") -> void
+Jeninnet.Validation.Rules.EnumRule<T, TValue>
+Jeninnet.Validation.Rules.EnumRule<T, TValue>.EnumRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, System.Type! enumType, string? message = null, string? messageKey = "Enum") -> void
+Jeninnet.Validation.Rules.EnumRule<T, TValue>.EnumType.get -> System.Type!
+Jeninnet.Validation.Rules.EnumRule<T, TValue>.EnumType.set -> void
+Jeninnet.Validation.Rules.EqualRule<T, TValue>
+Jeninnet.Validation.Rules.EqualRule<T, TValue>.EqualRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, TValue expected, string? message, string? messageKey = "Equal", System.Collections.Generic.IEqualityComparer<TValue>? comparer = null) -> void
+Jeninnet.Validation.Rules.ExactLengthRule<T, TProperty>
+Jeninnet.Validation.Rules.ExactLengthRule<T, TProperty>.ExactLengthRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, int length, string? message, string? messageKey = "ExactLength") -> void
+Jeninnet.Validation.Rules.ExactLengthRule<T, TProperty>.Length.get -> int
+Jeninnet.Validation.Rules.ExactLengthRule<T>
+Jeninnet.Validation.Rules.ExactLengthRule<T>.ExactLengthRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, int length, string? message, string? messageKey = "ExactLength") -> void
+Jeninnet.Validation.Rules.ExclusiveBetweenRule<T, TValue>
+Jeninnet.Validation.Rules.ExclusiveBetweenRule<T, TValue>.ExclusiveBetweenRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, TValue min, TValue max, string? message, string? messageKey = "ExclusiveBetween") -> void
+Jeninnet.Validation.Rules.FileExtensionsRule<T, TProperty>
+Jeninnet.Validation.Rules.FileExtensionsRule<T, TProperty>.Extensions.get -> System.Collections.Generic.IReadOnlyList<string!>!
+Jeninnet.Validation.Rules.FileExtensionsRule<T, TProperty>.FileExtensionsRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, System.Collections.Generic.IEnumerable<string!>! extensions, bool ignoreCase = true, bool allowNonStandard = false, string? message = null, string? messageKey = "FileExtensions") -> void
+Jeninnet.Validation.Rules.ForEachElementRule<T, TElement>
+Jeninnet.Validation.Rules.ForEachElementRule<T, TElement>.ForEachElementRule(Jeninnet.Validation.Core.IPropertyAccessor<T, System.Collections.Generic.IEnumerable<TElement>?>! accessor, System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.Core.ISyncValidationRule<TElement>!>! syncRules, System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.Core.IAsyncValidationRule<TElement>!>! asyncRules, Jeninnet.Validation.CascadeMode? cascadeMode = null) -> void
+Jeninnet.Validation.Rules.ForEachElementRule<T, TElement>.OverrideIndexer(System.Func<T, int, string!>! indexer) -> Jeninnet.Validation.Rules.ForEachElementRule<T, TElement>!
+Jeninnet.Validation.Rules.ForEachElementRule<T, TElement>.Validate(in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+Jeninnet.Validation.Rules.ForEachElementRule<T, TElement>.ValidateAsync(Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+Jeninnet.Validation.Rules.ForEachElementRule<T, TElement>.Where(System.Func<TElement, bool>! predicate) -> Jeninnet.Validation.Rules.ForEachElementRule<T, TElement>!
+Jeninnet.Validation.Rules.ForEachElementRule<T, TElement>.WhereAsync(System.Func<TElement, System.Threading.CancellationToken, System.Threading.Tasks.ValueTask<bool>>! predicate) -> Jeninnet.Validation.Rules.ForEachElementRule<T, TElement>!
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>.ForEachRule(Jeninnet.Validation.Core.IPropertyAccessor<T, System.Collections.Generic.ICollection<TElement>?>! accessor, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>! validator) -> void
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>.ForEachRule(Jeninnet.Validation.Core.IPropertyAccessor<T, System.Collections.Generic.ICollection<TElement>?>! accessor, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>! validator) -> void
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>.ForEachRule(Jeninnet.Validation.Core.IPropertyAccessor<T, System.Collections.Generic.ICollection<TElement>?>! accessor, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>? validator, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>? asyncValidator) -> void
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>.ForEachRule(Jeninnet.Validation.Core.IPropertyAccessor<T, System.Collections.Generic.IEnumerable<TElement>?>! accessor, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>! validator) -> void
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>.ForEachRule(Jeninnet.Validation.Core.IPropertyAccessor<T, System.Collections.Generic.IEnumerable<TElement>?>! accessor, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>! validator) -> void
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>.ForEachRule(Jeninnet.Validation.Core.IPropertyAccessor<T, System.Collections.Generic.IEnumerable<TElement>?>! accessor, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>? syncValidator, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>? asyncValidator) -> void
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>.ForEachRule(Jeninnet.Validation.Core.IPropertyAccessor<T, System.Collections.Generic.IList<TElement>?>! accessor, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>! validator) -> void
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>.ForEachRule(Jeninnet.Validation.Core.IPropertyAccessor<T, System.Collections.Generic.IList<TElement>?>! accessor, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>! validator) -> void
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>.ForEachRule(Jeninnet.Validation.Core.IPropertyAccessor<T, System.Collections.Generic.IList<TElement>?>! accessor, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>? syncValidator, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>? asyncValidator) -> void
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>.ForEachRule(Jeninnet.Validation.Core.IPropertyAccessor<T, System.Collections.Generic.List<TElement>?>! accessor, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>! validator) -> void
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>.ForEachRule(Jeninnet.Validation.Core.IPropertyAccessor<T, System.Collections.Generic.List<TElement>?>! accessor, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>! validator) -> void
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>.ForEachRule(Jeninnet.Validation.Core.IPropertyAccessor<T, System.Collections.Generic.List<TElement>?>! accessor, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>? syncValidator, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>? asyncValidator) -> void
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>.OverrideIndexer(System.Func<T, int, string!>! indexer) -> Jeninnet.Validation.Rules.ForEachRule<T, TElement>!
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>.Validate(in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>.ValidateAsync(Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>.Where(System.Func<TElement, bool>! predicate) -> Jeninnet.Validation.Rules.ForEachRule<T, TElement>!
+Jeninnet.Validation.Rules.ForEachRule<T, TElement>.WhereAsync(System.Func<TElement, System.Threading.CancellationToken, System.Threading.Tasks.ValueTask<bool>>! predicate) -> Jeninnet.Validation.Rules.ForEachRule<T, TElement>!
+Jeninnet.Validation.Rules.GreaterThanOrEqualRule<T, TValue>
+Jeninnet.Validation.Rules.GreaterThanOrEqualRule<T, TValue>.GreaterThanOrEqualRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, TValue threshold, string? message, string? messageKey = "GreaterThanOrEqual") -> void
+Jeninnet.Validation.Rules.GreaterThanRule<T, TValue>
+Jeninnet.Validation.Rules.GreaterThanRule<T, TValue>.GreaterThanRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, TValue threshold, string? message, string? messageKey = "GreaterThan") -> void
+Jeninnet.Validation.Rules.IPAddressRule<T, TProperty>
+Jeninnet.Validation.Rules.IPAddressRule<T, TProperty>.IPAddressRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string? message, string? messageKey = "IPAddress") -> void
+Jeninnet.Validation.Rules.IPAddressRule<T>
+Jeninnet.Validation.Rules.IPAddressRule<T>.IPAddressRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, string? message, string? messageKey = "IPAddress") -> void
+Jeninnet.Validation.Rules.InRule<T, TValue>
+Jeninnet.Validation.Rules.InRule<T, TValue>.InRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, System.Collections.Generic.IEnumerable<TValue>! values, string? message, string? messageKey = "In") -> void
+Jeninnet.Validation.Rules.InRule<T, TValue>.Values.get -> System.Collections.Generic.IEnumerable<TValue>!
+Jeninnet.Validation.Rules.IncludeRule<T>
+Jeninnet.Validation.Rules.IncludeRule<T>.IncludeRule(Jeninnet.Validation.Abstractions.IValidator<T>! validator) -> void
+Jeninnet.Validation.Rules.IncludeRule<T>.IncludeRule(Jeninnet.Validation.Abstractions.IValidator<T>! validator, Jeninnet.Validation.Abstractions.IAsyncValidator<T>? asyncValidator) -> void
+Jeninnet.Validation.Rules.IncludeRule<T>.Validate(in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+Jeninnet.Validation.Rules.IncludeRule<T>.ValidateAsync(Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+Jeninnet.Validation.Rules.InclusiveBetweenRule<T, TValue>
+Jeninnet.Validation.Rules.InclusiveBetweenRule<T, TValue>.InclusiveBetweenRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, TValue min, TValue max, string? message, string? messageKey = "InclusiveBetween") -> void
+Jeninnet.Validation.Rules.IsEnumNameRule<T, TValue>
+Jeninnet.Validation.Rules.IsEnumNameRule<T, TValue>.CaseSensitive.get -> bool
+Jeninnet.Validation.Rules.IsEnumNameRule<T, TValue>.EnumType.get -> System.Type!
+Jeninnet.Validation.Rules.IsEnumNameRule<T, TValue>.IsEnumNameRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, System.Type! enumType, bool caseSensitive, string? message, string? messageKey = "IsEnumName") -> void
+Jeninnet.Validation.Rules.IsEnumNameRule<T, TValue>.IsEnumNameRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, System.Type! enumType, string? message, string? messageKey = "IsEnumName") -> void
+Jeninnet.Validation.Rules.LengthRule<T, TProperty>
+Jeninnet.Validation.Rules.LengthRule<T, TProperty>.LengthRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, int min, int max, string? message, string? messageKey = "Length") -> void
+Jeninnet.Validation.Rules.LengthRule<T, TProperty>.Max.get -> int
+Jeninnet.Validation.Rules.LengthRule<T, TProperty>.Min.get -> int
+Jeninnet.Validation.Rules.LengthRule<T>
+Jeninnet.Validation.Rules.LengthRule<T>.LengthRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, int min, int max, string? message, string? messageKey = "Length") -> void
+Jeninnet.Validation.Rules.LessThanOrEqualRule<T, TValue>
+Jeninnet.Validation.Rules.LessThanOrEqualRule<T, TValue>.LessThanOrEqualRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, TValue threshold, string? message, string? messageKey = "LessThanOrEqual") -> void
+Jeninnet.Validation.Rules.LessThanRule<T, TValue>
+Jeninnet.Validation.Rules.LessThanRule<T, TValue>.LessThanRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, TValue threshold, string? message) -> void
+Jeninnet.Validation.Rules.MaxCountRule<T, TProperty>
+Jeninnet.Validation.Rules.MaxCountRule<T, TProperty>.Max.get -> int
+Jeninnet.Validation.Rules.MaxCountRule<T, TProperty>.MaxCountRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, int max, string? message, string? messageKey = "MaxCount") -> void
+Jeninnet.Validation.Rules.MinCountRule<T, TProperty>
+Jeninnet.Validation.Rules.MinCountRule<T, TProperty>.Min.get -> int
+Jeninnet.Validation.Rules.MinCountRule<T, TProperty>.MinCountRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, int min, string? message, string? messageKey = "MinCount") -> void
+Jeninnet.Validation.Rules.MustAsyncCondition<T, TValue>
+Jeninnet.Validation.Rules.MustAsyncCondition<T, TValue>.MustAsyncCondition(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue?>! accessor, System.Func<TValue, System.Threading.CancellationToken, System.Threading.Tasks.Task<bool>!>! predicate, string? message, string? messageKey = "MustAsync") -> void
+Jeninnet.Validation.Rules.MustAsyncCondition<T, TValue>.Predicate.get -> System.Func<TValue, System.Threading.CancellationToken, System.Threading.Tasks.Task<bool>!>!
+Jeninnet.Validation.Rules.MustAsyncRule<T, TValue>
+Jeninnet.Validation.Rules.MustAsyncRule<T, TValue>.MustAsyncRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, System.Func<TValue, System.Threading.CancellationToken, System.Threading.Tasks.ValueTask<bool>>! predicate, string? message = null, string? messageKey = "MustAsync") -> void
+Jeninnet.Validation.Rules.MustAsyncRule<T, TValue>.Predicate.get -> System.Func<TValue, System.Threading.CancellationToken, System.Threading.Tasks.ValueTask<bool>>!
+Jeninnet.Validation.Rules.MustRule<T, TValue>
+Jeninnet.Validation.Rules.MustRule<T, TValue>.MustRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, System.Func<TValue, bool>! predicate, string? message, string? messageKey = "Must") -> void
+Jeninnet.Validation.Rules.MustRule<T, TValue>.Predicate.get -> System.Func<TValue, bool>!
+Jeninnet.Validation.Rules.NestedValidatorRule<T, TValue>
+Jeninnet.Validation.Rules.NestedValidatorRule<T, TValue>.NestedValidatorRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue?>! accessor, Jeninnet.Validation.Abstractions.IAsyncValidator<TValue>! validator) -> void
+Jeninnet.Validation.Rules.NestedValidatorRule<T, TValue>.NestedValidatorRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue?>! accessor, Jeninnet.Validation.Abstractions.ISyncValidator<TValue>! validator) -> void
+Jeninnet.Validation.Rules.NestedValidatorRule<T, TValue>.NestedValidatorRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue?>! accessor, Jeninnet.Validation.Abstractions.ISyncValidator<TValue>? validator, Jeninnet.Validation.Abstractions.IAsyncValidator<TValue>? asyncValidator) -> void
+Jeninnet.Validation.Rules.NestedValidatorRule<T, TValue>.NestedValidatorRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue?>! accessor, Jeninnet.Validation.Abstractions.IValidator<TValue>! validator) -> void
+Jeninnet.Validation.Rules.NestedValidatorRule<T, TValue>.Validate(in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+Jeninnet.Validation.Rules.NestedValidatorRule<T, TValue>.ValidateAsync(Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+Jeninnet.Validation.Rules.NotDefaultRule<T, TValue>
+Jeninnet.Validation.Rules.NotDefaultRule<T, TValue>.NotDefaultRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, string? message, string? messageKey = "NotDefault") -> void
+Jeninnet.Validation.Rules.NotEmptyRule<T, TValue>
+Jeninnet.Validation.Rules.NotEmptyRule<T, TValue>.NotEmptyRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, string? message, string? messageKey = "NotEmpty") -> void
+Jeninnet.Validation.Rules.NotEqualRule<T, TValue>
+Jeninnet.Validation.Rules.NotEqualRule<T, TValue>.NotEqualRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, TValue expected, string? message, string? messageKey = "NotEqual", System.Collections.Generic.IEqualityComparer<TValue>? comparer = null) -> void
+Jeninnet.Validation.Rules.NotInRule<T, TValue>
+Jeninnet.Validation.Rules.NotInRule<T, TValue>.NotInRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, System.Collections.Generic.IEnumerable<TValue>! values, string? message, string? messageKey = "NotIn") -> void
+Jeninnet.Validation.Rules.NotInRule<T, TValue>.Values.get -> System.Collections.Generic.IEnumerable<TValue>!
+Jeninnet.Validation.Rules.NotNullRule<T, TValue>
+Jeninnet.Validation.Rules.NotNullRule<T, TValue>.NotNullRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, string? message, string? messageKey = "NotNull") -> void
+Jeninnet.Validation.Rules.NullRule<T, TValue>
+Jeninnet.Validation.Rules.NullRule<T, TValue>.NullRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, string? message, string? messageKey = "Null") -> void
+Jeninnet.Validation.Rules.PhoneRule<T, TProperty>
+Jeninnet.Validation.Rules.PhoneRule<T, TProperty>.PhoneRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string? message, string? messageKey = "Phone") -> void
+Jeninnet.Validation.Rules.PhoneRule<T>
+Jeninnet.Validation.Rules.PhoneRule<T>.PhoneRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, string? message, string? messageKey = "Phone") -> void
+Jeninnet.Validation.Rules.PropertyComparisonRuleBase<T, TProperty>
+Jeninnet.Validation.Rules.PropertyComparisonRuleBase<T, TProperty>.Left.get -> Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>!
+Jeninnet.Validation.Rules.PropertyComparisonRuleBase<T, TProperty>.PropertyComparisonRuleBase(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! left, Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! right, string? message, string? messageKey = "Comparable") -> void
+Jeninnet.Validation.Rules.PropertyComparisonRuleBase<T, TProperty>.Right.get -> Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>!
+Jeninnet.Validation.Rules.PropertyEqualRule<T, TProperty>
+Jeninnet.Validation.Rules.PropertyEqualRule<T, TProperty>.PropertyEqualRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! left, Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! right, string? message, string? messageKey = "Equal") -> void
+Jeninnet.Validation.Rules.PropertyGreaterThanOrEqualRule<T, TProperty>
+Jeninnet.Validation.Rules.PropertyGreaterThanOrEqualRule<T, TProperty>.PropertyGreaterThanOrEqualRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! left, Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! right, string? message, string? messageKey = "GreaterThanOrEqual") -> void
+Jeninnet.Validation.Rules.PropertyGreaterThanRule<T, TProperty>
+Jeninnet.Validation.Rules.PropertyGreaterThanRule<T, TProperty>.PropertyGreaterThanRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! left, Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! right, string? message, string? messageKey = "GreaterThan") -> void
+Jeninnet.Validation.Rules.PropertyLessThanOrEqualRule<T, TProperty>
+Jeninnet.Validation.Rules.PropertyLessThanOrEqualRule<T, TProperty>.PropertyLessThanOrEqualRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! left, Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! right, string? message, string? messageKey = "LessThanOrEqual") -> void
+Jeninnet.Validation.Rules.PropertyLessThanRule<T, TProperty>
+Jeninnet.Validation.Rules.PropertyLessThanRule<T, TProperty>.PropertyLessThanRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! left, Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! right, string? message, string? messageKey = "LessThan") -> void
+Jeninnet.Validation.Rules.PropertyNotEqualRule<T, TProperty>
+Jeninnet.Validation.Rules.PropertyNotEqualRule<T, TProperty>.PropertyNotEqualRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! left, Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! right, string? message, string? messageKey = "NotEqual") -> void
+Jeninnet.Validation.Rules.RangeRule<T, TProperty>
+Jeninnet.Validation.Rules.RangeRule<T, TProperty>.RangeRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, TProperty min, TProperty max, string? message, string? messageKey = "Range") -> void
+Jeninnet.Validation.Rules.RegexMatchRule<T, TProperty>
+Jeninnet.Validation.Rules.RegexMatchRule<T, TProperty>.Pattern.get -> string!
+Jeninnet.Validation.Rules.RegexMatchRule<T, TProperty>.RegexMatchRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, System.Text.RegularExpressions.Regex! regex, string? message, string? messageKey = "Regex") -> void
+Jeninnet.Validation.Rules.RegexMatchRule<T>
+Jeninnet.Validation.Rules.RegexMatchRule<T>.RegexMatchRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, System.Text.RegularExpressions.Regex! regex, string? message, string? messageKey = "Regex") -> void
+Jeninnet.Validation.Rules.RuleSetRule<T>
+Jeninnet.Validation.Rules.RuleSetRule<T>.Names.get -> System.Collections.Generic.IReadOnlyList<string!>!
+Jeninnet.Validation.Rules.RuleSetRule<T>.RuleSetRule(System.Collections.Generic.IEnumerable<string!>! names, System.Collections.Generic.IEnumerable<Jeninnet.Validation.Core.ISyncValidationRule<T>!>? rules, System.Collections.Generic.IEnumerable<Jeninnet.Validation.Core.IAsyncValidationRule<T>!>? asyncRules) -> void
+Jeninnet.Validation.Rules.RuleSetRule<T>.Validate(in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+Jeninnet.Validation.Rules.RuleSetRule<T>.ValidateAsync(Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+Jeninnet.Validation.Rules.ScalePrecisionRule<T, TValue>
+Jeninnet.Validation.Rules.ScalePrecisionRule<T, TValue>.ScalePrecisionRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TValue>! accessor, int precision, int scale, string? message, string? messageKey = "PrecisionScale", bool ignoreTrailingZeros = false) -> void
+Jeninnet.Validation.Rules.StartsWithRule<T, TProperty>
+Jeninnet.Validation.Rules.StartsWithRule<T, TProperty>.Prefix.get -> string!
+Jeninnet.Validation.Rules.StartsWithRule<T, TProperty>.StartsWithRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string! prefix, string? message, string? messageKey = "StartsWith") -> void
+Jeninnet.Validation.Rules.StartsWithRule<T>
+Jeninnet.Validation.Rules.StartsWithRule<T>.StartsWithRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, string! prefix, string? message, string? messageKey = "StartsWith") -> void
+Jeninnet.Validation.Rules.StringNotEmptyRule<T, TProperty>
+Jeninnet.Validation.Rules.StringNotEmptyRule<T, TProperty>.StringNotEmptyRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string? message, string? messageKey = "NotEmpty") -> void
+Jeninnet.Validation.Rules.StringNotEmptyRule<T>
+Jeninnet.Validation.Rules.StringNotEmptyRule<T>.StringNotEmptyRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, string? message, string? messageKey = "NotEmpty") -> void
+Jeninnet.Validation.Rules.SyncValidateRule<T, TProperty>
+Jeninnet.Validation.Rules.SyncValidateRule<T, TProperty>.SyncValidateRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string? message = null, string? messageKey = null) -> void
+Jeninnet.Validation.Rules.UrlRule<T, TProperty>
+Jeninnet.Validation.Rules.UrlRule<T, TProperty>.UrlRule(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string? message, string? messageKey = "Url") -> void
+Jeninnet.Validation.Rules.UrlRule<T>
+Jeninnet.Validation.Rules.UrlRule<T>.UrlRule(Jeninnet.Validation.Core.IPropertyAccessor<T, string?>! accessor, string? message, string? messageKey = "Url") -> void
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.Accessor.get -> Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>!
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.AddError(Jeninnet.Validation.ValidationErrorCollector! errors, in Jeninnet.Validation.Core.ValidationContext<T> context) -> void
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.AddResultErrors(Jeninnet.Validation.ValidationErrorCollector! errors, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationResult result) -> void
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.CustomState.get -> object?
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.CustomState.set -> void
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.DisplayNameOverride.get -> string?
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.DisplayNameOverride.set -> void
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.ErrorCodeOverride.get -> string?
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.ErrorCodeOverride.set -> void
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.Message.get -> string?
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.MessageKey.get -> string?
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.MessageOverride.get -> string?
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.MessageOverride.set -> void
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.OverriddenMemberName.get -> string?
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.OverriddenMemberName.set -> void
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.ResolveDisplayName(in Jeninnet.Validation.Core.ValidationContext<T> context) -> string?
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.ResolveMemberName(in Jeninnet.Validation.Core.ValidationContext<T> context) -> string!
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.ResolveMessage(in Jeninnet.Validation.Core.ValidationContext<T> context) -> string?
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.SeverityOverride.get -> Jeninnet.Validation.ValidationErrorSeverity?
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.SeverityOverride.set -> void
+Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.ValidateRuleBase(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor, string? message = null, string? messageKey = null) -> void
+Jeninnet.Validation.ValidationCallOptions
+Jeninnet.Validation.ValidationCallOptions.CascadeMode.get -> Jeninnet.Validation.CascadeMode?
+Jeninnet.Validation.ValidationCallOptions.CascadeMode.init -> void
+Jeninnet.Validation.ValidationCallOptions.ExcludeProperties.get -> System.Collections.Generic.IReadOnlyCollection<string!>?
+Jeninnet.Validation.ValidationCallOptions.ExcludeProperties.init -> void
+Jeninnet.Validation.ValidationCallOptions.ExcludeRuleSets.get -> System.Collections.Generic.IReadOnlyCollection<string!>?
+Jeninnet.Validation.ValidationCallOptions.ExcludeRuleSets.init -> void
+Jeninnet.Validation.ValidationCallOptions.FailFast.get -> bool
+Jeninnet.Validation.ValidationCallOptions.FailFast.init -> void
+Jeninnet.Validation.ValidationCallOptions.IncludeAllRuleSets.get -> bool
+Jeninnet.Validation.ValidationCallOptions.IncludeAllRuleSets.init -> void
+Jeninnet.Validation.ValidationCallOptions.IncludeProperties.get -> System.Collections.Generic.IReadOnlyCollection<string!>?
+Jeninnet.Validation.ValidationCallOptions.IncludeProperties.init -> void
+Jeninnet.Validation.ValidationCallOptions.RuleSets.get -> System.Collections.Generic.IEnumerable<string!>?
+Jeninnet.Validation.ValidationCallOptions.RuleSets.init -> void
+Jeninnet.Validation.ValidationCallOptions.ServiceProvider.get -> System.IServiceProvider?
+Jeninnet.Validation.ValidationCallOptions.ServiceProvider.init -> void
+Jeninnet.Validation.ValidationCallOptions.ThrowOnFailures.get -> bool
+Jeninnet.Validation.ValidationCallOptions.ThrowOnFailures.init -> void
+Jeninnet.Validation.ValidationOptionsExtensions
+Jeninnet.Validation.ValidationStrategy
+Jeninnet.Validation.ValidationStrategy.ExcludeProperties(params string![]! properties) -> Jeninnet.Validation.ValidationStrategy!
+Jeninnet.Validation.ValidationStrategy.ExcludeRuleSets(params string![]! ruleSets) -> Jeninnet.Validation.ValidationStrategy!
+Jeninnet.Validation.ValidationStrategy.FailFast(bool failFast = true) -> Jeninnet.Validation.ValidationStrategy!
+Jeninnet.Validation.ValidationStrategy.IncludeAllRuleSets() -> Jeninnet.Validation.ValidationStrategy!
+Jeninnet.Validation.ValidationStrategy.IncludeProperties(params string![]! properties) -> Jeninnet.Validation.ValidationStrategy!
+Jeninnet.Validation.ValidationStrategy.IncludeRuleSets(params string![]! ruleSets) -> Jeninnet.Validation.ValidationStrategy!
+Jeninnet.Validation.ValidationStrategy.IncludeRulesNotInRuleSet() -> Jeninnet.Validation.ValidationStrategy!
+Jeninnet.Validation.ValidationStrategy.ThrowOnFailures(bool throwOnFailures = true) -> Jeninnet.Validation.ValidationStrategy!
+Jeninnet.Validation.ValidationStrategy.ValidationStrategy() -> void
+Jeninnet.Validation.ValidationStrategy.WithCascadeMode(Jeninnet.Validation.CascadeMode cascadeMode) -> Jeninnet.Validation.ValidationStrategy!
+Jeninnet.Validation.ValidationStrategy.WithServiceProvider(System.IServiceProvider! serviceProvider) -> Jeninnet.Validation.ValidationStrategy!
+abstract Jeninnet.Validation.Fluent.ValidatorDefinition<T>.Configure(Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>! builder) -> void
+abstract Jeninnet.Validation.Rules.AsyncValidateRule<T, TProperty>.ValidateValueAsync(TProperty value, Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask
+abstract Jeninnet.Validation.Rules.BetweenRule<T, TValue>.IsValid(int minComparisonResult, int maxComparisonResult) -> bool
+abstract Jeninnet.Validation.Rules.ComparisonRule<T, TValue>.IsValid(int comparisonResult) -> bool
+abstract Jeninnet.Validation.Rules.ComparisonRuleBase<T, TValue>.Compare(TValue value, TValue threshold) -> bool
+abstract Jeninnet.Validation.Rules.PropertyComparisonRuleBase<T, TProperty>.IsValid(int comparisonResult) -> bool
+abstract Jeninnet.Validation.Rules.SyncValidateRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.BetweenRule<T, TValue>.GetMessageParameters(Jeninnet.Validation.Core.ValidationContext<T> context) -> System.Collections.Generic.IDictionary<string!, object!>?
+override Jeninnet.Validation.Rules.BetweenRule<T, TValue>.GetMetadataParameters() -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!
+override Jeninnet.Validation.Rules.ComparisonRuleBase<T, TValue>.GetMessageParameters(Jeninnet.Validation.Core.ValidationContext<T> context) -> System.Collections.Generic.IDictionary<string!, object!>?
+override Jeninnet.Validation.Rules.ComparisonRuleBase<T, TValue>.GetMetadataParameters() -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!
+override Jeninnet.Validation.Rules.ContainsRule<T, TValue>.GetMessageParameters(Jeninnet.Validation.Core.ValidationContext<T> context) -> System.Collections.Generic.IDictionary<string!, object!>?
+override Jeninnet.Validation.Rules.ContainsRule<T, TValue>.GetMetadataParameters() -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!
+override Jeninnet.Validation.Rules.ContainsRule<T, TValue>.ValidateValue(TValue value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.CreditCardRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.EmailRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.EndsWithRule<T, TProperty>.GetMessageParameters(Jeninnet.Validation.Core.ValidationContext<T> context) -> System.Collections.Generic.IDictionary<string!, object!>?
+override Jeninnet.Validation.Rules.EndsWithRule<T, TProperty>.GetMetadataParameters() -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!
+override Jeninnet.Validation.Rules.EndsWithRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.ExactLengthRule<T, TProperty>.GetMessageParameters(Jeninnet.Validation.Core.ValidationContext<T> context) -> System.Collections.Generic.IDictionary<string!, object!>?
+override Jeninnet.Validation.Rules.ExactLengthRule<T, TProperty>.GetMetadataParameters() -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!
+override Jeninnet.Validation.Rules.ExactLengthRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.IPAddressRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.LengthRule<T, TProperty>.GetMessageParameters(Jeninnet.Validation.Core.ValidationContext<T> context) -> System.Collections.Generic.IDictionary<string!, object!>?
+override Jeninnet.Validation.Rules.LengthRule<T, TProperty>.GetMetadataParameters() -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!
+override Jeninnet.Validation.Rules.LengthRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.PhoneRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.PropertyComparisonRuleBase<T, TProperty>.GetMessageParameters(Jeninnet.Validation.Core.ValidationContext<T> context) -> System.Collections.Generic.IDictionary<string!, object!>?
+override Jeninnet.Validation.Rules.PropertyComparisonRuleBase<T, TProperty>.GetMetadataParameters() -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!
+override Jeninnet.Validation.Rules.PropertyComparisonRuleBase<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.RegexMatchRule<T, TProperty>.GetMessageParameters(Jeninnet.Validation.Core.ValidationContext<T> context) -> System.Collections.Generic.IDictionary<string!, object!>?
+override Jeninnet.Validation.Rules.RegexMatchRule<T, TProperty>.GetMetadataParameters() -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!
+override Jeninnet.Validation.Rules.RegexMatchRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.StartsWithRule<T, TProperty>.GetMessageParameters(Jeninnet.Validation.Core.ValidationContext<T> context) -> System.Collections.Generic.IDictionary<string!, object!>?
+override Jeninnet.Validation.Rules.StartsWithRule<T, TProperty>.GetMetadataParameters() -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!
+override Jeninnet.Validation.Rules.StartsWithRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.StringNotEmptyRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override Jeninnet.Validation.Rules.UrlRule<T, TProperty>.ValidateValue(TProperty value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override sealed Jeninnet.Validation.Rules.BetweenRule<T, TValue>.ValidateValue(TValue value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+override sealed Jeninnet.Validation.Rules.ComparisonRule<T, TValue>.Compare(TValue value, TValue threshold) -> bool
+override sealed Jeninnet.Validation.Rules.ComparisonRuleBase<T, TValue>.ValidateValue(TValue value, in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+static Jeninnet.Validation.Configuration.ValidationConfiguration.Configure(System.Func<Jeninnet.Validation.Configuration.ValidationOptions!, Jeninnet.Validation.Configuration.ValidationOptions!>! configure) -> void
+static Jeninnet.Validation.Configuration.ValidationConfiguration.Options.get -> Jeninnet.Validation.Configuration.ValidationOptions!
+static Jeninnet.Validation.Configuration.ValidationConfiguration.ResolveOptions(System.IServiceProvider? serviceProvider) -> Jeninnet.Validation.Configuration.ValidationOptions!
+static Jeninnet.Validation.Core.ValidationRuleMetadata.Apply<TRule>(TRule! rule, string? errorCode = null, Jeninnet.Validation.ValidationErrorSeverity? severity = null, string? displayName = null, string? memberName = null, object? customState = null) -> TRule!
+static Jeninnet.Validation.Core.ValidatorFactory.Accessor<T, TProperty>(System.Func<T, TProperty>! getter, string! memberName) -> Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>!
+static Jeninnet.Validation.Core.ValidatorFactory.AsNonNullable<T, TProperty>(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty?>! accessor) -> Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>!
+static Jeninnet.Validation.Core.ValidatorFactory.NotNullAccessor<T, TProperty>(System.Func<T, TProperty>! getter, string! memberName) -> Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>!
+static Jeninnet.Validation.Core.ValidatorFactory.ToNullable<T, TProperty>(Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! accessor) -> Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty?>!
+static Jeninnet.Validation.Extensions.ValidationServiceCollectionExtensions.AddGeneratedValidators(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static Jeninnet.Validation.Extensions.ValidationServiceCollectionExtensions.AddGeneratedValidators(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, params System.Reflection.Assembly![]! assemblies) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static Jeninnet.Validation.Extensions.ValidationServiceCollectionExtensions.AddGeneratedValidators(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, params System.Type![]! types) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static Jeninnet.Validation.Extensions.ValidationServiceCollectionExtensions.AddValidationCore(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, System.Func<Jeninnet.Validation.Configuration.ValidationOptions!, Jeninnet.Validation.Configuration.ValidationOptions!>? configure = null) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static Jeninnet.Validation.Fluent.ConditionalExtensions.Unless<T>(this Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>! builder, System.Func<T, bool>! condition, System.Action<Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>!>! configure) -> void
+static Jeninnet.Validation.Fluent.ConditionalExtensions.UnlessAsyncRule<T>(this Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>! builder, System.Func<T, System.Threading.CancellationToken, System.Threading.Tasks.Task<bool>!>! condition, System.Action<Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>!>! configure) -> void
+static Jeninnet.Validation.Fluent.ConditionalExtensions.When<T>(this Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>! builder, System.Func<T, bool>! condition, System.Action<Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>!>! configure) -> void
+static Jeninnet.Validation.Fluent.ConditionalExtensions.WhenAsyncRule<T>(this Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>! builder, System.Func<T, System.Threading.CancellationToken, System.Threading.Tasks.Task<bool>!>! condition, System.Action<Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>!>! configure) -> void
+static Jeninnet.Validation.Fluent.CustomRuleExtensions.Custom<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, Jeninnet.Validation.Rules.CustomValidation<T, TValue>! validation, string? message = null, string? messageKey = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.CustomRuleExtensions.CustomAsync<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, Jeninnet.Validation.Rules.CustomValidationAsync<T, TValue>! validation, string? message = null, string? messageKey = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.DependentRuleExtensions.DependentRules<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, System.Action<Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>!>! configure) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.PerRuleConditionExtensions.Unless<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, System.Func<T, bool>! condition, Jeninnet.Validation.Fluent.ApplyConditionTo applyTo = Jeninnet.Validation.Fluent.ApplyConditionTo.CurrentValidator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.PerRuleConditionExtensions.UnlessAsync<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, System.Func<T, System.Threading.CancellationToken, System.Threading.Tasks.Task<bool>!>! condition, Jeninnet.Validation.Fluent.ApplyConditionTo applyTo = Jeninnet.Validation.Fluent.ApplyConditionTo.CurrentValidator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.PerRuleConditionExtensions.When<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, System.Func<T, bool>! condition, Jeninnet.Validation.Fluent.ApplyConditionTo applyTo = Jeninnet.Validation.Fluent.ApplyConditionTo.CurrentValidator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.PerRuleConditionExtensions.WhenAsync<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, System.Func<T, System.Threading.CancellationToken, System.Threading.Tasks.Task<bool>!>! condition, Jeninnet.Validation.Fluent.ApplyConditionTo applyTo = Jeninnet.Validation.Fluent.ApplyConditionTo.CurrentValidator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement>?>! builder, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement>?>! builder, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement>?>! builder, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>? syncValidator, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>? asyncValidator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement>?>! builder, Jeninnet.Validation.Abstractions.IValidator<TElement>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement>?>! builder, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement>?>! builder, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement>?>! builder, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>? syncValidator, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>? asyncValidator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement>?>! builder, Jeninnet.Validation.Abstractions.IValidator<TElement>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement>?>! builder, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement>?>! builder, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement>?>! builder, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>? syncValidator, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>? asyncValidator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement>?>! builder, Jeninnet.Validation.Abstractions.IValidator<TElement>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement>?>! builder, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement>?>! builder, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement>?>! builder, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>? syncValidator, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>? asyncValidator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement>?>! builder, Jeninnet.Validation.Abstractions.IValidator<TElement>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement[]?>! builder, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement[]?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement[]?>! builder, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement[]?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement[]?>! builder, Jeninnet.Validation.Abstractions.ISyncValidator<TElement>? syncValidator, Jeninnet.Validation.Abstractions.IAsyncValidator<TElement>? asyncValidator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement[]?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement[]?>! builder, Jeninnet.Validation.Abstractions.IValidator<TElement>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement[]?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionFilterExtensions.Where<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement>?>! builder, System.Func<TElement, bool>! predicate) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionFilterExtensions.Where<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement>?>! builder, System.Func<TElement, bool>! predicate) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionFilterExtensions.Where<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement>?>! builder, System.Func<TElement, bool>! predicate) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionFilterExtensions.Where<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement>?>! builder, System.Func<TElement, bool>! predicate) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionFilterExtensions.Where<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement[]?>! builder, System.Func<TElement, bool>! predicate) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement[]?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionFilterExtensions.WhereAsync<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement>?>! builder, System.Func<TElement, System.Threading.CancellationToken, System.Threading.Tasks.ValueTask<bool>>! predicate) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionFilterExtensions.WhereAsync<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement>?>! builder, System.Func<TElement, System.Threading.CancellationToken, System.Threading.Tasks.ValueTask<bool>>! predicate) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionFilterExtensions.WhereAsync<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement>?>! builder, System.Func<TElement, System.Threading.CancellationToken, System.Threading.Tasks.ValueTask<bool>>! predicate) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionFilterExtensions.WhereAsync<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement>?>! builder, System.Func<TElement, System.Threading.CancellationToken, System.Threading.Tasks.ValueTask<bool>>! predicate) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCollectionFilterExtensions.WhereAsync<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement[]?>! builder, System.Func<TElement, System.Threading.CancellationToken, System.Threading.Tasks.ValueTask<bool>>! predicate) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement[]?>!
+static Jeninnet.Validation.Fluent.RuleBuilderCommonExtensions.Empty<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderCommonExtensions.Enum<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderCommonExtensions.In<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, System.Collections.Generic.IEnumerable<TValue>! allowedValues, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderCommonExtensions.IsEnumName<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, System.Type! enumType, bool caseSensitive, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderCommonExtensions.IsEnumName<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, System.Type! enumType, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderCommonExtensions.Must<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, System.Func<TValue, System.Threading.CancellationToken, System.Threading.Tasks.ValueTask<bool>>! predicate, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderCommonExtensions.Must<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, System.Func<TValue, bool>! predicate, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderCommonExtensions.NotDefault<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderCommonExtensions.NotEmpty<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderCommonExtensions.NotIn<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, System.Collections.Generic.IEnumerable<TValue>! disallowedValues, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderCommonExtensions.NotNull<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderCommonExtensions.Null<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderComparisonExtensions.Equal<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, TValue threshold, System.Collections.Generic.IEqualityComparer<TValue>! comparer, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderComparisonExtensions.Equal<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, TValue threshold, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderComparisonExtensions.ExclusiveBetween<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, TValue min, TValue max, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderComparisonExtensions.GreaterThan<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, TValue threshold, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderComparisonExtensions.GreaterThanOrEqual<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, TValue threshold, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderComparisonExtensions.InclusiveBetween<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, TValue min, TValue max, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderComparisonExtensions.LessThan<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, TValue threshold, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderComparisonExtensions.LessThanOrEqual<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, TValue threshold, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderComparisonExtensions.NotEqual<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, TValue threshold, System.Collections.Generic.IEqualityComparer<TValue>! comparer, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderComparisonExtensions.NotEqual<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, TValue threshold, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderComparisonExtensions.Range<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, TValue min, TValue max, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderComparisonExtensions.ScalePrecision<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, int precision, int scale, bool ignoreTrailingZeros, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderComparisonExtensions.ScalePrecision<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, int precision, int scale, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderCountExtensions.Count<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, int min, int max, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderCountExtensions.MaxCount<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, int max, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderCountExtensions.MinCount<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, int min, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderDateTimeExtensions.After<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, TValue threshold, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderDateTimeExtensions.Before<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, TValue threshold, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderElementExtensions.ForEachElement<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement>?>! builder, System.Action<Jeninnet.Validation.Fluent.IRuleBuilder<TElement, TElement>!>! configure) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderElementExtensions.ForEachElement<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement>?>! builder, System.Action<Jeninnet.Validation.Fluent.IRuleBuilder<TElement, TElement>!>! configure) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderElementExtensions.ForEachElement<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement>?>! builder, System.Action<Jeninnet.Validation.Fluent.IRuleBuilder<TElement, TElement>!>! configure) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderElementExtensions.ForEachElement<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement>?>! builder, System.Action<Jeninnet.Validation.Fluent.IRuleBuilder<TElement, TElement>!>! configure) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderElementExtensions.ForEachElement<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement[]?>! builder, System.Action<Jeninnet.Validation.Fluent.IRuleBuilder<TElement, TElement>!>! configure) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement[]?>!
+static Jeninnet.Validation.Fluent.RuleBuilderElementExtensions.OverrideIndexer<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement>?>! builder, System.Func<T, int, string!>! indexer) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderElementExtensions.OverrideIndexer<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement>?>! builder, System.Func<T, int, string!>! indexer) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderElementExtensions.OverrideIndexer<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement>?>! builder, System.Func<T, int, string!>! indexer) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderElementExtensions.OverrideIndexer<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement>?>! builder, System.Func<T, int, string!>! indexer) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderElementExtensions.OverrideIndexer<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement[]?>! builder, System.Func<T, int, string!>! indexer) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement[]?>!
+static Jeninnet.Validation.Fluent.RuleBuilderIncludeExtensions.Include<T>(this Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>! builder, Jeninnet.Validation.Abstractions.IValidator<T>! validator) -> Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>!
+static Jeninnet.Validation.Fluent.RuleBuilderIncludeExtensions.Include<T>(this Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>! builder, System.Action<Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>!>! configure) -> Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>!
+static Jeninnet.Validation.Fluent.RuleBuilderIncludeExtensions.IncludeBase<T, TBase>(this Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>! builder, Jeninnet.Validation.Abstractions.IValidator<TBase>! validator) -> Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>!
+static Jeninnet.Validation.Fluent.RuleBuilderInheritanceExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement!>?>! builder, System.Action<Jeninnet.Validation.Fluent.InheritanceValidatorMap<TElement!>!>! configure) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.ICollection<TElement!>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderInheritanceExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement!>?>! builder, System.Action<Jeninnet.Validation.Fluent.InheritanceValidatorMap<TElement!>!>! configure) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IEnumerable<TElement!>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderInheritanceExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement!>?>! builder, System.Action<Jeninnet.Validation.Fluent.InheritanceValidatorMap<TElement!>!>! configure) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.IList<TElement!>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderInheritanceExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement!>?>! builder, System.Action<Jeninnet.Validation.Fluent.InheritanceValidatorMap<TElement!>!>! configure) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, System.Collections.Generic.List<TElement!>?>!
+static Jeninnet.Validation.Fluent.RuleBuilderInheritanceExtensions.ForEach<T, TElement>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement![]?>! builder, System.Action<Jeninnet.Validation.Fluent.InheritanceValidatorMap<TElement!>!>! configure) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TElement![]?>!
+static Jeninnet.Validation.Fluent.RuleBuilderInheritanceExtensions.SetInheritanceValidator<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty?>! builder, System.Action<Jeninnet.Validation.Fluent.InheritanceValidatorMap<TProperty!>!>! configure) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty?>!
+static Jeninnet.Validation.Fluent.RuleBuilderNestedExtensions.ChildRules<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty?>! builder, System.Action<Jeninnet.Validation.Fluent.ValidatorRuleBuilder<TProperty>!>! configure) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty?>!
+static Jeninnet.Validation.Fluent.RuleBuilderNestedExtensions.SetValidator<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty?>! builder, Jeninnet.Validation.Abstractions.IAsyncValidator<TProperty>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty?>!
+static Jeninnet.Validation.Fluent.RuleBuilderNestedExtensions.SetValidator<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty?>! builder, Jeninnet.Validation.Abstractions.ISyncValidator<TProperty>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty?>!
+static Jeninnet.Validation.Fluent.RuleBuilderNestedExtensions.SetValidator<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty?>! builder, Jeninnet.Validation.Abstractions.ISyncValidator<TProperty>? syncValidator, Jeninnet.Validation.Abstractions.IAsyncValidator<TProperty>? asyncValidator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty?>!
+static Jeninnet.Validation.Fluent.RuleBuilderNestedExtensions.SetValidator<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty?>! builder, Jeninnet.Validation.Abstractions.IValidator<TProperty>! validator) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty?>!
+static Jeninnet.Validation.Fluent.RuleBuilderOptionsExtensions.OverridePropertyName<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, System.Func<T, string!>! name) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderOptionsExtensions.OverridePropertyName<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, string! name) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderOptionsExtensions.WithCode<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, string! errorCode) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderOptionsExtensions.WithMessage<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, System.Func<T, Jeninnet.Validation.Core.ValidationContext<T>, string!>! message) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderOptionsExtensions.WithMessage<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, System.Func<T, string!>! message) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderOptionsExtensions.WithMessage<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, string! message) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderOptionsExtensions.WithName<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, System.Func<T, string!>! name) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderOptionsExtensions.WithName<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, string! name) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderOptionsExtensions.WithSeverity<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, Jeninnet.Validation.ValidationErrorSeverity severity) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderOptionsExtensions.WithState<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, object? state) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderPropertyComparisonExtensions.Equal<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! right, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderPropertyComparisonExtensions.GreaterThan<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! right, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderPropertyComparisonExtensions.GreaterThanOrEqual<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! right, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderPropertyComparisonExtensions.LessThan<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! right, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderPropertyComparisonExtensions.LessThanOrEqual<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! right, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderPropertyComparisonExtensions.NotEqual<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, Jeninnet.Validation.Core.IPropertyAccessor<T, TProperty>! right, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleBuilderStringExtensions.Base64String<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderStringExtensions.Contains<T>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>! builder, string! substring, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>!
+static Jeninnet.Validation.Fluent.RuleBuilderStringExtensions.CreditCard<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderStringExtensions.EmailAddress<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderStringExtensions.EndsWith<T>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>! builder, string! suffix, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>!
+static Jeninnet.Validation.Fluent.RuleBuilderStringExtensions.ExactLength<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, int length, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderStringExtensions.FileExtensions<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, System.Collections.Generic.IEnumerable<string!>! extensions, bool ignoreCase = true, bool allowNonStandard = false, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderStringExtensions.FileExtensions<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, params string![]! extensions) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderStringExtensions.IPAddress<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderStringExtensions.Length<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, int min, int max, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderStringExtensions.Matches<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, System.Text.RegularExpressions.Regex! regex, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderStringExtensions.Matches<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, string! pattern, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderStringExtensions.MaximumLength<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, int max, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderStringExtensions.MinimumLength<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, int min, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderStringExtensions.Phone<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleBuilderStringExtensions.StartsWith<T>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>! builder, string! prefix, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, string?>!
+static Jeninnet.Validation.Fluent.RuleBuilderStringExtensions.Url<T, TValue>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>! builder, string? message = null) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TValue>!
+static Jeninnet.Validation.Fluent.RuleSetExtensions.RuleSet<T, TProperty>(this Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>! builder, string! name) -> Jeninnet.Validation.Fluent.IRuleBuilder<T, TProperty>!
+static Jeninnet.Validation.Fluent.RuleSetExtensions.RuleSet<T>(this Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>! builder, string! name, System.Action<Jeninnet.Validation.Fluent.ValidatorRuleBuilder<T>!>! configure) -> void
+static Jeninnet.Validation.ValidationOptionsExtensions.Validate<T>(this Jeninnet.Validation.Abstractions.IValidator<T>! validator, T instance, Jeninnet.Validation.ValidationCallOptions! options) -> Jeninnet.Validation.ValidationResult
+static Jeninnet.Validation.ValidationOptionsExtensions.Validate<T>(this Jeninnet.Validation.Abstractions.IValidator<T>! validator, T instance, System.Action<Jeninnet.Validation.ValidationStrategy!>! configureStrategy) -> Jeninnet.Validation.ValidationResult
+static Jeninnet.Validation.ValidationOptionsExtensions.ValidateAndThrow<T>(this Jeninnet.Validation.Abstractions.IValidator<T>! validator, T instance) -> void
+static Jeninnet.Validation.ValidationOptionsExtensions.ValidateAndThrow<T>(this Jeninnet.Validation.Abstractions.IValidator<T>! validator, T instance, Jeninnet.Validation.ValidationCallOptions! options) -> void
+static Jeninnet.Validation.ValidationOptionsExtensions.ValidateAndThrow<T>(this Jeninnet.Validation.Abstractions.IValidator<T>! validator, T instance, System.Collections.Generic.IEnumerable<string!>! ruleSets) -> void
+static Jeninnet.Validation.ValidationOptionsExtensions.ValidateAndThrowAsync<T>(this Jeninnet.Validation.Abstractions.IValidator<T>! validator, T instance, Jeninnet.Validation.ValidationCallOptions! options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+static Jeninnet.Validation.ValidationOptionsExtensions.ValidateAndThrowAsync<T>(this Jeninnet.Validation.Abstractions.IValidator<T>! validator, T instance, System.Collections.Generic.IEnumerable<string!>! ruleSets, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+static Jeninnet.Validation.ValidationOptionsExtensions.ValidateAndThrowAsync<T>(this Jeninnet.Validation.Abstractions.IValidator<T>! validator, T instance, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+static Jeninnet.Validation.ValidationOptionsExtensions.ValidateAsync<T>(this Jeninnet.Validation.Abstractions.IValidator<T>! validator, T instance, Jeninnet.Validation.ValidationCallOptions! options, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+static Jeninnet.Validation.ValidationOptionsExtensions.ValidateAsync<T>(this Jeninnet.Validation.Abstractions.IValidator<T>! validator, T instance, System.Action<Jeninnet.Validation.ValidationStrategy!>! configureStrategy, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+virtual Jeninnet.Validation.Rules.AsyncValidateRule<T, TProperty>.ValidateAsync(Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+virtual Jeninnet.Validation.Rules.PropertyComparisonRuleBase<T, TProperty>.Compare(TProperty leftValue, TProperty rightValue) -> bool
+virtual Jeninnet.Validation.Rules.SyncValidateRule<T, TProperty>.Validate(in Jeninnet.Validation.Core.ValidationContext<T> context, Jeninnet.Validation.ValidationErrorCollector! errors) -> void
+virtual Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.ErrorCode.get -> string?
+virtual Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.GetMessageParameters(Jeninnet.Validation.Core.ValidationContext<T> context) -> System.Collections.Generic.IDictionary<string!, object!>?
+virtual Jeninnet.Validation.Rules.ValidateRuleBase<T, TProperty>.GetMetadataParameters() -> System.Collections.Generic.IReadOnlyDictionary<string!, object?>!

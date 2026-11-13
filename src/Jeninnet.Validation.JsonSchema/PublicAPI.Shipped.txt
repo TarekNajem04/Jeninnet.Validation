@@ -1,0 +1,63 @@
+#nullable enable
+Jeninnet.Validation.JsonSchema.ValidationObjectSchema
+Jeninnet.Validation.JsonSchema.ValidationObjectSchema.Properties.get -> System.Collections.Generic.IReadOnlyDictionary<string!, Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints!>!
+Jeninnet.Validation.JsonSchema.ValidationObjectSchema.Title.get -> string!
+Jeninnet.Validation.JsonSchema.ValidationObjectSchema.ValidationObjectSchema(string! title, System.Collections.Generic.IReadOnlyDictionary<string!, Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints!>! properties) -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.AdvisoryRules.get -> System.Collections.Generic.IReadOnlyList<Jeninnet.Validation.Metadata.IValidationRuleDescriptor!>!
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.AdvisoryRules.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.AnyOfFormats.get -> System.Collections.Generic.IReadOnlyList<string!>?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.AnyOfFormats.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.ContentEncoding.get -> string?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.ContentEncoding.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.Enum.get -> System.Collections.Generic.IReadOnlyList<string!>?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.Enum.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.EnumType.get -> string?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.EnumType.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.ExclusiveMaximum.get -> decimal?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.ExclusiveMaximum.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.ExclusiveMinimum.get -> decimal?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.ExclusiveMinimum.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.FileExtensions.get -> System.Collections.Generic.IReadOnlyList<string!>?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.FileExtensions.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.Format.get -> string?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.Format.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.IsRequired.get -> bool
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.IsRequired.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.ItemDescriptor.get -> Jeninnet.Validation.Metadata.IValidationDescriptor?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.ItemDescriptor.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.MaxItems.get -> int?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.MaxItems.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.MaxLength.get -> int?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.MaxLength.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.Maximum.get -> decimal?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.Maximum.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.MemberType.get -> System.Type?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.MemberType.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.MinItems.get -> int?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.MinItems.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.MinLength.get -> int?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.MinLength.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.Minimum.get -> decimal?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.Minimum.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.MultipleOf.get -> decimal?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.MultipleOf.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.NestedDescriptor.get -> Jeninnet.Validation.Metadata.IValidationDescriptor?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.NestedDescriptor.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.Pattern.get -> string?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.Pattern.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.Type.get -> string?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.Type.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.ValidationSchemaConstraints() -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaMapper
+Jeninnet.Validation.JsonSchema.ValidationSchemaOptions
+Jeninnet.Validation.JsonSchema.ValidationSchemaOptions.IncludeAdvisoryRules.get -> bool
+Jeninnet.Validation.JsonSchema.ValidationSchemaOptions.IncludeAdvisoryRules.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaOptions.SchemaDialect.get -> string!
+Jeninnet.Validation.JsonSchema.ValidationSchemaOptions.SchemaDialect.set -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaOptions.ValidationSchemaOptions() -> void
+Jeninnet.Validation.JsonSchema.ValidationSchemaWriter
+static Jeninnet.Validation.JsonSchema.ValidationSchemaMapper.Map(Jeninnet.Validation.Metadata.IValidationDescriptor! descriptor) -> Jeninnet.Validation.JsonSchema.ValidationObjectSchema!
+static Jeninnet.Validation.JsonSchema.ValidationSchemaMapper.MapMember(Jeninnet.Validation.Metadata.IValidationMemberDescriptor! member) -> Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints!
+static Jeninnet.Validation.JsonSchema.ValidationSchemaWriter.Write(Jeninnet.Validation.Metadata.IValidationDescriptor! descriptor, Jeninnet.Validation.JsonSchema.ValidationSchemaOptions? options = null) -> System.Text.Json.Nodes.JsonObject!
+static Jeninnet.Validation.JsonSchema.ValidationSchemaWriter.WriteToString(Jeninnet.Validation.Metadata.IValidationDescriptor! descriptor, Jeninnet.Validation.JsonSchema.ValidationSchemaOptions? options = null) -> string!

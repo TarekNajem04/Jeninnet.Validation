@@ -1,0 +1,7 @@
+{
+    "Required": "{PropertyName} مطلوب.",
+    "NotEmpty": "{PropertyName} يجب ألا يكون فارغاً.",
+    "Email": "{PropertyName} يجب أن يكون بريداً إلكترونياً صالحاً.",
+    "Length": "{PropertyName} طول غير صالح.",
+    "Range": "{PropertyName} يجب أن يكون بين {From} و {To}."
+}

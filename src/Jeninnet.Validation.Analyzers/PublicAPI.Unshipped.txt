@@ -1,0 +1,9 @@
+#nullable enable
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.ConditionalAttributeDuplicate -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.ConditionalTargetInvalid -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.ConditionalValueUnsupported -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.DegenerateExclusiveRange -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.InvalidMultipleOfDivisor -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.RelativeDateUnsupportedType -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.SanitizeNotApplicable -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
+static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.SkipValidationConflict -> Microsoft.CodeAnalysis.DiagnosticDescriptor!

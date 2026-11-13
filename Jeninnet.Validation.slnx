@@ -1,0 +1,272 @@
+<Solution>
+  <Folder Name="/.github/">
+    <File Path=".github/CODEOWNERS" />
+    <File Path=".github/COMMUNITY_GUIDELINES.md" />
+    <File Path=".github/dependabot.yml" />
+    <File Path=".github/FUNDING.yml" />
+    <File Path=".github/pull_request_template.md" />
+    <File Path=".github/SECURITY.md" />
+    <File Path=".github/SUPPORT.md" />
+  </Folder>
+  <Folder Name="/.github/ISSUE_TEMPLATE/">
+    <File Path=".github/ISSUE_TEMPLATE/bug_report.yml" />
+    <File Path=".github/ISSUE_TEMPLATE/config.yml" />
+    <File Path=".github/ISSUE_TEMPLATE/feature_request.yml" />
+  </Folder>
+  <Folder Name="/.github/release-notes/">
+    <File Path=".github/release-notes/v1.0.0-preview.1.md" />
+  </Folder>
+  <Folder Name="/.github/workflows/">
+    <File Path=".github/workflows/auto-approve-dependabot.yml" />
+    <File Path=".github/workflows/ci.yml" />
+    <File Path=".github/workflows/docs-build.yml" />
+    <File Path=".github/workflows/nuget-publish.yml" />
+    <File Path=".github/workflows/sonarcloud.yml" />
+  </Folder>
+  <Folder Name="/scripts/">
+    <File Path="scripts/README.md" />
+  </Folder>
+  <Folder Name="/scripts/assets/">
+    <File Path="scripts/assets/generate-icon.ps1" />
+  </Folder>
+  <Folder Name="/scripts/quality/">
+    <File Path="scripts/quality/check-source-headers.ps1" />
+  </Folder>
+  <Folder Name="/scripts/api/">
+    <File Path="scripts/api/README.md" />
+    <File Path="scripts/api/check-public-api-baselines.ps1" />
+    <File Path="scripts/api/sync-public-api.ps1" />
+    <File Path="scripts/api/test-public-api-gate.ps1" />
+  </Folder>
+  <Folder Name="/scripts/localization/">
+    <File Path="scripts/localization/README.md" />
+    <File Path="scripts/localization/check-message-keys.ps1" />
+  </Folder>
+  <Folder Name="/scripts/badges/">
+    <File Path="scripts/badges/generate.ps1" />
+  </Folder>
+  <Folder Name="/scripts/clean/">
+    <File Path="scripts/clean/clean.config.json" />
+    <File Path="scripts/clean/clean.ps1" />
+    <File Path="scripts/clean/clean.schema.json" />
+    <File Path="scripts/clean/README.md" />
+  </Folder>
+  <Folder Name="/scripts/common/">
+    <File Path="scripts/common/Common.psd1" />
+    <File Path="scripts/common/Common.psm1" />
+    <File Path="scripts/common/README.md" />
+  </Folder>
+  <Folder Name="/scripts/coverage/">
+    <File Path="scripts/coverage/coverage.config.json" />
+    <File Path="scripts/coverage/coverage.ps1" />
+    <File Path="scripts/coverage/coverage.schema.json" />
+    <File Path="scripts/coverage/README.md" />
+  </Folder>
+  <Folder Name="/scripts/docs/">
+    <File Path="scripts/docs/check-api-reference.ps1" />
+    <File Path="scripts/docs/check-arabic-text.ps1" />
+    <File Path="scripts/docs/check-doc-links.ps1" />
+    <File Path="scripts/docs/check-readme-claims.ps1" />
+  </Folder>
+  <Folder Name="/scripts/format/">
+    <File Path="scripts/format/format.config.json" />
+    <File Path="scripts/format/format.ps1" />
+    <File Path="scripts/format/format.schema.json" />
+    <File Path="scripts/format/README.md" />
+  </Folder>
+  <Folder Name="/scripts/sonar/">
+    <File Path="scripts/sonar/preview.ps1" />
+    <File Path="scripts/sonar/README.md" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".config/README.md" />
+    <File Path=".config/dotnet-tools.json" />
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="CHANGELOG.md" />
+    <File Path="CODE_OF_CONDUCT.md" />
+    <File Path="CONTRIBUTING.md" />
+    <File Path="DeleteBinObjOutputFolders.bat" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+    <File Path="Directory.Packages.props" />
+    <File Path="global.json" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="ROADMAP.md" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/Jeninnet.Validation.AotSmoke/Jeninnet.Validation.AotSmoke.csproj" />
+    <Project Path="samples/Jeninnet.Validation.Analyzers.Sample.Console/Jeninnet.Validation.Analyzers.Sample.Console.csproj" />
+    <Project Path="samples/Jeninnet.Validation.Sample.Console/Jeninnet.Validation.Sample.Console.csproj" />
+    <Project Path="samples/Jeninnet.Validation.Sample.Customization/Jeninnet.Validation.Sample.Customization.csproj" />
+    <Project Path="samples/Jeninnet.Validation.Sample.Domain/Jeninnet.Validation.Sample.Domain.csproj" Id="06961d90-5aa4-40c7-b61e-983395edc18e" />
+    <Project Path="samples/Jeninnet.Validation.Sample.MediatR/Jeninnet.Validation.Sample.MediatR.csproj" />
+    <Project Path="samples/Jeninnet.Validation.Sample.MinimalApi/Jeninnet.Validation.Sample.MinimalApi.csproj" />
+    <Project Path="samples/Jeninnet.Validation.Sample.Mvc/Jeninnet.Validation.Sample.Mvc.csproj" />
+    <Project Path="samples/Jeninnet.Validation.Sample.NestedValidation/Jeninnet.Validation.Sample.NestedValidation.csproj" />
+  </Folder>
+  <Folder Name="/samples/Clean Architecture/">
+    <Project Path="samples/CleanArchitecture/Jeninnet.Validation.Sample.CleanArchitecture.Application/Jeninnet.Validation.Sample.CleanArchitecture.Application.csproj" />
+    <Project Path="samples/CleanArchitecture/Jeninnet.Validation.Sample.CleanArchitecture.Domain/Jeninnet.Validation.Sample.CleanArchitecture.Domain.csproj" />
+    <Project Path="samples/CleanArchitecture/Jeninnet.Validation.Sample.CleanArchitecture.Infrastructure/Jeninnet.Validation.Sample.CleanArchitecture.Infrastructure.csproj" />
+    <Project Path="samples/CleanArchitecture/Jeninnet.Validation.Sample.CleanArchitecture.Web/Jeninnet.Validation.Sample.CleanArchitecture.Web.csproj" />
+  </Folder>
+  <Folder Name="/samples/Localization/">
+    <Project Path="samples/Jeninnet.Validation.Sample.Localization.Base/Jeninnet.Validation.Sample.Localization.Base.csproj" />
+    <Project Path="samples/Jeninnet.Validation.Sample.Localization.Composite/Jeninnet.Validation.Sample.Localization.Composite.csproj" />
+    <Project Path="samples/Jeninnet.Validation.Sample.Localization.Infrastructure/Jeninnet.Validation.Sample.Localization.Infrastructure.csproj" />
+    <Project Path="samples/Jeninnet.Validation.Sample.Localization.Json/Jeninnet.Validation.Sample.Localization.Json.csproj" />
+    <Project Path="samples/Jeninnet.Validation.Sample.Localization.Memory/Jeninnet.Validation.Sample.Localization.Memory.csproj" />
+    <Project Path="samples/Jeninnet.Validation.Sample.Localization.ResX/Jeninnet.Validation.Sample.Localization.ResX.csproj" />
+    <Project Path="samples/Jeninnet.Validation.Sample.Localization.Sqlite/Jeninnet.Validation.Sample.Localization.Sqlite.csproj" />
+    <Project Path="samples/Jeninnet.Validation.Sample.Localization.Xml/Jeninnet.Validation.Sample.Localization.Xml.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Jeninnet.Validation.Abstractions/Jeninnet.Validation.Abstractions.csproj" />
+    <Project Path="src/Jeninnet.Validation.Analyzers/Jeninnet.Validation.Analyzers.csproj" />
+    <Project Path="src/Jeninnet.Validation.AspNetCore/Jeninnet.Validation.AspNetCore.csproj" />
+    <Project Path="src/Jeninnet.Validation.Assertions/Jeninnet.Validation.Assertions.csproj" />
+    <Project Path="src/Jeninnet.Validation.Blazor/Jeninnet.Validation.Blazor.csproj" />
+    <Project Path="src/Jeninnet.Validation.ClientRules/Jeninnet.Validation.ClientRules.csproj" />
+    <Project Path="src/Jeninnet.Validation.DataAnnotations/Jeninnet.Validation.DataAnnotations.csproj" />
+    <Project Path="src/Jeninnet.Validation.Diagnostics/Jeninnet.Validation.Diagnostics.csproj" />
+    <Project Path="src/Jeninnet.Validation.Extensions.Validation/Jeninnet.Validation.Extensions.Validation.csproj" />
+    <Project Path="src/Jeninnet.Validation.GraphQL/Jeninnet.Validation.GraphQL.csproj" />
+    <Project Path="src/Jeninnet.Validation.Grpc/Jeninnet.Validation.Grpc.csproj" />
+    <Project Path="src/Jeninnet.Validation.JsonSchema/Jeninnet.Validation.JsonSchema.csproj" />
+    <Project Path="src/Jeninnet.Validation.MediatR/Jeninnet.Validation.MediatR.csproj" />
+    <Project Path="src/Jeninnet.Validation.MediatR.CSharpFunctionalExtensions/Jeninnet.Validation.MediatR.CSharpFunctionalExtensions.csproj" />
+    <Project Path="src/Jeninnet.Validation.MediatR.ErrorOr/Jeninnet.Validation.MediatR.ErrorOr.csproj" />
+    <Project Path="src/Jeninnet.Validation.MediatR.FluentResults/Jeninnet.Validation.MediatR.FluentResults.csproj" />
+    <Project Path="src/Jeninnet.Validation.Migration/Jeninnet.Validation.Migration.csproj" />
+    <Project Path="src/Jeninnet.Validation.Observable/Jeninnet.Validation.Observable.csproj" />
+    <Project Path="src/Jeninnet.Validation.OpenApi/Jeninnet.Validation.OpenApi.csproj" />
+    <Project Path="src/Jeninnet.Validation.OpenApi.NSwag/Jeninnet.Validation.OpenApi.NSwag.csproj" />
+    <Project Path="src/Jeninnet.Validation.OpenApi.Swashbuckle/Jeninnet.Validation.OpenApi.Swashbuckle.csproj" />
+    <Project Path="src/Jeninnet.Validation.Rules.Domain/Jeninnet.Validation.Rules.Domain.csproj" />
+    <Project Path="src/Jeninnet.Validation.Localization/Jeninnet.Validation.Localization.csproj" />
+    <Project Path="src/Jeninnet.Validation.Localization.AspNetCore/Jeninnet.Validation.Localization.AspNetCore.csproj" />
+    <Project Path="src/Jeninnet.Validation/Jeninnet.Validation.csproj" />
+  </Folder>
+  <Folder Name="/src/Shared/" />
+  <Folder Name="/src/Shared/JsonValueFactory/">
+    <File Path="src/shared/JsonValueFactory/JsonValueFactory.cs" />
+    <File Path="src/shared/JsonValueFactory/JsonValueFactory.projitems" />
+    <File Path="src/shared/README.md" />
+  </Folder>
+  <Folder Name="/src/Shared/OpenApi/">
+    <File Path="src/shared/OpenApi/ISchemaConstraintTarget.cs" />
+    <File Path="src/shared/OpenApi/OpenApi.projitems" />
+    <File Path="src/shared/OpenApi/SchemaConstraintWriter.cs" />
+    <File Path="src/shared/OpenApi/SchemaPropertyNameResolver.cs" />
+  </Folder>
+  <Folder Name="/src/Shared/Rules/">
+    <File Path="src/shared/Rules/CompositeRuleHelper.cs" />
+    <File Path="src/shared/Rules/Rules.projitems" />
+  </Folder>
+  <Folder Name="/assets/">
+    <File Path="assets/README.md" />
+    <File Path="assets/jeninnet-validation-icon-128.png" />
+    <File Path="assets/jeninnet-validation-icon-master.png" />
+  </Folder>
+  <Folder Name="/doc/">
+    <File Path="docs/CONTRIBUTING.md" />
+    <File Path="docs/docfx.json" />
+    <File Path="docs/index.md" />
+    <File Path="docs/README.md" />
+    <File Path="docs/toc.yml" />
+  </Folder>
+  <Folder Name="/doc/en/">
+    <File Path="docs/en/README.md" />
+  </Folder>
+  <Folder Name="/doc/en/01-getting-started/">
+    <File Path="docs/en/01-getting-started/01-introduction.md" />
+    <File Path="docs/en/01-getting-started/02-installation.md" />
+    <File Path="docs/en/01-getting-started/03-quick-start.md" />
+    <File Path="docs/en/01-getting-started/04-mental-model.md" />
+  </Folder>
+  <Folder Name="/doc/en/02-guides/">
+    <File Path="docs/en/02-guides/01-fluent-authoring.md" />
+    <File Path="docs/en/02-guides/02-attribute-authoring.md" />
+    <File Path="docs/en/02-guides/03-rules-and-messages.md" />
+    <File Path="docs/en/02-guides/04-rule-sets-and-cascade.md" />
+    <File Path="docs/en/02-guides/05-conditions-and-dependent-rules.md" />
+    <File Path="docs/en/02-guides/06-collections-and-nesting.md" />
+    <File Path="docs/en/02-guides/07-custom-rules.md" />
+    <File Path="docs/en/02-guides/08-aspnet-core.md" />
+    <File Path="docs/en/02-guides/09-mediatr.md" />
+    <File Path="docs/en/02-guides/10-dataannotations.md" />
+    <File Path="docs/en/02-guides/11-blazor.md" />
+    <File Path="docs/en/02-guides/12-schema-openapi-client.md" />
+    <File Path="docs/en/02-guides/13-localization.md" />
+    <File Path="docs/en/02-guides/14-testing.md" />
+    <File Path="docs/en/02-guides/15-migration-from-fluentvalidation.md" />
+    <File Path="docs/en/02-guides/16-migration-from-dataannotations.md" />
+    <File Path="docs/en/02-guides/17-dependency-injection.md" />
+    <File Path="docs/en/02-guides/18-error-handling.md" />
+    <File Path="docs/en/02-guides/19-lifecycle-hooks.md" />
+    <File Path="docs/en/02-guides/20-inheritance-and-polymorphism.md" />
+  </Folder>
+  <Folder Name="/doc/en/03-reference/">
+    <File Path="docs/en/03-reference/00-architecture.md" />
+    <File Path="docs/en/03-reference/01-core-api.md" />
+    <File Path="docs/en/03-reference/02-rule-reference.md" />
+    <File Path="docs/en/03-reference/03-diagnostics.md" />
+    <File Path="docs/en/03-reference/04-metadata.md" />
+    <File Path="docs/en/03-reference/05-integration-packages.md" />
+    <File Path="docs/en/03-reference/06-compatibility-and-versions.md" />
+    <File Path="docs/en/03-reference/07-known-limitations.md" />
+    <File Path="docs/en/03-reference/08-api-reference.md" />
+  </Folder>
+  <Folder Name="/doc/en/04-operations/">
+    <File Path="docs/en/04-operations/01-performance.md" />
+    <File Path="docs/en/04-operations/02-aot-and-trimming.md" />
+    <File Path="docs/en/04-operations/03-coverage-and-quality.md" />
+    <File Path="docs/en/04-operations/04-troubleshooting.md" />
+    <File Path="docs/en/04-operations/05-faq.md" />
+    <File Path="docs/en/04-operations/06-benchmarks.md" />
+    <File Path="docs/en/04-operations/07-allocation-audit.md" />
+    <File Path="docs/en/04-operations/08-production-checklist.md" />
+    <File Path="docs/en/04-operations/09-security.md" />
+  </Folder>
+  <Folder Name="/doc/en/05-cookbook/">
+    <File Path="docs/en/05-cookbook/01-minimal-api.md" />
+    <File Path="docs/en/05-cookbook/02-mvc.md" />
+    <File Path="docs/en/05-cookbook/03-mediatr.md" />
+    <File Path="docs/en/05-cookbook/04-blazor.md" />
+    <File Path="docs/en/05-cookbook/05-rule-sets-and-partial-updates.md" />
+    <File Path="docs/en/05-cookbook/06-custom-rules-with-context.md" />
+    <File Path="docs/en/05-cookbook/07-localized-messages.md" />
+    <File Path="docs/en/05-cookbook/08-testing-validators.md" />
+    <File Path="docs/en/05-cookbook/09-schema-openapi-client.md" />
+    <File Path="docs/en/05-cookbook/README.md" />
+  </Folder>
+  <Folder Name="/doc/en/appendix/">
+    <File Path="docs/en/appendix/01-glossary.md" />
+    <File Path="docs/en/appendix/02-package-map.md" />
+    <File Path="docs/en/appendix/03-samples.md" />
+    <File Path="docs/en/appendix/04-cheat-sheet.md" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Jeninnet.Validation.Analyzers.Tests/Jeninnet.Validation.Analyzers.Tests.csproj" />
+    <Project Path="tests/Jeninnet.Validation.Tests/Jeninnet.Validation.Tests.csproj" />
+    <Project Path="tests/Jeninnet.Validation.ArchitectureTests/Jeninnet.Validation.ArchitectureTests.csproj" />
+    <Project Path="tests/Jeninnet.Validation.AspNetCore.Tests/Jeninnet.Validation.AspNetCore.Tests.csproj" />
+    <Project Path="tests/Jeninnet.Validation.Blazor.Tests/Jeninnet.Validation.Blazor.Tests.csproj" />
+    <Project Path="tests/Jeninnet.Validation.DataAnnotations.Tests/Jeninnet.Validation.DataAnnotations.Tests.csproj" />
+    <Project Path="tests/Jeninnet.Validation.Extensions.Validation.Tests/Jeninnet.Validation.Extensions.Validation.Tests.csproj" />
+    <Project Path="tests/Jeninnet.Validation.GraphQL.Tests/Jeninnet.Validation.GraphQL.Tests.csproj" />
+    <Project Path="tests/Jeninnet.Validation.Grpc.Tests/Jeninnet.Validation.Grpc.Tests.csproj" />
+    <Project Path="tests/Jeninnet.Validation.Localization.AspNetCore.Tests/Jeninnet.Validation.Localization.AspNetCore.Tests.csproj" />
+    <Project Path="tests/Jeninnet.Validation.MediatR.Tests/Jeninnet.Validation.MediatR.Tests.csproj" />
+    <Project Path="tests/Jeninnet.Validation.MediatR.ResultAdapters.Tests/Jeninnet.Validation.MediatR.ResultAdapters.Tests.csproj" />
+    <Project Path="tests/Jeninnet.Validation.Migration.Tests/Jeninnet.Validation.Migration.Tests.csproj" />
+    <Project Path="tests/Jeninnet.Validation.Observable.Tests/Jeninnet.Validation.Observable.Tests.csproj" />
+    <Project Path="tests/Jeninnet.Validation.OpenApi.Adapters.Tests/Jeninnet.Validation.OpenApi.Adapters.Tests.csproj" />
+  </Folder>
+  <Folder Name="/benchmarks/">
+    <Project Path="src/Jeninnet.Validation.Benchmarks/Jeninnet.Validation.Benchmarks.csproj" />
+  </Folder>
+</Solution>

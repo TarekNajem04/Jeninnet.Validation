@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <UseLocalAnalyzers>true</UseLocalAnalyzers>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <NoWarn>$(NoWarn);NU1903</NoWarn>
+        <NeutralLanguage>en</NeutralLanguage>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Jeninnet.Localization.Providers.Database.SQLite" />
+        <PackageReference Include="Jeninnet.Localization.Providers.Json" />
+        <PackageReference Include="Jeninnet.Localization.Providers.Memory" />
+        <PackageReference Include="Jeninnet.Localization.Providers.ResX" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+        <PackageReference Include="Microsoft.Data.Sqlite" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Jeninnet.Validation\Jeninnet.Validation.csproj" />
+        
+        <ProjectReference Include="..\Jeninnet.Validation.Sample.Localization.Base\Jeninnet.Validation.Sample.Localization.Base.csproj" />
+        <ProjectReference Include="..\Jeninnet.Validation.Sample.Localization.Infrastructure\Jeninnet.Validation.Sample.Localization.Infrastructure.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="Localization\**\*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+</Project>

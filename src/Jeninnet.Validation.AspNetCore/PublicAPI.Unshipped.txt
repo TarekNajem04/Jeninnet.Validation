@@ -1,0 +1,17 @@
+#nullable enable
+Jeninnet.Validation.AspNetCore.IValidationInterceptor
+Jeninnet.Validation.AspNetCore.IValidationInterceptor.AfterValidationAsync(Jeninnet.Validation.AspNetCore.ValidationInterceptorContext! context, Jeninnet.Validation.ValidationResult result, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult>
+Jeninnet.Validation.AspNetCore.IValidationInterceptor.BeforeValidationAsync(Jeninnet.Validation.AspNetCore.ValidationInterceptorContext! context, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Jeninnet.Validation.ValidationResult?>
+Jeninnet.Validation.AspNetCore.JeninnetValidationFilter.JeninnetValidationFilter(Jeninnet.Validation.AspNetCore.MvcValidationOptions! options, System.Collections.Generic.IEnumerable<Jeninnet.Validation.AspNetCore.IValidationInterceptor!>! interceptors) -> void
+Jeninnet.Validation.AspNetCore.ValidationInterceptorContext
+Jeninnet.Validation.AspNetCore.ValidationInterceptorContext.ActionDescriptor.get -> Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor?
+Jeninnet.Validation.AspNetCore.ValidationInterceptorContext.Endpoint.get -> Microsoft.AspNetCore.Http.Endpoint?
+Jeninnet.Validation.AspNetCore.ValidationInterceptorContext.HttpContext.get -> Microsoft.AspNetCore.Http.HttpContext!
+Jeninnet.Validation.AspNetCore.ValidationInterceptorContext.Instance.get -> object!
+Jeninnet.Validation.AspNetCore.ValidationInterceptorContext.ModelType.get -> System.Type!
+Jeninnet.Validation.AspNetCore.ValidationInterceptorContext.ServiceProvider.get -> System.IServiceProvider!
+Jeninnet.Validation.AspNetCore.ValidationInterceptorContext.ValidationInterceptorContext(object! instance, System.Type! modelType, string? validatorName, System.IServiceProvider! serviceProvider, Microsoft.AspNetCore.Http.HttpContext! httpContext, Microsoft.AspNetCore.Http.Endpoint? endpoint = null, Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor? actionDescriptor = null) -> void
+Jeninnet.Validation.AspNetCore.ValidationInterceptorContext.ValidatorName.get -> string?
+Jeninnet.Validation.AspNetCore.ValidationInterceptorExtensions
+static Jeninnet.Validation.AspNetCore.ValidationInterceptorExtensions.AddValidationInterceptor<T>(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static Jeninnet.Validation.AspNetCore.ValidationInterceptorExtensions.AddValidationInterceptor<T>(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, Microsoft.Extensions.DependencyInjection.ServiceLifetime lifetime) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!

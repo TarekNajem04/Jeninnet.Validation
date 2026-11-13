@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<messages>
+  <Required>{PropertyName} مطلوب.</Required>
+  <NotEmpty>{PropertyName} يجب ألا يكون فارغاً.</NotEmpty>
+  <Email>{PropertyName} يجب أن يكون بريداً إلكترونياً صالحاً.</Email>
+  <Length>{PropertyName} يجب أن يكون بين {From} و {To} حرفاً.</Length>
+  <Range>{PropertyName} يجب أن يكون بين {From} و {To}.</Range>
+  <GreaterThan>{PropertyName} يجب أن يكون أكبر من {ComparisonValue}.</GreaterThan>
+  <InclusiveBetween>{PropertyName} يجب أن يكون بين {From} و {To}.</InclusiveBetween>
+</messages>

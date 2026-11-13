@@ -1,0 +1,44 @@
+#nullable enable
+Jeninnet.Validation.Abstractions.IRuleDefinitionOptions
+Jeninnet.Validation.Abstractions.IRuleDefinitionOptions.ErrorCode.get -> string?
+Jeninnet.Validation.Abstractions.IRuleDefinitionOptions.ErrorCode.set -> void
+Jeninnet.Validation.Abstractions.IRuleDefinitionOptions.ErrorMessage.get -> string?
+Jeninnet.Validation.Abstractions.IRuleDefinitionOptions.ErrorMessage.set -> void
+Jeninnet.Validation.Abstractions.IRuleDefinitionOptions.Severity.get -> Jeninnet.Validation.ValidationErrorSeverity
+Jeninnet.Validation.Abstractions.IRuleDefinitionOptions.Severity.set -> void
+Jeninnet.Validation.AsyncValidatorInvokedSynchronouslyException.AsyncValidatorInvokedSynchronouslyException() -> void
+Jeninnet.Validation.AsyncValidatorInvokedSynchronouslyException.AsyncValidatorInvokedSynchronouslyException(string? message) -> void
+Jeninnet.Validation.AsyncValidatorInvokedSynchronouslyException.AsyncValidatorInvokedSynchronouslyException(string? message, System.Exception? innerException) -> void
+Jeninnet.Validation.MessageId.Deconstruct(out string! Id) -> void
+Jeninnet.Validation.MessageId.Equals(Jeninnet.Validation.MessageId other) -> bool
+Jeninnet.Validation.Metadata.IValidationRuleDescriptor.MessageIsAuthored.get -> bool
+Jeninnet.Validation.Metadata.ValidationRuleDescriptor.MessageIsAuthored.get -> bool
+Jeninnet.Validation.Metadata.ValidationRuleDescriptor.MessageIsAuthored.init -> void
+Jeninnet.Validation.ValidationError.Equals(Jeninnet.Validation.ValidationError other) -> bool
+Jeninnet.Validation.ValidationError.MessageIsAuthored.get -> bool
+Jeninnet.Validation.ValidationError.MessageIsAuthored.init -> void
+Jeninnet.Validation.ValidationErrorCollector.<Clone>$() -> Jeninnet.Validation.ValidationErrorCollector!
+Jeninnet.Validation.ValidationErrorCollector.Add(Jeninnet.Validation.ValidationError error, bool messageIsAuthored) -> void
+Jeninnet.Validation.ValidationErrorCollector.Add(string! memberName, string? message, Jeninnet.Validation.ValidationErrorSeverity severity, bool messageIsAuthored) -> void
+Jeninnet.Validation.ValidationErrorCollector.Equals(Jeninnet.Validation.ValidationErrorCollector? other) -> bool
+Jeninnet.Validation.ValidationErrorCollector.ValidationErrorCollector() -> void
+const Jeninnet.Validation.Configuration.MessageParameterNames.Divisor = "Divisor" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.FUTURE_DATE = "FutureDate" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.MULTIPLE_OF = "MultipleOf" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.PAST_DATE = "PastDate" -> string!
+const Jeninnet.Validation.Configuration.ValidationMessageKeys.UNIQUE_ITEMS = "UniqueItems" -> string!
+override Jeninnet.Validation.MessageId.GetHashCode() -> int
+override Jeninnet.Validation.ValidationError.GetHashCode() -> int
+override Jeninnet.Validation.ValidationErrorCollector.Equals(object? obj) -> bool
+override Jeninnet.Validation.ValidationErrorCollector.GetHashCode() -> int
+override Jeninnet.Validation.ValidationErrorCollector.ToString() -> string!
+static Jeninnet.Validation.MessageId.operator !=(Jeninnet.Validation.MessageId left, Jeninnet.Validation.MessageId right) -> bool
+static Jeninnet.Validation.MessageId.operator ==(Jeninnet.Validation.MessageId left, Jeninnet.Validation.MessageId right) -> bool
+static Jeninnet.Validation.ValidationError.operator !=(Jeninnet.Validation.ValidationError left, Jeninnet.Validation.ValidationError right) -> bool
+static Jeninnet.Validation.ValidationError.operator ==(Jeninnet.Validation.ValidationError left, Jeninnet.Validation.ValidationError right) -> bool
+static Jeninnet.Validation.ValidationErrorCollector.operator !=(Jeninnet.Validation.ValidationErrorCollector? left, Jeninnet.Validation.ValidationErrorCollector? right) -> bool
+static Jeninnet.Validation.ValidationErrorCollector.operator ==(Jeninnet.Validation.ValidationErrorCollector? left, Jeninnet.Validation.ValidationErrorCollector? right) -> bool
+~override Jeninnet.Validation.MessageId.Equals(object obj) -> bool
+~override Jeninnet.Validation.MessageId.ToString() -> string
+~override Jeninnet.Validation.ValidationError.Equals(object obj) -> bool
+~override Jeninnet.Validation.ValidationError.ToString() -> string

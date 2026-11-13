@@ -1,0 +1,3 @@
+#nullable enable
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.UniqueItems.get -> bool?
+Jeninnet.Validation.JsonSchema.ValidationSchemaConstraints.UniqueItems.set -> void

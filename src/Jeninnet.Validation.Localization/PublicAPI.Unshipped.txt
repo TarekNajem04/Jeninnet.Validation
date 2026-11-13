@@ -1,0 +1,9 @@
+#nullable enable
+Jeninnet.Validation.Localization.IValidationMessageCatalog
+Jeninnet.Validation.Localization.IValidationMessageCatalog.AddPack(string! culture, System.Collections.Generic.IReadOnlyDictionary<string!, string!>! messages) -> void
+Jeninnet.Validation.Localization.IValidationMessageCatalog.Cultures.get -> System.Collections.Generic.IReadOnlyCollection<string!>!
+Jeninnet.Validation.Localization.IValidationMessageCatalog.RemoveCulture(string! culture) -> bool
+Jeninnet.Validation.Localization.IValidationMessageCatalog.RemoveTemplate(string! culture, string! key) -> bool
+Jeninnet.Validation.Localization.IValidationMessageCatalog.SetTemplate(string! culture, string! key, string! template) -> void
+Jeninnet.Validation.Localization.IValidationMessageCatalog.TryGetTemplate(string! culture, string! key, out string? template) -> bool
+static Jeninnet.Validation.Localization.ServiceCollectionExtensions.AddValidationLocalization(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!

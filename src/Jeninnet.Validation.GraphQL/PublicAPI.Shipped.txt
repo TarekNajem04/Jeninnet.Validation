@@ -1,0 +1,12 @@
+#nullable enable
+Jeninnet.Validation.GraphQL.GraphQLValidationMiddleware
+Jeninnet.Validation.GraphQL.GraphQLValidationMiddleware.GraphQLValidationMiddleware(HotChocolate.Resolvers.FieldDelegate! next) -> void
+Jeninnet.Validation.GraphQL.GraphQLValidationMiddleware.InvokeAsync(HotChocolate.Resolvers.IMiddlewareContext! context) -> System.Threading.Tasks.ValueTask
+Jeninnet.Validation.GraphQL.GraphQLValidationOptions
+Jeninnet.Validation.GraphQL.GraphQLValidationOptions.GraphQLValidationOptions() -> void
+Jeninnet.Validation.GraphQL.GraphQLValidationOptions.RuleSets.get -> System.Collections.Generic.IList<string!>!
+Jeninnet.Validation.GraphQL.GraphQLValidationRuleSetsAttribute
+Jeninnet.Validation.GraphQL.GraphQLValidationRuleSetsAttribute.GraphQLValidationRuleSetsAttribute(params string![]! ruleSets) -> void
+Jeninnet.Validation.GraphQL.GraphQLValidationRuleSetsAttribute.RuleSets.get -> System.Collections.Generic.IReadOnlyList<string!>!
+Jeninnet.Validation.GraphQL.GraphQLValidationServiceCollectionExtensions
+static Jeninnet.Validation.GraphQL.GraphQLValidationServiceCollectionExtensions.AddJeninnetGraphQLValidation(this HotChocolate.Execution.Configuration.IRequestExecutorBuilder! builder, System.Action<Jeninnet.Validation.GraphQL.GraphQLValidationOptions!>? configure = null) -> HotChocolate.Execution.Configuration.IRequestExecutorBuilder!

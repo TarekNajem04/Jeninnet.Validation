@@ -1,0 +1,7 @@
+{
+    "Required": "{PropertyName} is required.",
+    "NotEmpty": "{PropertyName} must not be empty.",
+    "Email": "{PropertyName} must be a valid email address.",
+    "Length": "{PropertyName} has an invalid length.",
+    "Range": "{PropertyName} must be between {From} and {To}."
+}

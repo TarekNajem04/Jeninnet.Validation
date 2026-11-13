@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<messages>
+  <NotEmpty>{PropertyName} must not be empty.</NotEmpty>
+  <Email>{PropertyName} is not a valid email address.</Email>
+  <GreaterThan>{PropertyName} must be greater than {ComparisonValue}.</GreaterThan>
+  <InclusiveBetween>{PropertyName} must be between {From} and {To}.</InclusiveBetween>
+</messages>

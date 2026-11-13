@@ -1,0 +1,33 @@
+#nullable enable
+Jeninnet.Validation.DataAnnotations.JeninnetDataAnnotationsAdapter
+Jeninnet.Validation.DataAnnotations.JeninnetValidatableAttribute
+Jeninnet.Validation.DataAnnotations.JeninnetValidatableAttribute.IncludeErrorCodes.get -> bool
+Jeninnet.Validation.DataAnnotations.JeninnetValidatableAttribute.IncludeErrorCodes.set -> void
+Jeninnet.Validation.DataAnnotations.JeninnetValidatableAttribute.IncludeSeverity.get -> bool
+Jeninnet.Validation.DataAnnotations.JeninnetValidatableAttribute.IncludeSeverity.set -> void
+Jeninnet.Validation.DataAnnotations.JeninnetValidatableAttribute.JeninnetValidatableAttribute(System.Type! validatorType) -> void
+Jeninnet.Validation.DataAnnotations.JeninnetValidatableAttribute.MessageSeparator.get -> string!
+Jeninnet.Validation.DataAnnotations.JeninnetValidatableAttribute.MessageSeparator.set -> void
+Jeninnet.Validation.DataAnnotations.JeninnetValidatableAttribute.RuleSets.get -> string![]!
+Jeninnet.Validation.DataAnnotations.JeninnetValidatableAttribute.RuleSets.set -> void
+Jeninnet.Validation.DataAnnotations.JeninnetValidatableAttribute.ValidatorType.get -> System.Type!
+Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute
+Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute.IncludeErrorCodes.get -> bool
+Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute.IncludeErrorCodes.set -> void
+Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute.IncludeSeverity.get -> bool
+Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute.IncludeSeverity.set -> void
+Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute.JeninnetValidatePropertyAttribute(System.Type! validatorType, string! memberName) -> void
+Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute.MemberName.get -> string!
+Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute.MessageSeparator.get -> string!
+Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute.MessageSeparator.set -> void
+Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute.RuleSets.get -> string![]!
+Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute.RuleSets.set -> void
+Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute.ValidatorType.get -> System.Type!
+Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute<TValidator>
+Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute<TValidator>.JeninnetValidatePropertyAttribute(string! memberName) -> void
+override Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute.IsValid(object? value, System.ComponentModel.DataAnnotations.ValidationContext! validationContext) -> System.ComponentModel.DataAnnotations.ValidationResult?
+static Jeninnet.Validation.DataAnnotations.JeninnetDataAnnotationsAdapter.BuildMessage(Jeninnet.Validation.ValidationResult result, bool includeSeverity = true, bool includeErrorCodes = false, string! separator = "; ") -> string!
+static Jeninnet.Validation.DataAnnotations.JeninnetDataAnnotationsAdapter.GetMemberNames(Jeninnet.Validation.ValidationResult result) -> System.Collections.Generic.IReadOnlyList<string!>!
+static Jeninnet.Validation.DataAnnotations.JeninnetDataAnnotationsAdapter.ToValidationResults(Jeninnet.Validation.ValidationResult result, bool includeSeverity = true, bool includeErrorCodes = false, string! separator = "; ") -> System.Collections.Generic.IReadOnlyList<System.ComponentModel.DataAnnotations.ValidationResult!>!
+static Jeninnet.Validation.DataAnnotations.JeninnetDataAnnotationsAdapter.Validate(object! instance, System.Type! modelType, System.Type! validatorType, System.Func<System.Type!, object?>? serviceProvider = null, System.Collections.Generic.IReadOnlyList<string!>? ruleSets = null) -> Jeninnet.Validation.ValidationResult
+static Jeninnet.Validation.DataAnnotations.JeninnetDataAnnotationsAdapter.ValidateProperty(object! instance, System.Type! modelType, System.Type! validatorType, string! memberName, System.Func<System.Type!, object?>? serviceProvider = null, System.Collections.Generic.IReadOnlyList<string!>? ruleSets = null) -> Jeninnet.Validation.ValidationResult

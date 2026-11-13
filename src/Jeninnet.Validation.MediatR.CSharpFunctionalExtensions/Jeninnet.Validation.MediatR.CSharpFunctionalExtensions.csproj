@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <AssemblyName>Jeninnet.Validation.MediatR.CSharpFunctionalExtensions</AssemblyName>
+        <RootNamespace>Jeninnet.Validation.MediatR.CSharpFunctionalExtensions</RootNamespace>
+        <Description>CSharpFunctionalExtensions result adapter for the Jeninnet.Validation MediatR pipeline.</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CSharpFunctionalExtensions" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Jeninnet.Validation.MediatR\Jeninnet.Validation.MediatR.csproj" />
+        <ProjectReference Include="..\Jeninnet.Validation.Abstractions\Jeninnet.Validation.Abstractions.csproj" />
+    </ItemGroup>
+
+</Project>

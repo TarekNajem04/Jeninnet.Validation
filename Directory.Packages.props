@@ -1,0 +1,70 @@
+<!--Directory.Packages.props-->
+<Project>
+  <PropertyGroup>
+    <!--https://devblogs.microsoft.com/nuget/introducing-central-package-management/-->
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <!--
+        0.16.0-preview.2 is the first release that knows the net11.0 runtime moniker.
+        0.15.8 throws "GetRuntimeVersion not implemented for NotRecognized" on .NET 11.
+        Move to the 0.16 stable line as soon as it ships.
+    -->
+    <PackageVersion Include="BenchmarkDotNet" Version="0.16.0-preview.2" />
+    <PackageVersion Include="coverlet.collector" Version="10.1.0" />
+    <PackageVersion Include="Jeninnet.Assertions" Version="1.0.0" />
+    <PackageVersion Include="Jeninnet.Assertions.MSTest" Version="1.0.0" />
+    <PackageVersion Include="Jeninnet.Localization.Abstractions" Version="1.0.0-preview.1" />
+    <PackageVersion Include="Jeninnet.Localization.Core" Version="1.0.0-preview.1" />
+    <PackageVersion Include="Jeninnet.Localization.Providers.Database.SQLite" Version="1.0.0-preview.1" />
+    <PackageVersion Include="Jeninnet.Localization.Providers.Json" Version="1.0.0-preview.1" />
+    <PackageVersion Include="Jeninnet.Localization.Providers.Memory" Version="1.0.0-preview.1" />
+    <PackageVersion Include="Jeninnet.Localization.Providers.ResX" Version="1.0.0-preview.1" />
+    <PackageVersion Include="Jeninnet.Localization.Providers.Xml" Version="1.0.0-preview.1" />
+    <!--
+      The first release targets .NET 11 (STS), so the Roslyn and immutable stack moves to the
+      current .NET 11 line.
+    -->
+    <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="5.9.0" />
+    <!-- 5.6.0 includes compiler-generated record members in RS0016; baselines are regenerated for net11.0. -->
+    <PackageVersion Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="5.6.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.Common" Version="5.9.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="5.9.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="5.9.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="5.9.0" />
+    <PackageVersion Include="Microsoft.Data.Sqlite" Version="11.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="11.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="11.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Logging" Version="11.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="11.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Options" Version="11.0.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.12.0" />
+    <PackageVersion Include="MSTest" Version="4.5.3" />
+    <PackageVersion Include="MSTest.TestAdapter" Version="4.5.3" />
+    <PackageVersion Include="MSTest.TestFramework" Version="4.5.3" />
+    <PackageVersion Include="NSwag.Generation" Version="14.8.0" />
+    <!-- Swashbuckle 11 and ASP.NET Core OpenAPI 11 share Microsoft.OpenApi 3.x on net11.0. -->
+    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="11.0.1" />
+    <PackageVersion Include="Microsoft.OpenApi" Version="3.11.0" />
+    <PackageVersion Include="System.Collections.Immutable" Version="11.0.0" />
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.36.0.15337" />
+    <PackageVersion Include="MediatR" Version="15.0.0" />
+    <PackageVersion Include="ErrorOr" Version="2.1.1" />
+    <PackageVersion Include="FluentValidation" Version="12.2.0" />
+    <PackageVersion Include="FluentResults" Version="4.0.0" />
+    <PackageVersion Include="CSharpFunctionalExtensions" Version="3.7.0" />
+    <PackageVersion Include="Grpc.AspNetCore" Version="2.85.0" />
+    <PackageVersion Include="Grpc.AspNetCore.Server" Version="2.85.0" />
+    <PackageVersion Include="Grpc.Net.Client" Version="2.85.0" />
+    <PackageVersion Include="Google.Api.CommonProtos" Version="2.17.0" />
+    <PackageVersion Include="HotChocolate.AspNetCore" Version="16.7.5" />
+    <!-- ASP.NET Core 11 packages are net11.0-only; the first release targets net11.0. -->
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="11.0.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="11.0.0" />
+    <PackageVersion Include="Microsoft.Build.Tasks.Git" Version="11.0.100" />
+    <PackageVersion Include="Microsoft.SourceLink.Common" Version="11.0.100" />
+    <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="11.0.100" />
+    <PackageVersion Include="System.IO.Hashing" Version="11.0.0" />
+  </ItemGroup>
+</Project>

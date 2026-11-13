@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
+        <DisableArtifacts>true</DisableArtifacts>
+        <!-- The bridge intentionally exercises Microsoft.Extensions.Validation's evaluation API. -->
+        <NoWarn>$(NoWarn);ASP0029</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+        <PackageReference Include="Microsoft.AspNetCore.TestHost" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="MSTest" />
+        <PackageReference Include="MSTest.TestAdapter" />
+        <PackageReference Include="coverlet.collector" PrivateAssets="all" />
+        <PackageReference Include="Jeninnet.Assertions" />
+        <PackageReference Include="Jeninnet.Assertions.MSTest" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Jeninnet.Validation.Extensions.Validation\Jeninnet.Validation.Extensions.Validation.csproj" />
+    </ItemGroup>
+
+    <!-- The framework validation generator is not needed by this adapter test project. -->
+    <Target Name="RemoveFrameworkValidationGenerator" BeforeTargets="CoreCompile">
+        <ItemGroup>
+            <Analyzer Remove="@(Analyzer)"
+                      Condition="'%(Filename)' == 'Microsoft.Extensions.Validation.ValidationsGenerator'" />
+        </ItemGroup>
+    </Target>
+
+</Project>

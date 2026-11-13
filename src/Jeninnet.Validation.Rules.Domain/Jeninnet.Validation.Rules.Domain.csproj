@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IncludeBuildOutput>true</IncludeBuildOutput>
+        <AssemblyName>Jeninnet.Validation.Rules.Domain</AssemblyName>
+        <RootNamespace>Jeninnet.Validation</RootNamespace>
+        <Description>Optional domain rule packs for identity, finance, postal codes, passwords, UUIDs, and ULIDs.</Description>
+        <IsAotCompatible>true</IsAotCompatible>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Jeninnet.Validation\Jeninnet.Validation.csproj" />
+    </ItemGroup>
+
+</Project>

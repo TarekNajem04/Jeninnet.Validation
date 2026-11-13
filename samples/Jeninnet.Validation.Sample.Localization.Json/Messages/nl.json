@@ -1,0 +1,7 @@
+{
+    "Required": "{PropertyName} is verplicht.",
+    "NotEmpty": "{PropertyName} mag niet leeg zijn.",
+    "Email": "{PropertyName} moet een geldig e-mailadres zijn.",
+    "Length": "{PropertyName} heeft een ongeldige lengte.",
+    "Range": "{PropertyName} moet tussen {From} en {To} liggen."
+}
