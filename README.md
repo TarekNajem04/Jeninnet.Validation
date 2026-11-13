@@ -2,24 +2,20 @@
 
 [![CI](https://img.shields.io/github/actions/workflow/status/TarekNajem04/Jeninnet.Validation/ci.yml?branch=main&label=CI)](https://github.com/TarekNajem04/Jeninnet.Validation/actions/workflows/ci.yml)
 [![Documentation](https://img.shields.io/github/actions/workflow/status/TarekNajem04/Jeninnet.Validation/docs-build.yml?branch=main&label=docs)](https://tareknajem04.github.io/Jeninnet.Validation/)
+[![NuGet version](https://img.shields.io/nuget/vpre/Jeninnet.Validation)](https://www.nuget.org/packages/Jeninnet.Validation/)
+[![NuGet downloads](https://img.shields.io/nuget/dt/Jeninnet.Validation)](https://www.nuget.org/packages/Jeninnet.Validation/)
+[![GitHub release](https://img.shields.io/github/v/release/TarekNajem04/Jeninnet.Validation?include_prereleases)](https://github.com/TarekNajem04/Jeninnet.Validation/releases)
 [![License: MIT](https://img.shields.io/github/license/TarekNajem04/Jeninnet.Validation)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/TarekNajem04/Jeninnet.Validation)](https://github.com/TarekNajem04/Jeninnet.Validation/stargazers)
 [![GitHub contributors](https://img.shields.io/github/contributors/TarekNajem04/Jeninnet.Validation)](https://github.com/TarekNajem04/Jeninnet.Validation/graphs/contributors)
 
-<!--
-NuGet version/downloads and GitHub release badges are enabled after the first package
-publication and the first tagged release; until then they would resolve to "not found".
-[![NuGet version](https://img.shields.io/nuget/v/Jeninnet.Validation)](https://www.nuget.org/packages/Jeninnet.Validation/)
-[![NuGet downloads](https://img.shields.io/nuget/dt/Jeninnet.Validation)](https://www.nuget.org/packages/Jeninnet.Validation/)
-[![GitHub release](https://img.shields.io/github/v/release/TarekNajem04/Jeninnet.Validation)](https://github.com/TarekNajem04/Jeninnet.Validation/releases)
--->
-
-
 ![api stability: baselines ok](badges/api-stability.svg) ![architecture: invariants ok](badges/architecture.svg) ![target framework: net11.0](badges/frameworks.svg) ![obsolete members: 0](badges/obsolete.svg) ![public surface: frozen ok](badges/public-surface.svg)
 
-- **Status:** `1.0.0-preview.1` — current preview, not yet published. The version stays
-  `1.0.0-preview.1` until the first package publication.
-- **Documentation:** [Jeninnet.Validation reference book](docs/en/README.md) and the
+**📖 Documentation:** [tareknajem04.github.io/Jeninnet.Validation](https://tareknajem04.github.io/Jeninnet.Validation/) — the complete reference book, guides, API reference, and samples.
+
+- **Status:** `1.0.0-preview.1` — current preview.
+- **Documentation:** [Jeninnet.Validation reference book](https://tareknajem04.github.io/Jeninnet.Validation/)
+  ([source](docs/en/README.md)) and the
   [Why Jeninnet?](docs/en/01-getting-started/00-why-jeninnet.md) decision page.
 - **Target frameworks:** `net11.0` for every shipping library (STS); analyzer `netstandard2.0`.
 - **Language:** C# 15 (`LangVersion=15.0`), built with the .NET 11 SDK.
