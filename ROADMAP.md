@@ -26,7 +26,7 @@ and `Not planned`.
 | Release line | Status | Scope |
 |---|---|---|
 | `1.0.0-preview.1` | **Released 2026-11-13** | .NET 11 (STS) first preview; .NET 11 + C# 15 platform and peer parity |
-| `1.0.0-preview.2` | **Current — in preparation** | .NET 10 (LTS) baseline restored; .NET 11 bridge packages and OpenAPI keep net11 assets |
+| `1.0.0-preview.2` | **Current — released 2026-11-17** | .NET 10 (LTS) baseline restored; .NET 11 bridge packages and OpenAPI keep net11 assets |
 | `1.0.0-preview.3` … `preview.N` | **Conditional** | Post-preview fixes and API feedback; no new scope |
 | `1.0.0-rc.1` … `rc.N` | **Conditional** | Release-candidate hardening; release-blocking fixes only |
 | `1.0.0` | **Planned** | First stable release |
@@ -36,11 +36,12 @@ and `Not planned`.
 
 ---
 
-# 1.0.0-preview.2 — Current, in preparation
+# 1.0.0-preview.2 — Current, released 2026-11-17
 
 **Goal:** restore .NET 10 (LTS) as the baseline target while keeping .NET 11 (STS) as an additive
 target for the packages that expose .NET 11-only APIs. The first preview shipped `net11.0` only;
 this preview makes the same feature set consumable from .NET 10 without changing the public API.
+It was published to NuGet on 2026-11-17.
 
 ## Version snapshot
 
@@ -136,7 +137,7 @@ this preview makes the same feature set consumable from .NET 10 without changing
 ## Open release gates
 
 - [x] **MUST — Preview.1 publication.** `1.0.0-preview.1` was pushed to NuGet and tagged on 2026-11-13.
-- [ ] **MUST — Preview.2 publication.** Push the dual-target packages and create `v1.0.0-preview.2`.
+- [x] **MUST — Preview.2 publication.** `1.0.0-preview.2` was pushed to NuGet and tagged on 2026-11-17.
 - [ ] **MUST — Release checklist.** Record the build/test matrix, docs, AOT, package validation,
   consumer validation, vulnerability scan, and installation smoke test.
 - [ ] **SHOULD — Consumer validation.** Validate the published packages from a clean consumer feed
