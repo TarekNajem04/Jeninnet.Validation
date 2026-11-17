@@ -6,13 +6,13 @@ constraints (`required`, `format`, `pattern`, `minimum`/`maximum`, `minLength`/`
 
 ## Requirements
 
-- .NET 11.0 or later.
+- .NET 10.0 or later (the package ships `lib/net10.0` and `lib/net11.0` assets).
 - C# 15 when consuming the source contracts.
 
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.OpenApi.NSwag --version 1.0.0-preview.1
+dotnet add package Jeninnet.Validation.OpenApi.NSwag --version 1.0.0-preview.2
 ```
 
 ## Use

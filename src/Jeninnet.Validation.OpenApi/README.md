@@ -5,13 +5,15 @@ schemas.
 
 ## Requirements
 
-- .NET 11.0 or later.
+- .NET 10.0 or later (the package ships `lib/net10.0` and `lib/net11.0` assets).
 - C# 15 when consuming the source contracts.
+- On net10 the adapter uses `Microsoft.AspNetCore.OpenApi` 10.0.14 and `Microsoft.OpenApi` 2.x;
+  on net11 it uses 11.0.0 and `Microsoft.OpenApi` 3.x.
 
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.OpenApi --version 1.0.0-preview.1
+dotnet add package Jeninnet.Validation.OpenApi --version 1.0.0-preview.2
 ```
 
 ## Usage

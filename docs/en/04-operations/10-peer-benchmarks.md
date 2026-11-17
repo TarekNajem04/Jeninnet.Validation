@@ -26,8 +26,8 @@ DataAnnotations uses `Validator.TryValidateObject(..., validateAllProperties: tr
 
 ShortRun job on the repository’s reference machine (Windows 11, Intel Core i7-8850H, .NET 10.0.14,
 x64 RyuJIT). Lower is better; allocations are managed bytes per operation. This is a historical
-measurement; current builds use .NET 11 SDK `11.0.100`, so re-run before quoting it as a current
-performance claim.
+measurement; current builds use .NET 11 SDK `11.0.100` while the benchmark project targets the
+`net10.0` baseline, so re-run before quoting it as a current performance claim.
 
 | Method | Mean | Allocated |
 |---|---:|---:|

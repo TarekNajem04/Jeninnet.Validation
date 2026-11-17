@@ -78,11 +78,25 @@ foreach ($package in $packages) {
             $issues.Add("$($package.Name): .NET tool package contains a .dll.config artifact.")
         }
 
-        foreach ($bridge in @("Jeninnet.Validation.DataAnnotations", "Jeninnet.Validation.Extensions.Validation")) {
-            if ($package.Name -like "$bridge.*") {
-                foreach ($tfm in @("net11.0")) {
-                    if (-not ($entries | Where-Object { $_ -like "lib/$tfm/$bridge.dll" })) {
-                        $issues.Add("$($package.Name): missing lib/$tfm/$bridge.dll")
+        if ($package.Name -notlike "Jeninnet.Validation.Analyzers.*") {
+            if (-not ($entries | Where-Object { $_ -match '^(lib|tools)/net10\.0/' })) {
+                $issues.Add("$($package.Name): missing net10.0 assets.")
+            }
+        }
+
+        $dualTargetPackages = @(
+            "Jeninnet.Validation.DataAnnotations",
+            "Jeninnet.Validation.Extensions.Validation",
+            "Jeninnet.Validation.OpenApi",
+            "Jeninnet.Validation.OpenApi.Swashbuckle",
+            "Jeninnet.Validation.OpenApi.NSwag"
+        )
+
+        foreach ($dualTarget in $dualTargetPackages) {
+            if ($package.Name -match "^$([regex]::Escape($dualTarget))\.\d") {
+                foreach ($tfm in @("net10.0", "net11.0")) {
+                    if (-not ($entries | Where-Object { $_ -like "lib/$tfm/$dualTarget.dll" })) {
+                        $issues.Add("$($package.Name): missing lib/$tfm/$dualTarget.dll")
                     }
                 }
             }

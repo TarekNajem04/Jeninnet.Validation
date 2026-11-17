@@ -78,9 +78,11 @@ Jeninnet.Validation.Localization
 
 ## Target frameworks
 
-- `net11.0`: the core runtime and all integration packages.
+- `net10.0`: the core runtime and every integration package (LTS baseline).
+- `net11.0`: additive assets for `Jeninnet.Validation.DataAnnotations`,
+  `Jeninnet.Validation.Extensions.Validation`, and the three OpenAPI adapters.
 - `netstandard2.0`: `Jeninnet.Validation.Analyzers`, so it can run in Roslyn hosts.
 
 ## Version
 
-The current preview is `1.0.0-preview.1`; all packages share the central version.
+The current preview is `1.0.0-preview.2`; all packages share the central version.

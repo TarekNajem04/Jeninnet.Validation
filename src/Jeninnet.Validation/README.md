@@ -1,6 +1,6 @@
 # Jeninnet.Validation
 
-High-performance, source-generated validation for .NET 11.
+High-performance, source-generated validation for .NET 10 and .NET 11.
 
 Jeninnet.Validation combines attribute-driven rule declaration with Roslyn source generation
 and a fully typed fluent API. Validators are generated at compile time, so the validation hot
@@ -10,13 +10,13 @@ high-throughput services, trimming, and Native AOT.
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation --version 1.0.0-preview.1
+dotnet add package Jeninnet.Validation --version 1.0.0-preview.2
 ```
 
 Attribute-driven validation also requires the analyzer package:
 
 ```bash
-dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.1
+dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.2
 ```
 
 The analyzer package is a build-time dependency. It is applied to the consuming project
@@ -147,7 +147,7 @@ for the complete list.
 
 ## Requirements
 
-- .NET 11.0 or later.
+- .NET 10.0 or later.
 - C# 15 or later.
 - A Roslyn-based toolchain for source generation and analyzers.
 

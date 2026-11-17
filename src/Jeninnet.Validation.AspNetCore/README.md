@@ -14,13 +14,13 @@ ASP.NET Core integration for `Jeninnet.Validation`:
 
 ## Requirements
 
-- .NET 11.0 or later.
+- .NET 10.0 or later.
 - C# 15 when consuming the source contracts.
 
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.AspNetCore --version 1.0.0-preview.1
+dotnet add package Jeninnet.Validation.AspNetCore --version 1.0.0-preview.2
 ```
 
 ## Minimal API

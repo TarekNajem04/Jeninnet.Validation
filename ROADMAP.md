@@ -25,8 +25,9 @@ and `Not planned`.
 
 | Release line | Status | Scope |
 |---|---|---|
-| `1.0.0-preview.1` | **Current — released 2026-11-13** | .NET 11 + C# 15 platform, .NET 10 peer parity, stable-release gates |
-| `1.0.0-preview.2` … `preview.N` | **Conditional** | Post-preview fixes and API feedback; no new scope |
+| `1.0.0-preview.1` | **Released 2026-11-13** | .NET 11 (STS) first preview; .NET 11 + C# 15 platform and peer parity |
+| `1.0.0-preview.2` | **Current — in preparation** | .NET 10 (LTS) baseline restored; .NET 11 bridge packages and OpenAPI keep net11 assets |
+| `1.0.0-preview.3` … `preview.N` | **Conditional** | Post-preview fixes and API feedback; no new scope |
 | `1.0.0-rc.1` … `rc.N` | **Conditional** | Release-candidate hardening; release-blocking fixes only |
 | `1.0.0` | **Planned** | First stable release |
 | `1.1.0-preview.1` … `1.1.0` | **Planned** | Additive .NET 11 async bridges |
@@ -35,37 +36,43 @@ and `Not planned`.
 
 ---
 
-# 1.0.0-preview.1 — Current, released 2026-11-13
+# 1.0.0-preview.2 — Current, in preparation
 
-**Goal:** ship the first public preview with .NET 11 + C# 15 support, complete .NET 10 peer parity,
-and the stable-release evidence in place. The preview was published to NuGet on 2026-11-13.
+**Goal:** restore .NET 10 (LTS) as the baseline target while keeping .NET 11 (STS) as an additive
+target for the packages that expose .NET 11-only APIs. The first preview shipped `net11.0` only;
+this preview makes the same feature set consumable from .NET 10 without changing the public API.
 
 ## Version snapshot
 
 | Dimension | Status |
 |---|---|
-| Version | `1.0.0-preview.1` (central, `Directory.Build.props`) |
-| Target frameworks | `net11.0` for every shipping library; analyzer `netstandard2.0` |
+| Version | `1.0.0-preview.2` (central, `Directory.Build.props`) |
+| Target frameworks | `net10.0` baseline for every shipping library; `net11.0` added for `DataAnnotations`, `Extensions.Validation`, and the three OpenAPI adapters; analyzer `netstandard2.0` |
 | Language | C# 15 (`LangVersion=15.0`); SDK pinned to .NET `11.0.100` |
 | Build | **Verified:** 0 errors, 0 warnings |
-| Tests | **Verified:** 997/997 passing on `net11.0` |
+| Tests | **Verified:** 1,038/1,038 passing across `net10.0` and `net11.0` (997 on the net10 baseline) |
 | Analyzers | **Verified:** clean; diagnostics `VAL0001`–`VAL0034` (`VAL0026` unused) |
 | AOT/trimming | **Verified:** shipping libraries `IsAotCompatible`; NativeAOT smoke publishes and runs in CI |
-| Packages | **Verified:** 25 packable packages; package contents and consumer smoke verified |
+| Packages | **Verified:** 25 packable packages; package contents and dual-TFM consumer smoke verified |
 | Public API | **Verified:** 25 package baselines with the `RS0016`/`RS0017` gate |
-| Coverage | **Verified 2026-11-13:** ReportGenerator 79.1% line / 65.2% branch / 84.6% method across 25 assemblies; SonarCloud 80.2% coverage / 0.0% duplication / 0 open issues. Re-run Sonar on the release commit ([details](docs/en/04-operations/03-coverage-and-quality.md)). |
+| Coverage | **Pending:** re-run SonarCloud and ReportGenerator on the preview.2 release commit |
 | Localization | **Available:** 40 cultures; sibling `Jeninnet.Localization.*` packages remain on `1.0.0-preview.1` |
 
 ## Completed in this version
 
 ### Platform and build
 
-- [x] **MUST — .NET 11 SDK and C# 15.** `global.json` pins `11.0.100`; all projects compile with
-  `LangVersion=15.0`.
-- [x] **MUST — .NET 11 assets.** `Jeninnet.Validation.DataAnnotations` and
-  `Jeninnet.Validation.Extensions.Validation` ship `lib/net11.0`.
-- [x] **MUST — .NET 11 validation bridge.** `IValidatableTypeInfo`/`IValidatableParameterInfo`,
-  including minimal-API parameter validation, on net11.
+- [x] **MUST — .NET 10 baseline.** Every shipping library targets `net10.0`; the analyzer stays on
+  `netstandard2.0`.
+- [x] **MUST — .NET 11 assets.** `Jeninnet.Validation.DataAnnotations`,
+  `Jeninnet.Validation.Extensions.Validation`, and the three OpenAPI adapters ship both
+  `lib/net10.0` and `lib/net11.0`.
+- [x] **MUST — Per-target package versions.** OpenAPI uses Microsoft.AspNetCore.OpenApi 10.0.14 +
+  Microsoft.OpenApi 2.x on net10, and 11.0.0 + 3.x on net11; Swashbuckle uses 10.3.1 / 11.0.1.
+- [x] **MUST — Per-target output paths.** `AppendTargetFrameworkToOutputPath=true` prevents net10
+  and net11 dependency assets from mixing in one output folder.
+- [x] **MUST — Dual-TFM tests.** Bridge tests and OpenAPI adapter tests run on both targets; the
+  rest of the suite runs on the net10 baseline.
 - [x] **MUST — Central versioning and package set.** 25 packable packages with no per-project
   versions.
 
@@ -128,12 +135,12 @@ and the stable-release evidence in place. The preview was published to NuGet on 
 
 ## Open release gates
 
-- [ ] **MUST — NuGet publication.** Push the preview packages and create the matching `v*` tag.
-  **Deferred:** publication starts only after a separate go/no-go review.
+- [x] **MUST — Preview.1 publication.** `1.0.0-preview.1` was pushed to NuGet and tagged on 2026-11-13.
+- [ ] **MUST — Preview.2 publication.** Push the dual-target packages and create `v1.0.0-preview.2`.
 - [ ] **MUST — Release checklist.** Record the build/test matrix, docs, AOT, package validation,
   consumer validation, vulnerability scan, and installation smoke test.
 - [ ] **SHOULD — Consumer validation.** Validate the published packages from a clean consumer feed
-  before the preview announcement.
+  on both `net10.0` and `net11.0` before the preview announcement.
 - [ ] **SHOULD — Template package.** Publish `Jeninnet.Validation.Templates` once the preview feed is
   live; the repo-local `dotnet new install` path is tested.
 
@@ -148,7 +155,7 @@ and the stable-release evidence in place. The preview was published to NuGet on 
 
 ---
 
-# 1.0.0-preview.2 … 1.0.0-preview.N — Conditional
+# 1.0.0-preview.3 … 1.0.0-preview.N — Conditional
 
 **Goal:** absorb preview feedback without expanding scope.
 
@@ -173,7 +180,7 @@ and the stable-release evidence in place. The preview was published to NuGet on 
 
 # 1.0.0 — Stable
 
-**Goal:** ship the first stable release with `net11.0` assets.
+**Goal:** ship the first stable release with `net10.0` baseline assets and `net11.0` bridge assets.
 
 - [ ] **MUST — Preview/RC soak and feedback.** Resolve release-blocking bugs and API feedback.
 - [ ] **MUST — API freeze and baselines.** Refresh every baseline and publish the compatibility

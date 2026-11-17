@@ -114,7 +114,7 @@ public sealed class OpenApiSchemaTests {
         var validator = new OpenApiModelValidator();
         var registry = new ValidationSchemaRegistry([validator]);
         var transformer = new ValidationSchemaTransformer(registry);
-        var typeInfo = JsonSerializerOptions.Default.GetTypeInfo<OpenApiModel>();
+        var typeInfo = JsonSerializerOptions.Default.GetTypeInfo(typeof(OpenApiModel));
         var services = new ServiceCollection().BuildServiceProvider();
 
         var objectSchema = new OpenApiSchema();
@@ -163,7 +163,7 @@ public sealed class OpenApiSchemaTests {
                 PropertyNamingPolicy = Policy,
                 TypeInfoResolver = new System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver()
             };
-            var typeInfo = options.GetTypeInfo<OpenApiNamingModel>();
+            var typeInfo = options.GetTypeInfo(typeof(OpenApiNamingModel));
             var transformer = new ValidationSchemaTransformer(
                 new ValidationSchemaRegistry([new OpenApiNamingValidator()]));
 

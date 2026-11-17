@@ -15,13 +15,13 @@ scope; `no` is Bokmål.
 
 ## Requirements
 
-- .NET 11.0 or later.
+- .NET 10.0 or later.
 - C# 15 when consuming the source contracts.
 
 ## Installation
 
 ```xml
-<PackageReference Include="Jeninnet.Validation.Localization" Version="1.0.0-preview.1" />
+<PackageReference Include="Jeninnet.Validation.Localization" Version="1.0.0-preview.2" />
 ```
 
 ## Register

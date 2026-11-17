@@ -7,13 +7,13 @@ safe, idempotent codemods. Anything it does not understand is left untouched wit
 
 ## Requirements
 
-- .NET 11.0 or later.
+- .NET 10.0 or later.
 - C# 15 when consuming the source contracts.
 
 ## Installation
 
 ```bash
-dotnet tool install --global Jeninnet.Validation.Migration --version 1.0.0-preview.1
+dotnet tool install --global Jeninnet.Validation.Migration --version 1.0.0-preview.2
 ```
 
 ## Analyze

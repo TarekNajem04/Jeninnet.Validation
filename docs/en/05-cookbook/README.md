@@ -18,6 +18,7 @@ the deeper guide for the underlying concept.
 
 ## Conventions
 
-- Examples target .NET 11 and the preview package `1.0.0-preview.1`.
+- Examples target .NET 10 (LTS) and the preview package `1.0.0-preview.2`; the .NET 11 bridge and
+  OpenAPI packages add `net11.0` assets.
 - Register validators as `IValidator<T>` (scoped or singleton).
 - Use the async path when the validator has async rules.

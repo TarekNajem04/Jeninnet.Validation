@@ -9,8 +9,32 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 
 | Version | Status |
 |---|---|
-| `1.0.0-preview.1` | Current, released 2026-11-13 |
+| `1.0.0-preview.2` | Current, in preparation |
+| `1.0.0-preview.1` | Released 2026-11-13 |
 | `Pre-1.0.0` | Historical development (2026-06 – 2026-11) |
+
+---
+
+## 1.0.0-preview.2 — Unreleased
+
+**Status:** In preparation. This preview restores .NET 10 (LTS) as the baseline target while keeping
+the .NET 11 bridge assets.
+
+### Summary
+
+- `.NET 10` (`net10.0`) is the baseline for every shipping library; `net11.0` is additive for
+  `DataAnnotations`, `Extensions.Validation`, and the three OpenAPI adapters.
+- 25 packages now ship `lib/net10.0`; the dual-target packages also ship `lib/net11.0`.
+- OpenAPI uses `Microsoft.AspNetCore.OpenApi` 10.0.14 + `Microsoft.OpenApi` 2.x on net10, and
+  11.0.0 + 3.x on net11. Swashbuckle uses 10.3.1 / 11.0.1; NSwag stays on 14.8.0.
+- Per-target output paths keep net10 and net11 dependency assets separate.
+- The `Microsoft.Extensions.Validation` bridge keeps the net11
+  `IValidatableTypeInfo`/`IValidatableParameterInfo` path and the net10 `IValidatableInfo` path.
+- Tests: **1,038/1,038** across `net10.0` and `net11.0` (bridge and OpenAPI adapter tests run on both;
+  the rest of the suite runs on net10).
+- Build: **0 warnings / 0 errors**. Package content, dual-target consumer smoke, and public API
+  baselines pass.
+- Product version is `1.0.0-preview.2`.
 
 ---
 
@@ -920,7 +944,7 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 ## Pre-1.0.0 — Historical development (2026-06 – 2026-11)
 
 The sections below record the pre-preview development batches. They are kept for traceability;
-the current release scope is the `1.0.0-preview.1` section above.
+the current release scope is the `1.0.0-preview.2` section above.
 
 ### Phase 3-D — Release Stabilization (Batch 2)
 

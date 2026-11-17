@@ -7,12 +7,15 @@
 
 param(
     [string]$PackagesPath = "artifacts/packages",
+    [string]$Version = "1.0.0-preview.2",
+    [string[]]$TargetFrameworks = @("net10.0", "net11.0"),
     [switch]$Keep
 )
 
 $ErrorActionPreference = "Stop"
 
 $resolvedPath = (Resolve-Path -LiteralPath $PackagesPath).Path
+$frameworkList = @($TargetFrameworks | ForEach-Object { $_ -split '[,;]' } | ForEach-Object { $_.Trim() } | Where-Object { $_ })
 $root = Join-Path ([System.IO.Path]::GetTempPath()) ("jeninnet-consumer-" + [Guid]::NewGuid().ToString("N"))
 
 New-Item -ItemType Directory -Path $root | Out-Null
@@ -25,14 +28,17 @@ try {
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net11.0</TargetFramework>
+    <TargetFrameworks>$($frameworkList -join ';')</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Jeninnet.Validation" Version="1.0.0-preview.1" />
-    <PackageReference Include="Jeninnet.Validation.Analyzers" Version="1.0.0-preview.1" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="11.0.0" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Jeninnet.Validation" Version="$Version" />
+    <PackageReference Include="Jeninnet.Validation.Analyzers" Version="$Version" PrivateAssets="all" />
+    <PackageReference Include="Jeninnet.Validation.Extensions.Validation" Version="$Version" />
   </ItemGroup>
 </Project>
 "@ | Set-Content -LiteralPath (Join-Path $root "ConsumerSmoke.csproj") -Encoding utf8
@@ -41,6 +47,7 @@ try {
 using Jeninnet.Validation.Abstractions;
 using Jeninnet.Validation.Attributes;
 using Jeninnet.Validation.Catalog;
+using Jeninnet.Validation.Extensions.Validation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ConsumerSmoke;
@@ -57,7 +64,8 @@ public static class Program
     public static void Main()
     {
         var services = new ServiceCollection();
-        services.AddValidation();
+        Jeninnet.Validation.Catalog.ValidationCatalogServiceCollectionExtensions.AddValidation(services);
+        services.AddJeninnetValidation<User>();
         using var provider = services.BuildServiceProvider();
         var validator = provider.GetRequiredService<IValidator<User>>();
         var result = validator.Validate(new User { Name = "" });
@@ -83,14 +91,14 @@ public static class Program
 </configuration>
 "@ | Set-Content -LiteralPath (Join-Path $root "NuGet.config") -Encoding utf8
 
-    foreach ($framework in @("net11.0")) {
+    foreach ($framework in $frameworkList) {
         dotnet run --project (Join-Path $root "ConsumerSmoke.csproj") -f $framework -v:q
         if ($LASTEXITCODE -ne 0) {
             throw "Consumer smoke test for $framework failed with exit code $LASTEXITCODE."
         }
     }
 
-    Write-Host "Consumer smoke test passed for net11.0."
+    Write-Host "Consumer smoke test passed for $($frameworkList -join ', ')."
 }
 finally {
     if (-not $Keep) {

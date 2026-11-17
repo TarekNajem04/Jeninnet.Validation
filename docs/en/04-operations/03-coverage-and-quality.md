@@ -2,14 +2,18 @@
 
 ## Test suite
 
-- **997 tests** across core/validation, analyzers, architecture, ASP.NET Core, MediatR,
-  DataAnnotations (`net11.0`), Blazor, Observable UI, GraphQL, gRPC, the ASP.NET Core
+- **1,038 tests** across core/validation, analyzers, architecture, ASP.NET Core, MediatR,
+  DataAnnotations (`net10.0` and `net11.0`), Blazor, Observable UI, GraphQL, gRPC, the ASP.NET Core
   localization bridge, and the 40-culture message catalog, including the 23-case generated/fluent
   conformance matrix.
 - Build: 0 warnings / 0 errors.
 - Formatting and documentation checks are part of the release gates.
 
 ## Coverage
+
+> Preview.2 note: the coverage figures below are the `1.0.0-preview.1` baseline. The dual-target
+> preview re-runs SonarCloud and ReportGenerator on the release commit; replace these numbers when
+> that run completes.
 
 Two scopes are published:
 

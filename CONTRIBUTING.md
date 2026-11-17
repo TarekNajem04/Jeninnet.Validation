@@ -9,7 +9,7 @@ long-term API stability.
 ## Current Project Status
 
 Jeninnet.Validation is in an API stabilization phase. The current public preview,
-`1.0.0-preview.1`, is prepared for the 25 packable packages and adds .NET 11 + C# 15 support. The project remains pre-stable, and
+`1.0.0-preview.2`, is prepared for the 25 packable packages and adds .NET 11 + C# 15 support. The project remains pre-stable, and
 the public surface can still change before `1.0.0`; every change is nevertheless recorded in a
 committed public-API baseline.
 
@@ -122,7 +122,7 @@ Run the following before sending a change:
 ```powershell
 dotnet build Jeninnet.Validation.slnx
 dotnet test Jeninnet.Validation.slnx
-dotnet format Jeninnet.Validation.slnx --verify-no-changes --severity info
+dotnet format Jeninnet.Validation.slnx --verify-no-changes --severity info --exclude samples/Jeninnet.Validation.Analyzers.Sample.Console samples/Jeninnet.Validation.AotSmoke
 pwsh scripts/docs/check-doc-links.ps1
 pwsh scripts/docs/check-readme-claims.ps1
 pwsh scripts/docs/check-arabic-text.ps1

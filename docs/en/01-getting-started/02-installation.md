@@ -2,8 +2,9 @@
 
 ## Requirements
 
-- .NET 11 SDK (`11.0.100`) and C# 15.
-- The first release targets .NET 11 (`net11.0`).
+- .NET 10 SDK or later. The repository builds with the .NET 11 SDK (`11.0.100`) and C# 15.
+- The baseline target is .NET 10 (`net10.0`, LTS); `.NET 11` (`net11.0`) assets are additive for
+  the bridge and OpenAPI packages.
 - Any host: console, ASP.NET Core, worker, Blazor, MAUI, WPF, or Avalonia.
 
 ## Packages
@@ -36,11 +37,11 @@
 | `Jeninnet.Validation.MediatR.CSharpFunctionalExtensions` | MediatR failures as `CSharpFunctionalExtensions.Result<T>`. |
 | `Jeninnet.Validation.Migration` | `jeninnet` migration assistant (dotnet tool). |
 
-The current preview version is `1.0.0-preview.1`.
+The current preview version is `1.0.0-preview.2`.
 
 ```bash
-dotnet add package Jeninnet.Validation --version 1.0.0-preview.1
-dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.1
+dotnet add package Jeninnet.Validation --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.2
 ```
 
 ## Create a project from the template
@@ -52,8 +53,8 @@ dotnet new install ./templates/jeninnet-validator
 dotnet new jeninnet-validator -n MyCompany.Validation -o src/MyCompany.Validation
 ```
 
-The generated class library targets .NET 11 and references `Jeninnet.Validation`
-`1.0.0-preview.1`. Replace the sample `Customer` rules with your own.
+The generated class library targets .NET 10 and references `Jeninnet.Validation`
+`1.0.0-preview.2`. Replace the sample `Customer` rules with your own.
 
 ## Register validators
 
@@ -96,7 +97,7 @@ should use `AddValidation()` or explicit registration.
 Reference the analyzer project/package:
 
 ```xml
-<PackageReference Include="Jeninnet.Validation.Analyzers" Version="1.0.0-preview.1"
+<PackageReference Include="Jeninnet.Validation.Analyzers" Version="1.0.0-preview.2"
                   PrivateAssets="all" />
 ```
 

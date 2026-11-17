@@ -132,7 +132,8 @@ validation stack.
 
 ## Conventions
 
-- Code examples target .NET 11 and C# 15.
+- Code examples target .NET 10 (LTS) and C# 15; the .NET 11 bridge and OpenAPI packages use the same
+  source with additive `net11.0` assets.
 - `Validator<T>` is the fluent authoring base class.
 - `IValidator<T>` is the runtime contract shared by fluent and generated validators.
 - “Generated validator” means a validator emitted by the Roslyn source generator from attributes.

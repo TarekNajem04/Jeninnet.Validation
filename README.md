@@ -9,17 +9,20 @@
 [![GitHub stars](https://img.shields.io/github/stars/TarekNajem04/Jeninnet.Validation)](https://github.com/TarekNajem04/Jeninnet.Validation/stargazers)
 [![GitHub contributors](https://img.shields.io/github/contributors/TarekNajem04/Jeninnet.Validation)](https://github.com/TarekNajem04/Jeninnet.Validation/graphs/contributors)
 
-![api stability: baselines ok](badges/api-stability.svg) ![architecture: invariants ok](badges/architecture.svg) ![target framework: net11.0](badges/frameworks.svg) ![obsolete members: 0](badges/obsolete.svg) ![public surface: frozen ok](badges/public-surface.svg)
+![api stability: baselines ok](badges/api-stability.svg) ![architecture: invariants ok](badges/architecture.svg) ![target framework: net10.0/net11.0](badges/frameworks.svg) ![obsolete members: 0](badges/obsolete.svg) ![public surface: frozen ok](badges/public-surface.svg)
 
 **📖 Documentation:** [tareknajem04.github.io/Jeninnet.Validation](https://tareknajem04.github.io/Jeninnet.Validation/) — the complete reference book, guides, API reference, and samples.
 
-- **Status:** `1.0.0-preview.1` — current preview, published on
+- **Status:** `1.0.0-preview.2` — current preview, published on
   [NuGet](https://www.nuget.org/packages/Jeninnet.Validation/).
 - **Documentation:** [Jeninnet.Validation reference book](https://tareknajem04.github.io/Jeninnet.Validation/)
   ([source](docs/en/README.md)) and the
   [Why Jeninnet?](docs/en/01-getting-started/00-why-jeninnet.md) decision page.
-- **Target frameworks:** `net11.0` for every shipping library (STS); analyzer `netstandard2.0`.
-- **Language:** C# 15 (`LangVersion=15.0`), built with the .NET 11 SDK.
+- **Target frameworks:** `net10.0` (LTS) for every shipping library; `net11.0` is added for the
+  protocols that expose .NET 11-only APIs (`DataAnnotations`, `Extensions.Validation`, and the
+  OpenAPI adapters). The analyzer targets `netstandard2.0`.
+- **Language:** C# 15 (`LangVersion=15.0`), built with the .NET 11 SDK; the `net10.0` assets are
+  consumable from .NET 10 applications.
 - **Security:** report privately through [GitHub Security Advisories](.github/SECURITY.md); see
   [SECURITY.md](.github/SECURITY.md).
 - **Support:** see [SUPPORT.md](.github/SUPPORT.md) and the [documentation](docs/en/README.md).
@@ -87,7 +90,7 @@ The complete reference book is published at
 | Integrations (`src/`) | `AspNetCore`, `Extensions.Validation`, `DataAnnotations`, `Blazor`, `Observable`, `MediatR` + result adapters, `GraphQL`, `Grpc` |
 | Metadata and clients (`src/`) | `JsonSchema`, `OpenApi`, `OpenApi.Swashbuckle`, `OpenApi.NSwag`, `ClientRules` |
 | Localization and domain (`src/`) | `Localization`, `Localization.AspNetCore`, `Rules.Domain`, `Diagnostics`, `Assertions` |
-| Tests (`tests/`) | 15 MSTest projects covering the engine, analyzers, integrations, architecture, packaging, and the `net11.0` matrix |
+| Tests (`tests/`) | 18 MSTest projects (15 on the net10 baseline plus 3 net11 bridge/OpenAPI suites) covering the engine, analyzers, integrations, architecture, packaging, and the `net10.0`/`net11.0` matrix |
 | Samples (`samples/`) | 26 sample projects, including the Clean Architecture and XML-localization samples |
 | Templates (`templates/`) | `jeninnet-validator` `dotnet new` template |
 | Tooling (`scripts/`) | Build, coverage, Sonar, package, API, localization, badge, template, and cleanup tools |
@@ -102,8 +105,8 @@ The repository builds **25 packable projects** (25 packages). See the
 ## Quick start
 
 ```bash
-dotnet add package Jeninnet.Validation --version 1.0.0-preview.1
-dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.1
+dotnet add package Jeninnet.Validation --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.2
 ```
 
 ```csharp
@@ -157,11 +160,11 @@ For the complete walkthrough, see [Quick start](docs/en/01-getting-started/03-qu
 ```bash
 dotnet build Jeninnet.Validation.slnx -c Release
 dotnet test  Jeninnet.Validation.slnx -c Release
-dotnet format Jeninnet.Validation.slnx --verify-no-changes --no-restore
+dotnet format Jeninnet.Validation.slnx --verify-no-changes --no-restore --exclude samples/Jeninnet.Validation.Analyzers.Sample.Console samples/Jeninnet.Validation.AotSmoke
 ```
 
-The current suite runs **997 tests** on `net11.0`. Package validation uses the packed
-local feed:
+The current suite runs **1,038 tests** across `net10.0` and `net11.0` (997 on the `net10.0`
+baseline). Package validation uses the packed local feed:
 
 ```bash
 dotnet pack Jeninnet.Validation.slnx -c Release -o artifacts/packages
@@ -188,7 +191,7 @@ pwsh scripts/package/check-consumer-smoke.ps1 -PackagesPath artifacts/packages
 | [Roadmap](ROADMAP.md) | Release plan by version |
 | [Changelog](CHANGELOG.md) | Work grouped by release |
 
-Release notes: [.github/release-notes/v1.0.0-preview.1.md](.github/release-notes/v1.0.0-preview.1.md).
+Release notes: [.github/release-notes/v1.0.0-preview.2.md](.github/release-notes/v1.0.0-preview.2.md).
 Migration guides: [FluentValidation](docs/en/02-guides/15-migration-from-fluentvalidation.md) and
 [DataAnnotations](docs/en/02-guides/16-migration-from-dataannotations.md).
 

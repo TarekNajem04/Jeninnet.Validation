@@ -6,13 +6,13 @@ MVC model binding, Blazor's `DataAnnotationsValidator`, and custom
 
 ## Requirements
 
-- .NET 11.0 or later (the package ships `lib/net11.0` assets).
+- .NET 10.0 or later (the package ships `lib/net10.0` and `lib/net11.0` assets).
 - C# 15 when consuming the source contracts.
 
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.DataAnnotations --version 1.0.0-preview.1
+dotnet add package Jeninnet.Validation.DataAnnotations --version 1.0.0-preview.2
 ```
 
 ## Class-level attribute

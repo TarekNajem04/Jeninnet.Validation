@@ -69,7 +69,7 @@ public sealed class BlazorAdapterTests {
             new BlazorOrderValidator(),
             model);
 
-        await context.ValidateAsync(TestContext?.CancellationToken ?? CancellationToken.None);
+        await coordinator.ValidateAsync(TestContext?.CancellationToken ?? CancellationToken.None);
 
         MSTestAssertions.That(() => Messages(context, model, nameof(BlazorOrder.CustomerName)).Should().BeTrue());
         MSTestAssertions.That(() => Messages(context, model.Address!, nameof(BlazorAddress.Street)).Should().BeTrue());
@@ -133,14 +133,14 @@ public sealed class BlazorAdapterTests {
             new BlazorOrderValidator(),
             model);
 
-        await context.ValidateAsync(TestContext?.CancellationToken ?? CancellationToken.None);
+        await coordinator.ValidateAsync(TestContext?.CancellationToken ?? CancellationToken.None);
         MSTestAssertions.That(() => Messages(context, model, nameof(BlazorOrder.CustomerName)).Should().BeTrue());
 
         coordinator.Clear();
         MSTestAssertions.That(() => Messages(context, model, nameof(BlazorOrder.CustomerName)).Should().BeFalse());
 
         coordinator.Dispose();
-        await context.ValidateAsync(TestContext?.CancellationToken ?? CancellationToken.None);
+        context.Validate();
         MSTestAssertions.That(() => Messages(context, model, nameof(BlazorOrder.CustomerName)).Should().BeFalse());
     }
 

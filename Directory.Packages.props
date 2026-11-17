@@ -23,30 +23,29 @@
     <PackageVersion Include="Jeninnet.Localization.Providers.ResX" Version="1.0.0-preview.1" />
     <PackageVersion Include="Jeninnet.Localization.Providers.Xml" Version="1.0.0-preview.1" />
     <!--
-      The first release targets .NET 11 (STS), so the Roslyn and immutable stack moves to the
-      current .NET 11 line.
+      The platform baseline is .NET 10 (LTS). The bridge and OpenAPI packages also target
+      .NET 11 (STS), so the Roslyn and immutable stack stays on the current line.
     -->
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="5.9.0" />
-    <!-- 5.6.0 includes compiler-generated record members in RS0016; baselines are regenerated for net11.0. -->
+    <!-- 5.6.0 includes compiler-generated record members in RS0016; baselines are regenerated for the current analyzer. -->
     <PackageVersion Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="5.6.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Common" Version="5.9.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="5.9.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="5.9.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="5.9.0" />
-    <PackageVersion Include="Microsoft.Data.Sqlite" Version="11.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="11.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="11.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.Logging" Version="11.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="11.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.Options" Version="11.0.0" />
+    <PackageVersion Include="Microsoft.Data.Sqlite" Version="$(MicrosoftDataSqliteVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="$(MicrosoftExtensionsVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftExtensionsVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Logging" Version="$(MicrosoftExtensionsVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="$(MicrosoftExtensionsVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Options" Version="$(MicrosoftExtensionsVersion)" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.12.0" />
     <PackageVersion Include="MSTest" Version="4.5.3" />
     <PackageVersion Include="MSTest.TestAdapter" Version="4.5.3" />
     <PackageVersion Include="MSTest.TestFramework" Version="4.5.3" />
     <PackageVersion Include="NSwag.Generation" Version="14.8.0" />
-    <!-- Swashbuckle 11 and ASP.NET Core OpenAPI 11 share Microsoft.OpenApi 3.x on net11.0. -->
-    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="11.0.1" />
-    <PackageVersion Include="Microsoft.OpenApi" Version="3.11.0" />
+    <!-- Swashbuckle 10.x uses Microsoft.OpenApi 2.x on net10; 11.x uses 3.x on net11. -->
+    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="$(SwashbuckleSwaggerGenVersion)" />
     <PackageVersion Include="System.Collections.Immutable" Version="11.0.0" />
     <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.36.0.15337" />
     <PackageVersion Include="MediatR" Version="15.0.0" />
@@ -59,9 +58,33 @@
     <PackageVersion Include="Grpc.Net.Client" Version="2.85.0" />
     <PackageVersion Include="Google.Api.CommonProtos" Version="2.17.0" />
     <PackageVersion Include="HotChocolate.AspNetCore" Version="16.7.5" />
-    <!-- ASP.NET Core 11 packages are net11.0-only; the first release targets net11.0. -->
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="11.0.0" />
-    <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="11.0.0" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <MicrosoftAspNetCoreOpenApiVersion>10.0.14</MicrosoftAspNetCoreOpenApiVersion>
+    <MicrosoftAspNetCoreTestHostVersion>10.0.14</MicrosoftAspNetCoreTestHostVersion>
+    <MicrosoftOpenApiVersion>2.12.2</MicrosoftOpenApiVersion>
+    <SwashbuckleSwaggerGenVersion>10.3.1</SwashbuckleSwaggerGenVersion>
+    <MicrosoftExtensionsVersion>10.0.14</MicrosoftExtensionsVersion>
+    <MicrosoftDataSqliteVersion>10.0.14</MicrosoftDataSqliteVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <MicrosoftAspNetCoreOpenApiVersion Condition="'$(MicrosoftAspNetCoreOpenApiVersion)' == ''">11.0.0</MicrosoftAspNetCoreOpenApiVersion>
+    <MicrosoftAspNetCoreTestHostVersion Condition="'$(MicrosoftAspNetCoreTestHostVersion)' == ''">11.0.0</MicrosoftAspNetCoreTestHostVersion>
+    <MicrosoftOpenApiVersion Condition="'$(MicrosoftOpenApiVersion)' == ''">3.11.0</MicrosoftOpenApiVersion>
+    <SwashbuckleSwaggerGenVersion Condition="'$(SwashbuckleSwaggerGenVersion)' == ''">11.0.1</SwashbuckleSwaggerGenVersion>
+    <MicrosoftExtensionsVersion Condition="'$(MicrosoftExtensionsVersion)' == ''">11.0.0</MicrosoftExtensionsVersion>
+    <MicrosoftDataSqliteVersion Condition="'$(MicrosoftDataSqliteVersion)' == ''">11.0.0</MicrosoftDataSqliteVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(MicrosoftAspNetCoreOpenApiVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="$(MicrosoftAspNetCoreTestHostVersion)" />
+    <PackageVersion Include="Microsoft.OpenApi" Version="$(MicrosoftOpenApiVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageVersion Include="Microsoft.Build.Tasks.Git" Version="11.0.100" />
     <PackageVersion Include="Microsoft.SourceLink.Common" Version="11.0.100" />
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="11.0.100" />

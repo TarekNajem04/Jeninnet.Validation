@@ -324,8 +324,9 @@ override to change localized default text; the pack remains the fallback for non
 - `EditContext.OnValidationRequested` is synchronous. Async validation uses the explicit
   `JeninnetValidator.ValidateAsync()` path from `EditForm.OnSubmit`; `EditContext.Validate()` in
   async mode throws a guidance exception rather than blocking.
-- `EditContext.ValidateAsync` exists on .NET 11; the package targets `net11.0` and also exposes its
-  own async submit path.
+- `EditContext.ValidateAsync` exists on .NET 11; the package’s supported async path is the explicit
+  `JeninnetValidator.ValidateAsync()` call from `EditForm.OnSubmit`, which also works on the
+  `net10.0` baseline.
 - `FieldChangedDebounce` requires async mode; no delay is applied by default.
 - `SkipIfModelStateValid` is the double-validation toggle: it skips an unchanged, already-valid
   model.

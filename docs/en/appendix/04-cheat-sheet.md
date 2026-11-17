@@ -3,17 +3,17 @@
 ## Packages
 
 ```bash
-dotnet add package Jeninnet.Validation --version 1.0.0-preview.1
-dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.1
-dotnet add package Jeninnet.Validation.AspNetCore --version 1.0.0-preview.1
-dotnet add package Jeninnet.Validation.MediatR --version 1.0.0-preview.1
-dotnet add package Jeninnet.Validation.DataAnnotations --version 1.0.0-preview.1
-dotnet add package Jeninnet.Validation.Blazor --version 1.0.0-preview.1
-dotnet add package Jeninnet.Validation.JsonSchema --version 1.0.0-preview.1
-dotnet add package Jeninnet.Validation.OpenApi --version 1.0.0-preview.1
-dotnet add package Jeninnet.Validation.ClientRules --version 1.0.0-preview.1
-dotnet add package Jeninnet.Validation.Localization --version 1.0.0-preview.1
-dotnet add package Jeninnet.Validation.Assertions --version 1.0.0-preview.1
+dotnet add package Jeninnet.Validation --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.AspNetCore --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.MediatR --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.DataAnnotations --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Blazor --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.JsonSchema --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.OpenApi --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.ClientRules --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Localization --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Assertions --version 1.0.0-preview.2
 ```
 
 ## Validator skeleton

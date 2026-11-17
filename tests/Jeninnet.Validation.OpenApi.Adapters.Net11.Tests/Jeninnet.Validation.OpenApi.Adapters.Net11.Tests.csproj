@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net11.0</TargetFramework>
+        <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
+        <DisableArtifacts>true</DisableArtifacts>
+        <NeutralLanguage>en</NeutralLanguage>
+        <AssemblyName>Jeninnet.Validation.OpenApi.Adapters.Net11.Tests</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="..\Jeninnet.Validation.OpenApi.Adapters.Tests\**\*.cs"
+                 Exclude="..\Jeninnet.Validation.OpenApi.Adapters.Tests\bin\**;..\Jeninnet.Validation.OpenApi.Adapters.Tests\obj\**"
+                 LinkBase="Linked" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="MSTest" />
+        <PackageReference Include="MSTest.TestAdapter" />
+        <PackageReference Include="coverlet.collector" PrivateAssets="all" />
+        <PackageReference Include="Jeninnet.Assertions" />
+        <PackageReference Include="Jeninnet.Assertions.MSTest" />
+        <!--
+          This project is net11.0-only and is evaluated before the project body sets
+          TargetFramework; force the net11 OpenAPI dependency line explicitly.
+        -->
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" VersionOverride="11.0.0" />
+        <PackageReference Include="Microsoft.OpenApi" VersionOverride="3.11.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" VersionOverride="11.0.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" VersionOverride="11.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging" VersionOverride="11.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Jeninnet.Validation\Jeninnet.Validation.csproj" />
+        <ProjectReference Include="..\..\src\Jeninnet.Validation.Abstractions\Jeninnet.Validation.Abstractions.csproj" />
+        <ProjectReference Include="..\..\src\Jeninnet.Validation.JsonSchema\Jeninnet.Validation.JsonSchema.csproj" />
+        <ProjectReference Include="..\..\src\Jeninnet.Validation.OpenApi\Jeninnet.Validation.OpenApi.csproj" />
+        <ProjectReference Include="..\..\src\Jeninnet.Validation.OpenApi.NSwag\Jeninnet.Validation.OpenApi.NSwag.csproj" />
+        <ProjectReference Include="..\..\src\Jeninnet.Validation.OpenApi.Swashbuckle\Jeninnet.Validation.OpenApi.Swashbuckle.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -94,11 +94,14 @@ jobs:
 
       # dotnet format loads a design-time build. Source generators must already be
       # built, otherwise generated validator types are missing on a clean checkout.
+      # The two generated-validator samples are excluded because their partial
+      # AddCustomValidators hooks require the generator to run inside the format
+      # workspace; they are still compiled and tested by the build/test jobs.
       - name: Build (generated sources)
         run: dotnet build Jeninnet.Validation.slnx --configuration Debug --no-restore
 
       - name: Verify formatting
-        run: dotnet format Jeninnet.Validation.slnx --verify-no-changes --no-restore
+        run: dotnet format Jeninnet.Validation.slnx --verify-no-changes --no-restore --exclude samples/Jeninnet.Validation.Analyzers.Sample.Console samples/Jeninnet.Validation.AotSmoke
 
       - name: Check source headers
         shell: pwsh

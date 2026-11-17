@@ -6,13 +6,14 @@ Swashbuckle schema filter that turns `Jeninnet.Validation` validators into OpenA
 
 ## Requirements
 
-- .NET 11.0 or later.
+- .NET 10.0 or later (the package ships `lib/net10.0` and `lib/net11.0` assets).
 - C# 15 when consuming the source contracts.
+- Uses Swashbuckle 10.3.1 on net10 and 11.0.1 on net11.
 
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.OpenApi.Swashbuckle --version 1.0.0-preview.1
+dotnet add package Jeninnet.Validation.OpenApi.Swashbuckle --version 1.0.0-preview.2
 ```
 
 ## Use

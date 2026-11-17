@@ -35,6 +35,9 @@ public sealed partial class PackagingBaselineTests {
     [GeneratedRegex("## Packages \\((\\d+)\\)", RegexOptions.CultureInvariant)]
     private static partial Regex ReleaseNotesPackageCountPattern();
 
+    [GeneratedRegex("<Version>([^<]+)</Version>", RegexOptions.CultureInvariant)]
+    private static partial Regex ProductVersionPattern();
+
     [TestMethod]
     public void PackageIcon_IsValid128PixelPng() {
         var path = Path.Combine(RepositoryRoot, "assets", "jeninnet-validation-icon-128.png");
@@ -76,7 +79,14 @@ public sealed partial class PackagingBaselineTests {
     [TestMethod]
     public void ReleaseNotes_TrackThePackablePackageSet() {
         var projects = FindPackableProjects();
-        var notes = File.ReadAllText(Path.Combine(RepositoryRoot, ".github", "release-notes", "v1.0.0-preview.1.md"));
+        var props = File.ReadAllText(Path.Combine(RepositoryRoot, "Directory.Build.props"));
+        var versionMatch = ProductVersionPattern().Match(props);
+
+        MSTestAssertions.That(() => versionMatch.Success.Should().BeTrue("Directory.Build.props must declare the product version"));
+
+        var version = versionMatch.Groups[1].Value;
+        var notesPath = Path.Combine(RepositoryRoot, ".github", "release-notes", $"v{version}.md");
+        var notes = File.ReadAllText(notesPath);
         var match = ReleaseNotesPackageCountPattern().Match(notes);
 
         MSTestAssertions.That(() => match.Success.Should().BeTrue("the release notes must state the package count"));

@@ -1,9 +1,13 @@
 <Project>
 
     <PropertyGroup>
-        <TargetFramework>net11.0</TargetFramework>
-        <!-- The runtime support matrix; the first release targets .NET 11 (STS). -->
-        <RuntimeTargetFrameworks>net11.0</RuntimeTargetFrameworks>
+        <!--
+          .NET 10 (LTS) is the baseline. Projects that expose .NET 11-only APIs opt in to
+          net11.0 by overriding TargetFrameworks in their own project file. The analyzer stays
+          on netstandard2.0 because it runs inside Roslyn.
+        -->
+        <TargetFramework>net10.0</TargetFramework>
+        <RuntimeTargetFrameworks>net10.0;net11.0</RuntimeTargetFrameworks>
         <LangVersion>15.0</LangVersion>
         <!--<OutputPath>$(SolutionDir)output</OutputPath>-->
 
@@ -17,10 +21,11 @@
         <IsPackable>false</IsPackable>
 
         <!--
-          https://www.tabsoverspaces.com/233608-stopping-msbuild-appending-targetframework-to-outputpath
-          Stopping MSBuild appending TargetFramework to OutputPath
+          Keep one output directory per target framework. A shared bin/Release path mixes
+          net10 and net11 dependency assets after a multi-target build, which makes tests
+          load the wrong System.Runtime.
         -->
-        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
         <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 
         <!--
@@ -64,14 +69,14 @@
         <Copyright>Copyright © Jeninnet</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <Description>$(MSBuildProjectName) - a component of Jeninnet.Validation, a modular .NET validation framework with fluent and attribute authoring, source generation, AOT support, zero-allocation execution, and ASP.NET Core, Blazor, MediatR, OpenAPI, JSON Schema, and GraphQL integrations.</Description>
-        <PackageTags>validation;model-validation;fluent-validation;data-annotations;aspnetcore;blazor;source-generator;csharp;dotnet;net11</PackageTags>
+        <PackageTags>validation;model-validation;fluent-validation;data-annotations;aspnetcore;blazor;source-generator;csharp;dotnet;net10;net11</PackageTags>
 
         <!--
             Single solution-wide product version (the project identity rule).
             Projects must NOT declare their own <Version>.
             AssemblyVersion and FileVersion must stay numeric because they cannot carry a prerelease label.
         -->
-        <Version>1.0.0-preview.1</Version>
+        <Version>1.0.0-preview.2</Version>
         <FileVersion>1.0.0.0</FileVersion>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
         <PackageVersion>$(Version)</PackageVersion>

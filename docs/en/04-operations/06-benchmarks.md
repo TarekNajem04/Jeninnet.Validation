@@ -19,8 +19,8 @@ DataAnnotations, see [Peer benchmarks](10-peer-benchmarks.md).
 | Configuration | Release, no debugger, pre-JIT |
 
 > **Historical measurement.** These numbers were captured with the .NET 10 SDK. The repository now
-> pins .NET 11 SDK `11.0.100` and C# 15; re-run the suite before treating the numbers as a
-> current performance claim.
+> pins .NET 11 SDK `11.0.100` and C# 15 while the benchmark project targets the `net10.0` baseline;
+> re-run the suite before treating the numbers as a current performance claim.
 >
 > **Tooling.** BenchmarkDotNet 0.15.8 does not recognize the `net11.0` runtime moniker and throws
 > `GetRuntimeVersion not implemented for NotRecognized` before running any benchmark. The

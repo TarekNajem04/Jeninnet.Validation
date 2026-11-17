@@ -1,7 +1,7 @@
 # Introduction
 
-Jeninnet.Validation is a validation framework for .NET 11 applications. It gives you two authoring
-styles over one execution engine:
+Jeninnet.Validation is a validation framework for .NET 10 and .NET 11 applications. It gives you two
+authoring styles over one execution engine:
 
 - **Fluent authoring** — derive from `Validator<T>` and declare rules with `RuleFor`.
 - **Attribute authoring** — annotate a model with `[Validate]`, `[NotEmpty]`, `[Length]`, and let
@@ -38,7 +38,7 @@ trimming and Native AOT.
 
 ## Project status
 
-The current preview is `1.0.0-preview.1`. The public surface can still change before `1.0.0`.
+The current preview is `1.0.0-preview.2`. The public surface can still change before `1.0.0`.
 See [Compatibility and versions](../03-reference/06-compatibility-and-versions.md) and the
 [roadmap](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/ROADMAP.md).
 

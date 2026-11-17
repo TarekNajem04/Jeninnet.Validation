@@ -2,18 +2,22 @@
 
 ## Runtime and toolchain
 
-- .NET 11.0 (STS). Every shipping library targets `net11.0`; the analyzer targets `netstandard2.0`.
-- C# 15.
-- The current preview is `1.0.0-preview.1`.
+- **.NET 10.0 (LTS)** is the baseline. Every shipping library targets `net10.0`; the analyzer
+  targets `netstandard2.0`.
+- **.NET 11.0 (STS)** is additive. `Jeninnet.Validation.DataAnnotations`,
+  `Jeninnet.Validation.Extensions.Validation`, and the three OpenAPI adapters also ship `net11.0`
+  assets for .NET 11-only APIs.
+- C# 15, built with the .NET 11 SDK.
+- The current preview is `1.0.0-preview.2`.
 
 ## Compatibility matrix
 
 | Surface | Supported |
 |---|---|
-| .NET | 11.0 (STS); every shipping library targets `net11.0`; analyzer `netstandard2.0` |
+| .NET | 10.0 (LTS) baseline; 11.0 (STS) additive for `DataAnnotations`, `Extensions.Validation`, and the OpenAPI adapters; analyzer `netstandard2.0` |
 | C# | 15 |
-| ASP.NET Core | 11.0 |
-| Microsoft.Extensions.* | 11.0.x |
+| ASP.NET Core | 10.0 and 11.0 (the package selects the matching target) |
+| Microsoft.Extensions.* | 10.0.x on net10; 11.0.x on net11 |
 | MediatR | 15.x |
 | `Jeninnet.Localization.*` | `1.0.0-preview.1` (the sibling localization preview line); only required by the localization packages, not by core validation |
 | Native AOT / trimming | `Jeninnet.Validation`, `Abstractions`, `Assertions`, `ClientRules`, `Diagnostics`, `Extensions.Validation`, `JsonSchema`, `Localization`, `Rules.Domain` |
@@ -21,12 +25,20 @@
 
 The repository ships 25 packable packages. See the [package map](../appendix/02-package-map.md).
 
+## Target framework selection
+
+- A `net10.0` application resolves the `lib/net10.0` asset.
+- A `net11.0` application resolves the `lib/net11.0` asset where one exists, otherwise the
+  `lib/net10.0` asset (which is binary-compatible with .NET 11).
+- The OpenAPI adapters use `Microsoft.AspNetCore.OpenApi` 10.0.14 + `Microsoft.OpenApi` 2.x on
+  net10, and 11.0.0 + 3.x on net11. Swashbuckle uses 10.3.1 / 11.0.1.
+
 ## Versioning
 
 The product version is centralized in `Directory.Build.props`:
 
 ```xml
-<Version>1.0.0-preview.1</Version>
+<Version>1.0.0-preview.2</Version>
 <FileVersion>1.0.0.0</FileVersion>
 <AssemblyVersion>1.0.0.0</AssemblyVersion>
 <PackageVersion>$(Version)</PackageVersion>
@@ -58,9 +70,9 @@ NuGet package version is the prerelease value.
 6. Re-generate JSON Schema, OpenAPI, and client rules; the descriptor shape can change.
 
 ```xml
-<PackageReference Include="Jeninnet.Validation" Version="1.0.0-preview.1" />
-<PackageReference Include="Jeninnet.Validation.AspNetCore" Version="1.0.0-preview.1" />
-<PackageReference Include="Jeninnet.Validation.Localization" Version="1.0.0-preview.1" />
+<PackageReference Include="Jeninnet.Validation" Version="1.0.0-preview.2" />
+<PackageReference Include="Jeninnet.Validation.AspNetCore" Version="1.0.0-preview.2" />
+<PackageReference Include="Jeninnet.Validation.Localization" Version="1.0.0-preview.2" />
 ```
 
 ## Public API baselines

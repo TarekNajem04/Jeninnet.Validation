@@ -15,6 +15,7 @@
   </Folder>
   <Folder Name="/.github/release-notes/">
     <File Path=".github/release-notes/v1.0.0-preview.1.md" />
+    <File Path=".github/release-notes/v1.0.0-preview.2.md" />
   </Folder>
   <Folder Name="/.github/workflows/">
     <File Path=".github/workflows/auto-approve-dependabot.yml" />
@@ -256,7 +257,9 @@
     <Project Path="tests/Jeninnet.Validation.AspNetCore.Tests/Jeninnet.Validation.AspNetCore.Tests.csproj" />
     <Project Path="tests/Jeninnet.Validation.Blazor.Tests/Jeninnet.Validation.Blazor.Tests.csproj" />
     <Project Path="tests/Jeninnet.Validation.DataAnnotations.Tests/Jeninnet.Validation.DataAnnotations.Tests.csproj" />
+    <Project Path="tests/Jeninnet.Validation.DataAnnotations.Net11.Tests/Jeninnet.Validation.DataAnnotations.Net11.Tests.csproj" />
     <Project Path="tests/Jeninnet.Validation.Extensions.Validation.Tests/Jeninnet.Validation.Extensions.Validation.Tests.csproj" />
+    <Project Path="tests/Jeninnet.Validation.Extensions.Validation.Net11.Tests/Jeninnet.Validation.Extensions.Validation.Net11.Tests.csproj" />
     <Project Path="tests/Jeninnet.Validation.GraphQL.Tests/Jeninnet.Validation.GraphQL.Tests.csproj" />
     <Project Path="tests/Jeninnet.Validation.Grpc.Tests/Jeninnet.Validation.Grpc.Tests.csproj" />
     <Project Path="tests/Jeninnet.Validation.Localization.AspNetCore.Tests/Jeninnet.Validation.Localization.AspNetCore.Tests.csproj" />
@@ -265,6 +268,7 @@
     <Project Path="tests/Jeninnet.Validation.Migration.Tests/Jeninnet.Validation.Migration.Tests.csproj" />
     <Project Path="tests/Jeninnet.Validation.Observable.Tests/Jeninnet.Validation.Observable.Tests.csproj" />
     <Project Path="tests/Jeninnet.Validation.OpenApi.Adapters.Tests/Jeninnet.Validation.OpenApi.Adapters.Tests.csproj" />
+    <Project Path="tests/Jeninnet.Validation.OpenApi.Adapters.Net11.Tests/Jeninnet.Validation.OpenApi.Adapters.Net11.Tests.csproj" />
   </Folder>
   <Folder Name="/benchmarks/">
     <Project Path="src/Jeninnet.Validation.Benchmarks/Jeninnet.Validation.Benchmarks.csproj" />

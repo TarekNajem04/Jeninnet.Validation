@@ -111,11 +111,13 @@ Reference `Jeninnet.Validation.Abstractions` for `IValidator<T>`, `ValidationRes
 
 **Which .NET versions are supported?**
 
-.NET 11, with C# 15.
+.NET 10 (LTS) is the baseline. .NET 11 is supported through additive `net11.0` assets for the
+`DataAnnotations`, `Extensions.Validation`, and OpenAPI packages; all other packages use the
+`net10.0` asset on .NET 11. C# 15 is the supported language version.
 
 **Which version should I reference?**
 
-The current preview is `1.0.0-preview.1`. The version is centralized in `Directory.Build.props`.
+The current preview is `1.0.0-preview.2`. The version is centralized in `Directory.Build.props`.
 
 **Is the public API stable?**
 

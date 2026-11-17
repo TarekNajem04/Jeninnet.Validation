@@ -1,19 +1,19 @@
 # Jeninnet.Validation.Extensions.Validation
 
 Bridges `Jeninnet.Validation` validators into the `Microsoft.Extensions.Validation`
-pipeline used by ASP.NET Core 11 minimal APIs and compatible hosts. The bridge
+pipeline used by ASP.NET Core 10/11 minimal APIs and compatible hosts. On .NET 11 the bridge
 implements `IValidatableTypeInfo`/`IValidatableParameterInfo`, including minimal-API parameter
-validation.
+validation; on .NET 10 it uses the `IValidatableInfo` path.
 
 ## Requirements
 
-- .NET 11.0 or later (the package ships `lib/net11.0` assets).
+- .NET 10.0 or later (the package ships `lib/net10.0` and `lib/net11.0` assets).
 - C# 15 when consuming the source contracts.
 
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.Extensions.Validation --version 1.0.0-preview.1
+dotnet add package Jeninnet.Validation.Extensions.Validation --version 1.0.0-preview.2
 ```
 
 ## Usage

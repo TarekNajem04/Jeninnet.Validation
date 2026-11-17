@@ -21,8 +21,9 @@ capabilities added by the 2026 peer re-baseline.
 | Deferred to `1.1.0-preview.1` | 2 capabilities | N1 async DataAnnotations, N3 async Options |
 
 Scoring is `✅ = 1`, `⚠️ = 0.5`, `❌ = 0`. The two deferred rows are the only capabilities in the
-matrix that a peer ships and Jeninnet does not cover on .NET 10. This preview targets .NET 11
-(`net11.0`) and includes the .NET 11 validation adapter; the two async rows remain deferred.
+matrix that a peer ships and Jeninnet does not cover on .NET 10. This preview targets .NET 10
+(`net10.0`) as the baseline and adds `net11.0` assets for the bridge and OpenAPI packages, including
+the .NET 11 validation adapter; the two async rows remain deferred.
 
 ## Per-peer coverage
 

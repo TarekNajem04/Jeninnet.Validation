@@ -80,7 +80,7 @@ entry: switch to `[NotEmpty]` wherever empty strings must fail (for example when
 `AllowEmptyStrings` is `false`).
 
 ```bash
-dotnet tool install --global Jeninnet.Validation.Migration --version 1.0.0-preview.1
+dotnet tool install --global Jeninnet.Validation.Migration --version 1.0.0-preview.2
 
 # Report only; exits 0. Add --format json for machine-readable output.
 jeninnet migrate analyze ./src --output migration-report.md

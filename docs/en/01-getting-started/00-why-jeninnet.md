@@ -8,8 +8,9 @@ rule?” but “what will switching cost, and what do we gain?” This page answ
 Jeninnet.Validation covers the complete .NET 10 peer-capability union: **93/93 (100%)**. Every
 capability that FluentValidation, DataAnnotations, Sannr, Validly, or ValidationModules ships
 fully is also fully implemented here, and every partial capability they ship is full here.
-This preview targets .NET 11 (`net11.0`) and C# 15; the two .NET 11-only async APIs are
-deferred to `1.1.0-preview.1`.
+This preview targets **.NET 10 (LTS)** as the baseline, adds **.NET 11** assets for the bridge and
+OpenAPI packages, and uses C# 15; the two .NET 11-only async APIs are deferred to
+`1.1.0-preview.1`.
 
 What you gain in exchange for a mechanical migration is one metadata pipeline, compile-time
 generated validators, AOT/trimming, a measured 0 B/op hot path, 40 message packs, and host
@@ -108,7 +109,7 @@ The migration tool now reports how much of a codebase can move without human rev
 Start with a report, not a rewrite:
 
 ```bash
-dotnet tool install --global Jeninnet.Validation.Migration --version 1.0.0-preview.1
+dotnet tool install --global Jeninnet.Validation.Migration --version 1.0.0-preview.2
 jeninnet migrate analyze ./src --output migration-report.md
 jeninnet migrate apply ./src --dry-run
 ```
@@ -119,8 +120,8 @@ new validators agree. The tool is idempotent: a second `apply` changes nothing.
 ## Try it in five minutes
 
 ```bash
-dotnet add package Jeninnet.Validation --version 1.0.0-preview.1
-dotnet add package Jeninnet.Validation.Localization --version 1.0.0-preview.1
+dotnet add package Jeninnet.Validation --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Localization --version 1.0.0-preview.2
 ```
 
 From a clone of this repository, you can also generate a starting project:
@@ -155,7 +156,8 @@ Next: [Installation](02-installation.md), [Quick start](03-quick-start.md), or
 - 40 cultures vs FluentValidation's 59; new translations are machine-assisted drafts pending
   native-speaker review.
 - N1/N3 are .NET 11-only async APIs and land in `1.1.0-preview.1`; this preview's platform
-  support (the `net11.0` target, C# 15, and the .NET 11 validation adapter) does not include them.
+  support (the `net10.0` baseline, the `net11.0` bridge assets, C# 15, and the .NET 11 validation
+  adapter) does not include them.
 - Eight adjacent categories are deliberately excluded (compile-time rule classes, jQuery MVC,
   multi-targeting, nested dictionaries, advanced `TestValidate`, Shadow Types, Guard Clauses,
   dynamic JSON rules).

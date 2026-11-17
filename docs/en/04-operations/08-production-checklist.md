@@ -4,7 +4,7 @@ Use this list before shipping an application that depends on Jeninnet.Validation
 
 ## Packages and versions
 
-- [ ] Reference the current preview explicitly (`1.0.0-preview.1`) or pin a central version in
+- [ ] Reference the current preview explicitly (`1.0.0-preview.2`) or pin a central version in
       `Directory.Packages.props`.
 - [ ] Add only the integration packages you use; Core and Abstractions stay framework-free.
 - [ ] Keep all Jeninnet.Validation packages on the same version.
