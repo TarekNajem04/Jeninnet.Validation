@@ -66,7 +66,7 @@
     <MicrosoftOpenApiVersion>2.12.2</MicrosoftOpenApiVersion>
     <SwashbuckleSwaggerGenVersion>10.3.1</SwashbuckleSwaggerGenVersion>
     <MicrosoftExtensionsVersion>10.0.14</MicrosoftExtensionsVersion>
-    <MicrosoftDataSqliteVersion>10.0.14</MicrosoftDataSqliteVersion>
+    <MicrosoftDataSqliteVersion>11.0.0</MicrosoftDataSqliteVersion>
   </PropertyGroup>
 
   <PropertyGroup>
