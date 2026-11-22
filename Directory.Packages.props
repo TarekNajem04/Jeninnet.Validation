@@ -72,7 +72,7 @@
   <PropertyGroup>
     <MicrosoftAspNetCoreOpenApiVersion Condition="'$(MicrosoftAspNetCoreOpenApiVersion)' == ''">11.0.0</MicrosoftAspNetCoreOpenApiVersion>
     <MicrosoftAspNetCoreTestHostVersion Condition="'$(MicrosoftAspNetCoreTestHostVersion)' == ''">11.0.0</MicrosoftAspNetCoreTestHostVersion>
-    <MicrosoftOpenApiVersion Condition="'$(MicrosoftOpenApiVersion)' == ''">3.11.0</MicrosoftOpenApiVersion>
+    <MicrosoftOpenApiVersion Condition="'$(MicrosoftOpenApiVersion)' == ''">3.11.1</MicrosoftOpenApiVersion>
     <SwashbuckleSwaggerGenVersion Condition="'$(SwashbuckleSwaggerGenVersion)' == ''">11.0.1</SwashbuckleSwaggerGenVersion>
     <MicrosoftExtensionsVersion Condition="'$(MicrosoftExtensionsVersion)' == ''">11.0.0</MicrosoftExtensionsVersion>
     <MicrosoftDataSqliteVersion Condition="'$(MicrosoftDataSqliteVersion)' == ''">11.0.0</MicrosoftDataSqliteVersion>
