@@ -8,10 +8,12 @@ long-term API stability.
 
 ## Current Project Status
 
-Jeninnet.Validation is in an API stabilization phase. The current public preview,
-`1.0.0-preview.2`, is prepared for the 25 packable packages and adds .NET 11 + C# 15 support. The project remains pre-stable, and
-the public surface can still change before `1.0.0`; every change is nevertheless recorded in a
-committed public-API baseline.
+Jeninnet.Validation is in an API stabilization phase. The current preview in preparation,
+`1.0.0-preview.3`, is built for the 25 packable packages on the .NET 10 baseline and adds the
+.NET 11 async DataAnnotations and Options bridges plus the central Roslynator setup. The latest
+published preview is `1.0.0-preview.2`. The project remains pre-stable, and the public surface can
+still change before `1.0.0`; every change is nevertheless recorded in a committed public-API
+baseline.
 
 During this stage, the project's internal architecture, CI/CD pipelines, quality gates, release
 process, and public APIs are still being refined and validated.

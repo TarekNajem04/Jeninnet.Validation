@@ -12,7 +12,7 @@ measurement work when enabled.
 ## Installation
 
 ```xml
-<PackageReference Include="Jeninnet.Validation.Diagnostics" Version="1.0.0-preview.2" />
+<PackageReference Include="Jeninnet.Validation.Diagnostics" Version="1.0.0-preview.3" />
 ```
 
 ## Register

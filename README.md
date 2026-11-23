@@ -13,8 +13,9 @@
 
 **📖 Documentation:** [tareknajem04.github.io/Jeninnet.Validation](https://tareknajem04.github.io/Jeninnet.Validation/) — the complete reference book, guides, API reference, and samples.
 
-- **Status:** `1.0.0-preview.2` — current preview, published on
-  [NuGet](https://www.nuget.org/packages/Jeninnet.Validation/).
+- **Status:** `1.0.0-preview.3` — current preview, in preparation. The latest published
+  preview is `1.0.0-preview.2` on
+  [NuGet](https://www.nuget.org/packages/Jeninnet.Validation/1.0.0-preview.2).
 - **Documentation:** [Jeninnet.Validation reference book](https://tareknajem04.github.io/Jeninnet.Validation/)
   ([source](docs/en/README.md)) and the
   [Why Jeninnet?](docs/en/01-getting-started/00-why-jeninnet.md) decision page.
@@ -49,8 +50,11 @@ The complete reference book is published at
 ## Why Jeninnet?
 
 - **Compare first.** [Best C# validation libraries in 2026](docs/en/01-getting-started/00b-best-csharp-validation-libraries.md) — an honest comparison with FluentValidation and DataAnnotations, including when not to choose Jeninnet.
-- **Capability parity, measured.** Covers **93/93 (100%)** of the .NET 10 peer-capability union;
+- **Capability parity, measured.** Covers **93/93 (100%)** of the .NET 10 peer-capability union and
+  **95/95 (100%)** of the full matrix including the .NET 11 async bridges;
   [per-peer coverage and honest limits](docs/en/03-reference/09-capability-parity.md).
+- **.NET 11 async bridges.** Async DataAnnotations (`ValidateObjectAsync`) and async Options
+  validation run on the `net11.0` assets; the `net10.0` baseline remains synchronous.
 - **One model → validator + JSON Schema + OpenAPI + client rules.** One compile-time metadata
   pipeline, no hand-maintained second source.
 - **Compile-time safety.** 33 `VAL` diagnostics and code fixes reject invalid rule configurations
@@ -105,8 +109,8 @@ The repository builds **25 packable projects** (25 packages). See the
 ## Quick start
 
 ```bash
-dotnet add package Jeninnet.Validation --version 1.0.0-preview.2
-dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation --version 1.0.0-preview.3
+dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.3
 ```
 
 ```csharp
@@ -191,7 +195,7 @@ pwsh scripts/package/check-consumer-smoke.ps1 -PackagesPath artifacts/packages
 | [Roadmap](ROADMAP.md) | Release plan by version |
 | [Changelog](CHANGELOG.md) | Work grouped by release |
 
-Release notes: [.github/release-notes/v1.0.0-preview.2.md](.github/release-notes/v1.0.0-preview.2.md).
+Release notes: [.github/release-notes/v1.0.0-preview.3.md](.github/release-notes/v1.0.0-preview.3.md).
 Migration guides: [FluentValidation](docs/en/02-guides/15-migration-from-fluentvalidation.md) and
 [DataAnnotations](docs/en/02-guides/16-migration-from-dataannotations.md).
 

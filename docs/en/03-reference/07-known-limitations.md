@@ -19,14 +19,20 @@ These are deliberate boundaries or tracked follow-ups, not surprises.
 
 ## Async vs sync adapters
 
-- DataAnnotations is synchronous. Async-only validators throw
-  `AsyncValidatorInvokedSynchronouslyException` on that path.
+- DataAnnotations is synchronous on `net10.0`; async-only validators throw
+  `AsyncValidatorInvokedSynchronouslyException` there. On `net11.0`, the DataAnnotations attributes
+  derive from `AsyncValidationAttribute` and run through `Validator.ValidateObjectAsync` /
+  `TryValidateObjectAsync`; the synchronous path still throws for async-only validators.
 - Blazor validates synchronously by default; enable `UseAsyncValidation` and call
   `JeninnetValidator.ValidateAsync()` from `EditForm.OnSubmit` for async rules.
 - Use ASP.NET Core, Minimal API, or MediatR for server-side async rules.
 - Sync `Validate` never silently skips async rules.
 - `PreValidateAsync` is stricter: synchronous `Validate` throws `InvalidOperationException` because
   the guard cannot run.
+- Async Options validation requires the .NET 11 asynchronous startup path. `AddValidatedOptions()`
+  registers the async validator on `net11.0`, but the host must complete asynchronous startup before
+  the options are accessed synchronously. `IOptionsMonitor<T>` reloads are synchronous and do not
+  run async validators.
 
 ## Execution and filtering
 

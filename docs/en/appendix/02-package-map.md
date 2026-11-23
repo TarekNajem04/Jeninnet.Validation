@@ -85,4 +85,5 @@ Jeninnet.Validation.Localization
 
 ## Version
 
-The current preview is `1.0.0-preview.2`; all packages share the central version.
+The current preview in preparation is `1.0.0-preview.3`; the latest published preview is
+`1.0.0-preview.2`. All packages share the central version.

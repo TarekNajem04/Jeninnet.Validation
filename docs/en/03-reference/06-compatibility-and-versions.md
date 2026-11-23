@@ -8,7 +8,8 @@
   `Jeninnet.Validation.Extensions.Validation`, and the three OpenAPI adapters also ship `net11.0`
   assets for .NET 11-only APIs.
 - C# 15, built with the .NET 11 SDK.
-- The current preview is `1.0.0-preview.2`.
+- The current preview is `1.0.0-preview.3` (in preparation). The latest published preview is
+  `1.0.0-preview.2`.
 
 ## Compatibility matrix
 
@@ -25,6 +26,10 @@
 
 The repository ships 25 packable packages. See the [package map](../appendix/02-package-map.md).
 
+Async DataAnnotations (`Validator.ValidateObjectAsync`) and async Options (`IAsyncValidateOptions<T>`
+through `ValidateOnStart`) are `net11.0` capabilities. The `net10.0` assets of those packages remain
+synchronous.
+
 ## Target framework selection
 
 - A `net10.0` application resolves the `lib/net10.0` asset.
@@ -38,7 +43,7 @@ The repository ships 25 packable packages. See the [package map](../appendix/02-
 The product version is centralized in `Directory.Build.props`:
 
 ```xml
-<Version>1.0.0-preview.2</Version>
+<Version>1.0.0-preview.3</Version>
 <FileVersion>1.0.0.0</FileVersion>
 <AssemblyVersion>1.0.0.0</AssemblyVersion>
 <PackageVersion>$(Version)</PackageVersion>
@@ -70,9 +75,9 @@ NuGet package version is the prerelease value.
 6. Re-generate JSON Schema, OpenAPI, and client rules; the descriptor shape can change.
 
 ```xml
-<PackageReference Include="Jeninnet.Validation" Version="1.0.0-preview.2" />
-<PackageReference Include="Jeninnet.Validation.AspNetCore" Version="1.0.0-preview.2" />
-<PackageReference Include="Jeninnet.Validation.Localization" Version="1.0.0-preview.2" />
+<PackageReference Include="Jeninnet.Validation" Version="1.0.0-preview.3" />
+<PackageReference Include="Jeninnet.Validation.AspNetCore" Version="1.0.0-preview.3" />
+<PackageReference Include="Jeninnet.Validation.Localization" Version="1.0.0-preview.3" />
 ```
 
 ## Public API baselines
@@ -83,6 +88,10 @@ Every packable project commits two files next to its `.csproj`:
 |---|---|
 | `PublicAPI.Shipped.txt` | The reviewed surface that has shipped. |
 | `PublicAPI.Unshipped.txt` | Additive APIs staged for the next release. |
+
+Projects whose surface differs by target framework add a per-TFM file such as
+`PublicAPI.Unshipped.net11.0.txt` and include it conditionally in the project. The DataAnnotations
+project uses this for its `net11.0` async attribute override.
 
 `Microsoft.CodeAnalysis.PublicApiAnalyzers` compares the compiled public surface with those files.
 The repository builds with warnings as errors, so an unrecorded API (`RS0016`) or a baseline entry

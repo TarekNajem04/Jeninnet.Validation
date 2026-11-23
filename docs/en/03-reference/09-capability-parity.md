@@ -17,13 +17,12 @@ capabilities added by the 2026 peer re-baseline.
 | Scope | Score | Result |
 |---|---|---|
 | .NET 10 capability union (93 rows) | **93/93** | **100%** |
-| Full matrix including .NET 11-only async APIs (95 rows) | **93/95** | **97.9%** |
-| Deferred to `1.1.0-preview.1` | 2 capabilities | N1 async DataAnnotations, N3 async Options |
+| Full matrix including .NET 11-only async APIs (95 rows) | **95/95** | **100%** |
+| Deferred to a later release | 0 capabilities | None |
 
-Scoring is `✅ = 1`, `⚠️ = 0.5`, `❌ = 0`. The two deferred rows are the only capabilities in the
-matrix that a peer ships and Jeninnet does not cover on .NET 10. This preview targets .NET 10
-(`net10.0`) as the baseline and adds `net11.0` assets for the bridge and OpenAPI packages, including
-the .NET 11 validation adapter; the two async rows remain deferred.
+Scoring is `✅ = 1`, `⚠️ = 0.5`, `❌ = 0`. The two .NET 11-only async rows — N1 async
+DataAnnotations and N3 async Options — are implemented in the `net11.0` assets. The `.NET 10`
+baseline still covers 93/93; the async rows are additive and do not change the net10 surface.
 
 ## Per-peer coverage
 
@@ -39,8 +38,8 @@ implementation on every row where that peer has `✅` or `⚠️` on .NET 10.
 | ValidationModules 1.2 | 38 | 25 | **63 / 63** |
 
 On the full 95-row matrix, DataAnnotations rises to 30 full and 27 partial rows; Jeninnet covers
-55 of 57 (the two gaps are N1/N3). ValidationModules adds one partial row; Jeninnet covers 63 of
-64 (the gap is N3).
+57 of 57. ValidationModules adds one partial row; Jeninnet covers 64 of 64. The .NET 10-only
+views in the table above remain 55/55 and 63/63 because the two async rows require `net11.0`.
 
 ## Where the matrix shows an advantage
 

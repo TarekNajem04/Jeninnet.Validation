@@ -117,7 +117,8 @@ Reference `Jeninnet.Validation.Abstractions` for `IValidator<T>`, `ValidationRes
 
 **Which version should I reference?**
 
-The current preview is `1.0.0-preview.2`. The version is centralized in `Directory.Build.props`.
+The current preview in preparation is `1.0.0-preview.3`; the latest published preview is
+`1.0.0-preview.2`. The version is centralized in `Directory.Build.props`.
 
 **Is the public API stable?**
 

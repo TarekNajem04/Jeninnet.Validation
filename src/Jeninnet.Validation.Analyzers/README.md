@@ -10,7 +10,7 @@ Roslyn incremental source generator and diagnostic analyzers for the Jeninnet va
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.3
 ```
 
 ## Source Generation

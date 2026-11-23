@@ -10,7 +10,7 @@ Core value types and interfaces for the Jeninnet validation framework. This libr
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.Abstractions --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Abstractions --version 1.0.0-preview.3
 ```
 
 ## Types

@@ -11,7 +11,7 @@ pipeline. The handler is skipped for invalid requests.
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.MediatR.ErrorOr --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.MediatR.ErrorOr --version 1.0.0-preview.3
 ```
 
 ## Usage

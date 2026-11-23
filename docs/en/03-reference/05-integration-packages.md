@@ -43,8 +43,10 @@
   validator contract. Missing validators bypass validation in both adapters.
 - `AddJeninnetValidation<TModel>()` is the AOT-safe registration; the non-generic overload scans
   existing `IValidator<T>` registrations, so call it after registering validators.
-- `AddValidatedOptions<T>()` requires a registered `IValidator<T>` and validates options
-  synchronously at startup; .NET 11 async options validation is planned for `1.1.0-preview.1`.
+- `AddValidatedOptions<T>()` requires a registered `IValidator<T>` and validates options at startup.
+  On `net10.0` the path is synchronous. On `net11.0` the registration also exposes the async
+  validator, so async-only validators run through the async startup path; complete host startup
+  before accessing those options synchronously.
 - Models using `[JeninnetValidatable]` are skipped by the `Microsoft.Extensions.Validation` bridge
   to avoid double validation through the DataAnnotations bridge.
 - Schema/OpenAPI/client packages never execute validation.

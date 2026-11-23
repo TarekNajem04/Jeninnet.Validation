@@ -12,7 +12,7 @@ AOT-safe: it consumes the frozen validation descriptor contract.
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.JsonSchema --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.JsonSchema --version 1.0.0-preview.3
 ```
 
 ## Usage

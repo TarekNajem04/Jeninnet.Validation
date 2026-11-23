@@ -11,7 +11,7 @@ errors with `extensions.member` and `extensions.code` and skips the resolver.
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.GraphQL --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.GraphQL --version 1.0.0-preview.3
 ```
 
 ## Usage

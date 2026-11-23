@@ -13,7 +13,7 @@ safe, idempotent codemods. Anything it does not understand is left untouched wit
 ## Installation
 
 ```bash
-dotnet tool install --global Jeninnet.Validation.Migration --version 1.0.0-preview.2
+dotnet tool install --global Jeninnet.Validation.Migration --version 1.0.0-preview.3
 ```
 
 ## Analyze

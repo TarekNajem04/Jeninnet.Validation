@@ -13,7 +13,7 @@ validation; on .NET 10 it uses the `IValidatableInfo` path.
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.Extensions.Validation --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Extensions.Validation --version 1.0.0-preview.3
 ```
 
 ## Usage
@@ -66,9 +66,18 @@ form `name: Member [code] message` (the `name:` prefix appears for named options
 from a new scope per validation, so scoped dependencies work.
 
 If no `IValidator<T>` is registered, startup fails with a message that names the missing validator.
-The integration is synchronous: validators that only expose asynchronous rules throw
-`AsyncValidatorInvokedSynchronouslyException`, which is surfaced as a configuration failure. Async
-options validation requires the .NET 11 `IAsyncStartupValidator` path planned for `1.1.0-preview.1`.
+
+On .NET 10, options validation is synchronous: async-only validators throw
+`AsyncValidatorInvokedSynchronouslyException`, which is surfaced as a configuration failure.
+
+On .NET 11, `AddValidatedOptions<T>()` registers both the synchronous and asynchronous options
+validators. The framework detects `IAsyncValidateOptions<T>` on the async validator and runs it
+during the asynchronous startup path exposed by `ValidateOnStart()`. Async-only validators therefore
+work without a sync-over-async bridge. The synchronous pass returns `ValidateOptionsResult.Skip`
+for those validators; a host that only runs synchronous startup validation does not execute them.
+Complete the host's asynchronous startup before accessing async-validated options synchronously.
+Named options and `CancellationToken` are supported. `IOptionsMonitor<T>` reloads remain synchronous
+and do not run async validators; this is a framework constraint.
 
 ## Limits
 

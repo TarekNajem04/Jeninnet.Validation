@@ -14,7 +14,7 @@ is translated to JavaScript.
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.ClientRules --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.ClientRules --version 1.0.0-preview.3
 ```
 
 ## Usage

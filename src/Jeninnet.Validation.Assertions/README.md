@@ -12,7 +12,7 @@ with the failed expectation and the actual errors, so any test framework can con
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.Assertions --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Assertions --version 1.0.0-preview.3
 ```
 
 ## Quick start

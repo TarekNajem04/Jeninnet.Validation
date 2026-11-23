@@ -8,7 +8,7 @@ specific test framework.
 ## Solution
 
 ```xml
-<PackageReference Include="Jeninnet.Validation.Assertions" Version="1.0.0-preview.2" />
+<PackageReference Include="Jeninnet.Validation.Assertions" Version="1.0.0-preview.3" />
 ```
 
 ```csharp

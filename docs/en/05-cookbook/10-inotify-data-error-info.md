@@ -10,7 +10,7 @@ validator as the rest of the application, without inheriting from a framework ba
 Add the optional package:
 
 ```xml
-<PackageReference Include="Jeninnet.Validation.Observable" Version="1.0.0-preview.2" />
+<PackageReference Include="Jeninnet.Validation.Observable" Version="1.0.0-preview.3" />
 ```
 
 Create an adapter and delegate `INotifyDataErrorInfo` from the view model:

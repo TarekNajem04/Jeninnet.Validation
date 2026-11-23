@@ -13,7 +13,7 @@ right fields.
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.Blazor --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Blazor --version 1.0.0-preview.3
 ```
 
 ## Usage

@@ -16,6 +16,7 @@
   <Folder Name="/.github/release-notes/">
     <File Path=".github/release-notes/v1.0.0-preview.1.md" />
     <File Path=".github/release-notes/v1.0.0-preview.2.md" />
+    <File Path=".github/release-notes/v1.0.0-preview.3.md" />
   </Folder>
   <Folder Name="/.github/workflows/">
     <File Path=".github/workflows/auto-approve-dependabot.yml" />

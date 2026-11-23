@@ -21,7 +21,7 @@ scope; `no` is Bokmål.
 ## Installation
 
 ```xml
-<PackageReference Include="Jeninnet.Validation.Localization" Version="1.0.0-preview.2" />
+<PackageReference Include="Jeninnet.Validation.Localization" Version="1.0.0-preview.3" />
 ```
 
 ## Register

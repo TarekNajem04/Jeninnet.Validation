@@ -12,7 +12,7 @@ calls an external registry or tax service.
 ## Installation
 
 ```xml
-<PackageReference Include="Jeninnet.Validation.Rules.Domain" Version="1.0.0-preview.2" />
+<PackageReference Include="Jeninnet.Validation.Rules.Domain" Version="1.0.0-preview.3" />
 ```
 
 ## Fluent usage

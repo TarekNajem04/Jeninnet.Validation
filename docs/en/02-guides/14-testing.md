@@ -7,7 +7,7 @@ failed expectation and the actual errors.
 ## Install
 
 ```xml
-<PackageReference Include="Jeninnet.Validation.Assertions" Version="1.0.0-preview.2" />
+<PackageReference Include="Jeninnet.Validation.Assertions" Version="1.0.0-preview.3" />
 ```
 
 ## Assert a result

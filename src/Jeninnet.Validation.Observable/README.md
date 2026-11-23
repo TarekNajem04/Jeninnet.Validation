@@ -12,7 +12,7 @@ instead of inheriting a base class.
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.Observable --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Observable --version 1.0.0-preview.3
 ```
 
 ## Usage

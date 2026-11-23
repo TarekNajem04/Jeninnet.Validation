@@ -12,7 +12,7 @@ constraints (`required`, `format`, `pattern`, `minimum`/`maximum`, `minLength`/`
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.OpenApi.NSwag --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.OpenApi.NSwag --version 1.0.0-preview.3
 ```
 
 ## Use

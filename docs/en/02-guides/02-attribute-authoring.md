@@ -6,7 +6,7 @@ validator.
 ## Enable the generator
 
 ```xml
-<PackageReference Include="Jeninnet.Validation.Analyzers" Version="1.0.0-preview.2"
+<PackageReference Include="Jeninnet.Validation.Analyzers" Version="1.0.0-preview.3"
                   PrivateAssets="all" />
 ```
 

@@ -12,7 +12,7 @@ throws, exposes the result to the handler, or maps it to a result type.
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.MediatR --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.MediatR --version 1.0.0-preview.3
 ```
 
 ## Usage

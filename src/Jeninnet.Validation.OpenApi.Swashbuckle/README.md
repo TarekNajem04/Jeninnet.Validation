@@ -13,7 +13,7 @@ Swashbuckle schema filter that turns `Jeninnet.Validation` validators into OpenA
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.OpenApi.Swashbuckle --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.OpenApi.Swashbuckle --version 1.0.0-preview.3
 ```
 
 ## Use

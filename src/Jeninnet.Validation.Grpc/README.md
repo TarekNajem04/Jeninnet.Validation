@@ -11,7 +11,7 @@ Validates gRPC request messages before the service method runs. Invalid requests
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.Grpc --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Grpc --version 1.0.0-preview.3
 ```
 
 ## Usage

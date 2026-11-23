@@ -11,7 +11,7 @@ explicit culture control without mutating the caller's global culture.
 ## Installation
 
 ```xml
-<PackageReference Include="Jeninnet.Validation.Localization.AspNetCore" Version="1.0.0-preview.2" />
+<PackageReference Include="Jeninnet.Validation.Localization.AspNetCore" Version="1.0.0-preview.3" />
 ```
 
 ## Register

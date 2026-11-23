@@ -9,9 +9,57 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 
 | Version | Status |
 |---|---|
-| `1.0.0-preview.2` | Current, released 2026-11-17 |
+| `1.0.0-preview.3` | Current, in preparation |
+| `1.0.0-preview.2` | Released 2026-11-17 |
 | `1.0.0-preview.1` | Released 2026-11-13 |
 | `Pre-1.0.0` | Historical development (2026-06 – 2026-11) |
+
+---
+
+## 1.0.0-preview.3 — in preparation
+
+**Status:** In preparation. Not yet published.
+
+### Summary
+
+- Promoted the two .NET 11-only async bridges into this preview after a maintainer value review:
+  asynchronous DataAnnotations validation and asynchronous Options validation. The `net10.0` assets
+  remain synchronous; the async paths are additive on `net11.0`.
+- Added Roslynator 5.0.1 to central package management and applied the three analyzer packages to
+  every C# project through `Directory.Build.props`, with `PrivateAssets=all`.
+- Fixed nine `RCS9004`, `RCS9006`, and `RCS9007` diagnostics instead of suppressing them.
+- Capability parity is now **95/95 (100%)** on the full matrix, including the two .NET 11 async
+  capabilities; the .NET 10 baseline remains 93/93.
+- Tests and build evidence are refreshed on the preview.3 branch; see the release notes for the
+  final numbers.
+- Product version is `1.0.0-preview.3`.
+
+### Async DataAnnotations (.NET 11)
+
+- `JeninnetValidatableAttribute` and `JeninnetValidatePropertyAttribute` derive from
+  `AsyncValidationAttribute` on `net11.0`.
+- `Validator.ValidateObjectAsync` and `TryValidateObjectAsync` now run async-only validators,
+  including scoped validator resolution and cancellation.
+- `IAsyncValidatableObject` models are honored by the framework's asynchronous pipeline.
+- The synchronous path still throws `AsyncValidatorInvokedSynchronouslyException` for async-only
+  validators; `net10.0` has no async DataAnnotations path.
+
+### Async Options (.NET 11)
+
+- `AddValidatedOptions<T>()` registers an async options validator on `net11.0` in addition to the
+  synchronous one.
+- `ValidateOnStart()` exposes the framework's asynchronous startup validator; async-only options
+  validators run during async startup, including named options and cancellation.
+- The synchronous pass returns `Skip` for async-only validators; hosts must complete asynchronous
+  startup before accessing those options synchronously. `IOptionsMonitor<T>` reloads remain
+  synchronous and do not run async validators.
+
+### Analyzer and quality
+
+- Roslynator 5.0.1 is centrally managed and referenced once for every `.csproj`.
+- `Roslynator.Formatting.Analyzers` remains configured but its rules stay disabled by default;
+  enabling them is a separate formatting-policy decision.
+- Public API per-TFM baselines are extended for the net11-only DataAnnotations override.
 
 ---
 

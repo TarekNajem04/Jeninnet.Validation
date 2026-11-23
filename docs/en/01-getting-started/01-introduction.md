@@ -34,11 +34,12 @@ trimming and Native AOT.
 |---|---|
 | FluentValidation | Similar fluent surface; Jeninnet covers its .NET 10 capability set at full strength and adds generated validators, descriptors, schema/client emission, and integration packages. See [Why Jeninnet?](00-why-jeninnet.md). |
 | DataAnnotations | Jeninnet has its own attribute set; the DataAnnotations bridge lets existing pipelines run Jeninnet validators. |
-| `Microsoft.Extensions.Validation` | Async DataAnnotations/Options bridges are tracked for `1.1.0-preview.1`; the synchronous bridge and DataAnnotations path cover today’s common cases. |
+| `Microsoft.Extensions.Validation` | The bridge supports the .NET 11 async DataAnnotations and Options paths on its `net11.0` assets; the `net10.0` assets remain synchronous. |
 
 ## Project status
 
-The current preview is `1.0.0-preview.2`. The public surface can still change before `1.0.0`.
+The current preview in preparation is `1.0.0-preview.3`; the latest published preview is
+`1.0.0-preview.2`. The public surface can still change before `1.0.0`.
 See [Compatibility and versions](../03-reference/06-compatibility-and-versions.md) and the
 [roadmap](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/ROADMAP.md).
 

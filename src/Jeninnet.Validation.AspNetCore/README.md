@@ -20,7 +20,7 @@ ASP.NET Core integration for `Jeninnet.Validation`:
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.AspNetCore --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.AspNetCore --version 1.0.0-preview.3
 ```
 
 ## Minimal API

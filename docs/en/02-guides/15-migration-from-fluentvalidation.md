@@ -62,7 +62,7 @@ never guesses semantics: anything it does not understand stays untouched with an
 `// TODO(Jeninnet):` marker and a report entry.
 
 ```bash
-dotnet tool install --global Jeninnet.Validation.Migration --version 1.0.0-preview.2
+dotnet tool install --global Jeninnet.Validation.Migration --version 1.0.0-preview.3
 
 # Report only; exits 0. Add --format json for machine-readable output.
 jeninnet migrate analyze ./src --output migration-report.md
