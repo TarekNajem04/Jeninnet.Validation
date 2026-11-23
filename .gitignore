@@ -404,9 +404,3 @@ coverage/
 # packs, message fixtures, and the Jeninnet.Validation.Sample.Localization.Xml
 # project itself. If a generated documentation file ever appears outside a
 # build folder, ignore that specific path instead of the XML extension.
-
-
-# ==========================================
-# Private local-only workspace (never commit)
-# ==========================================
-[pP]rivate/
