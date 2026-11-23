@@ -3,8 +3,7 @@
 Measured evidence for the performance claims in this book.
 These are **local ShortRun results**, not a CI gate; hardware variance is real
 and the error columns are wide. Treat them as directional evidence, not as
-absolute numbers. For the same-model comparison against FluentValidation and
-DataAnnotations, see [Peer benchmarks](10-peer-benchmarks.md).
+absolute numbers.
 
 ## Machine profile
 
@@ -98,15 +97,6 @@ exactly-one-provider model used by the localization pipeline.
 | ValidBase64 | 80.70 ns | 59.50 ns | 3.262 ns | 0 B |
 
 The Base64 rule and the engine's happy path are both allocation-free.
-
-## Peer comparison
-
-A direct peer run is published in [Peer benchmarks](10-peer-benchmarks.md):
-on the repository machine the valid path measured 81.7 ns / 0 B for Jeninnet
-versus 226.7 ns / 632 B for FluentValidation. Treat those numbers as a
-machine-specific baseline, not a universal guarantee; run the benchmark harness
-on your own hardware before making capacity decisions. Generated and fluent
-validators share the same engine and allocation profile.
 
 ## CI decision
 

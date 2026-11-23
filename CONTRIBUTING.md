@@ -85,7 +85,7 @@ src/
     shared/                               Shared source units imported via .projitems
 
 tests/
-    Jeninnet.Validation.Tests/            Engine, rules, parity, generator snapshots
+    Jeninnet.Validation.Tests/            Engine, rules, conformance, generator snapshots
     Jeninnet.Validation.Analyzers.Tests/  Analyzer + emitter tests
     Jeninnet.Validation.ArchitectureTests/  Layering + dependency-direction guards
     Jeninnet.Validation.AspNetCore.Tests/ ASP.NET Core integration
@@ -95,7 +95,7 @@ tests/
 
 samples/                                  26 sample projects (21 in the solution)
     Jeninnet.Validation.AotSmoke/         NativeAOT publish/run harness
-docs/                                     Guides, feature/rule catalogs, migration notes
+docs/                                     Guides, feature/rule catalogs, and reference pages
 scripts/                                  Build, format, coverage, Sonar, and docs checks
 ```
 
@@ -106,7 +106,7 @@ The architecture emphasizes:
 - Attribute-driven rule declaration by default; the fluent API (`Validator<T>`) is the supported
   alternative authoring path for dynamic and cross-cutting scenarios
 - Both authoring paths feed the same `IValidator<T>` contracts and must not diverge (enforced by
-  executable parity tests)
+  executable conformance tests)
 - Compile-time safety: invalid rule configurations produce analyzer errors
 - Allocation-free success path, verified by the release allocation test and benchmarks
 - Trimming and Native AOT compatibility for every runtime library

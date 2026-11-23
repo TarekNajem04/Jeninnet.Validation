@@ -151,7 +151,7 @@ mutate the caller's global culture.
    (`{PropertyName}`, `{0}`, `{1}`, `{Min}`, `{Max}`, `{Count}`, `{Length}`, `{Extensions}`).
 3. Run the catalog tests:
    `dotnet test tests/Jeninnet.Validation.Tests --filter DefaultMessagePackTests`.
-   The tests enforce key completeness, placeholder parity with English, non-empty values, and RTL
+   The tests enforce key completeness, placeholder consistency with English, non-empty values, and RTL
    script presence for `ar`, `he`, `ur`, and `fa`.
 4. Obtain a native-speaker review before merging. Machine translation without review is not
    accepted.

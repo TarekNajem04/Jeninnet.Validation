@@ -8,7 +8,7 @@
         <ToolCommandName>jeninnet</ToolCommandName>
         <AssemblyName>Jeninnet.Validation.Migration</AssemblyName>
         <RootNamespace>Jeninnet.Validation.Migration</RootNamespace>
-        <Description>Migration assistant for Jeninnet.Validation: analyze FluentValidation and DataAnnotations usage, report convertible rules, and apply safe codemods with explicit TODO markers.</Description>
+        <Description>Migration assistant for Jeninnet.Validation: analyze supported validation code, report convertible rules, and apply safe codemods with explicit TODO markers.</Description>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <!-- .NET tools do not use .NET Framework binding redirects. -->
         <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>

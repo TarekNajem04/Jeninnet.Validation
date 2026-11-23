@@ -70,7 +70,7 @@ NuGet package version is the prerelease value.
 1. Read the release notes for the target preview.
 2. Update **all** Jeninnet.Validation packages together; mixed preview versions are unsupported.
 3. Rebuild with warnings as errors; analyzer IDs and generator output can change between previews.
-4. Run the full test suite, including generated/fluent parity tests.
+4. Run the full test suite, including generated/fluent conformance tests.
 5. Re-run the AOT publish if you ship trimmed or Native AOT output.
 6. Re-generate JSON Schema, OpenAPI, and client rules; the descriptor shape can change.
 

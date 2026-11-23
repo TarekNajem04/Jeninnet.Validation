@@ -204,8 +204,6 @@
     <File Path="docs/en/02-guides/12-schema-openapi-client.md" />
     <File Path="docs/en/02-guides/13-localization.md" />
     <File Path="docs/en/02-guides/14-testing.md" />
-    <File Path="docs/en/02-guides/15-migration-from-fluentvalidation.md" />
-    <File Path="docs/en/02-guides/16-migration-from-dataannotations.md" />
     <File Path="docs/en/02-guides/17-dependency-injection.md" />
     <File Path="docs/en/02-guides/18-error-handling.md" />
     <File Path="docs/en/02-guides/19-lifecycle-hooks.md" />

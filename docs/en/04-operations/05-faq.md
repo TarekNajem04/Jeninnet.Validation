@@ -2,16 +2,6 @@
 
 ## Authoring
 
-**Is Jeninnet.Validation a FluentValidation replacement?**
-
-It covers the same fluent authoring style and adds generated validators, descriptors, schema/client
-emission, and integration packages. Migration is mechanical; see
-[Migration from FluentValidation](../02-guides/15-migration-from-fluentvalidation.md).
-
-**Can I use both libraries?**
-
-Yes, but do not validate the same model twice. Prefer one engine per boundary.
-
 **Can I use it without DI?**
 
 Yes. Fluent and generated validators are plain objects. DI is needed for constructor-injected
@@ -56,8 +46,9 @@ name used by `{PropertyName}`, set `ValidationOptions.DisplayNameResolver`.
 
 **Are async rules supported?**
 
-Yes, through `MustAsync`, `CustomAsync`, async conditions, and `ValidateAsync`. DataAnnotations and
-Blazor adapters are sync-only.
+Yes, through `MustAsync`, `CustomAsync`, async conditions, and `ValidateAsync`. The Blazor adapter
+validates synchronously by default. The DataAnnotations bridge supports the .NET 11 asynchronous
+pipeline on its `net11.0` assets; the `net10.0` asset remains synchronous.
 
 **Why does sync validation throw for async-only validators?**
 

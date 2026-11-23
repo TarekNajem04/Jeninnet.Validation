@@ -31,8 +31,8 @@
 Jeninnet.Validation is a modular validation framework for .NET. It combines **attribute-driven rule
 declaration** with a **Roslyn source generator** to produce efficient, type-safe validators at
 compile time. A fully typed fluent API is available for dynamic rules, dependency injection, and
-cross-cutting scenarios. Both authoring paths feed one engine and are pinned by executable parity
-tests.
+cross-cutting scenarios. Both authoring paths feed one engine and are pinned by executable
+conformance tests.
 
 ## Documentation
 
@@ -49,10 +49,6 @@ The complete reference book is published at
 
 ## Why Jeninnet?
 
-- **Compare first.** [Best C# validation libraries in 2026](docs/en/01-getting-started/00b-best-csharp-validation-libraries.md) — an honest comparison with FluentValidation and DataAnnotations, including when not to choose Jeninnet.
-- **Capability parity, measured.** Covers **93/93 (100%)** of the .NET 10 peer-capability union and
-  **95/95 (100%)** of the full matrix including the .NET 11 async bridges;
-  [per-peer coverage and honest limits](docs/en/03-reference/09-capability-parity.md).
 - **.NET 11 async bridges.** Async DataAnnotations (`ValidateObjectAsync`) and async Options
   validation run on the `net11.0` assets; the `net10.0` baseline remains synchronous.
 - **One model → validator + JSON Schema + OpenAPI + client rules.** One compile-time metadata
@@ -67,7 +63,7 @@ The complete reference book is published at
   ([custom rules](docs/en/02-guides/07-custom-rules.md#why-built-in-rules-are-sealed)).
 - **40 cultures and real integrations.** Multi-source localization, ICU plural/select, ASP.NET Core,
   MediatR, DataAnnotations, Blazor, GraphQL, gRPC, and desktop `INotifyDataErrorInfo`.
-- **Migration in minutes.** The optional `jeninnet` tool reports a readiness score, applies safe
+- **Adoption tooling.** The optional `jeninnet` tool reports a readiness score, applies safe
   codemods, and marks every uncertain pattern for review.
 
 ## Conceptual model
@@ -196,8 +192,6 @@ pwsh scripts/package/check-consumer-smoke.ps1 -PackagesPath artifacts/packages
 | [Changelog](CHANGELOG.md) | Work grouped by release |
 
 Release notes: [.github/release-notes/v1.0.0-preview.3.md](.github/release-notes/v1.0.0-preview.3.md).
-Migration guides: [FluentValidation](docs/en/02-guides/15-migration-from-fluentvalidation.md) and
-[DataAnnotations](docs/en/02-guides/16-migration-from-dataannotations.md).
 
 ## Contributing
 

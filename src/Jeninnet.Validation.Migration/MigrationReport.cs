@@ -82,14 +82,14 @@ internal sealed class MigrationReport {
         builder.AppendLine()
             .AppendLine("## Scope and assumptions")
             .AppendLine()
-            .AppendLine("- Source libraries: FluentValidation (`AbstractValidator<T>`, `RuleFor`, `WithErrorCode`, `Custom`, `Transform`) and DataAnnotations (`[Required]`).")
-            .AppendLine("- Matching is syntactic and name-based; project references are not resolved. A same-named API from another library would match too — review the Converted items before deleting the old dependency.")
+            .AppendLine("- Source patterns: supported validator base classes, `RuleFor`, `WithErrorCode`, `Custom`, `Transform`, and `[Required]`.")
+            .AppendLine("- Matching is syntactic and name-based; project references are not resolved. A same-named API from a different source would match too — review the Converted items before deleting the old dependency.")
             .AppendLine("- Conversions preserve behavior only for the listed safe patterns; everything else is left untouched with TODO markers.")
             .AppendLine()
             .AppendLine("## Follow-ups")
             .AppendLine()
-            .AppendLine("- Remove FluentValidation package references once every file is migrated (the migrated code no longer needs the dependency).")
-            .AppendLine("- Remove now-unused `using FluentValidation;` and `using System.ComponentModel.DataAnnotations;` directives (the codemod leaves them so the diff stays reviewable).")
+            .AppendLine("- Remove the replaced validation package references once every file is migrated (the migrated code no longer needs the dependency).")
+            .AppendLine("- Remove now-unused source `using` directives (the codemod leaves them so the diff stays reviewable).")
             .AppendLine("- Resolve every `TODO(Jeninnet)` marker left by the codemod (each marks a semantic decision a human must confirm).");
         return builder.ToString();
     }

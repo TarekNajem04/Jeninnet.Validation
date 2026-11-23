@@ -28,8 +28,7 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 - Added Roslynator 5.0.1 to central package management and applied the three analyzer packages to
   every C# project through `Directory.Build.props`, with `PrivateAssets=all`.
 - Fixed nine `RCS9004`, `RCS9006`, and `RCS9007` diagnostics instead of suppressing them.
-- Capability parity is now **95/95 (100%)** on the full matrix, including the two .NET 11 async
-  capabilities; the .NET 10 baseline remains 93/93.
+- The two .NET 11 async capabilities are implemented; the .NET 10 baseline remains unchanged.
 - Tests and build evidence are refreshed on the preview.3 branch; see the release notes for the
   final numbers.
 - Product version is `1.0.0-preview.3`.
@@ -92,8 +91,7 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 ### Summary
 
 - .NET 11 (`net11.0`) and C# 15 support, including the .NET 11 validation bridge.
-- Complete peer parity with the .NET 10 ecosystem, the fluent/generated engine, rules, execution
-  semantics, and integrations.
+- A complete engine, rule surface, execution semantics, and host integrations.
 - 40 cultures, JSON Schema/OpenAPI/client-rule emission, migration tooling, and 26 samples.
 - 997 tests on `net11.0`; 25 packable projects.
 
@@ -186,14 +184,13 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 
 ### Adoption and differentiation
 
-#### Migration readiness and public parity evidence
+#### Migration readiness and adoption
 
 - Added a **migration readiness score** to `jeninnet migrate analyze`: Markdown/JSON now report the share of findings the codemod can apply without review, the converted/needs-review counts, and the number of fully convertible files. Added 3 report tests.
-- Added the public [Why Jeninnet?](docs/en/01-getting-started/00-why-jeninnet.md) decision page and [Capability parity](docs/en/03-reference/09-capability-parity.md) reference: 93/93 (100%) of the .NET 10 peer-capability union, per-peer coverage, eight advantages, seven unique capabilities, deliberate exclusions, and honest limits.
-- Added migration golden tests: the same two-rule model runs through FluentValidation and the migrated Jeninnet validator with matching validity and member names, and the codemod fixtures assert the FluentValidation and DataAnnotations output shape.
-- Added `PeerComparisonBenchmarks` (FluentValidation 12.2 and DataAnnotations) plus the [Peer benchmarks](docs/en/04-operations/10-peer-benchmarks.md) methodology. On the repository machine the valid path measured 81.7 ns / 0 B for Jeninnet vs 226.7 ns / 632 B for FluentValidation.
+- Added the public [Why Jeninnet?](docs/en/01-getting-started/00-why-jeninnet.md) decision page and the adoption/readiness documentation.
+- Added migration golden tests that assert the codemod output shape for validator and attribute sources.
 - Added the `jeninnet-validator` `dotnet new` template with a sample model/validator, installation docs, and a local template smoke script.
-- Linked the new pages from the README, the book index, and the introduction; added the adoption workstream to the roadmap.
+- Linked the readiness documentation from the README and the book index; added the adoption workstream to the roadmap.
 - Corrected the diagnostics reference: 33 diagnostics (`VAL0001`–`VAL0034`, `VAL0026` intentionally unused) and documented `VAL0034`.
 
 ### Rules and API parity fixes
@@ -288,7 +285,7 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 #### `[Flags]` enum semantics and AOT safety
 
 - Fixed `EnumRule` for `[Flags]` enums: any combination of declared flags and `0` now passes, while undefined bits fail. Non-flags enums keep the existing `Enum.IsDefined` behavior.
-- The rule builds its bit mask once at construction from `Enum.GetValuesAsUnderlyingType` (no `Enum.GetValues` on the validation path), then performs bitwise checks only. This keeps NativeAOT/trimming safe and matches FluentValidation 12.2's AOT fix.
+- The rule builds its bit mask once at construction from `Enum.GetValuesAsUnderlyingType` (no `Enum.GetValues` on the validation path), then performs bitwise checks only. This keeps NativeAOT/trimming safe.
 - Added fluent and generated tests for declared combinations, `All`, `0`, undefined bits, and nullable flags; the NativeAOT smoke harness now validates a generated `[Flags]` model.
 - Full suite 835 green. Docs: rule reference and AOT/trimming.
 - No new public API and no package change.
@@ -384,12 +381,12 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 - Added 11 integration tests over real Swashbuckle `SchemaGenerator` and NJsonSchema `JsonSchemaGenerator` output (required, format, ranges, patterns, collection sizes, IP any-of formats, nested definitions, naming policies, no-validator pass-through, registration); full suite 774 green.
 - Packable projects 23 → 25; README, ROADMAP, DocFX, solution, release notes, integration-packages reference, and package READMEs updated. Publication remains deferred.
 
-### Residual engine and integration parity
+### Residual engine and integration work
 #### Migration assistant (CLI/codemod)
 
 - Added the optional `Jeninnet.Validation.Migration` dotnet-tool package (`jeninnet` command, 23rd packable package) with `migrate analyze` (Markdown/JSON report, `--check` CI gate) and `migrate apply` (`--dry-run`/`--check`, idempotent), sharing one syntax-only Roslyn engine so analysis and codemod never diverge.
 - Safe codemods: `AbstractValidator<T>` to `Validator<T>` with `Configure`, single-argument `RuleFor(x => x.Name)` to `RuleFor(x => x.Name, nameof(T.Name))` (dotted paths become an `"A.B"` literal), `WithErrorCode` to `WithCode`, and `[Required]` to `[NotNull]` with an explicit `// TODO(Jeninnet):` review marker; constructors with parameters, `Custom(`, `Transform(`, and complex selectors are left untouched with `needs-review` report entries. Exit codes: 0 success, 1 pending/error, 2 usage.
-- Tests: 8 engine tests (conversions, untouched patterns, line numbers, idempotency) and 6 CLI tests (report, dry-run, apply, `--check`, usage errors); full suite 760 green. Docs: FluentValidation/DataAnnotations migration guides with tool usage, package README, README, ROADMAP, and CHANGELOG.
+- Tests: 8 engine tests (conversions, untouched patterns, line numbers, idempotency) and 6 CLI tests (report, dry-run, apply, `--check`, usage errors); full suite 760 green. Docs: migration tooling usage, package README, README, ROADMAP, and CHANGELOG.
 
 #### Optional input sanitization pipeline
 
@@ -704,7 +701,6 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 - Deleted the unused `Jeninnet.Validation.Policies` namespace: `INullPolicy<T>`, `NullPolicy`, and the four built-in policy implementations. No production path ever resolved them, so the advertised nullability-aware policy feature did not exist.
 - Deleted the orphan `AfterOffsetRule`, `BeforeOffsetRule`, and `ComparableRule` types and their dedicated tests; no public overloads emitted them and `After`/`Before` already cover the supported date types.
 - Corrected the API reference and the rules guide so they no longer list the removed namespace or claim offset rule variants.
-- Recorded the stale historical comparison matrix row 21 claim in the implementation record; the historical matrix file is intentionally left unchanged.
 - Full suite: 480 green (11 files removed).
 
 #### Executable conformance suite
@@ -748,7 +744,7 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 - New public API in `Jeninnet.Validation.Abstractions`: `AsyncValidatorInvokedSynchronouslyException` (validator type name + async rule count) and `[AsyncOnlyValidator]` marker attribute (emitted by the source generator for async-only generated validators).
 - New analyzer diagnostic `VAL0016` (Warning): synchronous `Validate` / `Validate(instance, ruleSets)` on an `[AsyncOnlyValidator]`-marked type warns at the call site; no code fix (the analyzer backlog).
 - `CompositeValidator<T>` constructor accepts an optional `validatorName` used in the exception message; fluent and generated validators pass their concrete type name.
-- Migration note: [strict async contract](docs/en/02-guides/15-migration-from-fluentvalidation.md).
+- Migration note: the strict async contract is documented with the migration tooling.
 - Tests: 8 core guard tests + 4 analyzer tests; full suite 246 + 16 green.
 
 #### Generated custom-rule wiring
@@ -795,7 +791,7 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 #### Coverage baseline
 
 - Coverage baseline: the existing `scripts/coverage/coverage.ps1` pipeline runs the 276-test suite with coverlet and ReportGenerator; assembly filters updated for the current layout (three packable assemblies only).
-- [Coverage and quality](docs/en/04-operations/03-coverage-and-quality.md) records the 2026-11-04 baseline: 54.3% line / 47.1% branch / 54.1% method; per assembly `Jeninnet.Validation` 55.9%, `Abstractions` 62.2%, `Analyzers` 52.2%; cold spots mapped to the remaining parity backlog.
+- [Coverage and quality](docs/en/04-operations/03-coverage-and-quality.md) records the 2026-11-04 baseline: 54.3% line / 47.1% branch / 54.1% method; per assembly `Jeninnet.Validation` 55.9%, `Abstractions` 62.2%, `Analyzers` 52.2%; cold spots mapped to the remaining quality backlog.
 - CI threshold enforcement and mutation testing remain deferred; README, ROADMAP, and the backlog were updated.
 
 #### Test assertions package
@@ -850,7 +846,7 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 - Custom validation with context: `CustomValidation<T, TValue>` / `CustomValidationAsync<T, TValue>` delegates receive the member value, `ValidationContext<T>`, and the error collector (plus a cancellation token for the async variant), so one rule can emit multiple errors.
 - New `CustomRule<T, TValue>` / `CustomAsyncRule<T, TValue>` plus fluent `Custom(...)` / `CustomAsync(...)` extensions; the async rule runs on the asynchronous path only.
 - Context access covers `Root`, `RootData`, `ServiceProvider`, and `GetFullPath(...)`; a delegate exception becomes a single `MessageId.Invalid` failure with code `CustomValidationException`, and cancellation propagates.
-- No attribute equivalent (fluent-only, matching peer behavior).
+- No attribute equivalent (fluent-only by design).
 - 8 new custom-rule tests; rule catalog and advanced guide sections; coverage refreshed (59.2% line / 50.7% branch).
 
 #### Dependent rules
@@ -960,7 +956,7 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 - New [benchmarks](docs/en/04-operations/06-benchmarks.md): machine profile, ShortRun methodology, validation tables for 5/10/30-property models (fluent vs real source-generated validators, valid/invalid/fail-fast), localization lookup, and Base64.
 - Benchmark suite completed: the stale composite-provider benchmark (invalid under the exactly-one-provider rule) was replaced by single-provider localization benchmarks; the benchmark project now references the analyzer and measures real generated validators.
 - Benchmark-driven engine fix: `CompositeValidator.ValidateRules`/`ValidateRulesAsync` use an indexed array fast path for the default rule set, removing 32 B/op from the 10/30-property fluent paths and error paths.
-- Honest correction: the happy path measures **32 B/op**, not zero. the historical comparison matrix row 59 was corrected from 1.0 to 0.5; row 55 (published evidence) moved from 0.5 to 1.0, leaving the headline unchanged.
+- Honest correction: the happy path measures **32 B/op**, not zero; the earlier benchmark claim was corrected.
 - No continuous perf-regression CI gate; the decision and hardware-variance rationale are recorded in the [benchmarks](docs/en/04-operations/06-benchmarks.md).
 
 #### Allocation audit
@@ -968,7 +964,7 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 - Allocation audit closed: `CompositeValidator` now iterates rule arrays by index and `SelectRules` returns the original array when no rule sets or filters apply. The residual 32 B/op from the allocation audit is gone; the Release test and BenchmarkDotNet both measure **0 B/op** on the happy path.
 - New [allocation audit](docs/en/04-operations/07-allocation-audit.md) records the collector/root-data lifecycle, the result snapshot guarantee (no aliasing), thread-pool/async-continuation behavior, nested-validation cost, and the rejected `AsyncLocal` alternative.
 - 4 new stress/allocation tests: zero-allocation happy path (Release-exact, Debug budget), 10,000 parallel invalid validations with stable error counts, 1,000 nested validations, and 1,000 async validations with continuations.
-- Benchmark refresh: error paths 968/2,104/6,024 B (5/10/30 errors), fail-fast 208 B, Base64 and localization 0 B. the historical comparison matrix row 59 restored to 1.0; headline **59.0/60 ≈ 98.3%**.
+- Benchmark refresh: error paths 968/2,104/6,024 B (5/10/30 errors), fail-fast 208 B, Base64 and localization 0 B.
 
 #### Sonar quality gate
 

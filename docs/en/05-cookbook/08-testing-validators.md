@@ -73,7 +73,7 @@ var test = await validator.TestValidateAsync(model, cancellationToken);
 test.ShouldNotHaveValidationErrors();
 ```
 
-## Test generated and fluent parity
+## Test generated and fluent conformance
 
 ```csharp
 var fluent = new CustomerValidator().Validate(model);

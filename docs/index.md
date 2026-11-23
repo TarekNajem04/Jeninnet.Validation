@@ -9,7 +9,6 @@ This site is generated from the Markdown in the repository; `docs/` remains the 
 
 ## Start here
 
-- [Best C# validation libraries in 2026](en/01-getting-started/00b-best-csharp-validation-libraries.md) — an honest comparison with FluentValidation and DataAnnotations.
 - [Read the book](en/README.md) — the full table of contents and reading paths.
 - [Introduction](en/01-getting-started/01-introduction.md) — what the library is and is not.
 - [Installation](en/01-getting-started/02-installation.md) — packages and project setup.

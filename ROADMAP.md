@@ -25,7 +25,7 @@ and `Not planned`.
 
 | Release line | Status | Scope |
 |---|---|---|
-| `1.0.0-preview.1` | **Released 2026-11-13** | .NET 11 (STS) first preview; .NET 11 + C# 15 platform and peer parity |
+| `1.0.0-preview.1` | **Released 2026-11-13** | .NET 11 (STS) first preview; .NET 11 + C# 15 platform and authoring features |
 | `1.0.0-preview.2` | **Released 2026-11-17** | .NET 10 (LTS) baseline restored; .NET 11 bridge packages and OpenAPI keep net11 assets |
 | `1.0.0-preview.3` | **Current — in preparation** | Async DataAnnotations and async Options promoted from 1.1.0; release gates and Roslynator setup |
 | `1.0.0-preview.4` … `preview.N` | **Conditional** | Post-preview fixes and API feedback; no unrelated scope |
@@ -57,8 +57,6 @@ added without another explicit re-cut.
   cancellation. `net10.0` remains synchronous.
 - [x] **Central Roslynator setup.** Roslynator 5.0.1 is versioned once and referenced once for every
   C# project; nine RCS diagnostics were fixed without suppressions.
-- [x] **Capability parity.** The full matrix is now 95/95 (100%); the .NET 10 baseline remains
-  93/93.
 
 ## Version snapshot
 
@@ -67,7 +65,7 @@ added without another explicit re-cut.
 | Version | `1.0.0-preview.3` (central, `Directory.Build.props`) |
 | Target frameworks | `net10.0` baseline; `net11.0` additive for `DataAnnotations`, `Extensions.Validation`, and the three OpenAPI adapters |
 | Build | **Verified:** 0 warnings / 0 errors on a clean Release build |
-| Tests | **Verified:** 1,051/1,051 across 18 test assemblies on `net10.0` and `net11.0` |
+| Tests | **Verified:** 1,050/1,050 across 18 test assemblies on `net10.0` and `net11.0` |
 | Format/docs | **Verified:** `dotnet format`, doc links, README claims, Arabic text, source headers, docfx metadata/build, and API reference |
 | AOT/trimming | **Verified:** NativeAOT smoke publishes and runs locally (`win-x64`); CI verifies `linux-x64` |
 | Packages | **Verified:** 25 packable packages; contents, central-version alignment, dual-TFM consumer smoke, and local-feed dry run |
@@ -82,7 +80,7 @@ added without another explicit re-cut.
 - [ ] **MUST — Version alignment.** Central and package versions agree; the tag and published
   packages are created at publication.
 - [ ] **MUST — Preview.3 publication.** Push to NuGet and tag only after the gates are green.
-- [x] **SHOULD — Release notes and migration notes** with the preview delta.
+- [x] **SHOULD — Release notes** with the preview delta.
 
 ---
 
@@ -129,7 +127,7 @@ It was published to NuGet on 2026-11-17.
 
 ### Engine, rules, and execution
 
-- [x] Attribute-driven generation and fluent authoring share one engine and executable parity tests.
+- [x] Attribute-driven generation and fluent authoring share one engine and executable conformance tests.
 - [x] Rule sets, rule/property include-exclude, class- and rule-level cascade, fail-fast, and
   `ValidationCallOptions`.
 - [x] Per-rule `When`/`WhenAsync`/`Unless`/`UnlessAsync`, `ApplyConditionTo`, and dependent rules.
@@ -166,7 +164,7 @@ It was published to NuGet on 2026-11-17.
 
 ### Localization
 
-- [x] Built-in packs for 40 cultures with key/placeholder parity and RTL support.
+- [x] Built-in packs for 40 cultures with key/placeholder consistency and RTL support.
 - [x] Runtime `IValidationMessageCatalog` for culture/message additions, overrides, and removals.
 - [x] Unified message placeholders, authored-message precedence, and ICU plural/select opt-in.
 - [x] Localized domain rule packs (IBAN, VAT, postal code, national ID, password strength, UUID,
@@ -178,11 +176,11 @@ It was published to NuGet on 2026-11-17.
 - [x] `Jeninnet.Validation.Assertions` test helpers.
 - [x] `jeninnet migrate` CLI with readiness score and golden migration tests.
 - [x] Public API baselines, DocFX API reference, and compatibility policy.
-- [x] AOT/trimming evidence, allocation audit, benchmark evidence, and peer benchmarks.
+- [x] AOT/trimming evidence, allocation audit, and benchmark evidence.
 - [x] Architecture tests, coverage gate, vulnerability gate, package content checks, and consumer
   smoke tests.
 - [x] 26 sample projects, the `jeninnet-validator` template, and the documentation book.
-- [x] README, package READMEs, ROADMAP, CHANGELOG, release notes, and migration guides.
+- [x] README, package READMEs, ROADMAP, CHANGELOG, release notes, and migration tooling.
 
 ## Open release gates
 
@@ -216,7 +214,7 @@ It was published to NuGet on 2026-11-17.
 - [ ] **MUST — Fix preview blockers.** Correct release-blocking bugs and API feedback.
 - [ ] **MUST — Re-run every release gate.** Build/test/format/docs/AOT/package/consumer/Sonar.
 - [ ] **MUST — No new features.** A feature is added only by an explicit roadmap re-cut.
-- [ ] **SHOULD — Refresh release notes and migration notes** with the preview delta.
+- [ ] **SHOULD — Refresh release notes** with the preview delta.
 
 ---
 
@@ -226,7 +224,7 @@ It was published to NuGet on 2026-11-17.
 
 - [ ] **MUST — API freeze.** Freeze the public surface and refresh every baseline.
 - [ ] **MUST — Release-blocking fixes only.**
-- [ ] **MUST — Final release notes, migration guide, and supported-runtime matrix.**
+- [ ] **MUST — Final release notes and supported-runtime matrix.**
 - [ ] **MUST — Full quality gate on the release commit.**
 - [ ] **SHOULD — Community preview soak.** Resolve reported issues before the stable decision.
 
@@ -258,7 +256,7 @@ async bridges were promoted to `1.0.0-preview.3` on 2026-11-23.
 - [x] **Moved — Async DataAnnotations bridge.** Promoted to preview.3; see the preview.3 section.
 - [x] **Moved — Async Options validation.** Promoted to preview.3; see the preview.3 section.
 - [ ] **SHOULD — Additive API review.** Stage any new surface in `PublicAPI.Unshipped.txt`.
-- [ ] **SHOULD — Release notes and migration notes** for follow-up async changes.
+- [ ] **SHOULD — Release notes** for follow-up async changes.
 
 ---
 

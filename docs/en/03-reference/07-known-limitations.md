@@ -285,7 +285,7 @@ override to change localized default text; the pack remains the fallback for non
 - Culture packs preserve script and region subtags (`zh-Hans`, `pt-BR`), while the pipeline still
   resolves regional requests such as `fr-FR` through the neutral `fr` pack.
 - `ar`, `he`, `ur`, and `fa` contain RTL text; the package does not set UI direction.
-- The catalog test enforces key completeness and placeholder parity with English. A missing key or
+- The catalog test enforces key completeness and placeholder consistency with English. A missing key or
   changed placeholder fails the test rather than falling back silently.
 - `AddDefaultMessagePacks` exposes a mutable `IValidationMessageCatalog` for runtime additions,
   overrides, and removals. It is process-local and in-memory; changes do not survive a restart or

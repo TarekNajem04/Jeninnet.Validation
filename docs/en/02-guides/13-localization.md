@@ -208,7 +208,7 @@ back to the default culture.
 
 Add a new `Resources/<culture>.json` file with every key and the same placeholders as `en.json`.
 The provider discovers embedded packs automatically, and the catalog test enforces key
-completeness, placeholder parity, non-empty values, and RTL text for `ar`, `he`, `ur`, and `fa`. A
+completeness, placeholder consistency, non-empty values, and RTL text for `ar`, `he`, `ur`, and `fa`. A
 native-speaker review is required before merging; see the package README for the contribution
 checklist. For a runtime-only language, use `IValidationMessageCatalog.AddPack` instead of adding a
 resource file.
