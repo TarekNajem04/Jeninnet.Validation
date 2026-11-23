@@ -21,7 +21,3 @@ global using Jeninnet.Validation.Fluent;
 global using Jeninnet.Validation.Localization;
 global using Jeninnet.Validation.Rules;
 global using Microsoft.Extensions.DependencyInjection;
-global using DataAnnotations = System.ComponentModel.DataAnnotations;
-global using FluentValidationAbstractValidator = FluentValidation.AbstractValidator<Jeninnet.Validation.Benchmarks.PeerModel>;
-global using FvValidationResult = FluentValidation.Results.ValidationResult;
-global using JeninnetValidationResult = Jeninnet.Validation.ValidationResult;

@@ -14,7 +14,6 @@
         <PackageReference Include="coverlet.collector" PrivateAssets="all" />
         <PackageReference Include="Jeninnet.Assertions" />
         <PackageReference Include="Jeninnet.Assertions.MSTest" />
-        <PackageReference Include="FluentValidation" />
     </ItemGroup>
 
     <ItemGroup>

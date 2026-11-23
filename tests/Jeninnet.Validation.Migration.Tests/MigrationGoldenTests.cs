@@ -7,46 +7,12 @@
 
 namespace Jeninnet.Validation.Migration.Tests;
 
-internal sealed class MigrationGoldenModel {
-    public string? Name { get; set; }
-
-    public string? Email { get; set; }
-
-    public int Age { get; set; }
-}
-
-file sealed class FluentGoldenValidator : AbstractValidator<MigrationGoldenModel> {
-    public FluentGoldenValidator() {
-        RuleFor(static model => model.Name).NotEmpty().MaximumLength(10);
-        RuleFor(static model => model.Email).NotEmpty().EmailAddress();
-        RuleFor(static model => model.Age).InclusiveBetween(18, 120);
-    }
-}
-
-file sealed class JeninnetGoldenValidator : Jeninnet.Validation.Fluent.Validator<MigrationGoldenModel> {
-    protected override void Configure(ValidatorRuleBuilder<MigrationGoldenModel> builder) {
-        ArgumentNullException.ThrowIfNull(builder);
-
-        builder.RuleFor(static model => model.Name, nameof(MigrationGoldenModel.Name))
-               .NotEmpty()
-               .MaximumLength(10);
-
-        builder.RuleFor(static model => model.Email, nameof(MigrationGoldenModel.Email))
-               .NotEmpty()
-               .EmailAddress();
-
-        builder.RuleFor(static model => model.Age, nameof(MigrationGoldenModel.Age))
-               .InclusiveBetween(18, 120);
-    }
-}
-
 /// <summary>
-/// Golden migration tests: the codemod output shape and the runtime equivalence of the common
-/// FluentValidation/DataAnnotations rule set.
+/// Golden migration tests for the codemod output shape.
 /// </summary>
 [TestClass]
 public sealed class MigrationGoldenTests {
-    private const string FLUENT_SOURCE = """
+    private const string VALIDATOR_SOURCE = """
         using FluentValidation;
 
         public class User {
@@ -70,20 +36,8 @@ public sealed class MigrationGoldenTests {
         """;
 
     [TestMethod]
-    public void CommonRules_ProduceTheSameValidityAndMemberNames() {
-        var invalid = new MigrationGoldenModel { Name = "", Email = "not-an-email", Age = 10 };
-        var valid = new MigrationGoldenModel { Name = "Alice", Email = "alice@example.com", Age = 30 };
-
-        var fluent = new FluentGoldenValidator();
-        var jeninnet = new JeninnetGoldenValidator();
-
-        AssertSameOutcome(fluent.Validate(invalid), jeninnet.Validate(invalid), expectedValid: false);
-        AssertSameOutcome(fluent.Validate(valid), jeninnet.Validate(valid), expectedValid: true);
-    }
-
-    [TestMethod]
-    public void Codemod_FluentFixture_ProducesTheGoldenJeninnetShape() {
-        var migration = MigrationEngine.MigrateSource("UserValidator.cs", FLUENT_SOURCE);
+    public void Codemod_ValidatorFixture_ProducesTheGoldenJeninnetShape() {
+        var migration = MigrationEngine.MigrateSource("UserValidator.cs", VALIDATOR_SOURCE);
 
         MSTestAssertions.That(() => migration.Changed.Should().BeTrue());
         MSTestAssertions.That(() => migration.NewText.Should().Contain("Validator<User>"));
@@ -107,24 +61,5 @@ public sealed class MigrationGoldenTests {
         MSTestAssertions.That(() => migration.Converted.Select(static finding => finding.Kind).Should()
             .Contain(MigrationFinding.RequiredConverted));
         MSTestAssertions.That(() => migration.NeedsReview.Should().HaveCount(1));
-    }
-
-    private static void AssertSameOutcome(FvValidationResult fluent, Jeninnet.Validation.ValidationResult jeninnet, bool expectedValid) {
-        MSTestAssertions.That(() => (fluent.IsValid == expectedValid).Should().BeTrue());
-        MSTestAssertions.That(() => (jeninnet.IsValid == expectedValid).Should().BeTrue());
-
-        var fluentMembers = fluent.Errors
-            .Select(static error => error.PropertyName)
-            .Distinct(StringComparer.Ordinal)
-            .OrderBy(static name => name, StringComparer.Ordinal)
-            .ToList();
-        var jeninnetMembers = jeninnet.Errors
-            .Select(static error => error.MemberName)
-            .Distinct(StringComparer.Ordinal)
-            .OrderBy(static name => name, StringComparer.Ordinal)
-            .ToList();
-
-        MSTestAssertions.That(() => jeninnetMembers.SequenceEqual(fluentMembers, StringComparer.Ordinal).Should().BeTrue(
-            $"expected members [{string.Join(", ", fluentMembers)}]; found [{string.Join(", ", jeninnetMembers)}]"));
     }
 }

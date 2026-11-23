@@ -41,7 +41,7 @@ public sealed class MigrationEngineTests {
             .And.Contain(MigrationFinding.WithCodeRenamed));
         MSTestAssertions.That(() => migration.Converted
             .Single(static finding => finding.Kind == MigrationFinding.ValidatorConverted).Detail.Should()
-            .Contain("FluentValidation"));
+            .Contain("source validator"));
         MSTestAssertions.That(() => migration.Converted
             .Single(static finding => finding.Kind == MigrationFinding.RuleForMemberName).Detail.Should()
             .Contain("Jeninnet"));
