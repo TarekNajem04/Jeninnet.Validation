@@ -52,8 +52,8 @@ public sealed class AddNotEmptySuggestionCodeFix : CodeFixProvider {
         var notEmptyAttr = SyntaxFactory.Attribute(SyntaxFactory.ParseName("NotEmpty"));
 
         AttributeListSyntax newList;
-        if(property.AttributeLists.Any()) {
-            var firstList = property.AttributeLists.First();
+        var firstList = property.AttributeLists.FirstOrDefault();
+        if(firstList is not null) {
             newList = firstList.AddAttributes(notEmptyAttr);
             var newProperty = property.WithAttributeLists(
                 property.AttributeLists.Replace(firstList, newList));

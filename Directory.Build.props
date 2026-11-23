@@ -45,6 +45,30 @@
         </PackageReference>
     </ItemGroup>
 
+    <!--
+        Roslynator analyzers are centralized for every C# project in the solution.
+        Versions live in Directory.Packages.props; PrivateAssets keeps the
+        analyzers out of package dependencies and public API surfaces.
+
+        Roslynator.Formatting.Analyzers ships its rules disabled by default.
+        Enabling them is a deliberate .roslynatorconfig/EditorConfig decision,
+        not a per-project package change.
+    -->
+    <ItemGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
+        <PackageReference Include="Roslynator.Analyzers">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>analyzers</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Roslynator.CodeAnalysis.Analyzers">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>analyzers</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Roslynator.Formatting.Analyzers">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
     <!-- SourceLink runs only in CI: local clones may lack the git remote, and its
          "no remote / empty source link" warnings must not pollute local builds.
          The publish workflow always runs with CI=true. -->

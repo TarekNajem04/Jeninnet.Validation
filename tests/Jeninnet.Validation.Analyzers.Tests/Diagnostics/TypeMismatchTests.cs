@@ -102,7 +102,7 @@ public class TypeMismatchTests {
             new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
 
         var driver = CSharpGeneratorDriver.Create(new ValidatorGenerator());
-        driver.RunGeneratorsAndUpdateCompilation(compilation, out _, out var diagnostics);
+        _ = driver.RunGeneratorsAndUpdateCompilation(compilation, out _, out var diagnostics);
 
         return diagnostics;
     }

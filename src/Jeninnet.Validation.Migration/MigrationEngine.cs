@@ -151,7 +151,7 @@ internal static class MigrationEngine {
 
             var constructors = node.Members.OfType<ConstructorDeclarationSyntax>().ToList();
 
-            if(constructors.Count != 1 || constructors[0].ParameterList.Parameters.Count != 0) {
+            if(constructors is not [var originalConstructor] || originalConstructor.ParameterList.Parameters.Any()) {
                 migration.AddNeedsReview(new MigrationFinding(
                     MigrationFinding.NeedsReview,
                     GetLine(node),
@@ -159,7 +159,6 @@ internal static class MigrationEngine {
                 return base.VisitClassDeclaration(node);
             }
 
-            var originalConstructor = constructors[0];
             var originalConstructorLine = GetLine(originalConstructor);
 
             // Record RuleFor findings from the ORIGINAL syntax. Nodes reached through ancestors

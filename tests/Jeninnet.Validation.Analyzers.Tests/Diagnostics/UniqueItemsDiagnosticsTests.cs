@@ -40,7 +40,7 @@ public sealed class UniqueItemsDiagnosticsTests {
             new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
 
         var driver = CSharpGeneratorDriver.Create(new ValidatorGenerator());
-        driver.RunGeneratorsAndUpdateCompilation(
+        _ = driver.RunGeneratorsAndUpdateCompilation(
             compilation,
             out var _,
             out var diagnostics,

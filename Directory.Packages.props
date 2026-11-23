@@ -48,6 +48,10 @@
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="$(SwashbuckleSwaggerGenVersion)" />
     <PackageVersion Include="System.Collections.Immutable" Version="11.0.0" />
     <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.37.0.15768" />
+    <!-- Roslynator 5.0.1 is the latest stable line and ships roslyn5.0 analyzer assets. -->
+    <PackageVersion Include="Roslynator.Analyzers" Version="5.0.1" />
+    <PackageVersion Include="Roslynator.CodeAnalysis.Analyzers" Version="5.0.1" />
+    <PackageVersion Include="Roslynator.Formatting.Analyzers" Version="5.0.1" />
     <PackageVersion Include="MediatR" Version="15.0.0" />
     <PackageVersion Include="ErrorOr" Version="2.1.1" />
     <PackageVersion Include="FluentValidation" Version="12.2.0" />

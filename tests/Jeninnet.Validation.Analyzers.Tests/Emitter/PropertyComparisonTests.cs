@@ -71,7 +71,7 @@ public class PropertyComparisonTests {
             new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
 
         var driver = CSharpGeneratorDriver.Create(new ValidatorGenerator());
-        driver.RunGeneratorsAndUpdateCompilation(compilation, out var _, out var diagnostics);
+        _ = driver.RunGeneratorsAndUpdateCompilation(compilation, out var _, out var diagnostics);
 
         return diagnostics;
     }
