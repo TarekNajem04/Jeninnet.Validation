@@ -11,6 +11,8 @@ global using System.ComponentModel.DataAnnotations;
 global using System.Linq;
 global using System.Reflection;
 global using System.Runtime.ExceptionServices;
+global using System.Threading;
+global using System.Threading.Tasks;
 global using Jeninnet.Validation;
 global using Jeninnet.Validation.Abstractions;
 global using Jeninnet.Validation.Core;

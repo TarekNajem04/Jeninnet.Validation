@@ -14,11 +14,15 @@ namespace Jeninnet.Validation.DataAnnotations;
 /// Apply this attribute to a property or field when only that member should be validated, for
 /// example by MVC property validation or a Blazor <c>DataAnnotationsValidator</c>. The validator
 /// is resolved from the validation context's service provider first, then created with its
-/// parameterless constructor. When the model also has <see cref="JeninnetValidatableAttribute"/>,
-/// the class-level attribute wins and this attribute does nothing.
+/// parameterless constructor. When the model also has <see cref="JeninnetValidatableAttribute"/>, the
+/// class-level attribute wins and this attribute does nothing.
 /// </remarks>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
+#if NET11_0_OR_GREATER
+public class JeninnetValidatePropertyAttribute : AsyncValidationAttribute {
+#else
 public class JeninnetValidatePropertyAttribute : ValidationAttribute {
+#endif
     /// <summary>
     /// Initializes a new instance of the <see cref="JeninnetValidatePropertyAttribute"/> class.
     /// </summary>
@@ -78,20 +82,7 @@ public class JeninnetValidatePropertyAttribute : ValidationAttribute {
 
         _ = value;
 
-        if(validationContext.ObjectType.GetCustomAttribute<SkipValidationAttribute>(inherit: true) is not null) {
-            return DataAnnotationsValidationResult.Success;
-        }
-
-        if(validationContext.MemberName is { Length: > 0 } memberName) {
-            var member = (MemberInfo?)validationContext.ObjectType.GetProperty(memberName)
-                         ?? validationContext.ObjectType.GetField(memberName);
-
-            if(member?.GetCustomAttribute<SkipValidationAttribute>(inherit: true) is not null) {
-                return DataAnnotationsValidationResult.Success;
-            }
-        }
-
-        if(validationContext.ObjectType.GetCustomAttribute<JeninnetValidatableAttribute>(inherit: true) is not null) {
+        if(ShouldSkip(validationContext)) {
             return DataAnnotationsValidationResult.Success;
         }
 
@@ -108,6 +99,61 @@ public class JeninnetValidatePropertyAttribute : ValidationAttribute {
             validationContext.GetService,
             RuleSets);
 
+        return ToResult(result, validationContext);
+    }
+
+#if NET11_0_OR_GREATER
+    /// <inheritdoc />
+    protected override async Task<DataAnnotationsValidationResult?> IsValidAsync(
+        object? value,
+        ValidationContext validationContext,
+        CancellationToken cancellationToken) {
+        ArgumentNullException.ThrowIfNull(validationContext);
+
+        _ = value;
+
+        if(ShouldSkip(validationContext)) {
+            return DataAnnotationsValidationResult.Success;
+        }
+
+        if(validationContext.ObjectInstance is null) {
+            throw new InvalidOperationException(
+                "Property-level Jeninnet validation requires a model instance.");
+        }
+
+        var result = await JeninnetDataAnnotationsAdapter.ValidatePropertyAsync(
+            validationContext.ObjectInstance,
+            validationContext.ObjectType,
+            ValidatorType,
+            MemberName,
+            validationContext.GetService,
+            RuleSets,
+            cancellationToken).ConfigureAwait(false);
+
+        return ToResult(result, validationContext);
+    }
+#endif
+
+    private static bool ShouldSkip(ValidationContext validationContext) {
+        if(validationContext.ObjectType.GetCustomAttribute<SkipValidationAttribute>(inherit: true) is not null) {
+            return true;
+        }
+
+        if(validationContext.MemberName is { Length: > 0 } memberName) {
+            var member = (MemberInfo?)validationContext.ObjectType.GetProperty(memberName)
+                         ?? validationContext.ObjectType.GetField(memberName);
+
+            if(member?.GetCustomAttribute<SkipValidationAttribute>(inherit: true) is not null) {
+                return true;
+            }
+        }
+
+        return validationContext.ObjectType.GetCustomAttribute<JeninnetValidatableAttribute>(inherit: true) is not null;
+    }
+
+    private DataAnnotationsValidationResult? ToResult(
+        JeninnetValidationResult result,
+        ValidationContext validationContext) {
         if(result.IsValid) {
             return DataAnnotationsValidationResult.Success;
         }

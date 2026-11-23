@@ -1,0 +1,2 @@
+#nullable enable
+override Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute.IsValidAsync(object? value, System.ComponentModel.DataAnnotations.ValidationContext! validationContext, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<System.ComponentModel.DataAnnotations.ValidationResult?>!

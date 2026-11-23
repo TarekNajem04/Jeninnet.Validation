@@ -11,7 +11,11 @@ namespace Jeninnet.Validation.DataAnnotations;
 /// Converts Jeninnet.Validation results into DataAnnotations results and runs
 /// validators from DataAnnotations-based pipelines.
 /// </summary>
+#if NET11_0_OR_GREATER
+public static partial class JeninnetDataAnnotationsAdapter {
+#else
 public static class JeninnetDataAnnotationsAdapter {
+#endif
     /// <summary>
     /// Runs a validator for the supplied model instance.
     /// </summary>
@@ -183,7 +187,7 @@ public static class JeninnetDataAnnotationsAdapter {
                 $"Validator '{validatorType.FullName}' returned no validation result.");
     }
 
-    private static object ResolveValidator(
+    internal static object ResolveValidator(
         Type modelType,
         Type validatorType,
         Func<Type, object?>? serviceProvider) {
