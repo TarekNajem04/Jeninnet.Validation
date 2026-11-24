@@ -43,5 +43,5 @@ public sealed class MustAsyncCondition<T, TValue>(
 
     /// <inheritdoc />
     protected override IDictionary<string, object>? GetMessageParameters(ValidationContext<T> context)
-        => new Dictionary<string, object> { { "0", Predicate } };
+        => new MessageParameterDictionary(ruleParameterCount: 1) { { "0", Predicate } };
 }

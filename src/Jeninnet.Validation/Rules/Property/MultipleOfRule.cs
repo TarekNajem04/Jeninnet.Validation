@@ -49,7 +49,7 @@ public sealed class MultipleOfRule<T, TValue>(
 
     /// <inheritdoc />
     protected override IDictionary<string, object>? GetMessageParameters(ValidationContext<T> context) =>
-        new Dictionary<string, object> {
+        new MessageParameterDictionary(ruleParameterCount: 2) {
             { "0", _divisor },
             { MessageParameterNames.Divisor, _divisor }
         };

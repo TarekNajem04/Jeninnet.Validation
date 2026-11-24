@@ -69,7 +69,7 @@ public sealed class FileExtensionsRule<T, TProperty>(
     protected override IDictionary<string, object>? GetMessageParameters(ValidationContext<T> context) {
         var joined = string.Join(", ", _extensions);
 
-        return new Dictionary<string, object> {
+        return new MessageParameterDictionary(ruleParameterCount: 3) {
             { "0", joined },
             { MessageParameterNames.Extensions, joined },
             { MessageParameterNames.PropertyValue, Accessor.GetValue(context.Instance)! }

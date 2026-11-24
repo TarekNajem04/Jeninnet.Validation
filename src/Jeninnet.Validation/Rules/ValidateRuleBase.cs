@@ -151,7 +151,7 @@ public abstract class ValidateRuleBase<T, TProperty>(
                 errorMemberName,
                 error.MessageId,
                 error.MessageKey,
-                EnrichParameters(error.MessageParameters, errorMemberName, effectiveDisplayName, value),
+                CopyAndEnrichParameters(error.MessageParameters, errorMemberName, effectiveDisplayName, value),
                 authoredMessage,
                 error.ErrorCode ?? ErrorCodeOverride,
                 error.Severity,
@@ -215,18 +215,53 @@ public abstract class ValidateRuleBase<T, TProperty>(
         string memberName,
         string? displayName,
         object? value) {
-        var enriched = parameters is null
-            ? [with(StringComparer.Ordinal)]
-            : new Dictionary<string, object>(parameters, StringComparer.Ordinal);
+        // Built-in rules return a MessageParameterDictionary created for this error, so the
+        // enrichment entries can be added in place. Foreign and custom dictionaries are copied
+        // to keep the rule's instance untouched.
+        var enriched = parameters is MessageParameterDictionary owned
+            ? owned
+            : CopyParameters(parameters);
 
-        enriched[MessageParameterNames.PropertyName] = displayName ?? memberName;
-        enriched[MessageParameterNames.PropertyPath] = memberName;
-
-        if(!enriched.ContainsKey(MessageParameterNames.PropertyValue)) {
-            enriched[MessageParameterNames.PropertyValue] = value!;
-        }
+        AddEnrichment(enriched, memberName, displayName, value);
 
         return enriched;
+    }
+
+    private static Dictionary<string, object> CopyAndEnrichParameters(
+        IDictionary<string, object>? parameters,
+        string memberName,
+        string? displayName,
+        object? value) {
+        var enriched = CopyParameters(parameters);
+
+        AddEnrichment(enriched, memberName, displayName, value);
+
+        return enriched;
+    }
+
+    private static MessageParameterDictionary CopyParameters(IDictionary<string, object>? parameters) {
+        var copy = new MessageParameterDictionary(parameters?.Count ?? 0);
+
+        if(parameters is not null) {
+            foreach(var parameter in parameters) {
+                copy[parameter.Key] = parameter.Value;
+            }
+        }
+
+        return copy;
+    }
+
+    private static void AddEnrichment(
+        Dictionary<string, object> parameters,
+        string memberName,
+        string? displayName,
+        object? value) {
+        parameters[MessageParameterNames.PropertyName] = displayName ?? memberName;
+        parameters[MessageParameterNames.PropertyPath] = memberName;
+
+        if(!parameters.ContainsKey(MessageParameterNames.PropertyValue)) {
+            parameters[MessageParameterNames.PropertyValue] = value!;
+        }
     }
 
     /// <summary>

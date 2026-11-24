@@ -93,6 +93,35 @@ public sealed class AllocationAndConcurrencyTests {
     }
 
     [TestMethod]
+    [DoNotParallelize]
+    public void Validate_InvalidPath_StaysWithinReviewedAllocationBudget() {
+        var validator = new AllocationModelValidator();
+        var invalid = new AllocationModel { Name = "", Age = 100 };
+
+        for(var i = 0; i < 1_000; i++) {
+            _ = validator.Validate(invalid);
+        }
+
+        var before = GC.GetAllocatedBytesForCurrentThread();
+
+        for(var i = 0; i < 1_000; i++) {
+            _ = validator.Validate(invalid);
+        }
+
+        var allocated = GC.GetAllocatedBytesForCurrentThread() - before;
+#if DEBUG
+        // Debug codegen rents the pooled collector differently; keep only a runaway guard.
+        const int maximumAllocated = 64 * 1_000 * 1_000;
+#else
+        // Two errors (NotEmpty + InclusiveBetween) measured at 1,128 B/op on .NET 10.0.15.
+        // The ceiling catches a return to the two-dictionary path (about 2,100 B/op).
+        const int maximumAllocated = 1_600 * 1_000;
+#endif
+        MSTestAssertions.That(() => (allocated <= maximumAllocated).Should().BeTrue(
+            $"the invalid path should stay within the reviewed allocation budget, but allocated {allocated} bytes"));
+    }
+
+    [TestMethod]
     public void Validate_InvalidPathAcrossThreads_DoesNotLeakErrors() {
         var validator = new AllocationModelValidator();
         var invalid = new AllocationModel { Name = "", Age = 100 };

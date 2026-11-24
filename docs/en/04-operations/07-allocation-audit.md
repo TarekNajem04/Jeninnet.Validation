@@ -26,8 +26,8 @@ the stress evidence behind it.
 |---|---|
 | Release test, 1,000 warmup + 1,000 validations | **0 B** allocated |
 | BenchmarkDotNet, 5/10/30-property valid models | **0 B** per operation |
-| Invalid 5/10/30-property models | 968 / 2,104 / 6,024 B (error objects + snapshot) |
-| Fail-fast invalid 5-property model | 208 B |
+| Invalid 5/10/30-property models | 2,496 / 4,936 / 14,456 B (error objects + snapshot) |
+| Fail-fast invalid 5-property model | 456 B |
 | Base64 rule | 0 B |
 | Localization lookups | 0 B |
 | Parallel invalid validation, 10,000 iterations | Stable error count, no cross-thread leakage |
@@ -47,6 +47,11 @@ pooled collector the same way; the exact **0 B** assertion runs in Release.
 2. `SelectRules` returns the original array immediately when no rule sets or
    filters apply. The previous `as`/materialization path allocated 32 B per
    call.
+3. Each error now builds one pre-sized `MessageParameterDictionary`; the
+   enrichment entries (`PropertyName`, `PropertyPath`, `PropertyValue`) are
+   added in place instead of copying the rule parameters into a second
+   dictionary. Invalid-path allocation fell by 46–48% without changing the
+   public error shape.
 
 Together these removed the residual 32 B/op measured during early benchmarking; the happy
 path is now zero.

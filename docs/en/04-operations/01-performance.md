@@ -7,10 +7,10 @@ The engine is designed for a zero-allocation happy path and predictable error co
 | Scenario | Allocation |
 |---|---|
 | Valid model, 5/10/30 properties | **0 B/op** |
-| Invalid model, 5 errors | 968 B |
-| Invalid model, 10 errors | 2,104 B |
-| Invalid model, 30 errors | 6,024 B |
-| Fail-fast, 5-property model | 208 B |
+| Invalid model, 5 errors | 2,496 B |
+| Invalid model, 10 errors | 4,936 B |
+| Invalid model, 30 errors | 14,456 B |
+| Fail-fast, 5-property model | 456 B |
 | Base64 rule | 0 B |
 | Localization lookup | 0 B |
 

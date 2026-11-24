@@ -43,6 +43,7 @@
     <ItemGroup>
         <InternalsVisibleTo Include="Jeninnet.Validation.Analyzers.Tests" />
         <InternalsVisibleTo Include="Jeninnet.Validation.Benchmarks" />
+        <InternalsVisibleTo Include="Jeninnet.Validation.Rules.Domain" />
         <InternalsVisibleTo Include="Jeninnet.Validation.Tests" />
     </ItemGroup>
 

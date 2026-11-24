@@ -41,7 +41,7 @@ public sealed class InRule<T, TValue> : SyncValidateRule<T, TValue> {
     protected override IDictionary<string, object>? GetMessageParameters(ValidationContext<T> context) {
         var joined = string.Join(", ", Values);
 
-        return new Dictionary<string, object> {
+        return new MessageParameterDictionary(ruleParameterCount: 2) {
             { "0", joined },
             { MessageParameterNames.Values, joined }
         };

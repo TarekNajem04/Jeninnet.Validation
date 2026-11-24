@@ -63,7 +63,7 @@ public abstract class BetweenRule<T, TValue> : SyncValidateRule<T, TValue> {
 
     /// <inheritdoc />
     protected override IDictionary<string, object>? GetMessageParameters(ValidationContext<T> context)
-        => new Dictionary<string, object> {
+        => new MessageParameterDictionary(ruleParameterCount: 6) {
             { "0", Min! },
             { "1", Max! },
             { MessageParameterNames.Min, Min! },

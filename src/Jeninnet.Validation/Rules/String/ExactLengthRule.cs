@@ -57,7 +57,7 @@ public class ExactLengthRule<T, TProperty>(
 
     /// <inheritdoc />
     protected override IDictionary<string, object>? GetMessageParameters(ValidationContext<T> context) =>
-        new Dictionary<string, object> {
+        new MessageParameterDictionary(ruleParameterCount: 3) {
             { "0", Length },
             { MessageParameterNames.Length, Length },
             { MessageParameterNames.ExactLength, Length }
