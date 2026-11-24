@@ -1,4 +1,14 @@
 #nullable enable
+Jeninnet.Validation.CodeFixes.RemoveRedundantNotNullCodeFix
+Jeninnet.Validation.CodeFixes.RemoveRedundantNotNullCodeFix.RemoveRedundantNotNullCodeFix() -> void
+Jeninnet.Validation.CodeFixes.RemoveTautologicalRuleCodeFix
+Jeninnet.Validation.CodeFixes.RemoveTautologicalRuleCodeFix.RemoveTautologicalRuleCodeFix() -> void
+override Jeninnet.Validation.CodeFixes.RemoveRedundantNotNullCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>
+override Jeninnet.Validation.CodeFixes.RemoveRedundantNotNullCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!
+override Jeninnet.Validation.CodeFixes.RemoveRedundantNotNullCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!
+override Jeninnet.Validation.CodeFixes.RemoveTautologicalRuleCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>
+override Jeninnet.Validation.CodeFixes.RemoveTautologicalRuleCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!
+override Jeninnet.Validation.CodeFixes.RemoveTautologicalRuleCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!
 static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.ConditionalAttributeDuplicate -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
 static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.ConditionalTargetInvalid -> Microsoft.CodeAnalysis.DiagnosticDescriptor!
 static readonly Jeninnet.Validation.Diagnostics.DiagnosticDescriptors.ConditionalValueUnsupported -> Microsoft.CodeAnalysis.DiagnosticDescriptor!

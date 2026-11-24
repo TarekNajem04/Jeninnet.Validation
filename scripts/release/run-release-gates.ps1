@@ -65,6 +65,9 @@
 .PARAMETER SkipDocs
     Skip documentation links, README claims, and Arabic-text checks.
 
+.PARAMETER SkipAnalyzerFixes
+    Skip the analyzer diagnostic/code-fix coverage check.
+
 .PARAMETER SkipClientSupport
     Skip the client rule-support drift check.
 
@@ -105,7 +108,7 @@
     pwsh scripts/release/run-release-gates.ps1 -SkipPackages -SkipAot
 
 .EXAMPLE
-    pwsh scripts/release/run-release-gates.ps1 -SkipRestore -SkipBuild -SkipTests -SkipFormat -SkipSourceHeaders -SkipApiBaselines -SkipApiGateSelfTest -SkipApiDiff -SkipMessageKeys -SkipClientSupport -SkipClient -SkipVulnerability -SkipPackages -SkipConsumer -SkipAotSupport -SkipAot -SkipCoverage -SkipSonar
+    pwsh scripts/release/run-release-gates.ps1 -SkipRestore -SkipBuild -SkipTests -SkipFormat -SkipSourceHeaders -SkipApiBaselines -SkipApiGateSelfTest -SkipApiDiff -SkipMessageKeys -SkipAnalyzerFixes -SkipClientSupport -SkipClient -SkipVulnerability -SkipPackages -SkipConsumer -SkipAotSupport -SkipAot -SkipCoverage -SkipSonar
 #>
 
 [CmdletBinding()]
@@ -125,6 +128,7 @@ param(
     [switch]$SkipApiDiff,
     [switch]$SkipMessageKeys,
     [switch]$SkipDocs,
+    [switch]$SkipAnalyzerFixes,
     [switch]$SkipClientSupport,
     [switch]$SkipClient,
     [switch]$SkipVulnerability,
@@ -752,6 +756,12 @@ try {
             Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/docs/check-readme-claims.ps1')
         }
         $gate.LogPath = Join-Path $logsDirectory '10-readme-claims.log'
+        [void]$gates.Add($gate)
+
+        $gate = New-Gate -Name 'analyzer-fix-coverage' -Category 'Quality' -Command 'check-analyzer-fix-coverage.ps1' -Evidence 'Every diagnostic has a fix status, every provider is reflected, and release tracking covers the catalog.' -Skip:$SkipAnalyzerFixes -Action {
+            Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/quality/check-analyzer-fix-coverage.ps1')
+        }
+        $gate.LogPath = Join-Path $logsDirectory '10a-analyzer-fix-coverage.log'
         [void]$gates.Add($gate)
 
         $gate = New-Gate -Name 'arabic-text' -Category 'Docs' -Command 'check-arabic-text.ps1' -Evidence 'Arabic text passes the repository check.' -Skip:$SkipDocs -Action {

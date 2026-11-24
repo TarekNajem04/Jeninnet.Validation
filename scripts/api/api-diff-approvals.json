@@ -11,6 +11,96 @@
       "reason": "N1 async DataAnnotations bridge, approved in the 2026-11-23 preview.3 roadmap re-cut.",
       "approvedBy": "Maintainer",
       "approvedOn": "2026-11-24"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.CodeFixes.RemoveRedundantNotNullCodeFix",
+      "reason": "P3-018 safe removal code fix for VAL0014; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.CodeFixes.RemoveRedundantNotNullCodeFix.RemoveRedundantNotNullCodeFix() -> void",
+      "reason": "P3-018 safe removal code fix for VAL0014; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.CodeFixes.RemoveTautologicalRuleCodeFix",
+      "reason": "P3-018 safe removal code fix for VAL0017; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.CodeFixes.RemoveTautologicalRuleCodeFix.RemoveTautologicalRuleCodeFix() -> void",
+      "reason": "P3-018 safe removal code fix for VAL0017; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "override Jeninnet.Validation.CodeFixes.RemoveRedundantNotNullCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>",
+      "reason": "P3-018 safe removal code fix for VAL0014; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "override Jeninnet.Validation.CodeFixes.RemoveRedundantNotNullCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!",
+      "reason": "P3-018 safe removal code fix for VAL0014; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "override Jeninnet.Validation.CodeFixes.RemoveRedundantNotNullCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!",
+      "reason": "P3-018 safe removal code fix for VAL0014; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "override Jeninnet.Validation.CodeFixes.RemoveTautologicalRuleCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>",
+      "reason": "P3-018 safe removal code fix for VAL0017; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "override Jeninnet.Validation.CodeFixes.RemoveTautologicalRuleCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!",
+      "reason": "P3-018 safe removal code fix for VAL0017; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "override Jeninnet.Validation.CodeFixes.RemoveTautologicalRuleCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!",
+      "reason": "P3-018 safe removal code fix for VAL0017; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
     }
   ]
 }

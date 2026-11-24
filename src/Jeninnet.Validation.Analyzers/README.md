@@ -39,7 +39,17 @@ The `ValidatorGenerator` (`IIncrementalGenerator`) scans for types decorated wit
 
 ## Code Fixes
 
-Includes code fix providers for converting attribute parameters to type-safe literals (`ConvertToEnumLiteralCodeFix`, `ConvertToDateTimeLiteralCodeFix`, etc.), resolving rule conflicts, and rewriting mismatched `RuleFor` member names to `nameof(...)` (`UseNameofForRuleForMemberCodeFix`).
+Ships 17 code-fix providers covering 11 diagnostics: converting attribute parameters to type-safe
+literals (`ConvertToEnumLiteralCodeFix`, `ConvertToDateTimeLiteralCodeFix`, etc.), resolving rule
+conflicts, rewriting mismatched `RuleFor` member names to `nameof(...)`
+(`UseNameofForRuleForMemberCodeFix`), rewriting sync calls to `ValidateAsync()`, and removal fixes
+for redundant `[NotNull]` (`VAL0014`) and tautological rules (`VAL0017`).
+
+The other 22 diagnostics are intentional omissions: the correct change depends on the author's
+intent (the rule, the member type, the member name, or the missing method). The public
+[diagnostics matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/03-reference/03-diagnostics.md)
+records the reason for every row, and `scripts/quality/check-analyzer-fix-coverage.ps1` verifies
+that the table, the providers, and `AnalyzerReleases.Shipped.md`/`Unshipped.md` agree.
 
 ## Dependencies
 

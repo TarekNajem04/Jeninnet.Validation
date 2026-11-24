@@ -76,6 +76,10 @@ jobs:
         shell: pwsh
         run: pwsh scripts/docs/check-readme-claims.ps1
 
+      - name: Check analyzer fix coverage
+        shell: pwsh
+        run: pwsh scripts/quality/check-analyzer-fix-coverage.ps1
+
       - name: Check Arabic text
         shell: pwsh
         run: pwsh scripts/docs/check-arabic-text.ps1
