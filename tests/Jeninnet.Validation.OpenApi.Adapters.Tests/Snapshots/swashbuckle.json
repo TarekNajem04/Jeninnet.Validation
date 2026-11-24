@@ -1,0 +1,119 @@
+{
+  "adapter": "swashbuckle",
+  "definitions": {
+    "ConformanceAddress": {
+      "City": {
+        "jsonName": "city",
+        "minLength": 1,
+        "required": true,
+        "type": "string"
+      }
+    },
+    "ConformanceLine": {
+      "Sku": {
+        "jsonName": "sku",
+        "minLength": 1,
+        "required": true,
+        "type": "string"
+      }
+    }
+  },
+  "properties": {
+    "Address": {
+      "anyOfFormats": [
+        "ipv4",
+        "ipv6"
+      ],
+      "jsonName": "address",
+      "required": false,
+      "type": "string"
+    },
+    "Age": {
+      "exclusiveMaximum": 120,
+      "exclusiveMinimum": 18,
+      "jsonName": "age",
+      "multipleOf": 2,
+      "required": false,
+      "type": "number"
+    },
+    "Code": {
+      "jsonName": "code",
+      "pattern": "^[A-Z]{3}$",
+      "required": false,
+      "type": "string"
+    },
+    "Color": {
+      "enumValues": [
+        "red",
+        "green"
+      ],
+      "jsonName": "color",
+      "required": false,
+      "type": "string"
+    },
+    "Conditional": {
+      "jsonName": "conditional",
+      "required": false,
+      "type": "string"
+    },
+    "CustomCode": {
+      "jsonName": "custom-code",
+      "minLength": 1,
+      "required": true,
+      "type": "string"
+    },
+    "Email": {
+      "format": "email",
+      "jsonName": "email",
+      "minLength": 1,
+      "required": true,
+      "type": "string"
+    },
+    "FirstName": {
+      "jsonName": "firstName",
+      "maxLength": 20,
+      "minLength": 2,
+      "required": false,
+      "type": "string"
+    },
+    "Home": {
+      "jsonName": "home",
+      "ref": "ConformanceAddress",
+      "required": false,
+      "type": "object"
+    },
+    "Kind": {
+      "enumType": "ConformanceKind",
+      "jsonName": "kind",
+      "required": false,
+      "type": "string"
+    },
+    "Lines": {
+      "itemsRef": "ConformanceLine",
+      "jsonName": "lines",
+      "required": false,
+      "type": "array"
+    },
+    "Name": {
+      "jsonName": "name",
+      "maxLength": 50,
+      "minLength": 2,
+      "required": true,
+      "type": "string"
+    },
+    "Price": {
+      "jsonName": "price",
+      "multipleOf": 0.01,
+      "required": false,
+      "type": "number"
+    },
+    "Tags": {
+      "jsonName": "tags",
+      "maxItems": 5,
+      "minItems": 1,
+      "required": false,
+      "type": "array",
+      "uniqueItems": true
+    }
+  }
+}

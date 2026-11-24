@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "algorithm": "SHA256",
+  "snapshots": {
+    "json-schema": "b6c0b2a4c3b55d21b247678340ed0bca06b338bee4b69c0b0b0be00c62018da0",
+    "microsoft-openapi": "494300920647f768b57e415bc02dd7af6923c68124d0a8196d73bca30535a705",
+    "nswag": "bdbdbc37d6d93064f80577758cbee60174d507064330a4dbcf3051541301d5c6",
+    "swashbuckle": "4471f347f5980075fdc0b67d17789318783a306592804e919031d972fb957ca7"
+  }
+}

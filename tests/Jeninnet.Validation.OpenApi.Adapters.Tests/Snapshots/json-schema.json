@@ -1,0 +1,133 @@
+{
+  "adapter": "json-schema",
+  "advisory": {
+    "Conditional": [
+      {
+        "hasCondition": true,
+        "kind": "NotEmpty"
+      }
+    ]
+  },
+  "definitions": {
+    "ConformanceAddress": {
+      "City": {
+        "jsonName": "City",
+        "minLength": 1,
+        "required": true,
+        "type": "string"
+      }
+    },
+    "ConformanceLine": {
+      "Sku": {
+        "jsonName": "Sku",
+        "minLength": 1,
+        "required": true,
+        "type": "string"
+      }
+    }
+  },
+  "properties": {
+    "Address": {
+      "anyOfFormats": [
+        "ipv4",
+        "ipv6"
+      ],
+      "jsonName": "Address",
+      "required": false,
+      "type": "string"
+    },
+    "Age": {
+      "exclusiveMaximum": 120,
+      "exclusiveMinimum": 18,
+      "jsonName": "Age",
+      "multipleOf": 2,
+      "required": false,
+      "type": "number"
+    },
+    "Code": {
+      "jsonName": "Code",
+      "pattern": "^[A-Z]{3}$",
+      "required": false,
+      "type": "string"
+    },
+    "Color": {
+      "enumValues": [
+        "red",
+        "green"
+      ],
+      "jsonName": "Color",
+      "required": false,
+      "type": "string"
+    },
+    "Conditional": {
+      "advisory": [
+        {
+          "hasCondition": true,
+          "kind": "NotEmpty"
+        }
+      ],
+      "jsonName": "Conditional",
+      "required": false,
+      "type": "string"
+    },
+    "CustomCode": {
+      "jsonName": "CustomCode",
+      "minLength": 1,
+      "required": true,
+      "type": "string"
+    },
+    "Email": {
+      "format": "email",
+      "jsonName": "Email",
+      "minLength": 1,
+      "required": true,
+      "type": "string"
+    },
+    "FirstName": {
+      "jsonName": "FirstName",
+      "maxLength": 20,
+      "minLength": 2,
+      "required": false,
+      "type": "string"
+    },
+    "Home": {
+      "jsonName": "Home",
+      "ref": "ConformanceAddress",
+      "required": false,
+      "type": "object"
+    },
+    "Kind": {
+      "enumType": "ConformanceKind",
+      "jsonName": "Kind",
+      "required": false,
+      "type": "string"
+    },
+    "Lines": {
+      "itemsRef": "ConformanceLine",
+      "jsonName": "Lines",
+      "required": false,
+      "type": "array"
+    },
+    "Name": {
+      "jsonName": "Name",
+      "maxLength": 50,
+      "minLength": 2,
+      "required": true,
+      "type": "string"
+    },
+    "Price": {
+      "jsonName": "Price",
+      "multipleOf": 0.01,
+      "required": false,
+      "type": "number"
+    },
+    "Tags": {
+      "jsonName": "Tags",
+      "maxItems": 5,
+      "minItems": 1,
+      "required": false,
+      "type": "array",
+      "uniqueItems": true
+    }
+  }
+}

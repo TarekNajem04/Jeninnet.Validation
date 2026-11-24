@@ -43,6 +43,11 @@ and `[JsonPropertyName]`. The mapping is cached per type metadata. Rules without
 a direct OpenAPI equivalent remain available through the descriptor and are not
 silently dropped from validation.
 
+The adapter is covered by normalized conformance snapshots shared with
+Swashbuckle, NSwag, and the JSON Schema writer. The difference table and approval
+workflow are documented in
+[Integration Packages](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/03-reference/05-integration-packages.md#adapter-conformance-snapshots).
+
 ## Related packages
 
 - [Jeninnet.Validation](https://www.nuget.org/packages/Jeninnet.Validation) — core engine and fluent API.
