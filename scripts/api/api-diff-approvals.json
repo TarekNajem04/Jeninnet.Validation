@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "baselineRef": "v1.0.0-preview.2",
+  "targetVersion": "1.0.0-preview.3",
+  "approvals": [
+    {
+      "package": "Jeninnet.Validation.DataAnnotations",
+      "tfm": "net11.0",
+      "kind": "added",
+      "signature": "override Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute.IsValidAsync(object? value, System.ComponentModel.DataAnnotations.ValidationContext! validationContext, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<System.ComponentModel.DataAnnotations.ValidationResult?>!",
+      "reason": "N1 async DataAnnotations bridge, approved in the 2026-11-23 preview.3 roadmap re-cut.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-24"
+    }
+  ]
+}

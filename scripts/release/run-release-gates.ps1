@@ -56,6 +56,9 @@
 .PARAMETER SkipApiGateSelfTest
     Skip only the throwaway RS0016/RS0017 gate self-test.
 
+.PARAMETER SkipApiDiff
+    Skip the public API diff against v1.0.0-preview.2.
+
 .PARAMETER SkipMessageKeys
     Skip the message-key catalog check.
 
@@ -96,7 +99,7 @@
     pwsh scripts/release/run-release-gates.ps1 -SkipPackages -SkipAot
 
 .EXAMPLE
-    pwsh scripts/release/run-release-gates.ps1 -SkipRestore -SkipBuild -SkipTests -SkipFormat -SkipSourceHeaders -SkipApiBaselines -SkipApiGateSelfTest -SkipMessageKeys -SkipClient -SkipVulnerability -SkipPackages -SkipConsumer -SkipAot -SkipCoverage -SkipSonar
+    pwsh scripts/release/run-release-gates.ps1 -SkipRestore -SkipBuild -SkipTests -SkipFormat -SkipSourceHeaders -SkipApiBaselines -SkipApiGateSelfTest -SkipApiDiff -SkipMessageKeys -SkipClient -SkipVulnerability -SkipPackages -SkipConsumer -SkipAot -SkipCoverage -SkipSonar
 #>
 
 [CmdletBinding()]
@@ -113,6 +116,7 @@ param(
     [switch]$SkipSourceHeaders,
     [switch]$SkipApiBaselines,
     [switch]$SkipApiGateSelfTest,
+    [switch]$SkipApiDiff,
     [switch]$SkipMessageKeys,
     [switch]$SkipDocs,
     [switch]$SkipClient,
@@ -698,6 +702,16 @@ try {
             Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/api/test-public-api-gate.ps1')
         }
         $gate.LogPath = Join-Path $logsDirectory '07-api-gate-self-test.log'
+        [void]$gates.Add($gate)
+
+        $gate = New-Gate -Name 'api-diff' -Category 'Quality' -Command 'compare-public-api.ps1' -Evidence 'Public API diff against v1.0.0-preview.2 has no unapproved changes.' -Skip:$SkipApiDiff -Action {
+            Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/api/compare-public-api.ps1') -Arguments @(
+                '-BaselineRef', 'v1.0.0-preview.2',
+                '-CurrentRef', 'WORKTREE',
+                '-OutputRoot', (Join-Path $repositoryRoot 'artifacts/api-diff')
+            )
+        }
+        $gate.LogPath = Join-Path $logsDirectory '07a-api-diff.log'
         [void]$gates.Add($gate)
 
         $gate = New-Gate -Name 'message-keys' -Category 'Quality' -Command 'check-message-keys.ps1' -Evidence 'Message-key catalog matches the resource packs.' -Skip:$SkipMessageKeys -Action {

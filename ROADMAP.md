@@ -71,6 +71,7 @@ added without another explicit re-cut.
 | Packages | **Verified:** 25 packable packages; contents, central-version alignment, dual-TFM consumer smoke, and local-feed dry run |
 | Public API | **Verified:** 25 package baselines, including the per-TFM net11 DataAnnotations override |
 | Release gates | **Verified locally:** `scripts/release/run-release-gates.ps1`; report under `artifacts/release/1.0.0-preview.3/` |
+| API freeze | **Verified:** diff against `v1.0.0-preview.2`; 1 approved additive API, 0 removals, 0 signature changes |
 | Coverage | Pending refresh on the preview.3 commit |
 
 ## Open gates

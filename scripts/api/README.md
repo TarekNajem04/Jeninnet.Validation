@@ -63,6 +63,8 @@ generated code and the code fix has no C# document to edit. Maintain
 ```powershell
 pwsh scripts/api/check-public-api-baselines.ps1
 pwsh scripts/api/test-public-api-gate.ps1
+pwsh scripts/api/compare-public-api.ps1
+pwsh scripts/api/test-api-diff-gate.ps1
 dotnet build Jeninnet.Validation.slnx
 ```
 
@@ -70,6 +72,50 @@ dotnet build Jeninnet.Validation.slnx
 enable` header, duplicates, and the analyzer wiring. `test-public-api-gate.ps1` creates a throwaway
 project and proves the four transitions: clean baseline, `RS0016` for a new API, success after
 recording it in `Unshipped`, and `RS0017` for a removed API.
+
+## Diff against a release tag
+
+`compare-public-api.ps1` reads every packable project's committed baseline files, including the
+per-TFM `PublicAPI.*.<tfm>.txt` files, and compares the working tree with a release tag:
+
+```powershell
+pwsh scripts/api/compare-public-api.ps1 -BaselineRef v1.0.0-preview.2
+```
+
+It writes `artifacts/api-diff/<version>/api-diff.md` and `api-diff.json`. The report covers all 25
+packable projects and both TFMs for the five dual-target packages; the analyzer is reported only on
+`netstandard2.0`.
+
+The gate fails when any added, removed, or changed public API entry lacks an explicit approval in
+`api-diff-approvals.json`. Removals and signature changes are marked breaking. An approval entry
+matches `package`, `tfm`, `kind`, and the exact `signature` (for a changed signature, the new
+signature; an optional `previousSignature` narrows it further):
+
+```json
+{
+  "schemaVersion": 1,
+  "baselineRef": "v1.0.0-preview.2",
+  "targetVersion": "1.0.0-preview.3",
+  "approvals": [
+    {
+      "package": "Jeninnet.Validation.DataAnnotations",
+      "tfm": "net11.0",
+      "kind": "added",
+      "signature": "override ... -> System.Threading.Tasks.Task<...>!",
+      "reason": "N1 async DataAnnotations bridge approved in the preview.3 re-cut.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-24"
+    }
+  ]
+}
+```
+
+To prove the gate fails closed, run the negative test. It temporarily removes one shipped member,
+expects exit code `1`, verifies the report names a `removed` change, and restores the file bytes:
+
+```powershell
+pwsh scripts/api/test-api-diff-gate.ps1
+```
 
 ## Add a new packable project
 

@@ -34,7 +34,7 @@ Skip individual gates:
 pwsh scripts/release/run-release-gates.ps1 `
   -SkipRestore -SkipBuild -SkipTests -SkipFormat `
   -SkipSourceHeaders -SkipApiBaselines -SkipApiGateSelfTest `
-  -SkipMessageKeys -SkipDocs -SkipClient -SkipVulnerability `
+  -SkipApiDiff -SkipMessageKeys -SkipDocs -SkipClient -SkipVulnerability `
   -SkipPackages -SkipConsumer -SkipAot -SkipCoverage -SkipSonar
 ```
 
@@ -56,6 +56,7 @@ pwsh scripts/release/run-release-gates.ps1 -IncludeCoverage -IncludeSonar
 | `source-headers` | `-SkipSourceHeaders` | — | Standard attribution header |
 | `api-baselines` | `-SkipApiBaselines` | `build` | Public API baseline files |
 | `api-gate-self-test` | `-SkipApiGateSelfTest` | — | RS0016/RS0017 fail-closed fixture |
+| `api-diff` | `-SkipApiDiff` | — | Preview.2 public API diff with explicit approvals |
 | `message-keys` | `-SkipMessageKeys` | — | Message-key catalog vs resource packs |
 | `docs-links` | `-SkipDocs` | — | Local Markdown links |
 | `readme-claims` | `-SkipDocs` | — | README project and packable-count claims |
@@ -72,7 +73,7 @@ pwsh scripts/release/run-release-gates.ps1 -IncludeCoverage -IncludeSonar
 
 A skipped dependency causes its dependants to be skipped with a reason. The final command succeeds
 only when no required gate failed; reported-only gates do not fail the command but are counted
-separately.
+separately. The `api-diff` gate writes its own report under `artifacts/api-diff/<version>/`.
 
 ## Report
 

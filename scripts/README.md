@@ -14,7 +14,7 @@ PowerShell tooling for repository maintenance. Each script is preview-first unle
 | `scripts/assets` | Generates the brand icon master and the 128×128 NuGet package icon | `generate-icon.ps1` |
 | `scripts/quality` | Verifies the standard source-file attribution header | `check-source-headers.ps1` |
 | `scripts/docs` | Verifies documentation links, root README claims, generated API coverage, and Arabic text | `check-doc-links.ps1`, `check-readme-claims.ps1`, `check-api-reference.ps1`, `check-arabic-text.ps1` |
-| `scripts/api` | Checks public-API baselines, proves the RS0016/RS0017 gate, and syncs Unshipped/Shipped entries | [README](api/README.md) |
+| `scripts/api` | Checks public-API baselines, diffs the surface against a release tag, proves the RS0016/RS0017 gate, and syncs Unshipped/Shipped entries | [README](api/README.md) |
 | `scripts/localization` | Checks the message-key catalog (constants vs packs), with an allow-list and a deterministic report | [README](localization/README.md) |
 
 The documentation scripts are part of the documentation gate:
