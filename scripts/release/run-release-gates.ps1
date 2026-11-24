@@ -785,6 +785,12 @@ try {
         $gate.LogPath = Join-Path $logsDirectory '15-package-contents.log'
         [void]$gates.Add($gate)
 
+        $gate = New-Gate -Name 'package-budget' -Category 'Packages' -Command 'check-package-dependency-budget.ps1' -Evidence 'Dependencies, assets, metadata, and sizes match the reviewed package budget.' -DependsOn @('package-pack') -Action {
+            Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/package/check-package-dependency-budget.ps1') -Arguments @('-PackagesPath', $packagesDirectory)
+        }
+        $gate.LogPath = Join-Path $logsDirectory '15a-package-budget.log'
+        [void]$gates.Add($gate)
+
         $gate = New-Gate -Name 'package-versions' -Category 'Packages' -Command 'check package file names against product version' -Evidence "All packages carry version '$productVersion'." -DependsOn @('package-pack') -Action {
             $packages = @(Get-ChildItem -LiteralPath $packagesDirectory -Filter '*.nupkg' -File)
 

@@ -358,6 +358,10 @@ jobs:
         shell: pwsh
         run: ./scripts/package/check-package-contents.ps1 -PackagesPath artifacts/packages
 
+      - name: Verify package dependency budget
+        shell: pwsh
+        run: ./scripts/package/check-package-dependency-budget.ps1 -PackagesPath artifacts/packages
+
       - name: Verify package version
         shell: pwsh
         run: |

@@ -66,6 +66,7 @@ pwsh scripts/release/run-release-gates.ps1 -IncludeCoverage -IncludeSonar
 | `vulnerability` | `-SkipVulnerability` | `restore` | NuGet vulnerability audit |
 | `package-pack` | `-SkipPackages` | `build` | Pack all 25 packages with package validation |
 | `package-contents` | — | `package-pack` | Package asset/content check |
+| `package-budget` | — | `package-pack` | Dependencies, assets, metadata, and reviewed size budgets |
 | `package-versions` | — | `package-pack` | Package file names match the product version |
 | `consumer-smoke` | `-SkipConsumer` | `package-pack` | Packed-package consumer smoke on `net10.0`/`net11.0` |
 | `aot-support` | `-SkipAotSupport` | — | Every package has an explicit AOT/trim position |

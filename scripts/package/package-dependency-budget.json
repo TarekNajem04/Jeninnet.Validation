@@ -1,0 +1,1206 @@
+{
+  "schemaVersion": 1,
+  "packageCount": 25,
+  "packages": {
+    "Jeninnet.Validation": {
+      "id": "Jeninnet.Validation",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 180117,
+      "sizeBudgetBytes": 198656,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.dll",
+            "lib/net10.0/Jeninnet.Validation.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.Abstractions": {
+      "id": "Jeninnet.Validation.Abstractions",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 47496,
+      "sizeBudgetBytes": 56320,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.Abstractions.dll",
+            "lib/net10.0/Jeninnet.Validation.Abstractions.xml"
+          ],
+          "dependencies": []
+        }
+      }
+    },
+    "Jeninnet.Validation.Analyzers": {
+      "id": "Jeninnet.Validation.Analyzers",
+      "kind": "analyzer",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 134309,
+      "sizeBudgetBytes": 148480,
+      "developmentDependency": true,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "netstandard2.0": {
+          "assets": [
+            "analyzers/dotnet/cs/Jeninnet.Validation.Analyzers.dll",
+            "analyzers/dotnet/cs/Jeninnet.Validation.Analyzers.xml",
+            "build/Jeninnet.Validation.Analyzers.props"
+          ],
+          "dependencies": []
+        }
+      }
+    },
+    "Jeninnet.Validation.AspNetCore": {
+      "id": "Jeninnet.Validation.AspNetCore",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 52108,
+      "sizeBudgetBytes": 60416,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.AspNetCore.dll",
+            "lib/net10.0/Jeninnet.Validation.AspNetCore.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Localization.Abstractions",
+              "version": "1.0.0-preview.2",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.Assertions": {
+      "id": "Jeninnet.Validation.Assertions",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 33812,
+      "sizeBudgetBytes": 43008,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.Assertions.dll",
+            "lib/net10.0/Jeninnet.Validation.Assertions.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.Blazor": {
+      "id": "Jeninnet.Validation.Blazor",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 43499,
+      "sizeBudgetBytes": 52224,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.Blazor.dll",
+            "lib/net10.0/Jeninnet.Validation.Blazor.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation.ClientRules",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.ClientRules": {
+      "id": "Jeninnet.Validation.ClientRules",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 34658,
+      "sizeBudgetBytes": 43008,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.ClientRules.dll",
+            "lib/net10.0/Jeninnet.Validation.ClientRules.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.DataAnnotations": {
+      "id": "Jeninnet.Validation.DataAnnotations",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 51124,
+      "sizeBudgetBytes": 59392,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.DataAnnotations.dll",
+            "lib/net10.0/Jeninnet.Validation.DataAnnotations.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        },
+        "net11.0": {
+          "assets": [
+            "lib/net11.0/Jeninnet.Validation.DataAnnotations.dll",
+            "lib/net11.0/Jeninnet.Validation.DataAnnotations.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection",
+              "version": "11.0.0",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.Diagnostics": {
+      "id": "Jeninnet.Validation.Diagnostics",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 32837,
+      "sizeBudgetBytes": 41984,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.Diagnostics.dll",
+            "lib/net10.0/Jeninnet.Validation.Diagnostics.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.Extensions.Validation": {
+      "id": "Jeninnet.Validation.Extensions.Validation",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 45385,
+      "sizeBudgetBytes": 54272,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.Extensions.Validation.dll",
+            "lib/net10.0/Jeninnet.Validation.Extensions.Validation.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation.DataAnnotations",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        },
+        "net11.0": {
+          "assets": [
+            "lib/net11.0/Jeninnet.Validation.Extensions.Validation.dll",
+            "lib/net11.0/Jeninnet.Validation.Extensions.Validation.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation.DataAnnotations",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.GraphQL": {
+      "id": "Jeninnet.Validation.GraphQL",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 36658,
+      "sizeBudgetBytes": 45056,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.GraphQL.dll",
+            "lib/net10.0/Jeninnet.Validation.GraphQL.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "HotChocolate.AspNetCore",
+              "version": "16.7.7",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "System.IO.Hashing",
+              "version": "11.0.0",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.Grpc": {
+      "id": "Jeninnet.Validation.Grpc",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 35440,
+      "sizeBudgetBytes": 44032,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.Grpc.dll",
+            "lib/net10.0/Jeninnet.Validation.Grpc.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Google.Api.CommonProtos",
+              "version": "2.17.0",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Grpc.AspNetCore.Server",
+              "version": "2.85.0",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.JsonSchema": {
+      "id": "Jeninnet.Validation.JsonSchema",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 42072,
+      "sizeBudgetBytes": 51200,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.JsonSchema.dll",
+            "lib/net10.0/Jeninnet.Validation.JsonSchema.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.Localization": {
+      "id": "Jeninnet.Validation.Localization",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 74583,
+      "sizeBudgetBytes": 82944,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.Localization.dll",
+            "lib/net10.0/Jeninnet.Validation.Localization.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Localization.Abstractions",
+              "version": "1.0.0-preview.2",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Localization.Core",
+              "version": "1.0.0-preview.2",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.Logging.Abstractions",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.Options",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.Localization.AspNetCore": {
+      "id": "Jeninnet.Validation.Localization.AspNetCore",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 37785,
+      "sizeBudgetBytes": 46080,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.Localization.AspNetCore.dll",
+            "lib/net10.0/Jeninnet.Validation.Localization.AspNetCore.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Localization.Abstractions",
+              "version": "1.0.0-preview.2",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.MediatR": {
+      "id": "Jeninnet.Validation.MediatR",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 38121,
+      "sizeBudgetBytes": 47104,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.MediatR.dll",
+            "lib/net10.0/Jeninnet.Validation.MediatR.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "MediatR",
+              "version": "15.0.0",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.Logging.Abstractions",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.MediatR.CSharpFunctionalExtensions": {
+      "id": "Jeninnet.Validation.MediatR.CSharpFunctionalExtensions",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 28820,
+      "sizeBudgetBytes": 37888,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.MediatR.CSharpFunctionalExtensions.dll",
+            "lib/net10.0/Jeninnet.Validation.MediatR.CSharpFunctionalExtensions.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation.MediatR",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "CSharpFunctionalExtensions",
+              "version": "3.7.0",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "MediatR",
+              "version": "15.0.0",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.Logging.Abstractions",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.MediatR.ErrorOr": {
+      "id": "Jeninnet.Validation.MediatR.ErrorOr",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 28961,
+      "sizeBudgetBytes": 37888,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.MediatR.ErrorOr.dll",
+            "lib/net10.0/Jeninnet.Validation.MediatR.ErrorOr.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation.MediatR",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "ErrorOr",
+              "version": "2.1.1",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "MediatR",
+              "version": "15.0.0",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.Logging.Abstractions",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.MediatR.FluentResults": {
+      "id": "Jeninnet.Validation.MediatR.FluentResults",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 29033,
+      "sizeBudgetBytes": 37888,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.MediatR.FluentResults.dll",
+            "lib/net10.0/Jeninnet.Validation.MediatR.FluentResults.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation.MediatR",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "FluentResults",
+              "version": "4.0.0",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "MediatR",
+              "version": "15.0.0",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.Logging.Abstractions",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.Migration": {
+      "id": "Jeninnet.Validation.Migration",
+      "kind": "tool",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 5626141,
+      "sizeBudgetBytes": 6189056,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "tools/net10.0/any/cs/Microsoft.CodeAnalysis.CSharp.resources.dll",
+            "tools/net10.0/any/cs/Microsoft.CodeAnalysis.resources.dll",
+            "tools/net10.0/any/de/Microsoft.CodeAnalysis.CSharp.resources.dll",
+            "tools/net10.0/any/de/Microsoft.CodeAnalysis.resources.dll",
+            "tools/net10.0/any/DotnetToolSettings.xml",
+            "tools/net10.0/any/es/Microsoft.CodeAnalysis.CSharp.resources.dll",
+            "tools/net10.0/any/es/Microsoft.CodeAnalysis.resources.dll",
+            "tools/net10.0/any/fr/Microsoft.CodeAnalysis.CSharp.resources.dll",
+            "tools/net10.0/any/fr/Microsoft.CodeAnalysis.resources.dll",
+            "tools/net10.0/any/it/Microsoft.CodeAnalysis.CSharp.resources.dll",
+            "tools/net10.0/any/it/Microsoft.CodeAnalysis.resources.dll",
+            "tools/net10.0/any/ja/Microsoft.CodeAnalysis.CSharp.resources.dll",
+            "tools/net10.0/any/ja/Microsoft.CodeAnalysis.resources.dll",
+            "tools/net10.0/any/Jeninnet.Validation.Migration.deps.json",
+            "tools/net10.0/any/Jeninnet.Validation.Migration.dll",
+            "tools/net10.0/any/Jeninnet.Validation.Migration.pdb",
+            "tools/net10.0/any/Jeninnet.Validation.Migration.runtimeconfig.json",
+            "tools/net10.0/any/Jeninnet.Validation.Migration.xml",
+            "tools/net10.0/any/ko/Microsoft.CodeAnalysis.CSharp.resources.dll",
+            "tools/net10.0/any/ko/Microsoft.CodeAnalysis.resources.dll",
+            "tools/net10.0/any/Microsoft.CodeAnalysis.CSharp.dll",
+            "tools/net10.0/any/Microsoft.CodeAnalysis.dll",
+            "tools/net10.0/any/pl/Microsoft.CodeAnalysis.CSharp.resources.dll",
+            "tools/net10.0/any/pl/Microsoft.CodeAnalysis.resources.dll",
+            "tools/net10.0/any/pt-BR/Microsoft.CodeAnalysis.CSharp.resources.dll",
+            "tools/net10.0/any/pt-BR/Microsoft.CodeAnalysis.resources.dll",
+            "tools/net10.0/any/ru/Microsoft.CodeAnalysis.CSharp.resources.dll",
+            "tools/net10.0/any/ru/Microsoft.CodeAnalysis.resources.dll",
+            "tools/net10.0/any/tr/Microsoft.CodeAnalysis.CSharp.resources.dll",
+            "tools/net10.0/any/tr/Microsoft.CodeAnalysis.resources.dll",
+            "tools/net10.0/any/zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll",
+            "tools/net10.0/any/zh-Hans/Microsoft.CodeAnalysis.resources.dll",
+            "tools/net10.0/any/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll",
+            "tools/net10.0/any/zh-Hant/Microsoft.CodeAnalysis.resources.dll"
+          ],
+          "dependencies": []
+        }
+      }
+    },
+    "Jeninnet.Validation.Observable": {
+      "id": "Jeninnet.Validation.Observable",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 36713,
+      "sizeBudgetBytes": 45056,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.Observable.dll",
+            "lib/net10.0/Jeninnet.Validation.Observable.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.OpenApi": {
+      "id": "Jeninnet.Validation.OpenApi",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 88769,
+      "sizeBudgetBytes": 98304,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.OpenApi.dll",
+            "lib/net10.0/Jeninnet.Validation.OpenApi.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation.JsonSchema",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.AspNetCore.OpenApi",
+              "version": "10.0.14",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.OpenApi",
+              "version": "2.12.2",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        },
+        "net11.0": {
+          "assets": [
+            "lib/net11.0/Jeninnet.Validation.OpenApi.dll",
+            "lib/net11.0/Jeninnet.Validation.OpenApi.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation.JsonSchema",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.AspNetCore.OpenApi",
+              "version": "11.0.0",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.OpenApi",
+              "version": "3.11.0",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.OpenApi.NSwag": {
+      "id": "Jeninnet.Validation.OpenApi.NSwag",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 61976,
+      "sizeBudgetBytes": 70656,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.OpenApi.NSwag.dll",
+            "lib/net10.0/Jeninnet.Validation.OpenApi.NSwag.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation.JsonSchema",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation.OpenApi",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "NSwag.Generation",
+              "version": "14.8.0",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.AspNetCore.OpenApi",
+              "version": "10.0.14",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.OpenApi",
+              "version": "2.12.2",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        },
+        "net11.0": {
+          "assets": [
+            "lib/net11.0/Jeninnet.Validation.OpenApi.NSwag.dll",
+            "lib/net11.0/Jeninnet.Validation.OpenApi.NSwag.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation.JsonSchema",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation.OpenApi",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "NSwag.Generation",
+              "version": "14.8.0",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.AspNetCore.OpenApi",
+              "version": "11.0.0",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection",
+              "version": "11.0.0",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.Logging",
+              "version": "11.0.0",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.OpenApi",
+              "version": "3.11.0",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.OpenApi.Swashbuckle": {
+      "id": "Jeninnet.Validation.OpenApi.Swashbuckle",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 62029,
+      "sizeBudgetBytes": 70656,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.OpenApi.Swashbuckle.dll",
+            "lib/net10.0/Jeninnet.Validation.OpenApi.Swashbuckle.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation.JsonSchema",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation.OpenApi",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Swashbuckle.AspNetCore.SwaggerGen",
+              "version": "10.3.1",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.AspNetCore.OpenApi",
+              "version": "10.0.14",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.OpenApi",
+              "version": "2.12.2",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        },
+        "net11.0": {
+          "assets": [
+            "lib/net11.0/Jeninnet.Validation.OpenApi.Swashbuckle.dll",
+            "lib/net11.0/Jeninnet.Validation.OpenApi.Swashbuckle.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation.Abstractions",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation.JsonSchema",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Jeninnet.Validation.OpenApi",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Swashbuckle.AspNetCore.SwaggerGen",
+              "version": "11.0.1",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.AspNetCore.OpenApi",
+              "version": "11.0.0",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection",
+              "version": "11.0.0",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.Logging",
+              "version": "11.0.0",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.OpenApi",
+              "version": "3.11.0",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    },
+    "Jeninnet.Validation.Rules.Domain": {
+      "id": "Jeninnet.Validation.Rules.Domain",
+      "kind": "library",
+      "version": "1.0.0-preview.3",
+      "sizeBytes": 47094,
+      "sizeBudgetBytes": 55296,
+      "developmentDependency": false,
+      "metadata": {
+        "readme": "README.md",
+        "icon": "jeninnet-validation-icon-128.png",
+        "license": "MIT",
+        "repositoryUrl": "https://github.com/TarekNajem04/Jeninnet.Validation.git"
+      },
+      "targets": {
+        "net10.0": {
+          "assets": [
+            "lib/net10.0/Jeninnet.Validation.Rules.Domain.dll",
+            "lib/net10.0/Jeninnet.Validation.Rules.Domain.xml"
+          ],
+          "dependencies": [
+            {
+              "id": "Jeninnet.Validation",
+              "version": "1.0.0-preview.3",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+              "version": "10.0.15",
+              "exclude": "Build,Analyzers"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

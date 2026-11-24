@@ -16,6 +16,7 @@ PowerShell tooling for repository maintenance. Each script is preview-first unle
 | `scripts/quality` | Verifies source headers and the explicit AOT/trim support matrix | `check-source-headers.ps1`, `check-aot-support-matrix.ps1` |
 | `scripts/docs` | Verifies documentation links, root README claims, generated API coverage, and Arabic text | `check-doc-links.ps1`, `check-readme-claims.ps1`, `check-api-reference.ps1`, `check-arabic-text.ps1` |
 | `scripts/api` | Checks public-API baselines, diffs the surface against a release tag, proves the RS0016/RS0017 gate, and syncs Unshipped/Shipped entries | [README](api/README.md) |
+| `scripts/package` | Verifies package contents, dependency/asset/size budgets, and the consumer smoke test | [README](package/README.md) |
 | `scripts/localization` | Checks the message-key catalog (constants vs packs), with an allow-list and a deterministic report | [README](localization/README.md) |
 
 The documentation scripts are part of the documentation gate:
