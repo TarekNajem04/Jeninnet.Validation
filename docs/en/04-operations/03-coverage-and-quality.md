@@ -1,8 +1,8 @@
-# Coverage and Quality
+﻿# Coverage and Quality
 
 ## Test suite
 
-- **1,085 tests** across 18 test assemblies on `net10.0` and `net11.0`, covering core/validation, analyzers, architecture, ASP.NET Core, MediatR,
+- **1,089 tests** across 18 test assemblies on `net10.0` and `net11.0`, covering core/validation, analyzers, architecture, ASP.NET Core, MediatR,
   DataAnnotations (`net10.0` and `net11.0`), Blazor, Observable UI, GraphQL, gRPC, the ASP.NET Core
   localization bridge, and the 40-culture message catalog, including the 23-case generated/fluent
   conformance matrix.

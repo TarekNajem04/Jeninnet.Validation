@@ -377,6 +377,24 @@ override to change localized default text; the pack remains the fallback for non
 - Benchmarks and samples are outside the runtime AOT claim; the assertions package is
   AOT-compatible but test-only.
 
+## Microsoft.Extensions.Validation boundary (net11 GA)
+
+`Jeninnet.Validation.Extensions.Validation` is a resolver adapter for the platform validation
+pipeline, not a replacement. On `net11.0` the platform owns metadata discovery and the source
+generator, nested object/collection traversal, `MaxDepth`, Blazor `EditForm` async submit and static
+SSR, minimal API ProblemDetails, `[SkipValidation]`, and `.DisableValidation()`.
+
+The bridge adds explicit `AddJeninnetValidation<TModel>()` / `AddJeninnetValidation(...)`
+registration, resolves `IValidator<TModel>` from `ValidateContext.ServiceProvider`, and maps
+`ValidationResult` errors to the platform's `ValidationError` (`Name`, `Path`, `ErrorMessage`,
+`Container`). `TryFindProperty` returns false: property-level metadata remains with the platform or
+the DataAnnotations bridge.
+
+Jeninnet rule messages stay under the validator's control: authored message first, then message key,
+then error code. The platform `LocalizerProvider` localizes platform display names and
+DataAnnotations messages; the bridge does not run Jeninnet rule messages through it. MVC and Razor
+Pages are outside the platform package; use `Jeninnet.Validation.AspNetCore` there.
+
 ## Related
 
 - [Compatibility and versions](06-compatibility-and-versions.md)

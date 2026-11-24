@@ -1,4 +1,4 @@
-# Jeninnet.Validation
+﻿# Jeninnet.Validation
 
 [![CI](https://img.shields.io/github/actions/workflow/status/TarekNajem04/Jeninnet.Validation/ci.yml?branch=main&label=CI)](https://github.com/TarekNajem04/Jeninnet.Validation/actions/workflows/ci.yml)
 [![Documentation](https://img.shields.io/github/actions/workflow/status/TarekNajem04/Jeninnet.Validation/docs-build.yml?branch=main&label=docs)](https://tareknajem04.github.io/Jeninnet.Validation/)
@@ -163,7 +163,7 @@ dotnet test  Jeninnet.Validation.slnx -c Release
 dotnet format Jeninnet.Validation.slnx --verify-no-changes --no-restore --exclude samples/Jeninnet.Validation.Analyzers.Sample.Console samples/Jeninnet.Validation.AotSmoke
 ```
 
-The current suite runs **1,085 tests** across 18 test assemblies on `net10.0` and `net11.0`.
+The current suite runs **1,089 tests** across 18 test assemblies on `net10.0` and `net11.0`.
 Package validation uses the packed local feed:
 
 ```bash
