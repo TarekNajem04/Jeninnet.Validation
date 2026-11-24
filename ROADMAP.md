@@ -65,7 +65,7 @@ added without another explicit re-cut.
 | Version | `1.0.0-preview.3` (central, `Directory.Build.props`) |
 | Target frameworks | `net10.0` baseline; `net11.0` additive for `DataAnnotations`, `Extensions.Validation`, and the three OpenAPI adapters |
 | Build | **Verified:** 0 warnings / 0 errors on a clean Release build |
-| Tests | **Verified:** 1,050/1,050 across 18 test assemblies on `net10.0` and `net11.0` |
+| Tests | **Verified:** 1,055/1,055 across 18 test assemblies on `net10.0` and `net11.0` |
 | Format/docs | **Verified:** `dotnet format`, doc links, README claims, Arabic text, source headers, docfx metadata/build, and API reference |
 | AOT/trimming | **Verified:** NativeAOT smoke publishes and runs locally (`win-x64`); CI verifies `linux-x64` |
 | Packages | **Verified:** 25 packable packages; contents, central-version alignment, dual-TFM consumer smoke, and local-feed dry run |
