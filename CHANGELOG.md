@@ -9,16 +9,16 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 
 | Version | Status |
 |---|---|
-| `1.0.0-preview.3` | Current, in preparation |
+| `1.0.0-preview.3` | Current, implemented on branch; not yet published |
 | `1.0.0-preview.2` | Released 2026-11-17 |
 | `1.0.0-preview.1` | Released 2026-11-13 |
 | `Pre-1.0.0` | Historical development (2026-06 – 2026-11) |
 
 ---
 
-## 1.0.0-preview.3 — in preparation
+## 1.0.0-preview.3 — implemented on branch; not yet published
 
-**Status:** In preparation. Not yet published.
+**Status:** Implemented on `release/1.0.0-preview.3`; not yet published.
 
 ### Summary
 

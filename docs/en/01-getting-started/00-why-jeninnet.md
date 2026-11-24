@@ -68,9 +68,12 @@ Methodology and caveats: [Benchmarks](../04-operations/06-benchmarks.md).
 
 ## Try it in five minutes
 
+`1.0.0-preview.3` is implemented on the release branch and is not yet published. These commands use
+the latest published preview (`1.0.0-preview.2`); switch to `1.0.0-preview.3` after publication.
+
 ```bash
-dotnet add package Jeninnet.Validation --version 1.0.0-preview.3
-dotnet add package Jeninnet.Validation.Localization --version 1.0.0-preview.3
+dotnet add package Jeninnet.Validation --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Localization --version 1.0.0-preview.2
 ```
 
 From a clone of this repository, you can also generate a starting project:

@@ -734,7 +734,7 @@ try {
         $gate.LogPath = Join-Path $logsDirectory '09-docs-links.log'
         [void]$gates.Add($gate)
 
-        $gate = New-Gate -Name 'readme-claims' -Category 'Docs' -Command 'check-readme-claims.ps1' -Evidence 'README project and packable-count claims match the tree.' -Skip:$SkipDocs -Action {
+        $gate = New-Gate -Name 'readme-claims' -Category 'Docs' -Command 'check-readme-claims.ps1' -Evidence 'README project, packable-count, test-count, AOT, preview, and generator claims match the tree.' -Skip:$SkipDocs -Action {
             Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/docs/check-readme-claims.ps1')
         }
         $gate.LogPath = Join-Path $logsDirectory '10-readme-claims.log'

@@ -8,8 +8,8 @@
   `Jeninnet.Validation.Extensions.Validation`, and the three OpenAPI adapters also ship `net11.0`
   assets for .NET 11-only APIs.
 - C# 15, built with the .NET 11 SDK.
-- The current preview is `1.0.0-preview.3` (in preparation). The latest published preview is
-  `1.0.0-preview.2`.
+- The current preview is `1.0.0-preview.3`, implemented on the release branch; it is not yet
+  published. The latest published preview is `1.0.0-preview.2`.
 
 ## Compatibility matrix
 

@@ -30,8 +30,9 @@ trimming and Native AOT.
 
 ## Project status
 
-The current preview in preparation is `1.0.0-preview.3`; the latest published preview is
-`1.0.0-preview.2`. The public surface can still change before `1.0.0`.
+The current preview is `1.0.0-preview.3`, implemented on the release branch; it is not yet
+published. The latest published preview is `1.0.0-preview.2`. The public surface can still change
+before `1.0.0`.
 See [Compatibility and versions](../03-reference/06-compatibility-and-versions.md) and the
 [roadmap](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/ROADMAP.md).
 

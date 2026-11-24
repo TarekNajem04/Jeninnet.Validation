@@ -8,10 +8,10 @@ long-term API stability.
 
 ## Current Project Status
 
-Jeninnet.Validation is in an API stabilization phase. The current preview in preparation,
-`1.0.0-preview.3`, is built for the 25 packable packages on the .NET 10 baseline and adds the
-.NET 11 async DataAnnotations and Options bridges plus the central Roslynator setup. The latest
-published preview is `1.0.0-preview.2`. The project remains pre-stable, and the public surface can
+Jeninnet.Validation is in an API stabilization phase. The current preview, `1.0.0-preview.3`, is
+implemented on the release branch; it is not yet published. It is built for the 25 packable
+packages on the .NET 10 baseline and adds the .NET 11 async DataAnnotations and Options bridges
+plus the central Roslynator setup. The latest published preview is `1.0.0-preview.2`. The project remains pre-stable, and the public surface can
 still change before `1.0.0`; every change is nevertheless recorded in a committed public-API
 baseline.
 

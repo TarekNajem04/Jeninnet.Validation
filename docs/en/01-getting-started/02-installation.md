@@ -37,8 +37,9 @@
 | `Jeninnet.Validation.MediatR.CSharpFunctionalExtensions` | MediatR failures as `CSharpFunctionalExtensions.Result<T>`. |
 | `Jeninnet.Validation.Migration` | `jeninnet` migration assistant (dotnet tool). |
 
-The current preview in preparation is `1.0.0-preview.3`; the latest published preview is
-`1.0.0-preview.2`.
+The current preview is `1.0.0-preview.3`, implemented on the release branch; it is not yet
+published. The latest published preview is `1.0.0-preview.2`. The examples below use
+`1.0.0-preview.3`; substitute `1.0.0-preview.2` when installing before publication.
 
 ```bash
 dotnet add package Jeninnet.Validation --version 1.0.0-preview.3
