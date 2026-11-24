@@ -191,8 +191,8 @@ It was published to NuGet on 2026-11-17.
 
 - [x] **MUST — Preview.1 publication.** `1.0.0-preview.1` was pushed to NuGet and tagged on 2026-11-13.
 - [x] **MUST — Preview.2 publication.** `1.0.0-preview.2` was pushed to NuGet and tagged on 2026-11-17.
-- [ ] **MUST — Release checklist.** Record the build/test matrix, docs, AOT, package validation,
-  consumer validation, vulnerability scan, and installation smoke test.
+- [ ] **MUST — Release checklist.** Record the build/test matrix, docs, AOT, package validation and
+  dependency budget, consumer validation, vulnerability scan, and installation smoke test.
 - [ ] **SHOULD — Consumer validation.** Validate the published packages from a clean consumer feed
   on both `net10.0` and `net11.0` before the preview announcement.
 - [ ] **SHOULD — Template package.** Publish `Jeninnet.Validation.Templates` once the preview feed is
