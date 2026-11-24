@@ -67,7 +67,7 @@ added without another explicit re-cut.
 | Build | **Verified:** 0 warnings / 0 errors on a clean Release build |
 | Tests | **Verified:** 1,063/1,063 across 18 test assemblies on `net10.0` and `net11.0` |
 | Format/docs | **Verified:** `dotnet format`, doc links, README claims, Arabic text, source headers, docfx metadata/build, and API reference |
-| AOT/trimming | **Verified:** NativeAOT smoke publishes and runs locally (`win-x64`); CI verifies `linux-x64` |
+| AOT/trimming | **Verified:** 10 AOT-compatible packages; 25-package matrix; NativeAOT smoke covers core, JSON Schema, client rules, and the Microsoft OpenAPI applier; CI verifies `linux-x64` |
 | Packages | **Verified:** 25 packable packages; contents, central-version alignment, dual-TFM consumer smoke, and local-feed dry run |
 | Public API | **Verified:** 25 package baselines, including the per-TFM net11 DataAnnotations override |
 | Release gates | **Verified locally:** `scripts/release/run-release-gates.ps1`; report under `artifacts/release/1.0.0-preview.3/` |
