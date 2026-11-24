@@ -2,9 +2,9 @@
 
 ## Guarantee
 
-The AOT-compatible libraries (`Jeninnet.Validation`, `Abstractions`, `JsonSchema`, `ClientRules`,
-`Localization`, and `Assertions`) declare `IsAotCompatible` and build with zero trim/AOT analyzer
-warnings in Release. The engine uses no runtime reflection on the hot path; rules, accessors, and
+The AOT-compatible libraries (`Jeninnet.Validation`, `Abstractions`, `Assertions`, `ClientRules`,
+`Diagnostics`, `Extensions.Validation`, `JsonSchema`, `Localization`, and `Rules.Domain`) declare
+`IsAotCompatible` and build with zero trim/AOT analyzer warnings in Release. The engine uses no runtime reflection on the hot path; rules, accessors, and
 descriptors are constructed explicitly.
 
 ## Generated registry (AOT-safe)

@@ -131,9 +131,9 @@ that no longer exists (`RS0017`) fails `dotnet build` and the `api-baselines` CI
 
 ## AOT and trimming
 
-The AOT-compatible libraries (`Jeninnet.Validation`, `Abstractions`, `JsonSchema`, `ClientRules`,
-`Localization`, and `Assertions`) declare `IsAotCompatible` and build with zero trim/AOT analyzer
-warnings. Reflection-based assembly scanning is annotated; explicit registration is the AOT-safe
+The AOT-compatible libraries (`Jeninnet.Validation`, `Abstractions`, `Assertions`, `ClientRules`,
+`Diagnostics`, `Extensions.Validation`, `JsonSchema`, `Localization`, and `Rules.Domain`) declare
+`IsAotCompatible` and build with zero trim/AOT analyzer warnings. Reflection-based assembly scanning is annotated; explicit registration is the AOT-safe
 pattern. The NativeAOT smoke harness publishes and runs the engine.
 
 ## Related

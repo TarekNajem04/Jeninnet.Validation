@@ -27,17 +27,17 @@ and `Not planned`.
 |---|---|---|
 | `1.0.0-preview.1` | **Released 2026-11-13** | .NET 11 (STS) first preview; .NET 11 + C# 15 platform and authoring features |
 | `1.0.0-preview.2` | **Released 2026-11-17** | .NET 10 (LTS) baseline restored; .NET 11 bridge packages and OpenAPI keep net11 assets |
-| `1.0.0-preview.3` | **Current — in preparation** | Async DataAnnotations and async Options promoted from 1.1.0; release gates and Roslynator setup |
+| `1.0.0-preview.3` | **Current — implemented on `release/1.0.0-preview.3`; not yet published** | Async DataAnnotations and async Options promoted from 1.1.0; release gates and Roslynator setup |
 | `1.0.0-preview.4` … `preview.N` | **Conditional** | Post-preview fixes and API feedback; no unrelated scope |
 | `1.0.0-rc.1` … `rc.N` | **Conditional** | Release-candidate hardening; release-blocking fixes only |
 | `1.0.0` | **Planned** | First stable release |
-| `1.1.0-preview.1` … `1.1.0` | **Planned** | Follow-up .NET 11 async work and additive API review |
+| `1.1.0-preview.1` … `1.1.0` | **Planned** | Follow-up .NET 11 feedback and additive API review (async bridges promoted to preview.3) |
 | Post-1.0 candidates | **Deferred / demand-driven** | Optional features that are not committed |
 | Explicit exclusions | **Not planned** | Out-of-scope capabilities |
 
 ---
 
-# 1.0.0-preview.3 — Current, in preparation
+# 1.0.0-preview.3 — Current, implemented on branch; not yet published
 
 **Goal:** ship the two .NET 11 async bridges promoted from `1.1.0`, keep the `net10.0` baseline
 unchanged, and close the preview release gates.
@@ -193,17 +193,14 @@ It was published to NuGet on 2026-11-17.
 - [ ] **SHOULD — Template package.** Publish `Jeninnet.Validation.Templates` once the preview feed is
   live; the repo-local `dotnet new install` path is tested.
 
-## Moved out of this version
+## Moved out of this version (historical; async bridges promoted on 2026-11-23)
 
-- **`1.1.0-preview.1` — Async DataAnnotations bridge.** `AsyncValidationAttribute`,
-  `IAsyncValidatableObject`, and `Validator.ValidateObjectAsync` support.
-- **`1.1.0-preview.1` — Async Options validation.** `IAsyncStartupValidator`/
-  `IAsyncValidateOptions<T>` support.
+- **Promoted to `1.0.0-preview.3` (2026-11-23) — Async DataAnnotations bridge.**
+  `AsyncValidationAttribute`, `IAsyncValidatableObject`, and `Validator.ValidateObjectAsync` support.
+- **Promoted to `1.0.0-preview.3` (2026-11-23) — Async Options validation.**
+  `IAsyncStartupValidator`/`IAsyncValidateOptions<T>` support.
 - **Post-1.0 candidates (deferred, demand-driven):** ReactiveUI/ReactiveValidation integration,
   custom-attribute source generation, and client message packs.
-
-> **Post-review note (2026-11-23):** the two async bridges were promoted to `1.0.0-preview.3`
-> after a maintainer value review. See the preview.3 section above.
 
 ---
 

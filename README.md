@@ -13,8 +13,8 @@
 
 **📖 Documentation:** [tareknajem04.github.io/Jeninnet.Validation](https://tareknajem04.github.io/Jeninnet.Validation/) — the complete reference book, guides, API reference, and samples.
 
-- **Status:** `1.0.0-preview.3` — current preview, in preparation. The latest published
-  preview is `1.0.0-preview.2` on
+- **Status:** `1.0.0-preview.3` — implemented and verified on `release/1.0.0-preview.3`; not yet
+  published. The latest published preview is `1.0.0-preview.2` on
   [NuGet](https://www.nuget.org/packages/Jeninnet.Validation/1.0.0-preview.2).
 - **Documentation:** [Jeninnet.Validation reference book](https://tareknajem04.github.io/Jeninnet.Validation/)
   ([source](docs/en/README.md)) and the
@@ -163,8 +163,8 @@ dotnet test  Jeninnet.Validation.slnx -c Release
 dotnet format Jeninnet.Validation.slnx --verify-no-changes --no-restore --exclude samples/Jeninnet.Validation.Analyzers.Sample.Console samples/Jeninnet.Validation.AotSmoke
 ```
 
-The current suite runs **1,038 tests** across `net10.0` and `net11.0` (997 on the `net10.0`
-baseline). Package validation uses the packed local feed:
+The current suite runs **1,050 tests** across 18 test assemblies on `net10.0` and `net11.0`.
+Package validation uses the packed local feed:
 
 ```bash
 dotnet pack Jeninnet.Validation.slnx -c Release -o artifacts/packages
