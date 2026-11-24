@@ -91,6 +91,10 @@ Unsupported countries fail explicitly with `NotSupportedException` when the rule
   `Basic`/`Strong`/`Strict` presets.
 - The Dutch rules cover IBAN, btw-id, postcode, and BSN. BSN and btw-id use the eleven-test.
 
+## AOT position
+
+**AOT-compatible.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
+
 ## Related packages
 
 - [Jeninnet.Validation](https://www.nuget.org/packages/Jeninnet.Validation) — core engine and fluent API.

@@ -35,7 +35,7 @@ pwsh scripts/release/run-release-gates.ps1 `
   -SkipRestore -SkipBuild -SkipTests -SkipFormat `
   -SkipSourceHeaders -SkipApiBaselines -SkipApiGateSelfTest `
   -SkipApiDiff -SkipMessageKeys -SkipDocs -SkipClientSupport -SkipClient -SkipVulnerability `
-  -SkipPackages -SkipConsumer -SkipAot -SkipCoverage -SkipSonar
+  -SkipPackages -SkipConsumer -SkipAotSupport -SkipAot -SkipCoverage -SkipSonar
 ```
 
 Run the external coverage/Sonar steps when their credentials and baselines exist:
@@ -68,6 +68,7 @@ pwsh scripts/release/run-release-gates.ps1 -IncludeCoverage -IncludeSonar
 | `package-contents` | — | `package-pack` | Package asset/content check |
 | `package-versions` | — | `package-pack` | Package file names match the product version |
 | `consumer-smoke` | `-SkipConsumer` | `package-pack` | Packed-package consumer smoke on `net10.0`/`net11.0` |
+| `aot-support` | `-SkipAotSupport` | — | Every package has an explicit AOT/trim position |
 | `aot-smoke` | `-SkipAot` | `build` | NativeAOT publish and run |
 | `coverage` | `-SkipCoverage` | `build` | Reported-only unless `-IncludeCoverage` |
 | `sonar` | `-SkipSonar` | `build` | Reported-only unless `-IncludeSonar` |

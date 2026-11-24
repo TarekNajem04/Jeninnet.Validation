@@ -48,6 +48,10 @@ Swashbuckle, NSwag, and the JSON Schema writer. The difference table and approva
 workflow are documented in
 [Integration Packages](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/03-reference/05-integration-packages.md#adapter-conformance-snapshots).
 
+## AOT position
+
+**AOT-compatible.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
+
 ## Related packages
 
 - [Jeninnet.Validation](https://www.nuget.org/packages/Jeninnet.Validation) — core engine and fluent API.

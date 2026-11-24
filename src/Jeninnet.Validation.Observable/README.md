@@ -92,6 +92,10 @@ messages.
 - DataAnnotations and Blazor use their own adapters; do not run both the Blazor component and this
   adapter for the same model unless one of them is configured to skip validation.
 
+## AOT position
+
+**Reflection-dependent.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
+
 ## Related packages
 
 - [Jeninnet.Validation](https://www.nuget.org/packages/Jeninnet.Validation) — core engine and fluent API.

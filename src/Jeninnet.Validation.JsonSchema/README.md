@@ -59,6 +59,10 @@ mark a member required; other rules do not invent requiredness. `required` is
 omitted for non-nullable value-type members because presence is implied by
 serialization, not by a non-default value.
 
+## AOT position
+
+**AOT-compatible.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
+
 ## Related packages
 
 - [Jeninnet.Validation](https://www.nuget.org/packages/Jeninnet.Validation) — core engine and fluent API.

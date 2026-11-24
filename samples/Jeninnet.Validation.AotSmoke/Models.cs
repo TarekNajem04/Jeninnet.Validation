@@ -88,4 +88,5 @@ internal sealed record ErrorProjection(string Member, string? Message);
 /// </summary>
 [JsonSourceGenerationOptions(WriteIndented = false)]
 [JsonSerializable(typeof(ErrorProjection[]))]
+[JsonSerializable(typeof(Order))]
 internal sealed partial class SmokeJsonContext : JsonSerializerContext;

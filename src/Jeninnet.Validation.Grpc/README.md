@@ -52,6 +52,10 @@ Without the attribute, `GrpcValidationOptions.RuleSets` applies. An empty list m
 - Client-streaming and duplex-streaming calls are not intercepted in this version.
 - The package is optional; Core and Abstractions have no gRPC dependency.
 
+## AOT position
+
+**Trim-compatible only.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
+
 ## Related packages
 
 - [Jeninnet.Validation](https://www.nuget.org/packages/Jeninnet.Validation) — core engine and fluent API.

@@ -89,6 +89,10 @@ formatting is intentionally not used because validation parameters are named.
   same `MessageKey`.
 - The bridge is a reader, not a second message provider.
 
+## AOT position
+
+**Trim-compatible only.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
+
 ## Related packages
 
 - [Jeninnet.Validation](https://www.nuget.org/packages/Jeninnet.Validation) — core engine and fluent API.

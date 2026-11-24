@@ -153,6 +153,10 @@ into `wwwroot/js`; update those copies when the client runtime changes.
 - Arrays and `IList` implementations are supported for indexed paths; other
   collection shapes fall back to the root model and the full path.
 
+## AOT position
+
+**Reflection-dependent.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
+
 ## Related packages
 
 - [Jeninnet.Validation](https://www.nuget.org/packages/Jeninnet.Validation) — core engine and fluent API.

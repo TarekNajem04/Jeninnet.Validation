@@ -9,6 +9,7 @@
         <AssemblyName>Jeninnet.Validation.OpenApi</AssemblyName>
         <RootNamespace>Jeninnet.Validation.OpenApi</RootNamespace>
         <Description>OpenAPI schema constraints generated from Jeninnet.Validation descriptors.</Description>
+        <IsAotCompatible>true</IsAotCompatible>
     </PropertyGroup>
 
     <ItemGroup>

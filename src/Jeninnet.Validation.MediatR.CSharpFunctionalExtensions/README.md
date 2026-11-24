@@ -35,6 +35,10 @@ message parameters are not representable and are omitted.
 `Throw` and `Continue` remain available and unchanged. Without a registered validator the request
 bypasses validation and reaches the handler.
 
+## AOT position
+
+**Trim-compatible only.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
+
 ## Related packages
 
 - [Jeninnet.Validation](https://www.nuget.org/packages/Jeninnet.Validation) — core engine and fluent API.

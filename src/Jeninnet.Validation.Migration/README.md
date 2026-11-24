@@ -55,6 +55,10 @@ Attribute-driven and fluent validators plus `[Required]` attributes. The tool ma
 names syntactically and says so in the report; it does not resolve project references. Runtime
 shims are out of scope: migrate the code, then delete the old dependency.
 
+## AOT position
+
+**Unsupported (build-time only).** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
+
 ## Related packages
 
 - [Jeninnet.Validation](https://www.nuget.org/packages/Jeninnet.Validation) — core engine and fluent API.

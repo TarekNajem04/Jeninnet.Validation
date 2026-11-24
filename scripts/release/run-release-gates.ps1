@@ -80,6 +80,9 @@
 .PARAMETER SkipConsumer
     Skip only the packed-package consumer smoke test.
 
+.PARAMETER SkipAotSupport
+    Skip the AOT/trim support-matrix check.
+
 .PARAMETER SkipAot
     Skip the NativeAOT smoke publish/run.
 
@@ -102,7 +105,7 @@
     pwsh scripts/release/run-release-gates.ps1 -SkipPackages -SkipAot
 
 .EXAMPLE
-    pwsh scripts/release/run-release-gates.ps1 -SkipRestore -SkipBuild -SkipTests -SkipFormat -SkipSourceHeaders -SkipApiBaselines -SkipApiGateSelfTest -SkipApiDiff -SkipMessageKeys -SkipClientSupport -SkipClient -SkipVulnerability -SkipPackages -SkipConsumer -SkipAot -SkipCoverage -SkipSonar
+    pwsh scripts/release/run-release-gates.ps1 -SkipRestore -SkipBuild -SkipTests -SkipFormat -SkipSourceHeaders -SkipApiBaselines -SkipApiGateSelfTest -SkipApiDiff -SkipMessageKeys -SkipClientSupport -SkipClient -SkipVulnerability -SkipPackages -SkipConsumer -SkipAotSupport -SkipAot -SkipCoverage -SkipSonar
 #>
 
 [CmdletBinding()]
@@ -127,6 +130,7 @@ param(
     [switch]$SkipVulnerability,
     [switch]$SkipPackages,
     [switch]$SkipConsumer,
+    [switch]$SkipAotSupport,
     [switch]$SkipAot,
     [switch]$SkipCoverage,
     [switch]$SkipSonar,
@@ -803,6 +807,12 @@ try {
             Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/package/check-consumer-smoke.ps1') -Arguments @('-PackagesPath', $packagesDirectory, '-Version', $productVersion)
         }
         $gate.LogPath = Join-Path $logsDirectory '17-consumer-smoke.log'
+        [void]$gates.Add($gate)
+
+        $gate = New-Gate -Name 'aot-support' -Category 'AOT' -Command 'check-aot-support-matrix.ps1' -Evidence 'Every packable package has an explicit AOT/trim position and property alignment.' -Skip:$SkipAotSupport -Action {
+            Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/quality/check-aot-support-matrix.ps1')
+        }
+        $gate.LogPath = Join-Path $logsDirectory '17a-aot-support.log'
         [void]$gates.Add($gate)
 
         $gate = New-Gate -Name 'aot-smoke' -Category 'AOT' -Command 'dotnet publish AotSmoke + run' -Evidence 'NativeAOT publish and run passed.' -DependsOn @('build') -Skip:$SkipAot -Action {

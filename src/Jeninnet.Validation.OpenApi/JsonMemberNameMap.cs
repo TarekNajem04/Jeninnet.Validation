@@ -44,15 +44,10 @@ internal static class JsonMemberNameMap {
             return Resolve(options.GetTypeInfo(modelType), descriptorMemberName) ?? descriptorMemberName;
         }
         catch(NotSupportedException) {
-            // Options without an explicit resolver may still be configurable by the application.
-            // Fall back to the reflection resolver so nested names use the same policy/attributes.
-            try {
-                var typeInfo = new DefaultJsonTypeInfoResolver().GetTypeInfo(modelType, options);
-                return Resolve(typeInfo, descriptorMemberName) ?? descriptorMemberName;
-            }
-            catch(NotSupportedException) {
-                return descriptorMemberName;
-            }
+            // No resolver metadata is available. Keep the descriptor name instead of falling back to
+            // reflection, so the path stays trim/AOT-safe. Supply a source-generated JsonTypeInfo
+            // resolver when serializer naming policy or [JsonPropertyName] mapping is required.
+            return descriptorMemberName;
         }
     }
 

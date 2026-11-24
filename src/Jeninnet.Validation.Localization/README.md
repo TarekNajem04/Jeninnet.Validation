@@ -160,6 +160,10 @@ mutate the caller's global culture.
 The provider discovers every embedded `Resources/*.json` file, so no registration list needs to be
 updated.
 
+## AOT position
+
+**AOT-compatible.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
+
 ## Related packages
 
 - [Jeninnet.Validation](https://www.nuget.org/packages/Jeninnet.Validation) — core engine and fluent API.

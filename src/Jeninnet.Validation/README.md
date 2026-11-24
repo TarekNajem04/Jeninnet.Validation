@@ -160,6 +160,10 @@ for the complete list.
 - [Dependency injection](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/02-guides/17-dependency-injection.md)
 - [API reference](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/03-reference/08-api-reference.md)
 
+## AOT position
+
+**AOT-compatible.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
+
 ## Related packages
 
 - [Jeninnet.Validation](https://www.nuget.org/packages/Jeninnet.Validation) — core engine and fluent API.
