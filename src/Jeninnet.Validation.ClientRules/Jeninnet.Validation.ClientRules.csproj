@@ -15,4 +15,8 @@
         <ProjectReference Include="..\Jeninnet.Validation.Abstractions\Jeninnet.Validation.Abstractions.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <InternalsVisibleTo Include="Jeninnet.Validation.Tests" />
+    </ItemGroup>
+
 </Project>

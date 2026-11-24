@@ -139,6 +139,25 @@ Payload shape:
   synchronous rule subset. Unsupported or conditional rules carry `serverOnly: true`, and the
   result exposes `needsServer` for an explicit server round trip.
 
+### Client/server support matrix
+
+The support list is single-sourced in
+[`client/rules-manifest.json`](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/client/rules-manifest.json)
+and generated into both implementations. The parity fixtures in
+[`client/test/fixtures/client-rules-parity.json`](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/client/test/fixtures/client-rules-parity.json)
+cover every supported rule and a server-only round trip.
+
+| Classification | Rules | Why |
+|---|---|---|
+| Supported | `NotNull`, `NotEmpty`, `StringNotEmpty`, `Length`, `ExactLength`, `Regex`, `Email`, `Url`, `IPAddress`, `Phone`, `CreditCard`, `Base64String`, `FileExtensions`, `Contains`, `StartsWith`, `EndsWith`, `Count`, `MinCount`, `MaxCount`, `UniqueItems`, `MultipleOf`, `GreaterThan`, `GreaterThanOrEqual`, `LessThan`, `LessThanOrEqual`, `InclusiveBetween`, `ExclusiveBetween`, `Range`, `In`, `NotIn`, `ScalePrecision`, `After`, `Before` | Synchronous and representable from descriptor parameters. |
+| Server-only — conditions | `Conditional` | Conditions are opaque delegates. |
+| Server-only — custom/async | `Must`, `MustAsync`, `Custom`, `CustomAsync` | Custom code and async execution cannot run in the browser. |
+| Server-only — nested/collection | `Nested`, `NestedValidator`, `ChildRules`, `Include`, `ForEach`, `ForEachElement` | Requires server-side descriptor composition. |
+| Server-only — cross-field/dependent | `PropertyEqual`, `PropertyNotEqual`, `PropertyGreaterThan`, `PropertyGreaterThanOrEqual`, `PropertyLessThan`, `PropertyLessThanOrEqual`, `Dependent` | Needs the full model and server order. |
+| Server-only — rule sets/templates | `RuleSet`, `RuleTemplate` | Host policy; not an isolated expression. |
+| Server-only — domain/reference data | `Iban`, `VatNumber`, `PostalCode`, `NationalId`, `PasswordStrength`, `Uuid`, `Ulid` | Reference data and checksum logic stay on the server. |
+| Server-only — remaining/unknown | `Null`, `NotDefault`, `Empty`, `Enum`, `IsEnumName`, `Equal`, `NotEqual`, `FutureDate`, `PastDate`, `*` | Outside the expression-friendly subset; unknown rules fail safe. |
+
 ## Serving the payload
 
 ```csharp

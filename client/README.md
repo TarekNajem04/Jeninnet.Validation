@@ -62,12 +62,15 @@ module auto-attaches on import; call `attach(form)` or `attachAll(root)` for for
 
 `NotNull`, `NotEmpty`, `StringNotEmpty`, `Length`, `ExactLength`, `Regex`, `Email`, `Url`,
 `IPAddress`, `Phone`, `CreditCard`, `Base64String`, `FileExtensions`, `Contains`, `StartsWith`,
-`EndsWith`, `Count`, `MinCount`, `MaxCount`, `GreaterThan`, `GreaterThanOrEqual`, `LessThan`,
-`LessThanOrEqual`, `InclusiveBetween`, `ExclusiveBetween`, `Range`, `In`, `NotIn`,
-`ScalePrecision`, `After`, and `Before`.
+`EndsWith`, `Count`, `MinCount`, `MaxCount`, `UniqueItems`, `MultipleOf`, `GreaterThan`,
+`GreaterThanOrEqual`, `LessThan`, `LessThanOrEqual`, `InclusiveBetween`, `ExclusiveBetween`,
+`Range`, `In`, `NotIn`, `ScalePrecision`, `After`, and `Before`.
 
 Everything else is marked `serverOnly: true` in the payload. A rule with `hasCondition: true` is
-also server-only because the condition is an opaque delegate.
+also server-only because the condition is an opaque delegate. The single source of truth is
+[`rules-manifest.json`](rules-manifest.json); the C# and JavaScript sets are generated from it, and
+the full server-only matrix with reasons is in
+[`scripts/client/README.md`](../scripts/client/README.md).
 
 ## Messages
 

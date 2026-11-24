@@ -109,6 +109,26 @@ evaluates supported synchronous rules and returns `needsServer` for
 conditional, nested, custom, asynchronous, or otherwise unsupported rules.
 See [`client/README.md`](../../client/README.md).
 
+## Client/server support matrix
+
+The support list is single-sourced in
+[`client/rules-manifest.json`](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/client/rules-manifest.json)
+and generated into the C# and JavaScript implementations. Supported synchronous rules:
+`NotNull`, `NotEmpty`, `StringNotEmpty`, `Length`, `ExactLength`, `Regex`, `Email`, `Url`,
+`IPAddress`, `Phone`, `CreditCard`, `Base64String`, `FileExtensions`, `Contains`, `StartsWith`,
+`EndsWith`, `Count`, `MinCount`, `MaxCount`, `UniqueItems`, `MultipleOf`, `GreaterThan`,
+`GreaterThanOrEqual`, `LessThan`, `LessThanOrEqual`, `InclusiveBetween`, `ExclusiveBetween`,
+`Range`, `In`, `NotIn`, `ScalePrecision`, `After`, `Before`.
+
+Everything else is marked `serverOnly: true` and requires the server. The main groups are:
+conditions (`Conditional`); custom/async (`Must`, `MustAsync`, `Custom`, `CustomAsync`);
+nested/collection (`Nested`, `NestedValidator`, `ChildRules`, `Include`, `ForEach`,
+`ForEachElement`); cross-field/dependent (`PropertyEqual` and related rules, `Dependent`); rule
+sets/templates (`RuleSet`, `RuleTemplate`); domain/reference-data rules (`Iban`, `VatNumber`,
+`PostalCode`, `NationalId`, `PasswordStrength`, `Uuid`, `Ulid`); and unknown/future rules. The full
+reasoned matrix and parity fixtures are under
+[`scripts/client/README.md`](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/scripts/client/README.md).
+
 ## Limits
 
 - Nested/child validators and custom/async rules are marked `serverOnly: true`;

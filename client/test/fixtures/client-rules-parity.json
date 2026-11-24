@@ -1,0 +1,697 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "name": "all-supported-rules-valid",
+      "payload": {
+        "schemaVersion": "1.0",
+        "validators": [
+          {
+            "name": "Parity.SupportedRules",
+            "members": [
+              {
+                "name": "Member00_NotNull",
+                "rules": [
+                  {
+                    "rule": "NotNull",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {}
+                  }
+                ]
+              },
+              {
+                "name": "Member01_NotEmpty",
+                "rules": [
+                  {
+                    "rule": "NotEmpty",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {}
+                  }
+                ]
+              },
+              {
+                "name": "Member02_StringNotEmpty",
+                "rules": [
+                  {
+                    "rule": "StringNotEmpty",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {}
+                  }
+                ]
+              },
+              {
+                "name": "Member03_Length",
+                "rules": [
+                  {
+                    "rule": "Length",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Max": 10,
+                      "Min": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member04_ExactLength",
+                "rules": [
+                  {
+                    "rule": "ExactLength",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Length": 3
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member05_Regex",
+                "rules": [
+                  {
+                    "rule": "Regex",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Pattern": "^[a-z]\u002B$"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member06_Email",
+                "rules": [
+                  {
+                    "rule": "Email",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {}
+                  }
+                ]
+              },
+              {
+                "name": "Member07_Url",
+                "rules": [
+                  {
+                    "rule": "Url",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {}
+                  }
+                ]
+              },
+              {
+                "name": "Member08_IPAddress",
+                "rules": [
+                  {
+                    "rule": "IPAddress",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {}
+                  }
+                ]
+              },
+              {
+                "name": "Member09_Phone",
+                "rules": [
+                  {
+                    "rule": "Phone",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {}
+                  }
+                ]
+              },
+              {
+                "name": "Member10_CreditCard",
+                "rules": [
+                  {
+                    "rule": "CreditCard",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {}
+                  }
+                ]
+              },
+              {
+                "name": "Member11_Base64String",
+                "rules": [
+                  {
+                    "rule": "Base64String",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {}
+                  }
+                ]
+              },
+              {
+                "name": "Member12_FileExtensions",
+                "rules": [
+                  {
+                    "rule": "FileExtensions",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Extensions": ".txt"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member13_Contains",
+                "rules": [
+                  {
+                    "rule": "Contains",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Value": "x"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member14_StartsWith",
+                "rules": [
+                  {
+                    "rule": "StartsWith",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Value": "x"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member15_EndsWith",
+                "rules": [
+                  {
+                    "rule": "EndsWith",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Value": "x"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member16_Count",
+                "rules": [
+                  {
+                    "rule": "Count",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Max": 3,
+                      "Min": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member17_MinCount",
+                "rules": [
+                  {
+                    "rule": "MinCount",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Min": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member18_MaxCount",
+                "rules": [
+                  {
+                    "rule": "MaxCount",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Max": 3
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member19_UniqueItems",
+                "rules": [
+                  {
+                    "rule": "UniqueItems",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {}
+                  }
+                ]
+              },
+              {
+                "name": "Member20_MultipleOf",
+                "rules": [
+                  {
+                    "rule": "MultipleOf",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Divisor": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member21_GreaterThan",
+                "rules": [
+                  {
+                    "rule": "GreaterThan",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Threshold": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member22_GreaterThanOrEqual",
+                "rules": [
+                  {
+                    "rule": "GreaterThanOrEqual",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Threshold": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member23_LessThan",
+                "rules": [
+                  {
+                    "rule": "LessThan",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Threshold": 10
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member24_LessThanOrEqual",
+                "rules": [
+                  {
+                    "rule": "LessThanOrEqual",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Threshold": 10
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member25_InclusiveBetween",
+                "rules": [
+                  {
+                    "rule": "InclusiveBetween",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Max": 10,
+                      "Min": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member26_ExclusiveBetween",
+                "rules": [
+                  {
+                    "rule": "ExclusiveBetween",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Max": 10,
+                      "Min": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member27_Range",
+                "rules": [
+                  {
+                    "rule": "Range",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Max": 10,
+                      "Min": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member28_In",
+                "rules": [
+                  {
+                    "rule": "In",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Values": "a,b"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member29_NotIn",
+                "rules": [
+                  {
+                    "rule": "NotIn",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Values": "a,b"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member30_ScalePrecision",
+                "rules": [
+                  {
+                    "rule": "ScalePrecision",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Precision": 5,
+                      "Scale": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member31_After",
+                "rules": [
+                  {
+                    "rule": "After",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Threshold": "2025-01-01T00:00:00Z"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Member32_Before",
+                "rules": [
+                  {
+                    "rule": "Before",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Threshold": "2025-01-01T00:00:00Z"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "model": {
+        "Member00_NotNull": "value",
+        "Member01_NotEmpty": "value",
+        "Member02_StringNotEmpty": "value",
+        "Member03_Length": "abcd",
+        "Member04_ExactLength": "abc",
+        "Member05_Regex": "abc",
+        "Member06_Email": "person@example.com",
+        "Member07_Url": "https://example.com",
+        "Member08_IPAddress": "127.0.0.1",
+        "Member09_Phone": "\u002B1234567",
+        "Member10_CreditCard": "4111111111111111",
+        "Member11_Base64String": "aGVsbG8=",
+        "Member12_FileExtensions": "file.txt",
+        "Member13_Contains": "axb",
+        "Member14_StartsWith": "xabc",
+        "Member15_EndsWith": "abcx",
+        "Member16_Count": [
+          1,
+          2
+        ],
+        "Member17_MinCount": [
+          1
+        ],
+        "Member18_MaxCount": [
+          1,
+          2
+        ],
+        "Member19_UniqueItems": [
+          1,
+          2
+        ],
+        "Member20_MultipleOf": 4,
+        "Member21_GreaterThan": 2,
+        "Member22_GreaterThanOrEqual": 1,
+        "Member23_LessThan": 5,
+        "Member24_LessThanOrEqual": 10,
+        "Member25_InclusiveBetween": 5,
+        "Member26_ExclusiveBetween": 5,
+        "Member27_Range": 5,
+        "Member28_In": "a",
+        "Member29_NotIn": "c",
+        "Member30_ScalePrecision": "12.34",
+        "Member31_After": "2026-01-01T00:00:00Z",
+        "Member32_Before": "2024-01-01T00:00:00Z"
+      },
+      "expected": {
+        "isValid": true,
+        "needsServer": false,
+        "errors": []
+      }
+    },
+    {
+      "name": "supported-errors",
+      "payload": {
+        "schemaVersion": "1.0",
+        "validators": [
+          {
+            "name": "Parity.CustomerValidator",
+            "members": [
+              {
+                "name": "Age",
+                "rules": [
+                  {
+                    "rule": "InclusiveBetween",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Max": 120,
+                      "Min": 18
+                    }
+                  },
+                  {
+                    "rule": "MultipleOf",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Divisor": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Email",
+                "rules": [
+                  {
+                    "rule": "Email",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {}
+                  }
+                ]
+              },
+              {
+                "name": "Name",
+                "rules": [
+                  {
+                    "rule": "NotEmpty",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {}
+                  },
+                  {
+                    "rule": "Length",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Max": 10,
+                      "Min": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Tags",
+                "rules": [
+                  {
+                    "rule": "Count",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {
+                      "Max": 3,
+                      "Min": 1
+                    }
+                  },
+                  {
+                    "rule": "UniqueItems",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "params": {}
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "model": {
+        "Name": "a",
+        "Email": "bad",
+        "Age": 19,
+        "Tags": [
+          "x",
+          "x"
+        ]
+      },
+      "expected": {
+        "isValid": false,
+        "needsServer": false,
+        "errors": [
+          {
+            "member": "Age",
+            "rule": "MultipleOf",
+            "messageKey": "MultipleOf",
+            "severity": "Error"
+          },
+          {
+            "member": "Email",
+            "rule": "Email",
+            "messageKey": "Email",
+            "severity": "Error"
+          },
+          {
+            "member": "Name",
+            "rule": "Length",
+            "messageKey": "Length",
+            "severity": "Error"
+          },
+          {
+            "member": "Tags",
+            "rule": "UniqueItems",
+            "messageKey": "UniqueItems",
+            "severity": "Error"
+          }
+        ]
+      }
+    },
+    {
+      "name": "server-only-conditional-custom",
+      "payload": {
+        "schemaVersion": "1.0",
+        "validators": [
+          {
+            "name": "Parity.ServerOnly",
+            "members": [
+              {
+                "name": "ConditionalValue",
+                "rules": [
+                  {
+                    "rule": "NotEmpty",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": true,
+                    "serverOnly": true,
+                    "params": {}
+                  }
+                ]
+              },
+              {
+                "name": "CustomValue",
+                "rules": [
+                  {
+                    "rule": "Must",
+                    "messageKey": null,
+                    "severity": "Error",
+                    "hasCondition": false,
+                    "serverOnly": true,
+                    "params": {}
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "model": {
+        "CustomValue": "",
+        "ConditionalValue": ""
+      },
+      "expected": {
+        "isValid": true,
+        "needsServer": true,
+        "errors": []
+      }
+    }
+  ]
+}

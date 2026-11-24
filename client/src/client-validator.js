@@ -4,41 +4,8 @@
 // Repository: https://github.com/TarekNajem04/Jeninnet.Validation
 // Licensed under the MIT License.
 //
+import { supportedRules } from "./client-rule-support.generated.js";
 import { defaultMessages } from "./messages.js";
-
-const supportedRules = new Set([
-    "NotNull",
-    "NotEmpty",
-    "StringNotEmpty",
-    "Length",
-    "ExactLength",
-    "Regex",
-    "Email",
-    "Url",
-    "IPAddress",
-    "Phone",
-    "CreditCard",
-    "Base64String",
-    "FileExtensions",
-    "Contains",
-    "StartsWith",
-    "EndsWith",
-    "Count",
-    "MinCount",
-    "MaxCount",
-    "GreaterThan",
-    "GreaterThanOrEqual",
-    "LessThan",
-    "LessThanOrEqual",
-    "InclusiveBetween",
-    "ExclusiveBetween",
-    "Range",
-    "In",
-    "NotIn",
-    "ScalePrecision",
-    "After",
-    "Before"
-]);
 
 /**
  * Creates a browser-side validator from a client-rules document.
@@ -191,6 +158,12 @@ function passes(rule, value) {
 
         case "MaxCount":
             return isNil(value) || countOf(value) <= toNumber(rule.params?.Max);
+
+        case "UniqueItems":
+            return isNil(value) || !hasDuplicateItems(value);
+
+        case "MultipleOf":
+            return isNil(value) || isMultipleOf(value, rule.params?.Divisor);
 
         case "GreaterThan":
             return isNil(value) || toNumber(value) > toNumber(rule.params?.Threshold);
@@ -465,4 +438,55 @@ function compareDate(value, rule) {
     }
 
     return rule.rule === "After" ? date > threshold : date < threshold;
+}
+
+function hasDuplicateItems(value) {
+    if(!Array.isArray(value)) {
+        return false;
+    }
+
+    const seen = new Set();
+
+    for(const item of value) {
+        const key = typeof item === "object" && item !== null ? JSON.stringify(item) : item;
+
+        if(seen.has(key)) {
+            return true;
+        }
+
+        seen.add(key);
+    }
+
+    return false;
+}
+
+function isMultipleOf(value, divisor) {
+    const number = Number(value);
+    const divisorNumber = Number(divisor);
+
+    if(!Number.isFinite(number)) {
+        return false;
+    }
+
+    if(!Number.isFinite(divisorNumber) || divisorNumber <= 0) {
+        return true;
+    }
+
+    const scale = Math.max(decimalPlaces(number), decimalPlaces(divisorNumber));
+    const factor = 10 ** Math.min(scale, 12);
+
+    return Math.round(number * factor) % Math.round(divisorNumber * factor) === 0;
+}
+
+function decimalPlaces(value) {
+    const text = String(value).toLowerCase();
+
+    if(text.includes("e")) {
+        const [coefficient, exponentText] = text.split("e");
+        const exponent = Number(exponentText);
+        const fraction = coefficient.split(".")[1]?.length ?? 0;
+        return Math.max(0, fraction - exponent);
+    }
+
+    return text.split(".")[1]?.length ?? 0;
 }

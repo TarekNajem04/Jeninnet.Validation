@@ -65,6 +65,9 @@
 .PARAMETER SkipDocs
     Skip documentation links, README claims, and Arabic-text checks.
 
+.PARAMETER SkipClientSupport
+    Skip the client rule-support drift check.
+
 .PARAMETER SkipClient
     Skip the JavaScript client runtime tests.
 
@@ -99,7 +102,7 @@
     pwsh scripts/release/run-release-gates.ps1 -SkipPackages -SkipAot
 
 .EXAMPLE
-    pwsh scripts/release/run-release-gates.ps1 -SkipRestore -SkipBuild -SkipTests -SkipFormat -SkipSourceHeaders -SkipApiBaselines -SkipApiGateSelfTest -SkipApiDiff -SkipMessageKeys -SkipClient -SkipVulnerability -SkipPackages -SkipConsumer -SkipAot -SkipCoverage -SkipSonar
+    pwsh scripts/release/run-release-gates.ps1 -SkipRestore -SkipBuild -SkipTests -SkipFormat -SkipSourceHeaders -SkipApiBaselines -SkipApiGateSelfTest -SkipApiDiff -SkipMessageKeys -SkipClientSupport -SkipClient -SkipVulnerability -SkipPackages -SkipConsumer -SkipAot -SkipCoverage -SkipSonar
 #>
 
 [CmdletBinding()]
@@ -119,6 +122,7 @@ param(
     [switch]$SkipApiDiff,
     [switch]$SkipMessageKeys,
     [switch]$SkipDocs,
+    [switch]$SkipClientSupport,
     [switch]$SkipClient,
     [switch]$SkipVulnerability,
     [switch]$SkipPackages,
@@ -736,6 +740,12 @@ try {
             Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/docs/check-arabic-text.ps1')
         }
         $gate.LogPath = Join-Path $logsDirectory '11-arabic-text.log'
+        [void]$gates.Add($gate)
+
+        $gate = New-Gate -Name 'client-support' -Category 'Client' -Command 'check-client-rule-support.ps1' -Evidence 'C# and JavaScript client support lists match the manifest.' -Skip:$SkipClientSupport -Action {
+            Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/client/check-client-rule-support.ps1')
+        }
+        $gate.LogPath = Join-Path $logsDirectory '11a-client-support.log'
         [void]$gates.Add($gate)
 
         $gate = New-Gate -Name 'client' -Category 'Client' -Command 'npm test --prefix client' -Evidence 'JavaScript client runtime tests passed.' -Skip:$SkipClient -Action {

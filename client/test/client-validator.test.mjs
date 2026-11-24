@@ -8,6 +8,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { test } from "node:test";
 import { createValidator, needsServer, validate } from "../src/client-validator.js";
+import { supportedRules } from "../src/client-rule-support.generated.js";
 import { defaultMessages } from "../src/messages.js";
 
 const payload = {
@@ -140,4 +141,49 @@ test("is dependency-free and does not use eval or Function", async () => {
 
     assert.equal(/\beval\s*\(/.test(source), false);
     assert.equal(/\bnew\s+Function\s*\(/.test(source), false);
+});
+
+test("generated support matches the shared manifest", async () => {
+    const manifest = JSON.parse(await readFile(new URL("../rules-manifest.json", import.meta.url), "utf8"));
+    const expected = [...manifest.supportedRules].sort();
+    const actual = [...supportedRules].sort();
+
+    assert.deepEqual(actual, expected);
+});
+
+test("shared parity fixtures match the client evaluator", async () => {
+    const fixture = JSON.parse(await readFile(
+        new URL("./fixtures/client-rules-parity.json", import.meta.url),
+        "utf8"));
+    const manifest = JSON.parse(await readFile(new URL("../rules-manifest.json", import.meta.url), "utf8"));
+    const supported = new Set(manifest.supportedRules);
+
+    for(const fixtureCase of fixture.cases) {
+        const result = createValidator(fixtureCase.payload).validate(fixtureCase.model);
+        const payloadRules = fixtureCase.payload.validators
+            .flatMap(validator => validator.members)
+            .flatMap(member => member.rules);
+
+        assert.equal(result.isValid, fixtureCase.expected.isValid, fixtureCase.name);
+        assert.equal(result.needsServer, fixtureCase.expected.needsServer, fixtureCase.name);
+
+        const actualErrors = result.errors
+            .map(({ member, rule, messageKey, severity }) => ({ member, rule, messageKey, severity }))
+            .sort((left, right) =>
+                left.member.localeCompare(right.member) || left.rule.localeCompare(right.rule));
+
+        assert.deepEqual(actualErrors, fixtureCase.expected.errors, fixtureCase.name);
+
+        if(fixtureCase.name === "all-supported-rules-valid") {
+            assert.deepEqual(
+                payloadRules.map(rule => rule.rule).sort(),
+                [...supported].sort(),
+                "the parity fixture must cover every supported rule");
+            assert.equal(payloadRules.every(rule => rule.serverOnly !== true), true);
+        }
+
+        if(fixtureCase.name === "server-only-conditional-custom") {
+            assert.equal(payloadRules.every(rule => rule.serverOnly === true), true);
+        }
+    }
 });

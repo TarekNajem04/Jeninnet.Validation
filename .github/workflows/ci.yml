@@ -182,6 +182,10 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Verify client rule support
+        shell: pwsh
+        run: pwsh scripts/client/check-client-rule-support.ps1
+
       - name: Test client evaluator
         run: npm test --prefix client
 

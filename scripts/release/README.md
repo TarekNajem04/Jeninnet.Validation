@@ -34,7 +34,7 @@ Skip individual gates:
 pwsh scripts/release/run-release-gates.ps1 `
   -SkipRestore -SkipBuild -SkipTests -SkipFormat `
   -SkipSourceHeaders -SkipApiBaselines -SkipApiGateSelfTest `
-  -SkipApiDiff -SkipMessageKeys -SkipDocs -SkipClient -SkipVulnerability `
+  -SkipApiDiff -SkipMessageKeys -SkipDocs -SkipClientSupport -SkipClient -SkipVulnerability `
   -SkipPackages -SkipConsumer -SkipAot -SkipCoverage -SkipSonar
 ```
 
@@ -61,6 +61,7 @@ pwsh scripts/release/run-release-gates.ps1 -IncludeCoverage -IncludeSonar
 | `docs-links` | `-SkipDocs` | — | Local Markdown links |
 | `readme-claims` | `-SkipDocs` | — | README project and packable-count claims |
 | `arabic-text` | `-SkipDocs` | — | Arabic text and hidden-control check |
+| `client-support` | `-SkipClientSupport` | — | C#/JS support lists match the manifest |
 | `client` | `-SkipClient` | — | JavaScript client runtime tests |
 | `vulnerability` | `-SkipVulnerability` | `restore` | NuGet vulnerability audit |
 | `package-pack` | `-SkipPackages` | `build` | Pack all 25 packages with package validation |
