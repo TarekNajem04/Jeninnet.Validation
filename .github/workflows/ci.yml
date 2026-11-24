@@ -233,6 +233,16 @@ jobs:
           --logger "trx;LogFileName=results.trx"
           --results-directory TestResults/${{ matrix.os }}
 
+      - name: Host conformance
+        run: >
+          dotnet test Jeninnet.Validation.slnx
+          --configuration Release
+          --no-build
+          --no-restore
+          --filter "TestCategory=HostConformance"
+          --logger "trx;LogFileName=host-conformance.trx"
+          --results-directory TestResults/${{ matrix.os }}
+
       - name: Upload test results
         if: failure()
         uses: actions/upload-artifact@v7.0.2

@@ -52,6 +52,7 @@ pwsh scripts/release/run-release-gates.ps1 -IncludeCoverage -IncludeSonar
 | `restore` | `-SkipRestore` | — | NuGet restore |
 | `build` | `-SkipBuild` | `restore` | Release build, 0 warnings / 0 errors |
 | `tests` | `-SkipTests` | `build` | Full solution test run |
+| `host-conformance` | `-SkipTests` | `build` | Filtered host-pipeline fail-open suite (`TestCategory=HostConformance`) |
 | `format` | `-SkipFormat` | `build` | `dotnet format --verify-no-changes` |
 | `source-headers` | `-SkipSourceHeaders` | — | Standard attribution header |
 | `api-baselines` | `-SkipApiBaselines` | `build` | Public API baseline files |

@@ -681,6 +681,20 @@ try {
         $gate.LogPath = Join-Path $logsDirectory '03-tests.log'
         [void]$gates.Add($gate)
 
+        $gate = New-Gate -Name 'host-conformance' -Category 'Test' -Command 'dotnet test --filter TestCategory=HostConformance' -Evidence 'Every covered host path rejects invalid input without reaching the handler.' -DependsOn @('build') -Skip:$SkipTests -Action {
+            Invoke-External -FilePath $script:dotnetPath -Arguments @(
+                'test', $Solution,
+                '--configuration', 'Release',
+                '--no-build',
+                '--no-restore',
+                '--filter', 'TestCategory=HostConformance',
+                '--logger', 'trx;LogFileName=host-conformance.trx',
+                '--results-directory', $testResultsDirectory
+            )
+        }
+        $gate.LogPath = Join-Path $logsDirectory '03a-host-conformance.log'
+        [void]$gates.Add($gate)
+
         $gate = New-Gate -Name 'format' -Category 'Quality' -Command 'dotnet format --verify-no-changes' -Evidence 'Formatting is clean.' -DependsOn @('build') -Skip:$SkipFormat -Action {
             Invoke-External -FilePath $script:dotnetPath -Arguments @(
                 'format', $Solution,
