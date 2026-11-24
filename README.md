@@ -93,7 +93,7 @@ The complete reference book is published at
 | Tests (`tests/`) | 18 MSTest projects (15 on the net10 baseline plus 3 net11 bridge/OpenAPI suites) covering the engine, analyzers, integrations, architecture, packaging, and the `net10.0`/`net11.0` matrix |
 | Samples (`samples/`) | 26 sample projects, including the Clean Architecture and XML-localization samples |
 | Templates (`templates/`) | `jeninnet-validator` `dotnet new` template |
-| Tooling (`scripts/`) | Build, coverage, Sonar, package, API, localization, badge, template, and cleanup tools |
+| Tooling (`scripts/`) | Release gates, build, coverage, Sonar, package, API, localization, badge, template, and cleanup tools; see [`scripts/README.md`](scripts/README.md) |
 | Client (`client/`) | Dependency-free JavaScript/TypeScript client evaluator |
 | Documentation (`docs/`) | The reference book, DocFX site, and release evidence |
 
@@ -171,6 +171,16 @@ dotnet pack Jeninnet.Validation.slnx -c Release -o artifacts/packages
 pwsh scripts/package/check-package-contents.ps1 -PackagesPath artifacts/packages
 pwsh scripts/package/check-consumer-smoke.ps1 -PackagesPath artifacts/packages
 ```
+
+Run the full release gate with one command:
+
+```powershell
+pwsh scripts/release/run-release-gates.ps1
+```
+
+It writes `artifacts/release/<version>/release-gates.md` and `release-gates.json`, plus one log per
+gate. See [`scripts/release/README.md`](scripts/release/README.md) for skip switches and report
+details.
 
 ## Documentation
 

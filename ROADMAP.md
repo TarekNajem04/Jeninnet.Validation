@@ -70,12 +70,16 @@ added without another explicit re-cut.
 | AOT/trimming | **Verified:** NativeAOT smoke publishes and runs locally (`win-x64`); CI verifies `linux-x64` |
 | Packages | **Verified:** 25 packable packages; contents, central-version alignment, dual-TFM consumer smoke, and local-feed dry run |
 | Public API | **Verified:** 25 package baselines, including the per-TFM net11 DataAnnotations override |
+| Release gates | **Verified locally:** `scripts/release/run-release-gates.ps1`; report under `artifacts/release/1.0.0-preview.3/` |
 | Coverage | Pending refresh on the preview.3 commit |
 
 ## Open gates
 
 - [x] **MUST — Build, test, format, headers, docs, AOT, package, and consumer evidence.** Verified on
   the preview.3 branch.
+- [x] **MUST — Release gate runner.** Local run green with 19 passed and 2 reported-only external
+  gates; the publish workflow uploads `release-gates-1.0.0-preview.3` from
+  `scripts/release/run-release-gates.ps1`.
 - [ ] **MUST — Coverage/Sonar refresh** on the preview.3 commit.
 - [ ] **MUST — Version alignment.** Central and package versions agree; the tag and published
   packages are created at publication.

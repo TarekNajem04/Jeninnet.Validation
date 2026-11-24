@@ -20,9 +20,58 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  release-gates:
+    name: Release gates
+    runs-on: windows-latest
+    timeout-minutes: 120
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v6.1.0
+        with:
+          global-json-file: global.json
+
+      - name: Setup Node
+        uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+
+      - name: Resolve version
+        id: version
+        shell: bash
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Running gates for version: $VERSION"
+
+      - name: Run release gates
+        shell: pwsh
+        run: ./scripts/release/run-release-gates.ps1 -ExpectedVersion "${{ steps.version.outputs.version }}"
+
+      - name: Upload release gate report
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: release-gates-${{ steps.version.outputs.version }}
+          path: |
+            artifacts/release/**/release-gates.md
+            artifacts/release/**/release-gates.json
+            artifacts/release/**/logs/**
+          if-no-files-found: warn
+
   publish:
     name: Publish to NuGet
     runs-on: windows-latest
+    needs:
+      - release-gates
     environment:
       name: production
 

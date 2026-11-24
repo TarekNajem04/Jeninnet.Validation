@@ -9,6 +9,7 @@ PowerShell tooling for repository maintenance. Each script is preview-first unle
 | `scripts/coverage` | Runs tests with XPlat Code Coverage and generates an HTML report | [README](coverage/README.md) |
 | `scripts/format` | Applies and verifies .NET formatting | [README](format/README.md) |
 | `scripts/sonar` | Runs the SonarScanner preview used by CI | [README](sonar/README.md) |
+| `scripts/release` | Runs the full release gate and writes a Markdown/JSON report | [README](release/README.md) |
 | `scripts/badges` | Generates the repository README badges | `generate.ps1` |
 | `scripts/assets` | Generates the brand icon master and the 128×128 NuGet package icon | `generate-icon.ps1` |
 | `scripts/quality` | Verifies the standard source-file attribution header | `check-source-headers.ps1` |

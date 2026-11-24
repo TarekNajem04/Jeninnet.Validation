@@ -21,6 +21,9 @@ mono_crash.*
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
+# Release automation is source; build output folders remain ignored.
+!scripts/release/
+!scripts/release/**
 x64/
 x86/
 [Ww][Ii][Nn]32/
