@@ -44,6 +44,13 @@ Rules that expose metadata (all built-in rules and custom rules derived from `Sy
 | `Reason` | `Rule has no descriptor metadata.` |
 | `Type` | The runtime rule type name. |
 
+Composition rules keep their boundary: `SetValidator` and `ChildRules` describe a `Nested` rule,
+`ForEach` describes `ForEach`, and `ForEachElement` describes `ForEachElement`; each carries a
+`NestedDescriptor` for its inner rules. `Include` describes an `Include` rule with the included
+validator's nested descriptor. A rule without metadata inside any of these wrappers appears as a
+`Custom` advisory in the nested descriptor, never as a dropped rule. These advisories are
+server-only and do not become JSON Schema constraints.
+
 Use the generated `ConfigureDescriptor` partial hook when a custom rule needs explicit metadata:
 
 ```csharp

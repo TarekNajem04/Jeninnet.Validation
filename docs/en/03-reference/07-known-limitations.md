@@ -210,8 +210,10 @@ These are deliberate boundaries or tracked follow-ups, not surprises.
   before use.
 - `ValidationResult` errors with an empty member name are attributed to the property or model path;
   explicit member paths are preserved unchanged.
-- Class-level custom rules execute during validation but are not listed in the generated static
-  descriptor. Descriptor completeness for model-level rules remains tracked as future work.
+- Class-level `[CustomValidator]` rules and rules added through `AddCustomValidators()` are present
+  in the runtime `Describe()` output. Model-level rules appear under `*`; rules without metadata are
+  emitted as `Custom` advisories. The build-time `ClientRulesCatalog` remains attribute-only and
+  omits runtime-added rules and model-level custom rules; those rules are server-only by design.
 
 ## OpenAPI naming policies
 

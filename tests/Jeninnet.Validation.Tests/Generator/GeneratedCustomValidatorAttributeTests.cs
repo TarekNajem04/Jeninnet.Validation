@@ -148,6 +148,18 @@ public sealed class GeneratedCustomValidatorAttributeTests {
     }
 
     [TestMethod]
+    public void ModelLevelCustomValidator_IsListedInRuntimeDescriptor() {
+        var generated = BuildValidator("ProviderModel");
+        var descriptor = generated.Describe();
+        var rootRules = descriptor.RulesForMember("*");
+
+        MSTestAssertions.That(() => rootRules.Should().NotBeEmpty());
+        MSTestAssertions.That(() => rootRules
+            .Any(static rule => rule.Kind == "Custom")
+            .Should().BeTrue());
+    }
+
+    [TestMethod]
     public void MultipleCustomValidatorsOnSameProperty_AllRun() {
         var generated = BuildValidator("CustomModel");
         var model = generated.CreateModel();
@@ -271,6 +283,8 @@ public sealed class GeneratedCustomValidatorAttributeTests {
 
     private sealed class GeneratedValidator(Type modelType, Type validatorType, object validator) {
         public bool IsAsyncOnly => validatorType.GetCustomAttribute<AsyncOnlyValidatorAttribute>() is not null;
+
+        public IValidationDescriptor Describe() => ((IValidationDescriptorProvider)validator).Describe();
 
         public object CreateModel() => Activator.CreateInstance(modelType)!;
 

@@ -88,18 +88,6 @@ public sealed class ValidationDescriptorBuilder {
             return;
         }
 
-        if(rule is IValidationRuleContainer container) {
-            var combinedMemberName = memberNameOverride ?? container.MemberName;
-            var combinedParameters = MergeParameters(inheritedParameters, container.Parameters);
-            var combinedCondition = hasCondition || container.HasCondition;
-
-            foreach(var innerRule in container.InnerRules) {
-                AddRule(innerRule, combinedMemberName, combinedParameters, combinedCondition);
-            }
-
-            return;
-        }
-
         var memberName = memberNameOverride ??
                          (rule is IValidationMemberRule member && member.MemberName is { Length: > 0 } name
                              ? name
@@ -112,6 +100,18 @@ public sealed class ValidationDescriptorBuilder {
                 schemaRule.Kind,
                 hasCondition: hasCondition,
                 nestedDescriptor: schemaRule.NestedDescriptor));
+            return;
+        }
+
+        if(rule is IValidationRuleContainer container) {
+            var combinedMemberName = memberNameOverride ?? container.MemberName;
+            var combinedParameters = MergeParameters(inheritedParameters, container.Parameters);
+            var combinedCondition = hasCondition || container.HasCondition;
+
+            foreach(var innerRule in container.InnerRules) {
+                AddRule(innerRule, combinedMemberName, combinedParameters, combinedCondition);
+            }
+
             return;
         }
 
