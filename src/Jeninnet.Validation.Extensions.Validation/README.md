@@ -70,14 +70,19 @@ If no `IValidator<T>` is registered, startup fails with a message that names the
 On .NET 10, options validation is synchronous: async-only validators throw
 `AsyncValidatorInvokedSynchronouslyException`, which is surfaced as a configuration failure.
 
-On .NET 11, `AddValidatedOptions<T>()` registers both the synchronous and asynchronous options
-validators. The framework detects `IAsyncValidateOptions<T>` on the async validator and runs it
-during the asynchronous startup path exposed by `ValidateOnStart()`. Async-only validators therefore
-work without a sync-over-async bridge. The synchronous pass returns `ValidateOptionsResult.Skip`
-for those validators; a host that only runs synchronous startup validation does not execute them.
-Complete the host's asynchronous startup before accessing async-validated options synchronously.
-Named options and `CancellationToken` are supported. `IOptionsMonitor<T>` reloads remain synchronous
-and do not run async validators; this is a framework constraint.
+On .NET 11, `AddValidatedOptions<T>()` registers both the synchronous and asynchronous validators.
+The only path that runs async validators is `IAsyncStartupValidator.ValidateAsync(token)`; it runs
+the synchronous pass, then the async pass, and honors the token.
+
+The options access paths are synchronous: `IOptions<T>.Value`, `IOptionsSnapshot<T>.Value`, and
+`IOptionsMonitor<T>.CurrentValue` / `Get(name)` call `IValidateOptions<T>.Validate` only. An
+async-only validator returns `ValidateOptionsResult.Skip`, so an invalid async-only value is accepted
+on these paths and the async rules do not run. Synchronous validators still run on reload; an
+invalid reload throws `OptionsValidationException`. Named options use the same per-name path, and
+only startup async validation observes a cancellation token. A successful `IOptionsMonitor<T>`
+reload is not evidence that async rules passed. See the
+[known-limitations page](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/03-reference/07-known-limitations.md#async-vs-sync-adapters)
+for the boundary table.
 
 ## Limits
 

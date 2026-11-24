@@ -29,10 +29,15 @@ These are deliberate boundaries or tracked follow-ups, not surprises.
 - Sync `Validate` never silently skips async rules.
 - `PreValidateAsync` is stricter: synchronous `Validate` throws `InvalidOperationException` because
   the guard cannot run.
-- Async Options validation requires the .NET 11 asynchronous startup path. `AddValidatedOptions()`
-  registers the async validator on `net11.0`, but the host must complete asynchronous startup before
-  the options are accessed synchronously. `IOptionsMonitor<T>` reloads are synchronous and do not
-  run async validators.
+- Async Options validation runs only through `IAsyncStartupValidator.ValidateAsync(token)`. This is
+  the only path that awaits async validators and the only one that observes cancellation.
+- `IOptions<T>.Value`, `IOptionsSnapshot<T>.Value`, and `IOptionsMonitor<T>.CurrentValue` / `Get(name)`
+  use synchronous validation. On `net11.0` an async-only validator returns `Skip`, so an invalid
+  async-only value is accepted on these paths and the async rules do not run. Synchronous validators
+  still run on reload and throw `OptionsValidationException` when the value is invalid.
+- Named options use the same per-name synchronous path. A successful `IOptionsMonitor<T>` reload is
+  not evidence that async rules passed; call the startup validator or the domain validator's
+  `ValidateAsync` when async rules must gate a reload.
 
 ## Execution and filtering
 
