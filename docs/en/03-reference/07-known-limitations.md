@@ -120,12 +120,17 @@ These are deliberate boundaries or tracked follow-ups, not surprises.
   normalize input at the boundary when the source is local.
 - A null date/time value passes relative-date rules; combine with `[NotNull]` when it is required.
 
-- `[Validate]` supports classes, `struct`, and `record struct` models. It does not discover
-  validation rules on fields or static properties.
-- Models must declare a namespace. The generator emits validators under
-  `<model namespace>.Validators`; a model in the global namespace is not supported in this preview.
+- `[Validate]` supports classes, `struct`, and `record struct` models. Validation attributes target
+  properties, so fields cannot carry them; static properties are rejected with `VAL0022` rather than
+  silently skipped.
+- Models must declare a namespace. A global-namespace model is rejected with `VAL0022`; the
+  generator does not emit a partial validator.
 - Open generic model declarations are rejected with `VAL0022`; use a non-generic model or a fluent
   validator. This avoids ambiguous generated type names and DI registrations.
+- A derived type without `[Validate]` has no generated validator even when its base type is
+  annotated. Annotate the derived type explicitly or use a fluent validator.
+- `SetInheritanceValidator` resolves the exact runtime type; an unregistered runtime type is
+  skipped without base-type or interface fallback. Register every runtime type explicitly.
 - `[After]` / `[Before]` parse against the property type (`DateTime`, `DateTimeOffset`, `DateOnly`,
   or `TimeOnly`) with `CultureInfo.InvariantCulture`. `TimeOnly` accepts clock values such as
   `"09:30"`; date-carrying strings are rejected. Invalid values produce `VAL0021`; there is no

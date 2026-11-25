@@ -501,9 +501,9 @@
     {
       "id": "VAL0022",
       "severity": "Error",
-      "title": "Generic model is not supported",
+      "title": "Model shape is not supported",
       "principle": "I. Library-First & Source-Generated",
-      "summary": "The source generator emits closed, non-generic validator classes and cannot generate a validator for an open generic model.",
+      "summary": "The source generator cannot emit a validator for this model shape. It fails closed instead of producing a partial or misleading validator.",
       "trigger": [
         "[Validate]",
         "public sealed class Box<T>",
@@ -512,10 +512,10 @@
         "    public string? Name { get; set; }",
         "}"
       ],
-      "message": "error VAL0022: Generic type \"Box<T>\" cannot be validated by the source generator; use a non-generic model or a fluent validator",
+      "message": "error VAL0022: Type \"Box<T>\" cannot be validated by the source generator: generic models are not supported; use a non-generic model or a fluent validator",
       "status": "Intentional",
-      "reason": "The model shape must change or move to a fluent validator; a generator fix would have to choose a closed instantiation.",
-      "guidance": "Use a non-generic model, or write a fluent Validator<Box<T>> for the closed generic type you actually validate."
+      "reason": "The model shape must change or move to a fluent validator; a generator fix would have to choose a closed instantiation, namespace, or instance member.",
+      "guidance": "Use a non-generic model with an explicit namespace and instance properties, or write a fluent validator for the unsupported shape. Global-namespace models and static validated properties report the same descriptor."
     },
     {
       "id": "VAL0023",

@@ -135,6 +135,51 @@ public sealed class GeneratedTypeCoverageTests {
     }
 
     [TestMethod]
+    public void GlobalNamespaceModel_ProducesVal0022AndIsNotEmitted() {
+        const string source = """
+            using Jeninnet.Validation.Attributes;
+
+            [Validate]
+            public sealed class GlobalModel {
+                [NotEmpty]
+                public string? Name { get; set; }
+            }
+            """;
+
+        var (diagnostics, sources, _) = RunGenerator(source);
+
+        MSTestAssertions.That(() => diagnostics.Any(static diagnostic =>
+            diagnostic.Id == "VAL0022" &&
+            diagnostic.GetMessage(CultureInfo.InvariantCulture).Contains("namespace", StringComparison.Ordinal))
+            .Should().BeTrue("a model in the global namespace must report VAL0022"));
+        MSTestAssertions.That(() => string.Join(Environment.NewLine, sources)
+            .Should().NotContain("GlobalModelValidator"));
+    }
+
+    [TestMethod]
+    public void StaticProperty_ProducesVal0022AndIsNotEmitted() {
+        const string source = """
+            using Jeninnet.Validation.Attributes;
+            namespace StaticCoverage;
+
+            [Validate]
+            public sealed class StaticModel {
+                [NotEmpty]
+                public static string? Name { get; set; }
+            }
+            """;
+
+        var (diagnostics, sources, _) = RunGenerator(source);
+
+        MSTestAssertions.That(() => diagnostics.Any(static diagnostic =>
+            diagnostic.Id == "VAL0022" &&
+            diagnostic.GetMessage(CultureInfo.InvariantCulture).Contains("static property", StringComparison.Ordinal))
+            .Should().BeTrue("a static validated property must report VAL0022"));
+        MSTestAssertions.That(() => string.Join(Environment.NewLine, sources)
+            .Should().NotContain("StaticModelValidator"));
+    }
+
+    [TestMethod]
     public void GeneratorOutput_IsCultureInvariant() {
         const string source = """
             using System;

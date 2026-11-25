@@ -27,7 +27,7 @@ fix or the reason no automatic fix is safe. The pages are generated from
 | [VAL0019](VAL0019.md) | `Error` | Invalid lifecycle hook | Intentional |
 | [VAL0020](VAL0020.md) | `Error` | Invalid custom validator | Intentional |
 | [VAL0021](VAL0021.md) | `Error` | Invalid date/time rule value | Intentional |
-| [VAL0022](VAL0022.md) | `Error` | Generic model is not supported | Intentional |
+| [VAL0022](VAL0022.md) | `Error` | Model shape is not supported | Intentional |
 | [VAL0023](VAL0023.md) | `Warning` | RuleFor member name mismatch | Available |
 | [VAL0024](VAL0024.md) | `Warning` | Collection rule requires a collection | Intentional |
 | [VAL0025](VAL0025.md) | `Warning` | Async-only validator in synchronous adapter | Intentional |

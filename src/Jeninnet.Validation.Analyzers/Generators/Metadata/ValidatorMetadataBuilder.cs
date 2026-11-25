@@ -46,7 +46,44 @@ internal static class ValidatorMetadataBuilder {
             diagnostics.Add(new GeneratorDiagnostic(
                 DiagnosticDescriptors.UnsupportedGenericModel,
                 typeSymbol.Locations.FirstOrDefault(),
-                [typeSymbol.ToDisplayString()]));
+                [typeSymbol.ToDisplayString(), "generic models are not supported; use a non-generic model or a fluent validator"]));
+
+            return new ValidatorDescriptor(
+                targetNamespace,
+                targetTypeName,
+                [],
+                Diagnostics: diagnostics) {
+                ShouldEmit = false
+            };
+        }
+
+        if(typeSymbol.ContainingNamespace.IsGlobalNamespace) {
+            diagnostics.Add(new GeneratorDiagnostic(
+                DiagnosticDescriptors.UnsupportedGenericModel,
+                typeSymbol.Locations.FirstOrDefault(),
+                [typeSymbol.ToDisplayString(), "the model must declare a namespace; move it into a namespace or use a fluent validator"]));
+
+            return new ValidatorDescriptor(
+                targetNamespace,
+                targetTypeName,
+                [],
+                Diagnostics: diagnostics) {
+                ShouldEmit = false
+            };
+        }
+
+        var staticProperty = typeSymbol.GetMembers()
+            .OfType<IPropertySymbol>()
+            .FirstOrDefault(static property =>
+                property.IsStatic &&
+                property.GetAttributes().Any(static attribute =>
+                    attribute.AttributeClass is { } attributeClass && IsValidationAttribute(attributeClass)));
+
+        if(staticProperty is not null) {
+            diagnostics.Add(new GeneratorDiagnostic(
+                DiagnosticDescriptors.UnsupportedGenericModel,
+                staticProperty.Locations.FirstOrDefault(),
+                [typeSymbol.ToDisplayString(), $"static property '{staticProperty.Name}' cannot be validated; use an instance property"]));
 
             return new ValidatorDescriptor(
                 targetNamespace,

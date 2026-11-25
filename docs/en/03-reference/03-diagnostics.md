@@ -32,7 +32,7 @@ tested fix or the reason no automatic fix is safe, see the
 | `VAL0019` | Error | Invalid lifecycle hook | — | Intentional — the lifecycle hook must be authored or its signature chosen |
 | `VAL0020` | Error | Invalid custom validator | — | Intentional — the custom validator method must be authored or its signature chosen |
 | `VAL0021` | Error | Invalid date/time rule value | — | Intentional — the literal is unparseable; the intended date is unknown |
-| `VAL0022` | Error | Generic model is not supported | — | Intentional — the model shape must change or move to a fluent validator |
+| `VAL0022` | Error | Model shape is not supported | — | Intentional — the model shape must change or move to a fluent validator |
 | `VAL0023` | Warning | `RuleFor` member name mismatch | Rewrites the argument to `nameof(Model.Member)`. | Available |
 | `VAL0024` | Warning | Collection rule requires a collection | — | Intentional — the target member or the rule must change based on intent |
 | `VAL0025` | Warning | Async-only validator in synchronous adapter | — | Intentional — the integration path or the validator must change based on intent |
@@ -194,15 +194,26 @@ The value must parse under `CultureInfo.InvariantCulture` as the property type (
 `DateTimeOffset`, `DateOnly`, or `TimeOnly`). The generator never substitutes `DateTime.Now` for an
 invalid value. Fix the literal or the property type.
 
-### `VAL0022` — generic model is not supported
+### `VAL0022` — model shape is not supported
 
 ```csharp
 [Validate]
-public sealed class Box<T> { /* ... */ } // VAL0022
+public sealed class Box<T> { /* ... */ } // VAL0022: generic model
+
+[Validate]
+public sealed class GlobalModel { /* ... */ } // VAL0022: no namespace
+
+[Validate]
+public sealed class StaticModel
+{
+    [NotEmpty]
+    public static string? Name { get; set; } // VAL0022: static property
+}
 ```
 
-The source generator emits a closed, non-generic validator class. Use a non-generic model or a
-fluent validator for generic types.
+The source generator emits a closed, non-generic validator class in an explicit namespace and reads
+instance properties. Use a non-generic model with a namespace and instance properties, or use a
+fluent validator for the unsupported shape.
 
 ### `VAL0023` — RuleFor member name mismatch
 
