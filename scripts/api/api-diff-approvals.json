@@ -101,6 +101,42 @@
       "reason": "P3-018 safe removal code fix for VAL0017; additive analyzer API approved for preview.3.",
       "approvedBy": "Maintainer",
       "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Observable",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.Observable.ObservableValidationOptions.CaptureSynchronizationContext.get -> bool",
+      "reason": "P3-017 UI-thread contract: opt-in synchronization-context capture for async completion; additive observable API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Observable",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.Observable.ObservableValidationOptions.CaptureSynchronizationContext.set -> void",
+      "reason": "P3-017 UI-thread contract: opt-in synchronization-context capture for async completion; additive observable API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Observable",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.Observable.ObservableValidationOptions.Post.get -> System.Action<System.Action!>?",
+      "reason": "P3-017 UI-thread contract: caller-provided dispatcher post delegate for async completion; additive observable API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Observable",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.Observable.ObservableValidationOptions.Post.set -> void",
+      "reason": "P3-017 UI-thread contract: caller-provided dispatcher post delegate for async completion; additive observable API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
     }
   ]
 }

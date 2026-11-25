@@ -4,6 +4,8 @@
 // Repository: https://github.com/TarekNajem04/Jeninnet.Validation
 // Licensed under the MIT License.
 //
+using System.Collections.Concurrent;
+
 namespace Jeninnet.Validation.Observable.Tests;
 
 // ---------------------------------------------------------------------------
@@ -199,6 +201,30 @@ file sealed class PlainModelValidator : Validator<PlainModel> {
     protected override void Configure(ValidatorRuleBuilder<PlainModel> builder) => ArgumentNullException.ThrowIfNull(builder);
 }
 
+internal sealed class PumpSynchronizationContext : SynchronizationContext, IDisposable {
+    private readonly BlockingCollection<(SendOrPostCallback Callback, object? State)> _queue = new();
+
+    public override void Post(SendOrPostCallback d, object? state) => _queue.Add((d, state));
+
+    public override void Send(SendOrPostCallback d, object? state) => d(state);
+
+    public void PumpUntil(Func<bool> condition, TimeSpan timeout) {
+        var deadline = DateTime.UtcNow + timeout;
+
+        while(!condition()) {
+            if(DateTime.UtcNow >= deadline) {
+                throw new TimeoutException("The synchronization context did not drain in time.");
+            }
+
+            if(_queue.TryTake(out var work, 50)) {
+                work.Callback(work.State);
+            }
+        }
+    }
+
+    public void Dispose() => _queue.Dispose();
+}
+
 // ---------------------------------------------------------------------------
 // Tests
 // ---------------------------------------------------------------------------
@@ -291,6 +317,8 @@ public sealed class ObservableValidationAdapterTests {
             model,
             validator,
             new ObservableValidationOptions { UseAsyncValidation = true });
+        var changes = 0;
+        adapter.ErrorsChanged += (_, _) => Interlocked.Increment(ref changes);
 
         var first = adapter.ValidateAsync(TestContext.CancellationToken);
         await validator.FirstStarted.Task.WaitAsync(TimeSpan.FromSeconds(5), TestContext.CancellationToken);
@@ -307,6 +335,188 @@ public sealed class ObservableValidationAdapterTests {
         MSTestAssertions.That(() => firstResult.Should().BeFalse());
         MSTestAssertions.That(() => adapter.HasErrors.Should().BeFalse());
         MSTestAssertions.That(() => Messages(adapter, nameof(GatedModel.Value)).Should().BeEmpty());
+        MSTestAssertions.That(() => changes.Should().Be(0));
+    }
+
+    [TestMethod]
+    public async Task Adapter_ValidateAsync_PostsToCapturedSynchronizationContextAsync() {
+        var previous = SynchronizationContext.Current;
+        using var context = new PumpSynchronizationContext();
+        SynchronizationContext.SetSynchronizationContext(context);
+
+        try {
+            var model = new AsyncObservableModel { Code = string.Empty };
+            using var adapter = new ObservableValidationAdapter<AsyncObservableModel>(
+                model,
+                new AsyncObservableModelValidator(),
+                new ObservableValidationOptions {
+                    UseAsyncValidation = true,
+                    CaptureSynchronizationContext = true
+                });
+            var eventThreads = new List<int>();
+            adapter.ErrorsChanged += (_, _) => eventThreads.Add(Environment.CurrentManagedThreadId);
+            var contextThread = Environment.CurrentManagedThreadId;
+
+            var validation = Task.Run(
+                async () => await adapter.ValidateAsync(TestContext.CancellationToken),
+                TestContext.CancellationToken);
+            context.PumpUntil(() => validation.IsCompleted, TimeSpan.FromSeconds(5));
+
+            var valid = await validation;
+            MSTestAssertions.That(() => valid.Should().BeFalse());
+            MSTestAssertions.That(() => eventThreads.Should().NotBeEmpty());
+            MSTestAssertions.That(() => eventThreads.All(thread => thread == contextThread).Should().BeTrue());
+            MSTestAssertions.That(() => adapter.HasErrors.Should().BeTrue());
+            TestContext.WriteLine(
+                $"context thread {contextThread}; ErrorsChanged threads: {string.Join(", ", eventThreads)}");
+        }
+        finally {
+            SynchronizationContext.SetSynchronizationContext(previous);
+        }
+    }
+
+    [TestMethod]
+    public async Task Adapter_ValidateAsync_UsesProvidedPostDelegateAsync() {
+        var queue = new ConcurrentQueue<Action>();
+        var posted = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        var model = new AsyncObservableModel { Code = string.Empty };
+        using var adapter = new ObservableValidationAdapter<AsyncObservableModel>(
+            model,
+            new AsyncObservableModelValidator(),
+            new ObservableValidationOptions {
+                UseAsyncValidation = true,
+                Post = action => {
+                    queue.Enqueue(action);
+                    posted.TrySetResult();
+                }
+            });
+        var eventThreads = new List<int>();
+        adapter.ErrorsChanged += (_, _) => eventThreads.Add(Environment.CurrentManagedThreadId);
+        var contextThread = Environment.CurrentManagedThreadId;
+
+        var validation = Task.Run(
+            async () => await adapter.ValidateAsync(TestContext.CancellationToken),
+            TestContext.CancellationToken);
+        await posted.Task.WaitAsync(TimeSpan.FromSeconds(5), TestContext.CancellationToken);
+
+        while(queue.TryDequeue(out var action)) {
+            action();
+        }
+
+        var valid = await validation;
+        MSTestAssertions.That(() => valid.Should().BeFalse());
+        MSTestAssertions.That(() => eventThreads.Should().NotBeEmpty());
+        MSTestAssertions.That(() => eventThreads.All(thread => thread == contextThread).Should().BeTrue());
+        TestContext.WriteLine(
+            $"post thread {contextThread}; ErrorsChanged threads: {string.Join(", ", eventThreads)}");
+    }
+
+    [TestMethod]
+    public void Adapter_ValidateAsync_WithoutContext_RaisesInline() {
+        var previous = SynchronizationContext.Current;
+        SynchronizationContext.SetSynchronizationContext(null);
+
+        try {
+            var model = new AsyncObservableModel { Code = string.Empty };
+            using var adapter = new ObservableValidationAdapter<AsyncObservableModel>(
+                model,
+                new AsyncObservableModelValidator(),
+                new ObservableValidationOptions {
+                    UseAsyncValidation = true,
+                    CaptureSynchronizationContext = true
+                });
+            var eventThread = 0;
+            adapter.ErrorsChanged += (_, _) => eventThread = Environment.CurrentManagedThreadId;
+            var testThread = Environment.CurrentManagedThreadId;
+
+            var valid = adapter.ValidateAsync(TestContext.CancellationToken).AsTask().GetAwaiter().GetResult();
+
+            MSTestAssertions.That(() => valid.Should().BeFalse());
+            MSTestAssertions.That(() => eventThread.Should().Be(testThread));
+            MSTestAssertions.That(() => adapter.HasErrors.Should().BeTrue());
+            TestContext.WriteLine($"test thread {testThread}; ErrorsChanged thread {eventThread}");
+        }
+        finally {
+            SynchronizationContext.SetSynchronizationContext(previous);
+        }
+    }
+
+    [TestMethod]
+    public async Task Adapter_Dispose_DoesNotRaiseAfterDisposalAsync() {
+        var queue = new ConcurrentQueue<Action>();
+        var model = new GatedModel { Value = string.Empty };
+        var validator = new GatedValidator();
+        using var adapter = new ObservableValidationAdapter<GatedModel>(
+            model,
+            validator,
+            new ObservableValidationOptions {
+                UseAsyncValidation = true,
+                Post = queue.Enqueue
+            });
+        var changes = 0;
+        adapter.ErrorsChanged += (_, _) => Interlocked.Increment(ref changes);
+
+        var validation = adapter.ValidateAsync(TestContext.CancellationToken);
+        await validator.FirstStarted.Task.WaitAsync(TimeSpan.FromSeconds(5), TestContext.CancellationToken);
+
+        adapter.Dispose();
+
+        var errors = new ValidationErrorCollector {
+            { nameof(GatedModel.Value), "Stale result." }
+        };
+        validator.FirstResult.TrySetResult(ValidationResult.FromErrors(errors));
+
+        var valid = await validation;
+
+        while(queue.TryDequeue(out var action)) {
+            action();
+        }
+
+        MSTestAssertions.That(() => valid.Should().BeFalse());
+        MSTestAssertions.That(() => changes.Should().Be(0));
+        MSTestAssertions.That(() => adapter.HasErrors.Should().BeFalse());
+        TestContext.WriteLine($"ErrorsChanged count after disposal: {changes}");
+    }
+
+    [TestMethod]
+    public async Task Adapter_PropertyChangedDebounce_PostsToCapturedContextAsync() {
+        var previous = SynchronizationContext.Current;
+        using var context = new PumpSynchronizationContext();
+        SynchronizationContext.SetSynchronizationContext(context);
+
+        try {
+            var model = new CountingModel { Value = "valid" };
+            var validator = new CountingValidator();
+            using var adapter = new ObservableValidationAdapter<CountingModel>(
+                model,
+                validator,
+                new ObservableValidationOptions {
+                    ValidateOnPropertyChanged = true,
+                    UseAsyncValidation = true,
+                    PropertyChangedDebounce = TimeSpan.FromMilliseconds(10),
+                    CaptureSynchronizationContext = true
+                });
+            var eventThreads = new List<int>();
+            adapter.ErrorsChanged += (_, _) => eventThreads.Add(Environment.CurrentManagedThreadId);
+            var contextThread = Environment.CurrentManagedThreadId;
+
+            var change = Task.Run(() => model.Value = string.Empty, TestContext.CancellationToken);
+            MSTestAssertions.That(() => change.Wait(TimeSpan.FromSeconds(5), TestContext.CancellationToken).Should().BeTrue());
+
+            var pending = adapter.PendingValidation;
+            MSTestAssertions.That(() => (pending is not null).Should().BeTrue());
+            context.PumpUntil(() => pending!.IsCompleted, TimeSpan.FromSeconds(5));
+            await pending!;
+
+            MSTestAssertions.That(() => eventThreads.Should().NotBeEmpty());
+            MSTestAssertions.That(() => eventThreads.All(thread => thread == contextThread).Should().BeTrue());
+            MSTestAssertions.That(() => adapter.HasErrors.Should().BeTrue());
+            TestContext.WriteLine(
+                $"context thread {contextThread}; debounced ErrorsChanged threads: {string.Join(", ", eventThreads)}");
+        }
+        finally {
+            SynchronizationContext.SetSynchronizationContext(previous);
+        }
     }
 
     [TestMethod]

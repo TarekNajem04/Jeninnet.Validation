@@ -20,6 +20,8 @@ public sealed class ObservableValidationAdapter<TModel> : INotifyDataErrorInfo, 
     private readonly TimeSpan _propertyChangedDebounce;
     private readonly bool _skipIfValid;
     private readonly ValidationErrorSeverity _minimumSeverity;
+    private readonly Action<Action>? _post;
+    private readonly SynchronizationContext? _capturedContext;
     private readonly Dictionary<string, List<ValidationError>> _errors = [with(StringComparer.Ordinal)];
     private readonly Dictionary<string, ValidationError[]> _errorsByProperty = [with(StringComparer.Ordinal)];
     private readonly Dictionary<string, string[]> _messagesByProperty = [with(StringComparer.Ordinal)];
@@ -91,6 +93,17 @@ public sealed class ObservableValidationAdapter<TModel> : INotifyDataErrorInfo, 
         _propertyChangedDebounce = options.PropertyChangedDebounce ?? TimeSpan.Zero;
         _skipIfValid = options.SkipIfValid;
         _minimumSeverity = options.MinimumSeverity;
+
+        if(options.Post is not null) {
+            _post = options.Post;
+        } else if(options.CaptureSynchronizationContext) {
+            var context = SynchronizationContext.Current;
+            _capturedContext = context;
+
+            if(context is not null) {
+                _post = action => context.Post(static state => ((Action)state!).Invoke(), action);
+            }
+        }
 
         if(requiresChangeTracking) {
             ((INotifyPropertyChanged)model).PropertyChanged += HandlePropertyChanged;
@@ -228,16 +241,29 @@ public sealed class ObservableValidationAdapter<TModel> : INotifyDataErrorInfo, 
                 await previous.CancelAsync();
             }
 
-            // Do not use ConfigureAwait(false): the adapter is consumed by UI frameworks and
-            // errors must be raised on the caller's synchronization context.
+            // Do not use ConfigureAwait(false): the default contract keeps the continuation on
+            // the caller's context. When a Post delegate or captured context is configured,
+            // RunOnUiAsync marshals the state update and ErrorsChanged explicitly.
             var result = await _validator.ValidateAsync(Model, cts.Token);
 
-            if(cts.IsCancellationRequested) {
+            if(cts.IsCancellationRequested || _disposed) {
                 return false;
             }
 
-            ApplyResult(result);
-            return result.IsValid;
+            var applied = await RunOnUiAsync(
+                () => {
+                    if(cts.IsCancellationRequested ||
+                        _disposed ||
+                        !ReferenceEquals(Volatile.Read(ref _validationCancellation), cts)) {
+                        return false;
+                    }
+
+                    ApplyResult(result);
+                    return true;
+                },
+                cts.Token).ConfigureAwait(false);
+
+            return applied && result.IsValid;
         }
         catch(OperationCanceledException) when(cts.IsCancellationRequested) {
             return false;
@@ -248,7 +274,44 @@ public sealed class ObservableValidationAdapter<TModel> : INotifyDataErrorInfo, 
         }
     }
 
+    private Task<bool> RunOnUiAsync(Func<bool> action, CancellationToken cancellationToken) {
+        if(cancellationToken.IsCancellationRequested || _disposed) {
+            return Task.FromResult(false);
+        }
+
+        if(_post is null) {
+            return Task.FromResult(action());
+        }
+
+        if(_capturedContext is not null &&
+            ReferenceEquals(SynchronizationContext.Current, _capturedContext)) {
+            return Task.FromResult(action());
+        }
+
+        var completion = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
+
+        _post(() => {
+            if(cancellationToken.IsCancellationRequested || _disposed) {
+                completion.TrySetResult(false);
+                return;
+            }
+
+            try {
+                completion.TrySetResult(action());
+            }
+            catch(Exception exception) {
+                completion.TrySetException(exception);
+            }
+        });
+
+        return completion.Task;
+    }
+
     private void ApplyResult(ValidationResult result) {
+        if(_disposed) {
+            return;
+        }
+
         var previous = new HashSet<string>(_errorsByProperty.Keys, StringComparer.Ordinal);
         _errors.Clear();
         _errorsByProperty.Clear();
