@@ -308,30 +308,6 @@ public sealed class CompositeValidator<T>(
         return ValidateWithOptionsAsync(instance, options, cancellationToken);
     }
 
-    private async ValueTask<ValidationResult> ValidateWithOptionsAsync(
-        T instance,
-        ValidationCallOptions options,
-        CancellationToken cancellationToken) {
-        var result = await AsyncValidationDeadline.ExecuteAsync(
-            options,
-            token => ValidateAsync(
-                instance,
-                options.RuleSets,
-                options.CascadeMode ?? ExplicitClassLevelCascadeMode,
-                options.FailFast,
-                new ValidationFilter(
-                    options.IncludeProperties,
-                    options.ExcludeProperties,
-                    options.ExcludeRuleSets,
-                    options.ServiceProvider,
-                    options.IncludeAllRuleSets,
-                    options.Selector),
-                token),
-            cancellationToken).ConfigureAwait(false);
-
-        return options.ThrowOnFailures ? ThrowIfRequested(result, options) : result;
-    }
-
     /// <inheritdoc />
     public ValueTask<ValidationResult> ValidateAsync(
         T instance,
@@ -485,6 +461,30 @@ public sealed class CompositeValidator<T>(
         finally {
             diagnostics?.Dispose();
         }
+    }
+
+    private async ValueTask<ValidationResult> ValidateWithOptionsAsync(
+        T instance,
+        ValidationCallOptions options,
+        CancellationToken cancellationToken) {
+        var result = await AsyncValidationDeadline.ExecuteAsync(
+            options,
+            token => ValidateAsync(
+                instance,
+                options.RuleSets,
+                options.CascadeMode ?? ExplicitClassLevelCascadeMode,
+                options.FailFast,
+                new ValidationFilter(
+                    options.IncludeProperties,
+                    options.ExcludeProperties,
+                    options.ExcludeRuleSets,
+                    options.ServiceProvider,
+                    options.IncludeAllRuleSets,
+                    options.Selector),
+                token),
+            cancellationToken).ConfigureAwait(false);
+
+        return options.ThrowOnFailures ? ThrowIfRequested(result, options) : result;
     }
 
     private static void ValidateRules(

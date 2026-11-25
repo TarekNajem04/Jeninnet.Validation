@@ -160,7 +160,7 @@ public sealed class ValidationInterceptorTests {
         });
 
         if(result is not ProblemHttpResult { ProblemDetails: HttpValidationProblemDetails details } problem) {
-            Assert.Fail("Expected a validation problem result.");
+            false.Should().BeTrue("Expected a validation problem result.");
             return;
         }
 
@@ -212,7 +212,7 @@ public sealed class ValidationInterceptorTests {
         var result = await filter.InvokeAsync(context, NextAsync);
 
         if(result is not ProblemHttpResult { ProblemDetails: HttpValidationProblemDetails details } problem) {
-            Assert.Fail("Expected a validation problem result.");
+            false.Should().BeTrue("Expected a validation problem result.");
             return;
         }
 
@@ -255,7 +255,7 @@ public sealed class ValidationInterceptorTests {
         var invalidResult = await invalidFilter.InvokeAsync(invalidContext, NextAsync);
 
         if(invalidResult is not ProblemHttpResult { ProblemDetails: HttpValidationProblemDetails details } problem) {
-            Assert.Fail("Expected a validation problem result.");
+            false.Should().BeTrue("Expected a validation problem result.");
             return;
         }
 

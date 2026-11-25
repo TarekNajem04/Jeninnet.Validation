@@ -88,7 +88,7 @@ public sealed class PlatformGaBoundaryTests {
         MSTestAssertions.That(() => found.Should().BeTrue());
 
         if(info is null) {
-            Assert.Fail("The Jeninnet GA resolver was not selected.");
+            false.Should().BeTrue("The Jeninnet GA resolver was not selected.");
             return;
         }
 
@@ -127,7 +127,7 @@ public sealed class PlatformGaBoundaryTests {
         MSTestAssertions.That(() => found.Should().BeTrue());
 
         if(info is null) {
-            Assert.Fail("The Jeninnet GA parameter resolver was not selected.");
+            false.Should().BeTrue("The Jeninnet GA parameter resolver was not selected.");
             return;
         }
 
@@ -156,7 +156,7 @@ public sealed class PlatformGaBoundaryTests {
         MSTestAssertions.That(() => found.Should().BeTrue());
 
         if(info is null) {
-            Assert.Fail("The Jeninnet GA resolver was not selected.");
+            false.Should().BeTrue("The Jeninnet GA resolver was not selected.");
             return;
         }
 

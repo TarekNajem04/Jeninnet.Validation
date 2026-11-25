@@ -135,7 +135,7 @@ file sealed class ConformanceLineValidator : Validator<ConformanceLine> {
 
 [TestClass]
 public sealed class SchemaConformanceTests {
-    private static readonly JsonSerializerOptions JsonOptions = new() {
+    private static readonly JsonSerializerOptions _jsonOptions = new() {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         TypeInfoResolver = new DefaultJsonTypeInfoResolver()
     };
@@ -156,7 +156,7 @@ public sealed class SchemaConformanceTests {
             errors.AddRange(ValidateSnapshot(adapter, snapshot, approvals));
         }
 
-        Assert.IsTrue(errors.Count == 0, string.Join(Environment.NewLine, errors));
+        (errors.Count == 0).Should().BeTrue(string.Join(Environment.NewLine, errors));
     }
 
     [TestMethod]
@@ -172,7 +172,7 @@ public sealed class SchemaConformanceTests {
                 ["json-schema"] = "0000000000000000000000000000000000000000000000000000000000000000"
             });
 
-        Assert.IsTrue(errors.Count > 0, "a changed snapshot must be rejected until approved");
+        (errors.Count > 0).Should().BeTrue("a changed snapshot must be rejected until approved");
     }
 
     [TestMethod]
@@ -224,7 +224,7 @@ public sealed class SchemaConformanceTests {
 
         foreach(var member in descriptor.Members.OrderBy(static member => member.Name, StringComparer.Ordinal)) {
             var schema = new OpenApiSchema();
-            ValidationSchemaApplier.Apply(mapped.Properties[member.Name], schema, JsonOptions);
+            ValidationSchemaApplier.Apply(mapped.Properties[member.Name], schema, _jsonOptions);
             var memberType = memberTypes[member.Name];
             var jsonName = jsonNames[member.Name];
             var normalized = NormalizeOpenApiProperty(schema, memberType, jsonName);
@@ -256,7 +256,7 @@ public sealed class SchemaConformanceTests {
 
         var generator = new SchemaGenerator(
             options,
-            new JsonSerializerDataContractResolver(JsonOptions));
+            new JsonSerializerDataContractResolver(_jsonOptions));
         _ = generator.GenerateSchema(typeof(ConformanceModel), repository);
 
         var root = (OpenApiSchema)repository.Schemas[typeof(ConformanceModel).Name];
@@ -274,7 +274,7 @@ public sealed class SchemaConformanceTests {
 
     private static JsonObject BuildNSwagSnapshot() {
         var settings = new SystemTextJsonSchemaGeneratorSettings {
-            SerializerOptions = JsonOptions
+            SerializerOptions = _jsonOptions
         };
         settings.SchemaProcessors.Add(new JeninnetValidationSchemaProcessor(new ValidationSchemaRegistry([
             new ConformanceModelValidator(),
@@ -493,7 +493,7 @@ public sealed class SchemaConformanceTests {
             schema["required"]?.AsArray().Select(static node => node!.GetValue<string>()) ?? [],
             StringComparer.Ordinal);
         var properties = new JsonObject();
-        var sourceProperties = schema["properties"]?.AsObject() ?? new JsonObject();
+        var sourceProperties = schema["properties"]?.AsObject() ?? [];
 
         foreach(var (memberName, memberNode) in sourceProperties.OrderBy(static pair => pair.Key, StringComparer.Ordinal)) {
             if(memberNode is not JsonObject property) {
@@ -562,10 +562,10 @@ public sealed class SchemaConformanceTests {
     }
 
     private static JsonArray NormalizeAdvisory(JsonArray rules) =>
-        new(rules.Select(static rule => (JsonNode?)new JsonObject {
+        [.. rules.Select(static rule => (JsonNode?)new JsonObject {
             ["kind"] = rule!["kind"]?.GetValue<string>(),
             ["hasCondition"] = rule["hasCondition"]?.GetValue<bool>() ?? false
-        }).ToArray());
+        })];
 
     private static bool IsRequired(ValidationSchemaConstraints constraints, Type? memberType) {
         if(!constraints.IsRequired) {
@@ -610,7 +610,7 @@ public sealed class SchemaConformanceTests {
     }
 
     private static Dictionary<string, string> BuildJsonNames(Type modelType) {
-        var typeInfo = JsonOptions.GetTypeInfo(modelType);
+        var typeInfo = _jsonOptions.GetTypeInfo(modelType);
         var names = new Dictionary<string, string>(StringComparer.Ordinal);
 
         foreach(var property in typeInfo.Properties) {
@@ -666,8 +666,11 @@ public sealed class SchemaConformanceTests {
         }
 
         if(type.Value.HasFlag(JsonSchemaType.String)) { return "string"; }
+
         if(type.Value.HasFlag(JsonSchemaType.Array)) { return "array"; }
+
         if(type.Value.HasFlag(JsonSchemaType.Object)) { return "object"; }
+
         if(type.Value.HasFlag(JsonSchemaType.Number) || type.Value.HasFlag(JsonSchemaType.Integer)) { return "number"; }
 
         return null;
@@ -675,8 +678,11 @@ public sealed class SchemaConformanceTests {
 
     private static string? NormalizeNJsonType(JsonObjectType type) {
         if(type.HasFlag(JsonObjectType.String)) { return "string"; }
+
         if(type.HasFlag(JsonObjectType.Array)) { return "array"; }
+
         if(type.HasFlag(JsonObjectType.Object)) { return "object"; }
+
         if(type.HasFlag(JsonObjectType.Number) || type.HasFlag(JsonObjectType.Integer)) { return "number"; }
 
         return null;
@@ -724,9 +730,8 @@ public sealed class SchemaConformanceTests {
 
     private static void AddOpenApiEnum(JsonObject property, OpenApiSchema schema) {
         if(schema.Enum is { Count: > 0 } values) {
-            property["enumValues"] = new JsonArray(values
-                .Select(static value => (JsonNode?)JsonValue.Create(value?.ToString()))
-                .ToArray());
+            property["enumValues"] = new JsonArray([.. values
+                .Select(static value => (JsonNode?)JsonValue.Create(value?.ToString()))]);
         }
     }
 
@@ -738,9 +743,8 @@ public sealed class SchemaConformanceTests {
 
     private static void AddNJsonEnum(JsonObject property, NJsonSchemaType schema) {
         if(schema.Enumeration.Count > 0) {
-            property["enumValues"] = new JsonArray(schema.Enumeration
-                .Select(static value => (JsonNode?)JsonValue.Create(Convert.ToString(value, CultureInfo.InvariantCulture)))
-                .ToArray());
+            property["enumValues"] = new JsonArray([.. schema.Enumeration
+                .Select(static value => (JsonNode?)JsonValue.Create(Convert.ToString(value, CultureInfo.InvariantCulture)))]);
         }
     }
 
@@ -752,15 +756,13 @@ public sealed class SchemaConformanceTests {
 
     private static void AddJsonEnum(JsonObject property, JsonObject schema) {
         if(schema["enum"] is JsonArray values) {
-            property["enumValues"] = new JsonArray(values
-                .Select(static value => (JsonNode?)JsonValue.Create(value?.ToString()))
-                .ToArray());
+            property["enumValues"] = new JsonArray([.. values
+                .Select(static value => (JsonNode?)JsonValue.Create(value?.ToString()))]);
         }
     }
 
-    private static void AddJsonEnumType(JsonObject property, JsonObject schema) {
+    private static void AddJsonEnumType(JsonObject property, JsonObject schema) =>
         Add(property, "enumType", schema["x-enum-type"]?.GetValue<string>());
-    }
 
     private static string? GetReferenceName(string? reference) =>
         reference?.Split('/').LastOrDefault();
@@ -820,7 +822,7 @@ public sealed class SchemaConformanceTests {
 
     private static Dictionary<string, string> ReadApprovals() {
         var path = Path.Combine(SnapshotDirectory, "approved.json");
-        Assert.IsTrue(File.Exists(path), $"snapshot approval file not found: {path}");
+        File.Exists(path).Should().BeTrue($"snapshot approval file not found: {path}");
 
         var document = JsonNode.Parse(File.ReadAllText(path))!.AsObject();
         var snapshots = document["snapshots"]!.AsObject();
@@ -888,9 +890,10 @@ public sealed class SchemaConformanceTests {
                 foreach(var (key, value) in obj.OrderBy(static pair => pair.Key, StringComparer.Ordinal)) {
                     sorted[key] = Sort(value);
                 }
+
                 return sorted;
             case JsonArray array:
-                return new JsonArray(array.Select(Sort).ToArray());
+                return new JsonArray([.. array.Select(Sort)]);
             default:
                 return node?.DeepClone();
         }

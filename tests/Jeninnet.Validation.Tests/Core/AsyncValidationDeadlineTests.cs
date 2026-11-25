@@ -96,24 +96,20 @@ public sealed class AsyncValidationDeadlineTests {
 
     [TestMethod]
     public void ZeroTimeout_ThrowsArgumentOutOfRange() {
-        Action act = () => {
-            _ = new SimpleDeadlineValidator().ValidateAsync(
-                new DeadlineModel(),
-                new ValidationCallOptions { Timeout = TimeSpan.Zero },
-                TestContext.CancellationToken).AsTask();
-        };
+        Action act = () => _ = new SimpleDeadlineValidator().ValidateAsync(
+            new DeadlineModel(),
+            new ValidationCallOptions { Timeout = TimeSpan.Zero },
+            TestContext.CancellationToken).AsTask();
 
         MSTestAssertions.That(() => act.Should().ThrowExactly<ArgumentOutOfRangeException>());
     }
 
     [TestMethod]
     public void NegativeTimeout_ThrowsArgumentOutOfRange() {
-        Action act = () => {
-            _ = new SimpleDeadlineValidator().ValidateAsync(
-                new DeadlineModel(),
-                new ValidationCallOptions { Timeout = TimeSpan.FromMilliseconds(-1) },
-                TestContext.CancellationToken).AsTask();
-        };
+        Action act = () => _ = new SimpleDeadlineValidator().ValidateAsync(
+            new DeadlineModel(),
+            new ValidationCallOptions { Timeout = TimeSpan.FromMilliseconds(-1) },
+            TestContext.CancellationToken).AsTask();
 
         MSTestAssertions.That(() => act.Should().ThrowExactly<ArgumentOutOfRangeException>());
     }

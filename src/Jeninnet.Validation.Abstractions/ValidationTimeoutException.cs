@@ -74,9 +74,8 @@ public sealed class ValidationTimeoutException : OperationCanceledException {
     /// <param name="timeout">The configured validation budget.</param>
     /// <param name="innerException">The cancellation exception raised by the rule, when available.</param>
     public ValidationTimeoutException(TimeSpan timeout, Exception? innerException)
-        : base($"Validation exceeded the configured timeout of {timeout}.", innerException) {
+        : base($"Validation exceeded the configured timeout of {timeout}.", innerException) =>
         Timeout = timeout;
-    }
 
     /// <summary>
     /// Gets the configured validation budget.

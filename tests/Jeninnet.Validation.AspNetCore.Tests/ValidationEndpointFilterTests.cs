@@ -125,7 +125,7 @@ public sealed class ValidationEndpointFilterTests {
         var result = await filter.InvokeAsync(context, NextAsync);
 
         if(result is not ProblemHttpResult { ProblemDetails: HttpValidationProblemDetails details }) {
-            Assert.Fail("Expected a validation problem result.");
+            false.Should().BeTrue("Expected a validation problem result.");
             return;
         }
 
@@ -143,7 +143,7 @@ public sealed class ValidationEndpointFilterTests {
         var result = await filter.InvokeAsync(context, NextAsync);
 
         if(result is not ProblemHttpResult { ProblemDetails: HttpValidationProblemDetails details } problem) {
-            Assert.Fail("Expected a validation problem result.");
+            false.Should().BeTrue("Expected a validation problem result.");
             return;
         }
 

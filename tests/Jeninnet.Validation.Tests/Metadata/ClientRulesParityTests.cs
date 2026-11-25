@@ -36,7 +36,10 @@ file sealed class ClientParityValidator : Validator<ClientParityModel> {
 }
 
 [TestClass]
-public sealed class ClientRulesParityTests {
+public sealed partial class ClientRulesParityTests {
+    [GeneratedRegex("^\\s+\"(?<rule>[^\"]+)\",$", RegexOptions.Multiline | RegexOptions.CultureInvariant)]
+    private static partial Regex JavascriptRulePattern();
+
     [TestMethod]
     public void Manifest_CSharpSupport_AndJavaScriptSupport_AreIdentical() {
         var manifestRules = ReadManifestRules();
@@ -48,16 +51,13 @@ public sealed class ClientRulesParityTests {
             "client",
             "src",
             "client-rule-support.generated.js"));
-        var javascriptRulePattern = new Regex(
-            "^\\s+\"(?<rule>[^\"]+)\",$",
-            RegexOptions.Multiline | RegexOptions.CultureInvariant);
-        var javascriptRules = javascriptRulePattern.Matches(javascriptSource)
+        var javascriptRules = JavascriptRulePattern().Matches(javascriptSource)
             .Select(static match => match.Groups["rule"].Value)
             .OrderBy(static rule => rule, StringComparer.Ordinal)
             .ToArray();
 
-        CollectionAssert.AreEqual(manifestRules, csharpRules, "The C# support list drifted from the manifest.");
-        CollectionAssert.AreEqual(manifestRules, javascriptRules, "The JavaScript support list drifted from the manifest.");
+        manifestRules.Should().Equal(csharpRules, "The C# support list drifted from the manifest.");
+        manifestRules.Should().Equal(javascriptRules, "The JavaScript support list drifted from the manifest.");
     }
 
     [TestMethod]
@@ -68,13 +68,13 @@ public sealed class ClientRulesParityTests {
             .SelectMany(static member => member!["rules"]!.AsArray())
             .ToArray();
 
-        CollectionAssert.AreEquivalent(
-            ReadManifestRules(),
-            payloadRules.Select(static rule => rule!["rule"]!.GetValue<string>()).ToArray(),
+        ReadManifestRules().Should().BeEquivalentTo(
+            [.. payloadRules.Select(static rule => rule!["rule"]!.GetValue<string>())],
             "The parity fixture must cover every supported rule.");
 
         foreach(var rule in payloadRules) {
-            Assert.IsNull(rule!["serverOnly"], $"Rule '{rule["rule"]}' must not be server-only in the supported fixture.");
+            rule!["serverOnly"].Should().BeNull(
+                $"Rule '{rule["rule"]}' must not be server-only in the supported fixture.");
         }
     }
 
@@ -97,7 +97,7 @@ public sealed class ClientRulesParityTests {
             Name = modelNode["Name"]!.GetValue<string>(),
             Email = modelNode["Email"]!.GetValue<string>(),
             Age = modelNode["Age"]!.GetValue<int>(),
-            Tags = modelNode["Tags"]!.AsArray().Select(static tag => tag!.GetValue<string>()).ToList()
+            Tags = [.. modelNode["Tags"]!.AsArray().Select(static tag => tag!.GetValue<string>())]
         };
 
         var actualErrors = new JsonArray(
@@ -129,8 +129,8 @@ public sealed class ClientRulesParityTests {
             .SelectMany(static member => member!["rules"]!.AsArray())
             .ToArray();
 
-        Assert.IsTrue(rules.All(static rule => rule!["serverOnly"]!.GetValue<bool>()),
-            "every rule in the server-only fixture must be marked serverOnly");
+        rules.All(static rule => rule!["serverOnly"]!.GetValue<bool>())
+            .Should().BeTrue("every rule in the server-only fixture must be marked serverOnly");
     }
 
     private static ValidationDescriptor BuildErrorDescriptor() =>
@@ -160,10 +160,9 @@ public sealed class ClientRulesParityTests {
         new(kind, hasCondition: hasCondition);
 
     private static string[] ReadManifestRules() =>
-        ReadManifest()["supportedRules"]!.AsArray()
+        [.. ReadManifest()["supportedRules"]!.AsArray()
             .Select(static rule => rule!.GetValue<string>())
-            .OrderBy(static rule => rule, StringComparer.Ordinal)
-            .ToArray();
+            .OrderBy(static rule => rule, StringComparer.Ordinal)];
 
     private static JsonObject ReadManifest() =>
         JsonNode.Parse(File.ReadAllText(Path.Combine(RepositoryRoot, "client", "rules-manifest.json")))!.AsObject();

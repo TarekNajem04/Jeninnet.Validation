@@ -183,6 +183,15 @@
         <IsNonShippingProject Condition="$(MSBuildProjectName.EndsWith('.Benchmarks'))">true</IsNonShippingProject>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(IsUnitTestProject)' == 'true'">
+        <!--
+          Jeninnet.Assertions 1.2.0 ships a qps-Ploc satellite whose locale casing the SDK
+          normalizes (NETSDK1187). The package is external; this repository cannot fix its
+          folder names. Remove this suppression once a corrected package is published.
+        -->
+        <NoWarn>$(NoWarn);NETSDK1187</NoWarn>
+    </PropertyGroup>
+
     <PropertyGroup>
         <NoWarn Condition="'$(IsUnitTestProject)' == 'true' Or '$(IsSampleProject)' == 'true' Or '$(IsNonShippingProject)' == 'true'">$(NoWarn);1591</NoWarn>
     </PropertyGroup>

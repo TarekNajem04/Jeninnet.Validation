@@ -13,10 +13,10 @@ namespace Jeninnet.Validation.Rules;
 /// </summary>
 /// <param name="ruleParameterCount">The number of entries the rule writes before enrichment.</param>
 internal sealed class MessageParameterDictionary(int ruleParameterCount)
-    : Dictionary<string, object>(ruleParameterCount + EnrichmentCapacity, StringComparer.Ordinal) {
+    : Dictionary<string, object>(ruleParameterCount + ENRICHMENT_CAPACITY, StringComparer.Ordinal) {
     /// <summary>
     /// The number of entries the engine always contributes: property name, property path, and
     /// (unless the rule already supplied it) property value.
     /// </summary>
-    internal const int EnrichmentCapacity = 3;
+    internal const int ENRICHMENT_CAPACITY = 3;
 }

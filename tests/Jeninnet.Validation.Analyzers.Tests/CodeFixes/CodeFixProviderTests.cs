@@ -504,10 +504,9 @@ public sealed class CodeFixProviderTests {
                 literal.Token.ValueText == value);
 
     private static CodeFixProvider[] AllProviders() =>
-        typeof(RemoveConflictingRuleCodeFix).Assembly.GetTypes()
+        [.. typeof(RemoveConflictingRuleCodeFix).Assembly.GetTypes()
             .Where(static type => !type.IsAbstract && typeof(CodeFixProvider).IsAssignableFrom(type))
-            .Select(static type => (CodeFixProvider)Activator.CreateInstance(type)!)
-            .ToArray();
+            .Select(static type => (CodeFixProvider)Activator.CreateInstance(type)!)];
 
     private CancellationToken TestCancellation =>
         TestContext?.CancellationToken ?? CancellationToken.None;

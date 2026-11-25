@@ -202,7 +202,7 @@ file sealed class PlainModelValidator : Validator<PlainModel> {
 }
 
 internal sealed class PumpSynchronizationContext : SynchronizationContext, IDisposable {
-    private readonly BlockingCollection<(SendOrPostCallback Callback, object? State)> _queue = new();
+    private readonly BlockingCollection<(SendOrPostCallback Callback, object? State)> _queue = [];
 
     public override void Post(SendOrPostCallback d, object? state) => _queue.Add((d, state));
 
@@ -392,12 +392,12 @@ public sealed class ObservableValidationAdapterTests {
             });
         var eventThreads = new List<int>();
         adapter.ErrorsChanged += (_, _) => eventThreads.Add(Environment.CurrentManagedThreadId);
-        var contextThread = Environment.CurrentManagedThreadId;
 
         var validation = Task.Run(
             async () => await adapter.ValidateAsync(TestContext.CancellationToken),
             TestContext.CancellationToken);
         await posted.Task.WaitAsync(TimeSpan.FromSeconds(5), TestContext.CancellationToken);
+        var contextThread = Environment.CurrentManagedThreadId;
 
         while(queue.TryDequeue(out var action)) {
             action();

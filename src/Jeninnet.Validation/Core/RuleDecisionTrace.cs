@@ -117,7 +117,7 @@ internal sealed class RuleDecisionTraceSession : IDisposable {
     }
 
     private static bool IsLeaf(object rule) =>
-        rule is IValidationSchemaRuleMetadata || rule is not IValidationRuleContainer;
+        rule is IValidationSchemaRuleMetadata or not IValidationRuleContainer;
 
     private void Report<T>(
         object rule,
@@ -150,31 +150,20 @@ internal sealed class RuleDecisionTraceSession : IDisposable {
         };
     }
 
-    private static IEnumerable<object> EnumerateLeaves<T>(object rule, RuleTracePhase phase) {
-        switch(rule) {
-            case MemberRuleGroup<T> group:
-                return EnumeratePhaseLists(group.SyncRules, group.AsyncRules, phase);
-
-            case RuleSetRule<T> ruleSet:
-                return EnumeratePhaseLists(ruleSet.SyncRules, ruleSet.AsyncRules, phase);
-
-            case ConditionalRule<T> conditional:
-                // The async path of a conditional runs its sync rules and its async rules.
-                return EnumeratePhaseLists(
-                    conditional.SyncRules,
-                    conditional.AsyncRules,
-                    phase is RuleTracePhase.Sync ? RuleTracePhase.Sync : RuleTracePhase.All);
-
-            case DependentRule<T> dependent:
-                return EnumerateDependent(dependent, phase);
-
-            case IValidationRuleContainer container when rule is not IValidationSchemaRuleMetadata:
-                return EnumerateContainer<T>(container, phase);
-
-            default:
-                return InPhase<T>(rule, phase) ? [rule] : [];
-        }
-    }
+    private static IEnumerable<object> EnumerateLeaves<T>(object rule, RuleTracePhase phase) =>
+        rule switch {
+            MemberRuleGroup<T> group => EnumeratePhaseLists(group.SyncRules, group.AsyncRules, phase),
+            RuleSetRule<T> ruleSet => EnumeratePhaseLists(ruleSet.SyncRules, ruleSet.AsyncRules, phase),
+            // The async path of a conditional runs its sync rules and its async rules.
+            ConditionalRule<T> conditional => EnumeratePhaseLists(
+                conditional.SyncRules,
+                conditional.AsyncRules,
+                phase is RuleTracePhase.Sync ? RuleTracePhase.Sync : RuleTracePhase.All),
+            DependentRule<T> dependent => EnumerateDependent(dependent, phase),
+            IValidationRuleContainer container when rule is not IValidationSchemaRuleMetadata =>
+                EnumerateContainer<T>(container, phase),
+            _ => InPhase<T>(rule, phase) ? [rule] : []
+        };
 
     private static IEnumerable<object> EnumeratePhaseLists<T>(
         IReadOnlyList<ISyncValidationRule<T>> syncRules,

@@ -41,8 +41,8 @@ public sealed class DomainRuleCatalogTests {
             MSTestAssertions.That(() => failures.Should().BeEmpty(string.Join(Environment.NewLine, failures)));
         }
         finally {
-            foreach(var pack in packs) {
-                pack.Document.Dispose();
+            foreach(var (_, document) in packs) {
+                document.Dispose();
             }
         }
     }
@@ -109,11 +109,11 @@ public sealed class DomainRuleCatalogTests {
                 failures.Add($"{rule}: no ValidationMessageKeys constant owns the key.");
             }
 
-            foreach(var pack in packs) {
-                if(!pack.Document.RootElement.TryGetProperty(rule, out var template) ||
+            foreach(var (culture, document) in packs) {
+                if(!document.RootElement.TryGetProperty(rule, out var template) ||
                    template.ValueKind is not JsonValueKind.String ||
                    string.IsNullOrWhiteSpace(template.GetString())) {
-                    failures.Add($"{rule}: message pack '{pack.Culture}' is missing a non-empty template.");
+                    failures.Add($"{rule}: message pack '{culture}' is missing a non-empty template.");
                 }
             }
         }

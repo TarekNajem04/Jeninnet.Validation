@@ -10,20 +10,20 @@ using Jeninnet.Validation.Metadata;
 namespace Jeninnet.Validation.ContractFingerprint;
 
 internal static class FingerprintDocument {
-    private const string NewLine = "\r\n";
+    private const string NEW_LINE = "\r\n";
 
     public static string CreateJson() {
         var validators = new SortedDictionary<string, string>(StringComparer.Ordinal);
 
-        foreach(var fixture in ContractFixtures.All) {
-            validators[fixture.Name] = ValidationContractFingerprint.Compute(fixture.Descriptor);
+        foreach(var (name, descriptor) in ContractFixtures.All) {
+            validators[name] = ValidationContractFingerprint.Compute(descriptor);
         }
 
         var builder = new StringBuilder();
-        builder.Append('{').Append(NewLine)
-               .Append("  \"version\": 1,").Append(NewLine)
-               .Append("  \"algorithm\": \"sha256\",").Append(NewLine)
-               .Append("  \"validators\": {").Append(NewLine);
+        builder.Append('{').Append(NEW_LINE)
+               .Append("  \"version\": 1,").Append(NEW_LINE)
+               .Append("  \"algorithm\": \"sha256\",").Append(NEW_LINE)
+               .Append("  \"validators\": {").Append(NEW_LINE);
 
         var index = 0;
 
@@ -34,10 +34,10 @@ internal static class FingerprintDocument {
                 builder.Append(',');
             }
 
-            builder.Append(NewLine);
+            builder.Append(NEW_LINE);
         }
 
-        builder.Append("  }").Append(NewLine).Append('}').Append(NewLine);
+        builder.Append("  }").Append(NEW_LINE).Append('}').Append(NEW_LINE);
 
         return builder.ToString();
     }

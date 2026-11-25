@@ -6,6 +6,7 @@
         <IsTestProject>true</IsTestProject>
         <DisableArtifacts>true</DisableArtifacts>
         <AssemblyName>Jeninnet.Validation.Extensions.Validation.Net11.Tests</AssemblyName>
+        <RootNamespace>Jeninnet.Validation.Extensions.Validation.Tests</RootNamespace>
         <!-- The bridge intentionally exercises Microsoft.Extensions.Validation's evaluation API. -->
         <NoWarn>$(NoWarn);ASP0029</NoWarn>
     </PropertyGroup>

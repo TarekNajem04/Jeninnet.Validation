@@ -89,7 +89,7 @@ public sealed class HostConformanceTests {
         });
 
         if(result is not ProblemHttpResult { ProblemDetails: HttpValidationProblemDetails details }) {
-            Assert.Fail("Expected a validation problem result.");
+            false.Should().BeTrue("Expected a validation problem result.");
             return;
         }
 
@@ -166,7 +166,7 @@ public sealed class HostConformanceTests {
             Next(actionContext, () => nextCalled = true));
 
         if(context.Result is not BadRequestObjectResult { Value: ValidationProblemDetails details }) {
-            Assert.Fail("Expected a bad-request validation result.");
+            false.Should().BeTrue("Expected a bad-request validation result.");
             return;
         }
 

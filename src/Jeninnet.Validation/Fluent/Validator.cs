@@ -79,6 +79,26 @@ public abstract class Validator<T> : ValidatorDefinition<T>, IValidator<T>, IVal
         return Validate(instance, strategy.Build());
     }
 
+    /// <inheritdoc />
+    public ValidationResult Validate(T instance, ValidationContext<T> context) {
+        if(PreValidateAsyncHook is not null) {
+            throw new InvalidOperationException(
+                "An asynchronous PreValidate hook is configured on this validator; call ValidateAsync instead.");
+        }
+
+        if(PreValidateHook is not null && !InvokePreValidate(PreValidateHook, context)) {
+            return ValidationResult.Success;
+        }
+
+        var result = InnerValidator.Validate(instance, context, ExplicitClassLevelCascadeMode);
+
+        if(!result.IsValid && OnFailureHook is not null) {
+            InvokeOnFailure(OnFailureHook, result);
+        }
+
+        return result;
+    }
+
     /// <inheritdoc/>
     public ValueTask<ValidationResult> ValidateAsync(T instance, CancellationToken cancellationToken = default) =>
         ValidateCoreAsync(instance, ruleSets: null, ExplicitClassLevelCascadeMode, failFast: false, filter: default, cancellationToken);
@@ -103,30 +123,6 @@ public abstract class Validator<T> : ValidatorDefinition<T>, IValidator<T>, IVal
         return ValidateWithOptionsAsync(instance, options, cancellationToken);
     }
 
-    private async ValueTask<ValidationResult> ValidateWithOptionsAsync(
-        T instance,
-        ValidationCallOptions options,
-        CancellationToken cancellationToken) {
-        var result = await AsyncValidationDeadline.ExecuteAsync(
-            options,
-            token => ValidateCoreAsync(
-                instance,
-                options.RuleSets,
-                options.CascadeMode ?? ExplicitClassLevelCascadeMode,
-                options.FailFast,
-                new ValidationFilter(
-                    options.IncludeProperties,
-                    options.ExcludeProperties,
-                    options.ExcludeRuleSets,
-                    options.ServiceProvider,
-                    options.IncludeAllRuleSets,
-                    options.Selector),
-                token),
-            cancellationToken).ConfigureAwait(false);
-
-        return ThrowIfRequested(result, options);
-    }
-
     /// <summary>
     /// Validates the specified instance asynchronously using a chained per-call strategy.
     /// </summary>
@@ -144,26 +140,6 @@ public abstract class Validator<T> : ValidatorDefinition<T>, IValidator<T>, IVal
         var strategy = new ValidationStrategy();
         configureStrategy(strategy);
         return ValidateAsync(instance, strategy.Build(), cancellationToken);
-    }
-
-    /// <inheritdoc />
-    public ValidationResult Validate(T instance, ValidationContext<T> context) {
-        if(PreValidateAsyncHook is not null) {
-            throw new InvalidOperationException(
-                "An asynchronous PreValidate hook is configured on this validator; call ValidateAsync instead.");
-        }
-
-        if(PreValidateHook is not null && !InvokePreValidate(PreValidateHook, context)) {
-            return ValidationResult.Success;
-        }
-
-        var result = InnerValidator.Validate(instance, context, ExplicitClassLevelCascadeMode);
-
-        if(!result.IsValid && OnFailureHook is not null) {
-            InvokeOnFailure(OnFailureHook, result);
-        }
-
-        return result;
     }
 
     /// <inheritdoc />
@@ -193,6 +169,30 @@ public abstract class Validator<T> : ValidatorDefinition<T>, IValidator<T>, IVal
         }
 
         return result;
+    }
+
+    private async ValueTask<ValidationResult> ValidateWithOptionsAsync(
+        T instance,
+        ValidationCallOptions options,
+        CancellationToken cancellationToken) {
+        var result = await AsyncValidationDeadline.ExecuteAsync(
+            options,
+            token => ValidateCoreAsync(
+                instance,
+                options.RuleSets,
+                options.CascadeMode ?? ExplicitClassLevelCascadeMode,
+                options.FailFast,
+                new ValidationFilter(
+                    options.IncludeProperties,
+                    options.ExcludeProperties,
+                    options.ExcludeRuleSets,
+                    options.ServiceProvider,
+                    options.IncludeAllRuleSets,
+                    options.Selector),
+                token),
+            cancellationToken).ConfigureAwait(false);
+
+        return ThrowIfRequested(result, options);
     }
 
     private ValidationResult ValidateCore(T instance, IEnumerable<string>? ruleSets, CascadeMode? classLevelCascadeMode, bool failFast, ValidationFilter filter) {
