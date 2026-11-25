@@ -750,6 +750,12 @@ try {
         $gate.LogPath = Join-Path $logsDirectory '08-message-keys.log'
         [void]$gates.Add($gate)
 
+        $gate = New-Gate -Name 'localization-review-status' -Category 'Docs' -Command 'check-localization-review-status.ps1' -Evidence 'Every localization culture has an explicit review status; no unrecorded native-review claim.' -Skip:$SkipDocs -Action {
+            Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/quality/check-localization-review-status.ps1')
+        }
+        $gate.LogPath = Join-Path $logsDirectory '08a-localization-review-status.log'
+        [void]$gates.Add($gate)
+
         $gate = New-Gate -Name 'docs-links' -Category 'Docs' -Command 'check-doc-links.ps1' -Evidence 'All local documentation links resolve.' -Skip:$SkipDocs -Action {
             Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/docs/check-doc-links.ps1')
         }

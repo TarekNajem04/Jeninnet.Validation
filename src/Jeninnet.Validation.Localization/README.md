@@ -13,6 +13,15 @@ translations are machine-assisted drafts; native-speaker review is tracked befor
 release, and corrections are welcome through the contribution path. Norwegian Nynorsk is out of
 scope; `no` is Bokmål.
 
+## Review status
+
+All 40 built-in packs are **machine-assisted** today; no native-speaker review is recorded. The
+per-culture status matrix is
+[`localization-review-status.json`](../../scripts/quality/localization-review-status.json), and
+`scripts/quality/check-localization-review-status.ps1` fails when a culture has no status or a
+`reviewed` entry has no reviewer/date. Do not describe a pack as natively reviewed without that
+record.
+
 ## Requirements
 
 - .NET 10.0 or later.

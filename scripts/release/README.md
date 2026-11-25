@@ -59,6 +59,7 @@ pwsh scripts/release/run-release-gates.ps1 -IncludeCoverage -IncludeSonar
 | `api-gate-self-test` | `-SkipApiGateSelfTest` | — | RS0016/RS0017 fail-closed fixture |
 | `api-diff` | `-SkipApiDiff` | — | Preview.2 public API diff with explicit approvals |
 | `message-keys` | `-SkipMessageKeys` | — | Message-key catalog vs resource packs |
+| `localization-review-status` | `-SkipDocs` | — | Every culture has an explicit native-review status |
 | `docs-links` | `-SkipDocs` | — | Local Markdown links |
 | `readme-claims` | `-SkipDocs` | — | README project and packable-count claims |
 | `analyzer-fix-coverage` | `-SkipAnalyzerFixes` | — | Diagnostic → fix → docs matrix and release tracking |

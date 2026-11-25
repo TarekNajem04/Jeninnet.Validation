@@ -1,0 +1,286 @@
+{
+  "schemaVersion": 1,
+  "defaultStatus": "machine-assisted",
+  "statuses": [
+    {
+      "culture": "af",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "ar",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "bg",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "ca",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "cs",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "da",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "de",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "el",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "en",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "es",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "et",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "fa",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "fi",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "fr",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "he",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "hi",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "hr",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "hu",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "id",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "it",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "ja",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "ko",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "lt",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "lv",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "nl",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "no",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "pl",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "pt-BR",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "ro",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "ru",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "sk",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "sl",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "sr",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "sv",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "th",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "tr",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "uk",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "ur",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "vi",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    },
+    {
+      "culture": "zh-Hans",
+      "status": "machine-assisted",
+      "reviewer": null,
+      "reviewedOn": null,
+      "note": "Machine-assisted draft; native-speaker review is not recorded."
+    }
+  ]
+}

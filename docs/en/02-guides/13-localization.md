@@ -51,6 +51,15 @@ catalog. `ar`, `he`, `ur`, and `fa` are RTL; the package supplies text only, and
 direction. Initial translations are machine-assisted drafts; native-speaker review is tracked
 before the stable release. `no` is Norwegian Bokmål; Nynorsk is not included.
 
+## Native review status
+
+All 40 built-in packs are currently **machine-assisted**; no native-speaker review is recorded.
+That declaration is machine-readable in
+[`localization-review-status.json`](../../../scripts/quality/localization-review-status.json) and
+is checked by `scripts/quality/check-localization-review-status.ps1`. A culture cannot ship without
+an explicit status, and a `reviewed` status requires a reviewer and date. Do not describe a pack as
+natively reviewed unless that record exists.
+
 Culture names keep script and region subtags. `pt-BR` is distinct from neutral `pt`, and
 `zh-Hans` is reached from `zh-CN` through the pipeline's parent chain.
 
