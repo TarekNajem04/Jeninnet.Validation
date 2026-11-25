@@ -861,6 +861,16 @@ try {
         $gate.LogPath = Join-Path $logsDirectory '17-consumer-smoke.log'
         [void]$gates.Add($gate)
 
+        $gate = New-Gate -Name 'consumer-matrix' -Category 'Packages' -Command 'check-consumer-matrix.ps1' -Evidence 'All 25 packages select the expected assets and build the host scenarios from a clean local feed.' -DependsOn @('package-pack') -Skip:$SkipConsumer -Action {
+            Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/package/check-consumer-matrix.ps1') -Arguments @(
+                '-PackagesPath', $packagesDirectory,
+                '-Version', $productVersion,
+                '-OutputDirectory', (Join-Path $reportDirectory 'consumer-matrix')
+            )
+        }
+        $gate.LogPath = Join-Path $logsDirectory '17a-consumer-matrix.log'
+        [void]$gates.Add($gate)
+
         $gate = New-Gate -Name 'aot-support' -Category 'AOT' -Command 'check-aot-support-matrix.ps1' -Evidence 'Every packable package has an explicit AOT/trim position and property alignment.' -Skip:$SkipAotSupport -Action {
             Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/quality/check-aot-support-matrix.ps1')
         }

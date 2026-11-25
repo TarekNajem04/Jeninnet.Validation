@@ -44,6 +44,21 @@ comparison and the runtime-analyzer rule fail the gate.
 `ci.yml` runs the check after package packing. The release runner exposes it as the
 `package-budget` gate, after `package-pack` and before the version/consumer checks.
 
+## Consumer matrix
+
+`check-consumer-matrix.ps1` copies the packed packages into an empty temporary feed and creates
+package-only consumers (no `ProjectReference`) on `net10.0` and `net11.0`. It records the selected
+asset for every package, builds nine host scenarios (core, Minimal API, MVC/ProblemDetails, Blazor,
+MediatR, Swashbuckle, NSwag, JSON Schema, client rules), installs the migration tool, rejects
+analyzer runtime leakage, and runs a missing-package negative test.
+
+```powershell
+pwsh scripts/package/check-consumer-matrix.ps1 -PackagesPath artifacts/release/1.0.0-preview.3/packages
+```
+
+The report is written under `artifacts/consumer-matrix/<version>/`. The release runner exposes it as
+the `consumer-matrix` gate after `package-pack`.
+
 ## Baseline scope
 
 The current baseline covers all 25 packable packages, including the five dual-target packages and
