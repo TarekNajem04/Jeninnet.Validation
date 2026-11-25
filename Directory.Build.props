@@ -173,7 +173,7 @@
     -->
     <PropertyGroup Condition="'$(IsUnitTestProject)' == ''">
         <IsUnitTestProject>false</IsUnitTestProject>
-        <IsUnitTestProject Condition="$(MSBuildProjectName.EndsWith('.Tests'))">true</IsUnitTestProject>
+        <IsUnitTestProject Condition="$(MSBuildProjectName.EndsWith('Tests'))">true</IsUnitTestProject>
         <!-- Ensure this line copies the test result files to a unified folder in the root of the Solution -->
         <VSTestResultsDirectory>$(MSBuildThisFileDirectory)TestResults</VSTestResultsDirectory>
     </PropertyGroup>

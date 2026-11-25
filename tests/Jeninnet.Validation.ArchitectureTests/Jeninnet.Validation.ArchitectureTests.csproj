@@ -3,9 +3,6 @@
     <PropertyGroup>
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
-        <!-- The repository heuristic suppresses CS1591 for *.Tests projects; this suite is
-             named *ArchitectureTests, so the suppression is declared explicitly. -->
-        <NoWarn>$(NoWarn);1591</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
