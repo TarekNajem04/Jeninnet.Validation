@@ -29,6 +29,16 @@ Jeninnet.Validation.ValidationErrorProjection.Message.get -> string!
 Jeninnet.Validation.ValidationErrorProjection.Severity.get -> Jeninnet.Validation.ValidationErrorSeverity
 Jeninnet.Validation.ValidationErrorProjection.ValidationErrorProjection() -> void
 Jeninnet.Validation.ValidationErrorProjection.ValidationErrorProjection(string! field, string! message, string? errorCode, Jeninnet.Validation.ValidationErrorSeverity severity) -> void
+Jeninnet.Validation.ValidationTimeoutException
+Jeninnet.Validation.ValidationTimeoutException.Timeout.get -> System.TimeSpan
+Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException() -> void
+Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(System.Threading.CancellationToken token) -> void
+Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(System.TimeSpan timeout) -> void
+Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(System.TimeSpan timeout, System.Exception? innerException) -> void
+Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(string? message) -> void
+Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(string? message, System.Exception? innerException) -> void
+Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(string? message, System.Exception? innerException, System.Threading.CancellationToken token) -> void
+Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(string? message, System.Threading.CancellationToken token) -> void
 const Jeninnet.Validation.Configuration.MessageParameterNames.Divisor = "Divisor" -> string!
 const Jeninnet.Validation.Configuration.ValidationMessageKeys.FUTURE_DATE = "FutureDate" -> string!
 const Jeninnet.Validation.Configuration.ValidationMessageKeys.MULTIPLE_OF = "MultipleOf" -> string!

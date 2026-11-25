@@ -105,18 +105,6 @@ public sealed class CompositeValidator<T>(
         return result;
     }
 
-    private static async ValueTask<ValidationResult> ThrowIfRequestedAsync(
-        ValueTask<ValidationResult> pending,
-        ValidationCallOptions options) {
-        var result = await pending.ConfigureAwait(false);
-
-        if(options.ThrowOnFailures && !result.IsValid) {
-            throw new ValidationException(result.Errors);
-        }
-
-        return result;
-    }
-
     [ThreadStatic]
     private static ValidationErrorCollector? _cachedCollector;
 
@@ -163,6 +151,7 @@ public sealed class CompositeValidator<T>(
     /// <inheritdoc />
     public ValidationResult Validate(T instance, ValidationCallOptions options) {
         ArgumentNullException.ThrowIfNull(options);
+        AsyncValidationDeadline.ThrowIfSynchronous(options);
 
         var result = Validate(
             instance,
@@ -310,22 +299,33 @@ public sealed class CompositeValidator<T>(
         ValidationCallOptions options,
         CancellationToken cancellationToken = default) {
         ArgumentNullException.ThrowIfNull(options);
+        AsyncValidationDeadline.Validate(options.Timeout);
 
-        var pending = ValidateAsync(
-            instance,
-            options.RuleSets,
-            options.CascadeMode ?? ExplicitClassLevelCascadeMode,
-            options.FailFast,
-            new ValidationFilter(
-                options.IncludeProperties,
-                options.ExcludeProperties,
-                options.ExcludeRuleSets,
-                options.ServiceProvider,
-                options.IncludeAllRuleSets,
-                options.Selector),
-            cancellationToken);
+        return ValidateWithOptionsAsync(instance, options, cancellationToken);
+    }
 
-        return options.ThrowOnFailures ? ThrowIfRequestedAsync(pending, options) : pending;
+    private async ValueTask<ValidationResult> ValidateWithOptionsAsync(
+        T instance,
+        ValidationCallOptions options,
+        CancellationToken cancellationToken) {
+        var result = await AsyncValidationDeadline.ExecuteAsync(
+            options,
+            token => ValidateAsync(
+                instance,
+                options.RuleSets,
+                options.CascadeMode ?? ExplicitClassLevelCascadeMode,
+                options.FailFast,
+                new ValidationFilter(
+                    options.IncludeProperties,
+                    options.ExcludeProperties,
+                    options.ExcludeRuleSets,
+                    options.ServiceProvider,
+                    options.IncludeAllRuleSets,
+                    options.Selector),
+                token),
+            cancellationToken).ConfigureAwait(false);
+
+        return options.ThrowOnFailures ? ThrowIfRequested(result, options) : result;
     }
 
     /// <inheritdoc />

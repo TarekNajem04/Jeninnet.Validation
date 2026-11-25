@@ -76,6 +76,7 @@ public sealed record ValidationCallOptions
     public bool ThrowOnFailures { get; init; }
     public CascadeMode? CascadeMode { get; init; }
     public bool FailFast { get; init; }
+    public TimeSpan? Timeout { get; init; }
     public IReadOnlyCollection<string>? IncludeProperties { get; init; }
     public IReadOnlyCollection<string>? ExcludeProperties { get; init; }
     public IReadOnlyCollection<string>? ExcludeRuleSets { get; init; }
@@ -86,6 +87,22 @@ public sealed record ValidationCallOptions
 `RuleSets = null` or an empty collection runs all rules, including named sets. Use `["default"]` for
 ungrouped rules only, or `IncludeAllRuleSets = true` to select every named set explicitly.
 `ThrowOnFailures = true` throws `ValidationException` with all collected errors.
+
+`Timeout` adds a cooperative per-run budget to the asynchronous path:
+
+```csharp
+var result = await validator.ValidateAsync(
+    order,
+    new ValidationCallOptions { Timeout = TimeSpan.FromSeconds(2) });
+```
+
+The deadline starts when `ValidateAsync` is called and covers asynchronous lifecycle hooks, nested
+`ChildRules`, and `ForEach` children. A rule that honors its cancellation token raises
+`ValidationTimeoutException` when the budget expires. Caller cancellation takes precedence and keeps
+the original `OperationCanceledException`; zero or negative timeouts are rejected with
+`ArgumentOutOfRangeException` before any rule runs. Synchronous `Validate` rejects a configured
+timeout with `InvalidOperationException`. A deadline is cooperative, not a security boundary: a rule
+that ignores its token can run past the budget. No global timeout exists.
 
 `ValidationStrategy` is the chained builder equivalent and adds `IncludeAllRuleSets()`,
 `IncludeRulesNotInRuleSet()`, and `ThrowOnFailures()`.
@@ -108,6 +125,7 @@ Both paths also implement `IValidationContextValidator<T>`. Nested (`SetValidato
 |---|---|
 | `ValidationException` | `ValidateAndThrow` / `ValidateAndThrowAsync`; carries `Errors`. |
 | `AsyncValidatorInvokedSynchronouslyException` | Sync `Validate` on an async-only validator. |
+| `ValidationTimeoutException` | An asynchronous run exceeded `ValidationCallOptions.Timeout`; carries `Timeout`. |
 | `ValidationAssertionException` | Assertion helpers. |
 
 ## Configuration

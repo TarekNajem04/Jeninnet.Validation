@@ -158,6 +158,8 @@ Jeninnet.Validation.ValidationCallOptions.<Clone>$() -> Jeninnet.Validation.Vali
 Jeninnet.Validation.ValidationCallOptions.Equals(Jeninnet.Validation.ValidationCallOptions? other) -> bool
 Jeninnet.Validation.ValidationCallOptions.Selector.get -> Jeninnet.Validation.Core.IValidatorSelector?
 Jeninnet.Validation.ValidationCallOptions.Selector.init -> void
+Jeninnet.Validation.ValidationCallOptions.Timeout.get -> System.TimeSpan?
+Jeninnet.Validation.ValidationCallOptions.Timeout.init -> void
 Jeninnet.Validation.ValidationCallOptions.ValidationCallOptions() -> void
 override Jeninnet.Validation.Configuration.ValidationOptions.Equals(object? obj) -> bool
 override Jeninnet.Validation.Configuration.ValidationOptions.GetHashCode() -> int

@@ -218,6 +218,114 @@
       "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
       "approvedBy": "Maintainer",
       "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationCallOptions.Timeout.get -> System.TimeSpan?",
+      "reason": "P3-026 async validation deadline: additive per-call Timeout budget; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationCallOptions.Timeout.init -> void",
+      "reason": "P3-026 async validation deadline: additive per-call Timeout budget; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.Timeout.get -> System.TimeSpan",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException() -> void",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(System.Threading.CancellationToken token) -> void",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(System.TimeSpan timeout) -> void",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(System.TimeSpan timeout, System.Exception? innerException) -> void",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(string? message) -> void",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(string? message, System.Exception? innerException) -> void",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(string? message, System.Exception? innerException, System.Threading.CancellationToken token) -> void",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(string? message, System.Threading.CancellationToken token) -> void",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
     }
   ]
 }

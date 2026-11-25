@@ -46,6 +46,7 @@ public abstract class Validator<T> : ValidatorDefinition<T>, IValidator<T>, IVal
     /// <exception cref="ArgumentNullException"><paramref name="options"/> is null.</exception>
     public ValidationResult Validate(T instance, ValidationCallOptions options) {
         ArgumentNullException.ThrowIfNull(options);
+        AsyncValidationDeadline.ThrowIfSynchronous(options);
 
         var result = ValidateCore(
             instance,
@@ -95,21 +96,32 @@ public abstract class Validator<T> : ValidatorDefinition<T>, IValidator<T>, IVal
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="options"/> is null.</exception>
-    public async ValueTask<ValidationResult> ValidateAsync(T instance, ValidationCallOptions options, CancellationToken cancellationToken = default) {
+    public ValueTask<ValidationResult> ValidateAsync(T instance, ValidationCallOptions options, CancellationToken cancellationToken = default) {
         ArgumentNullException.ThrowIfNull(options);
+        AsyncValidationDeadline.Validate(options.Timeout);
 
-        var result = await ValidateCoreAsync(
-            instance,
-            options.RuleSets,
-            options.CascadeMode ?? ExplicitClassLevelCascadeMode,
-            options.FailFast,
-            new ValidationFilter(
-                options.IncludeProperties,
-                options.ExcludeProperties,
-                options.ExcludeRuleSets,
-                options.ServiceProvider,
-                options.IncludeAllRuleSets,
-                options.Selector),
+        return ValidateWithOptionsAsync(instance, options, cancellationToken);
+    }
+
+    private async ValueTask<ValidationResult> ValidateWithOptionsAsync(
+        T instance,
+        ValidationCallOptions options,
+        CancellationToken cancellationToken) {
+        var result = await AsyncValidationDeadline.ExecuteAsync(
+            options,
+            token => ValidateCoreAsync(
+                instance,
+                options.RuleSets,
+                options.CascadeMode ?? ExplicitClassLevelCascadeMode,
+                options.FailFast,
+                new ValidationFilter(
+                    options.IncludeProperties,
+                    options.ExcludeProperties,
+                    options.ExcludeRuleSets,
+                    options.ServiceProvider,
+                    options.IncludeAllRuleSets,
+                    options.Selector),
+                token),
             cancellationToken).ConfigureAwait(false);
 
         return ThrowIfRequested(result, options);

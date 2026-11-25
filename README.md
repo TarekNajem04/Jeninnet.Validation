@@ -163,7 +163,7 @@ dotnet test  Jeninnet.Validation.slnx -c Release
 dotnet format Jeninnet.Validation.slnx --verify-no-changes --no-restore --exclude samples/Jeninnet.Validation.Analyzers.Sample.Console samples/Jeninnet.Validation.AotSmoke
 ```
 
-The current suite runs **1,110 tests** across 18 test assemblies on `net10.0` and `net11.0`.
+The current suite runs **1,119 tests** across 18 test assemblies on `net10.0` and `net11.0`.
 Package validation uses the packed local feed:
 
 ```bash
