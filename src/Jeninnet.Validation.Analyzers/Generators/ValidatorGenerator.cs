@@ -22,12 +22,20 @@ public sealed class ValidatorGenerator : IIncrementalGenerator {
                     static (node, _) => node is ClassDeclarationSyntax or StructDeclarationSyntax or RecordDeclarationSyntax or InterfaceDeclarationSyntax,
                     static (ctx, _) => ValidatorMetadataBuilder.TryBuildValidatorDescriptor((INamedTypeSymbol)ctx.TargetSymbol)
                 )
-                .Where(static d => d is not null);
+                .Where(static d => d is not null)
+                .WithTrackingName("ValidatorDescriptors");
 
         var emitClientRules = context.AnalyzerConfigOptionsProvider.Select(
             static (provider, _) =>
                 provider.GlobalOptions.TryGetValue("build_property.JeninnetEmitClientRules", out var value) &&
                 string.Equals(value, "true", StringComparison.OrdinalIgnoreCase));
+
+        // Per-validator generation depends only on the validator descriptor. Rule-combination
+        // diagnostics and assembly aggregation still need the compilation, so they run in separate
+        // outputs and do not invalidate unrelated validator sources.
+        context.RegisterSourceOutput(
+            validatorDescriptors,
+            static (ctx, descriptor) => EmitValidator(ctx, descriptor));
 
         var compilationAndValidators = context.CompilationProvider
             .Combine(validatorDescriptors.Collect())
@@ -35,37 +43,52 @@ public sealed class ValidatorGenerator : IIncrementalGenerator {
 
         context.RegisterSourceOutput(
             compilationAndValidators,
-            static (ctx, pair) => EmitValidator(ctx, pair.Left.Left, pair.Left.Right, pair.Right));
+            static (ctx, pair) => ValidateRuleCombinations(ctx, pair.Left.Left, pair.Left.Right));
+
+        context.RegisterSourceOutput(
+            compilationAndValidators,
+            static (ctx, pair) => EmitAssemblySources(ctx, pair.Left.Left, pair.Left.Right, pair.Right));
     }
 
     private static void EmitValidator(
         SourceProductionContext context,
-        Compilation compilation,
-        ImmutableArray<ValidatorDescriptor?> descriptors,
-        bool emitClientRules
+        ValidatorDescriptor? descriptor
     ) {
-        if(descriptors.Length == 0) {
+        if(descriptor is null) {
             return;
         }
 
-        var validDescriptors = new List<ValidatorDescriptor>(descriptors.Length);
+        ReportDiagnostics(context, descriptor);
 
-        foreach(var descriptor in descriptors) {
-            if(descriptor is null) {
-                continue;
-            }
-
-            ReportDiagnostics(context, descriptor);
-
-            if(!descriptor.ShouldEmit) {
-                continue;
-            }
-
-            validDescriptors.Add(descriptor);
-            EmitValidatorSources(context, compilation, descriptor);
+        if(!descriptor.ShouldEmit) {
+            return;
         }
 
-        EmitAssemblySources(context, compilation, validDescriptors, emitClientRules);
+        EmitValidatorSources(context, descriptor);
+    }
+
+    private static void ValidateRuleCombinations(
+        SourceProductionContext context,
+        Compilation compilation,
+        ImmutableArray<ValidatorDescriptor?> descriptors
+    ) {
+        foreach(var descriptor in descriptors) {
+            if(descriptor?.ShouldEmit != true) {
+                continue;
+            }
+
+            foreach(var prop in descriptor.Properties) {
+                RuleCombinationValidator.ValidatePropertyRules(
+                    context,
+                    compilation,
+                    prop.Name,
+                    prop.Type,
+                    prop.Rules,
+                    prop.Location,
+                    prop.Property
+                );
+            }
+        }
     }
 
     private static void ReportDiagnostics(SourceProductionContext context, ValidatorDescriptor descriptor) {
@@ -83,20 +106,7 @@ public sealed class ValidatorGenerator : IIncrementalGenerator {
 
     private static void EmitValidatorSources(
         SourceProductionContext context,
-        Compilation compilation,
         ValidatorDescriptor descriptor) {
-        foreach(var prop in descriptor.Properties) {
-            RuleCombinationValidator.ValidatePropertyRules(
-                context,
-                compilation,
-                prop.Name,
-                prop.Type,
-                prop.Rules,
-                prop.Location,
-                prop.Property
-            );
-        }
-
         var className = descriptor.TargetTypeName.Replace("global::", "").Replace(".", "_") + "Validator";
         context.AddSource($"{className}.g.cs", ValidatorEmitter.Emit(descriptor));
 
@@ -109,8 +119,16 @@ public sealed class ValidatorGenerator : IIncrementalGenerator {
     private static void EmitAssemblySources(
         SourceProductionContext context,
         Compilation compilation,
-        List<ValidatorDescriptor> validDescriptors,
+        ImmutableArray<ValidatorDescriptor?> descriptors,
         bool emitClientRules) {
+        var validDescriptors = new List<ValidatorDescriptor>(descriptors.Length);
+
+        foreach(var descriptor in descriptors) {
+            if(descriptor?.ShouldEmit == true) {
+                validDescriptors.Add(descriptor);
+            }
+        }
+
         if(validDescriptors.Count > 0 &&
            compilation.GetTypeByMetadataName("Microsoft.Extensions.DependencyInjection.IServiceCollection") is not null) {
             var assemblyName = compilation.AssemblyName ?? "Generated";
