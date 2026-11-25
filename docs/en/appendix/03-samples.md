@@ -90,7 +90,7 @@ dotnet test tests/Jeninnet.Validation.Analyzers.Tests/Jeninnet.Validation.Analyz
 dotnet test tests/Jeninnet.Validation.ArchitectureTests/Jeninnet.Validation.ArchitectureTests.csproj
 ```
 
-The full suite is 1,131 tests across 18 test assemblies on `net10.0` and `net11.0`;
+The full suite is 1,132 tests across 18 test assemblies on `net10.0` and `net11.0`;
 the baseline runs on `net10.0`, and the bridge/OpenAPI adapter tests also run on `net11.0`.
 Use `dotnet test Jeninnet.Validation.slnx` to run everything the solution includes.
 

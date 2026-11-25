@@ -3,6 +3,10 @@
 The analyzer and source generator report rule misuse at compile time. All diagnostics use the
 `VAL` prefix and the `ValidationGenerator` category.
 
+For a page-per-diagnostic learning path with a minimal trigger, compiler output, and either a
+tested fix or the reason no automatic fix is safe, see the
+[diagnostic gallery](09-diagnostic-gallery/index.md).
+
 ## Diagnostic reference
 
 | ID | Severity | Title | Code fix | Fix status |
@@ -337,6 +341,18 @@ a single value is the intended range. Reversed bounds are reported as `VAL0010` 
 generator rejects both before the generated validator can run. The fluent
 `ExclusiveBetween(5, 5)` call throws `ArgumentException` at configuration time for the same reason.
 
+### `VAL0034` — invalid multiple-of divisor
+
+```csharp
+[MultipleOf(0)]               // VAL0034: divisor must be positive and finite
+public decimal Amount { get; init; }
+```
+
+`MultipleOf` accepts a positive, finite decimal divisor. Zero, negative, `NaN`, and infinite
+literals are rejected at build time; the same rule applies to the fluent overload.
+
+`VAL0029`–`VAL0034` are errors and always block the build.
+
 ## Suppression
 
 Suppress at the narrowest scope and explain why:
@@ -355,17 +371,7 @@ configuration error.
 The repository builds with warnings as errors. If your application does the same, `VAL0004`,
 `VAL0005`, `VAL0006`, `VAL0014`, `VAL0016`, `VAL0023`, `VAL0024`, `VAL0025`, `VAL0027`, and
 `VAL0028` become build blockers. Fix them rather than lowering the severity; each one points at a
-rule that would behave differently at runtime. ### `VAL0034` — invalid multiple-of divisor
-
-```csharp
-[MultipleOf(0)]               // VAL0034: divisor must be positive and finite
-public decimal Amount { get; init; }
-```
-
-`MultipleOf` accepts a positive, finite decimal divisor. Zero, negative, `NaN`, and infinite
-literals are rejected at build time; the same rule applies to the fluent overload.
-
-`VAL0029`–`VAL0034` are errors and always block the build.
+rule that would behave differently at runtime.
 
 ## Related
 

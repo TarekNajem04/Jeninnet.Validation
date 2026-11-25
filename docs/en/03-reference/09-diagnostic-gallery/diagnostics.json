@@ -1,0 +1,767 @@
+{
+  "version": 1,
+  "diagnostics": [
+    {
+      "id": "VAL0001",
+      "severity": "Error",
+      "title": "Invalid rule parameter",
+      "principle": "III. Compile-Time Safe & Diagnostic-Rich",
+      "summary": "A rule attribute received a literal that cannot be converted to the member's type. The generator stops before it emits a rule that would fail at runtime.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class Feature",
+        "{",
+        "    [Equal(\"true\")]",
+        "    public bool Enabled { get; set; }",
+        "}"
+      ],
+      "message": "error VAL0001: The value \"true\" cannot be parsed as type \"Boolean\" for rule \"Equal\"",
+      "status": "Available",
+      "fix": "Converts the literal to the expected type; for a Boolean it removes the quotes.",
+      "after": [
+        "[Validate]",
+        "public sealed class Feature",
+        "{",
+        "    [Equal(true)]",
+        "    public bool Enabled { get; set; }",
+        "}"
+      ],
+      "guidance": "Use the literal form of the member type. The converter covers Boolean, DateOnly, DateTime, Decimal, Enum, Guid, and TimeSpan literals; it does not guess a value that the source does not contain."
+    },
+    {
+      "id": "VAL0002",
+      "severity": "Error",
+      "title": "Rule applied to incompatible property type",
+      "principle": "II. Declarative-First",
+      "summary": "The attribute describes a check that the member's type cannot support. The generator refuses to emit an impossible rule.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    [Email]",
+        "    public int Id { get; set; }",
+        "}"
+      ],
+      "message": "error VAL0002: Rule \"Email\" cannot be applied to property \"Id\" of type \"int\"",
+      "status": "Intentional",
+      "reason": "Changing the rule or changing the member type are both valid designs. An automatic fix would have to guess which one the author intended.",
+      "guidance": "Use a string member for [Email], or choose a rule that matches the numeric member (for example [GreaterThan])."
+    },
+    {
+      "id": "VAL0003",
+      "severity": "Error",
+      "title": "Rule parameter type mismatch",
+      "principle": "II. Declarative-First",
+      "summary": "The rule parameter has a different type from the value it must compare. The generator cannot choose between converting the parameter and changing the rule.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    [InclusiveBetween(\"18\", \"99\")]",
+        "    public int Age { get; set; }",
+        "}"
+      ],
+      "message": "error VAL0003: Rule \"InclusiveBetween\" expects a parameter of type \"Int32\", but received \"String\"",
+      "status": "Intentional",
+      "reason": "The literal or the rule may be wrong; the intended change is ambiguous and no safe automatic rewrite exists.",
+      "guidance": "Pass numeric literals for numeric members: [InclusiveBetween(18, 99)]. Use the literal type that matches the member, not a string that happens to look numeric."
+    },
+    {
+      "id": "VAL0004",
+      "severity": "Warning",
+      "title": "Nested validator not found",
+      "principle": "II. Declarative-First",
+      "summary": "A [Nested] property points at a type that has no generated validator, so the nested rules would silently never run.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class Order",
+        "{",
+        "    [Nested]",
+        "    public Address? Address { get; set; }",
+        "}",
+        "",
+        "public sealed class Address",
+        "{",
+        "    public string? Street { get; set; }",
+        "}"
+      ],
+      "message": "warning VAL0004: No validator was found for nested type \"Address\"",
+      "status": "Intentional",
+      "reason": "The missing nested validator must be authored; the generator cannot invent the rules for another model.",
+      "guidance": "Annotate the nested type with [Validate], or register a validator and reference it explicitly. A type without [Validate] has no generated validator to call."
+    },
+    {
+      "id": "VAL0005",
+      "severity": "Warning",
+      "title": "Collection element validator not found",
+      "principle": "II. Declarative-First",
+      "summary": "A [ForEach] collection points at an element type that has no generated validator, so the elements would not be validated.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class Order",
+        "{",
+        "    [ForEach]",
+        "    public List<LineItem>? Items { get; set; }",
+        "}",
+        "",
+        "public sealed class LineItem",
+        "{",
+        "    public string? Sku { get; set; }",
+        "}"
+      ],
+      "message": "warning VAL0005: No validator was found for collection element type \"LineItem\"",
+      "status": "Intentional",
+      "reason": "The missing element validator must be authored; the generator cannot infer the element rules from the collection declaration.",
+      "guidance": "Annotate LineItem with [Validate], or use an explicit child validator through the fluent API."
+    },
+    {
+      "id": "VAL0006",
+      "severity": "Warning",
+      "title": "Rule cannot be used on nullable type",
+      "principle": "II. Declarative-First",
+      "summary": "A numeric or comparison rule is applied to a nullable member. If null should be rejected, the declaration needs [NotNull] before the rule.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class Order",
+        "{",
+        "    [GreaterThan(0)]",
+        "    public int? Quantity { get; set; }",
+        "}"
+      ],
+      "message": "warning VAL0006: Rule \"GreaterThan\" cannot be applied to nullable type \"int?\" on the property \"Quantity\". Consider adjusting the rule \"GreaterThan\" or using a non-nullable type.",
+      "status": "Available",
+      "fix": "Adds [NotNull] before the numeric rule so the generated validator rejects null explicitly.",
+      "after": [
+        "[Validate]",
+        "public sealed class Order",
+        "{",
+        "    [NotNull]",
+        "    [GreaterThan(0)]",
+        "    public int? Quantity { get; set; }",
+        "}"
+      ],
+      "guidance": "Keep the nullable member when null has meaning, but make the intent explicit: [NotNull] rejects null, while a non-nullable member makes null impossible by type."
+    },
+    {
+      "id": "VAL0007",
+      "severity": "Error",
+      "title": "Conflicting rules on property",
+      "principle": "II. Declarative-First",
+      "summary": "Two bounds describe an impossible range, such as a value that must be greater than 100 and less than 50.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    [GreaterThan(100)]",
+        "    [LessThan(50)]",
+        "    public int Age { get; set; }",
+        "}"
+      ],
+      "message": "error VAL0007: Property \"Age\" has multiple conflicting rules: GreaterThan(100) and LessThan(50) create an impossible range.",
+      "status": "Available",
+      "fix": "Removes one of the conflicting rules, leaving the author's remaining bound.",
+      "after": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    [GreaterThan(100)]",
+        "    public int Age { get; set; }",
+        "}"
+      ],
+      "guidance": "Choose the bound that expresses the real requirement. If the property truly needs a range, use [InclusiveBetween] or [ExclusiveBetween] with the intended lower and upper bounds."
+    },
+    {
+      "id": "VAL0008",
+      "severity": "Error",
+      "title": "Unsupported attribute argument type",
+      "principle": "II. Declarative-First",
+      "summary": "An attribute argument has a CLR type that the rule cannot turn into a validation parameter.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class Order",
+        "{",
+        "    [Equal(typeof(string))]",
+        "    public string? Code { get; set; }",
+        "}"
+      ],
+      "message": "error VAL0008: Attribute argument \"typeof(string)\" is not supported for rule \"Equal\"",
+      "status": "Intentional",
+      "reason": "The supported argument contract depends on the rule's intended shape; the generator cannot choose a conversion that preserves the author's intent.",
+      "guidance": "Use a primitive, string, enum, or other rule-supported constant. If the value is genuinely a type, model that requirement with a custom rule."
+    },
+    {
+      "id": "VAL0009",
+      "severity": "Error",
+      "title": "Invalid rule combination",
+      "principle": "II. Declarative-First",
+      "summary": "Two rules imply incompatible minimum lengths. [NotEmpty] requires at least one character while [Length(0, …)] permits the empty string.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    [NotEmpty]",
+        "    [Length(0, 100)]",
+        "    public string Name { get; set; } = string.Empty;",
+        "}"
+      ],
+      "message": "error VAL0009: Rule \"NotEmpty\" cannot be combined with rule \"Length\" on the same property \"Name\"",
+      "status": "Available",
+      "fix": "Raises the Length minimum to 1, or removes [NotEmpty] when the length rule is sufficient.",
+      "after": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    [Length(1, 100)]",
+        "    public string Name { get; set; } = string.Empty;",
+        "}"
+      ],
+      "guidance": "Keep one statement of the minimum length. [Length(1, 100)] already expresses the non-empty requirement."
+    },
+    {
+      "id": "VAL0010",
+      "severity": "Error",
+      "title": "Rule parameter out of range",
+      "principle": "III. Compile-Time Safe & Diagnostic-Rich",
+      "summary": "A range rule has its lower bound above its upper bound, so no value can satisfy it.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    [InclusiveBetween(10, 1)]",
+        "    public int Score { get; set; }",
+        "}"
+      ],
+      "message": "error VAL0010: Parameter \"10\" for rule \"InclusiveBetween\" is outside the valid range for type \"Int32\"",
+      "status": "Available",
+      "fix": "Swaps the reversed InclusiveBetween bounds.",
+      "after": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    [InclusiveBetween(1, 10)]",
+        "    public int Score { get; set; }",
+        "}"
+      ],
+      "guidance": "Write bounds in lower-to-upper order. If the intended order is semantically meaningful, rename or restructure the rule instead of relying on the fix."
+    },
+    {
+      "id": "VAL0011",
+      "severity": "Info",
+      "title": "Consider adding [NotEmpty] for string property",
+      "principle": "II. Declarative-First",
+      "summary": "A string participates in validation but has no explicit empty-string decision. The analyzer suggests making that decision visible.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    [Length(3, 100)]",
+        "    public string Name { get; set; } = string.Empty;",
+        "}"
+      ],
+      "message": "info VAL0011: Property \"Name\" is a string and participates in validation; consider adding [NotEmpty]",
+      "status": "Available",
+      "fix": "Adds [NotEmpty] next to the existing string rule.",
+      "after": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    [NotEmpty]",
+        "    [Length(3, 100)]",
+        "    public string Name { get; set; } = string.Empty;",
+        "}"
+      ],
+      "guidance": "Add the attribute when the empty string is invalid. Keep the suggestion off when empty is a meaningful value, or configure the rule's message to explain that choice."
+    },
+    {
+      "id": "VAL0012",
+      "severity": "Info",
+      "title": "Consider adding [NotNull] for nullable property",
+      "principle": "II. Declarative-First",
+      "summary": "A nullable member has validation rules but no explicit null decision. The suggestion makes that decision visible.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    [Email]",
+        "    public string? Email { get; set; }",
+        "}"
+      ],
+      "message": "info VAL0012: Property \"Email\" is nullable and has validation rules; consider adding [NotNull]",
+      "status": "Available",
+      "fix": "Adds [NotNull] next to the nullable member's rule.",
+      "after": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    [NotNull]",
+        "    [Email]",
+        "    public string? Email { get; set; }",
+        "}"
+      ],
+      "guidance": "Add [NotNull] when null is invalid. Leave the member nullable and omit the attribute when null means the rule should be skipped."
+    },
+    {
+      "id": "VAL0013",
+      "severity": "Info",
+      "title": "Rule can be simplified",
+      "principle": "II. Declarative-First",
+      "summary": "Two comparison rules describe one range. A single range rule is shorter and keeps the lower and upper bounds together.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    [GreaterThan(0)]",
+        "    [LessThan(10)]",
+        "    public int Score { get; set; }",
+        "}"
+      ],
+      "message": "info VAL0013: The process of validating the property \"Score\" can be simplified by using \"'InclusiveBetween' or 'ExclusiveBetween'\" instead of \"'GreaterThan' and 'LessThan'\"",
+      "status": "Intentional",
+      "reason": "Replacing two rules with one changes the documented rule set and may change inclusive/exclusive semantics; the author must choose the replacement.",
+      "guidance": "For integer values greater than 0 and less than 10, use [InclusiveBetween(1, 9)] or [ExclusiveBetween(0, 10)] depending on the values the domain allows."
+    },
+    {
+      "id": "VAL0014",
+      "severity": "Warning",
+      "title": "Redundant [NotNull] attribute",
+      "principle": "II. Declarative-First",
+      "summary": "[NotNull] is applied to a non-nullable value type, where it cannot change the result.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    [NotNull]",
+        "    public int Age { get; set; }",
+        "}"
+      ],
+      "message": "warning VAL0014: The property \"Age\" is non-nullable; [NotNull] is redundant and can be removed",
+      "status": "Available",
+      "fix": "Removes the redundant [NotNull] while keeping sibling validation attributes.",
+      "after": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    public int Age { get; set; }",
+        "}"
+      ],
+      "guidance": "Keep [NotNull] on nullable reference or value types where it expresses a real requirement. On a non-nullable value type it is noise."
+    },
+    {
+      "id": "VAL0015",
+      "severity": "Error",
+      "title": "Target property not found",
+      "principle": "II. Declarative-First",
+      "summary": "A property-comparison rule references a sibling member that does not exist on the model.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    [PropertyEqual(\"Password\")]",
+        "    public string? ConfirmPassword { get; set; }",
+        "}"
+      ],
+      "message": "error VAL0015: Rule \"PropertyEqual\" references a property \"Password\" that does not exist on type \"User\"",
+      "status": "Intentional",
+      "reason": "The intended sibling member name is user intent; the generator cannot know which member was meant.",
+      "guidance": "Use nameof(Password) in fluent code, or correct the attribute string. The comparison target must be a readable member on the same model."
+    },
+    {
+      "id": "VAL0016",
+      "severity": "Warning",
+      "title": "Synchronous Validate on async-only validator",
+      "principle": "III. Compile-Time Safe & Diagnostic-Rich",
+      "summary": "A validator marked [AsyncOnlyValidator] is called through the synchronous API, which would throw at runtime.",
+      "trigger": [
+        "public sealed class OrderService",
+        "{",
+        "    public void Check(IValidator<Order> validator, Order order)",
+        "    {",
+        "        var result = validator.Validate(order);",
+        "    }",
+        "}"
+      ],
+      "message": "warning VAL0016: \"OrderService\" is marked [AsyncOnlyValidator]; synchronous Validate() throws at runtime, use ValidateAsync() instead",
+      "status": "Available",
+      "fix": "Rewrites the call to await ValidateAsync(...).",
+      "after": [
+        "public sealed class Order { }",
+        "",
+        "public sealed class OrderService",
+        "{",
+        "    public async Task<ValidationResult> CheckAsync(IValidator<Order> validator, Order order) =>",
+        "        await validator.ValidateAsync(order);",
+        "}"
+      ],
+      "guidance": "Use the async path for async-only validators. If the call site must stay synchronous, add a synchronous rule to the validator instead of suppressing the warning."
+    },
+    {
+      "id": "VAL0017",
+      "severity": "Info",
+      "title": "Tautological validation rule",
+      "principle": "II. Declarative-First",
+      "summary": "The rule's bounds cover the full value range, so it can never fail. It adds cost without changing the result.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    [MinimumLength(0)]",
+        "    public string Name { get; set; } = string.Empty;",
+        "}"
+      ],
+      "message": "info VAL0017: The rule \"MinimumLength\" on member \"Name\" is always satisfied and can be removed",
+      "status": "Available",
+      "fix": "Removes the always-satisfied attribute.",
+      "after": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    public string Name { get; set; } = string.Empty;",
+        "}"
+      ],
+      "guidance": "Keep the rule only when the explicit zero bound is useful documentation, and suppress the diagnostic locally with a reason in that case."
+    },
+    {
+      "id": "VAL0018",
+      "severity": "Error",
+      "title": "Invalid condition method",
+      "principle": "II. Declarative-First",
+      "summary": "A conditional attribute names a method that is missing or has an unsupported signature.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class Order",
+        "{",
+        "    [WhenCondition(\"IsActive\")]",
+        "    public string? Reason { get; set; }",
+        "}"
+      ],
+      "message": "error VAL0018: Condition method \"IsActive\" on type \"Order\" must be an accessible instance or static method matching (Order instance) or (Order instance, ValidationContext<Order> context)",
+      "status": "Intentional",
+      "reason": "The condition method must be authored or its signature chosen; the generator cannot provide business logic.",
+      "guidance": "Add an accessible method returning bool with (T instance) or (T instance, ValidationContext<T> context). Instance and static methods are supported."
+    },
+    {
+      "id": "VAL0019",
+      "severity": "Error",
+      "title": "Invalid lifecycle hook",
+      "principle": "II. Declarative-First",
+      "summary": "A lifecycle attribute names a hook that is missing, non-static, or has the wrong return type or parameters.",
+      "trigger": [
+        "[Validate]",
+        "[PreValidate(\"BeforeValidate\")]",
+        "public sealed class Order",
+        "{",
+        "    public string? Number { get; set; }",
+        "}"
+      ],
+      "message": "error VAL0019: Lifecycle hook \"BeforeValidate\" on type \"Order\" must be a static method returning bool",
+      "status": "Intentional",
+      "reason": "The hook must be authored or its signature chosen; the generator cannot invent lifecycle behavior.",
+      "guidance": "Declare a static PreValidate method accepting (T, ValidationContext<T>) or (T, ValidationContext<T>, ValidationErrorCollector) and returning bool. OnFailure accepts ValidationResult and returns void."
+    },
+    {
+      "id": "VAL0020",
+      "severity": "Error",
+      "title": "Invalid custom validator",
+      "principle": "II. Declarative-First",
+      "summary": "A [CustomValidator] reference names a method that is missing or does not match a supported synchronous or asynchronous signature.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class Order",
+        "{",
+        "    [CustomValidator(typeof(OrderRules), \"Validate\")]",
+        "    public string? Number { get; set; }",
+        "}",
+        "",
+        "public static class OrderRules { }"
+      ],
+      "message": "error VAL0020: Custom validator method \"Validate\" on type \"OrderRules\" must be a static method matching a supported signature",
+      "status": "Intentional",
+      "reason": "The custom method must be authored or its signature chosen; the generator cannot guess the validation logic.",
+      "guidance": "Use a static method returning bool or ValidationResult and accepting (TValue) or (TValue, IServiceProvider). Async methods set IsAsync = true, return ValueTask<bool> or ValueTask<ValidationResult>, and end with CancellationToken."
+    },
+    {
+      "id": "VAL0021",
+      "severity": "Error",
+      "title": "Invalid date/time rule value",
+      "principle": "III. Compile-Time Safe & Diagnostic-Rich",
+      "summary": "A date/time rule literal cannot be parsed as the member's date/time type under the invariant culture.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class Subscription",
+        "{",
+        "    [After(\"not-a-date\")]",
+        "    public DateOnly StartsOn { get; set; }",
+        "}"
+      ],
+      "message": "error VAL0021: The value \"not-a-date\" cannot be parsed as type \"DateOnly\" for the date/time rule on \"StartsOn\"",
+      "status": "Intentional",
+      "reason": "The literal is unparseable; the intended date is unknown and the generator never substitutes DateTime.Now.",
+      "guidance": "Use an invariant date/time literal for the member type, for example [After(\"2026-01-01\")] on DateOnly. If the source is local time, normalize it at the boundary."
+    },
+    {
+      "id": "VAL0022",
+      "severity": "Error",
+      "title": "Generic model is not supported",
+      "principle": "I. Library-First & Source-Generated",
+      "summary": "The source generator emits closed, non-generic validator classes and cannot generate a validator for an open generic model.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class Box<T>",
+        "{",
+        "    [NotEmpty]",
+        "    public string? Name { get; set; }",
+        "}"
+      ],
+      "message": "error VAL0022: Generic type \"Box<T>\" cannot be validated by the source generator; use a non-generic model or a fluent validator",
+      "status": "Intentional",
+      "reason": "The model shape must change or move to a fluent validator; a generator fix would have to choose a closed instantiation.",
+      "guidance": "Use a non-generic model, or write a fluent Validator<Box<T>> for the closed generic type you actually validate."
+    },
+    {
+      "id": "VAL0023",
+      "severity": "Warning",
+      "title": "RuleFor member name mismatch",
+      "principle": "III. Compile-Time Safe & Diagnostic-Rich",
+      "summary": "The RuleFor expression selects one member but the string argument names another. The generated error path and client payload would be wrong.",
+      "trigger": [
+        "public sealed class Customer",
+        "{",
+        "    public string? Name { get; set; }",
+        "}",
+        "",
+        "public sealed class CustomerValidator : Validator<Customer>",
+        "{",
+        "    protected override void Configure(ValidatorRuleBuilder<Customer> builder)",
+        "    {",
+        "        builder.RuleFor(static x => x.Name, \"Email\").NotEmpty();",
+        "    }",
+        "}"
+      ],
+      "message": "warning VAL0023: RuleFor selects member \"Name\" but passes member name \"Email\"; use nameof(Customer.Name) or \"Name\"",
+      "status": "Available",
+      "fix": "Rewrites the member-name argument to nameof(Model.Member).",
+      "after": [
+        "public sealed class Customer",
+        "{",
+        "    public string? Name { get; set; }",
+        "}",
+        "",
+        "public sealed class CustomerValidator : Validator<Customer>",
+        "{",
+        "    protected override void Configure(ValidatorRuleBuilder<Customer> builder)",
+        "    {",
+        "        builder.RuleFor(static x => x.Name, nameof(Customer.Name)).NotEmpty();",
+        "    }",
+        "}"
+      ],
+      "guidance": "Use nameof so the compiler keeps the expression and the reported member aligned. Custom paths and free-form names are intentionally not rewritten."
+    },
+    {
+      "id": "VAL0024",
+      "severity": "Warning",
+      "title": "Collection rule requires a collection",
+      "principle": "III. Compile-Time Safe & Diagnostic-Rich",
+      "summary": "A cardinality rule such as Count, MinCount, or MaxCount is applied to a scalar member.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class Order",
+        "{",
+        "    [Count(1, 5)]",
+        "    public int CountValue { get; set; }",
+        "}"
+      ],
+      "message": "warning VAL0024: Rule \"Count\" requires a collection, but the target type is \"int\"",
+      "status": "Intentional",
+      "reason": "The target member or the rule must change based on intent; the analyzer cannot know which one the author meant.",
+      "guidance": "Apply cardinality rules to arrays or IEnumerable<T> members. Use [InclusiveBetween] for a numeric scalar or remove the cardinality rule."
+    },
+    {
+      "id": "VAL0025",
+      "severity": "Warning",
+      "title": "Async-only validator in synchronous adapter",
+      "principle": "III. Compile-Time Safe & Diagnostic-Rich",
+      "summary": "A [JeninnetValidatable] adapter points at an async-only validator, but the DataAnnotations adapter calls the synchronous Validate API.",
+      "trigger": [
+        "[AsyncOnlyValidator]",
+        "public sealed class AsyncOrderValidator : Validator<Order>",
+        "{",
+        "    protected override void Configure(ValidatorRuleBuilder<Order> builder)",
+        "    {",
+        "        builder.RuleFor(static x => x.Number, nameof(Order.Number))",
+        "               .Must(static async (value, token) =>",
+        "               {",
+        "                   await Task.Yield();",
+        "                   return value is not null;",
+        "               });",
+        "    }",
+        "}",
+        "",
+        "[JeninnetValidatable(typeof(AsyncOrderValidator))]",
+        "public sealed class Order",
+        "{",
+        "    public string? Number { get; set; }",
+        "}"
+      ],
+      "message": "warning VAL0025: Validator \"AsyncOrderValidator\" is marked [AsyncOnlyValidator] but \"Order\" calls the synchronous DataAnnotations path; use an async integration path or add a synchronous rule",
+      "status": "Intentional",
+      "reason": "The integration path or the validator must change based on intent; the adapter cannot silently switch to an async contract.",
+      "guidance": "Use an async integration path, or add a synchronous rule to the validator so the DataAnnotations path can run it."
+    },
+    {
+      "id": "VAL0027",
+      "severity": "Error",
+      "title": "Sanitize cannot be applied",
+      "principle": "II. Declarative-First",
+      "summary": "Sanitization writes the cleaned value back in place, but the member has no writable setter or is not a supported sanitizable type.",
+      "trigger": [
+        "public sealed class Order",
+        "{",
+        "    [Sanitize(Trim = true)]",
+        "    public string Code { get; init; } = string.Empty;",
+        "}"
+      ],
+      "message": "error VAL0027: [Sanitize] cannot be applied to \"Code\": the member has an init-only setter",
+      "status": "Intentional",
+      "reason": "Fixing the member setter or removing sanitization is a design decision; the generator cannot mutate an immutable member.",
+      "guidance": "Give the member an accessible non-init setter, sanitize a writable copy, or remove the attribute. The fluent equivalent without a setter throws InvalidOperationException at configuration time."
+    },
+    {
+      "id": "VAL0028",
+      "severity": "Warning",
+      "title": "SkipValidation conflicts with validation attributes",
+      "principle": "II. Declarative-First",
+      "summary": "[SkipValidation] drops every rule for the property, so the accompanying validation attributes never run.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class Order",
+        "{",
+        "    [SkipValidation, NotEmpty]",
+        "    public string? Code { get; set; }",
+        "}"
+      ],
+      "message": "warning VAL0028: [SkipValidation] on \"Code\" is combined with validation attributes; remove the attributes or the skip marker",
+      "status": "Intentional",
+      "reason": "Removing the skip marker or removing the attributes depends on the author's intent; both are valid outcomes.",
+      "guidance": "Keep [SkipValidation] and remove the validation attributes to opt out deliberately, or remove [SkipValidation] to let the rules run."
+    },
+    {
+      "id": "VAL0029",
+      "severity": "Error",
+      "title": "Conditional attribute has an invalid target",
+      "principle": "II. Declarative-First",
+      "summary": "A conditional attribute references a sibling member that does not exist, is static, or cannot be read by the generated validator.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class Order",
+        "{",
+        "    [RequiredIf(\"Missing\", 1)]",
+        "    public string? Code { get; set; }",
+        "}"
+      ],
+      "message": "error VAL0029: The conditional attribute \"RequiredIf\" on \"Code\" has an invalid target: no readable member \"Missing\" exists",
+      "status": "Intentional",
+      "reason": "The intended sibling member is user intent; the generator cannot know which member the author meant.",
+      "guidance": "Use nameof(...) with a readable instance member on the same model. Static members and self-references are rejected."
+    },
+    {
+      "id": "VAL0030",
+      "severity": "Error",
+      "title": "Conditional attribute value is not supported",
+      "principle": "II. Declarative-First",
+      "summary": "The conditional constant cannot be compared with the target member's type.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class Order",
+        "{",
+        "    public bool IsActive { get; set; }",
+        "",
+        "    [RequiredIf(nameof(IsActive), \"yes\")]",
+        "    public string? Reason { get; set; }",
+        "}"
+      ],
+      "message": "error VAL0030: The conditional attribute \"RequiredIf\" on \"Reason\" has an unsupported value: a Boolean member cannot be compared with \"yes\"",
+      "status": "Intentional",
+      "reason": "The intended comparison value is user intent; the generator cannot choose between changing the value and changing the member type.",
+      "guidance": "Match the constant to the sibling member's type: true for Boolean, a numeric literal for numeric types, and a parseable string for date/time, Guid, and TimeSpan members."
+    },
+    {
+      "id": "VAL0031",
+      "severity": "Error",
+      "title": "Conditional attribute is duplicated",
+      "principle": "II. Declarative-First",
+      "summary": "The same conditional attribute targets one member more than once, so the generated condition is ambiguous.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class Order",
+        "{",
+        "    public bool IsActive { get; set; }",
+        "",
+        "    [RequiredIf(nameof(IsActive), true)]",
+        "    [RequiredIf(nameof(IsActive), false)]",
+        "    public string? Reason { get; set; }",
+        "}"
+      ],
+      "message": "error VAL0031: The conditional attribute \"RequiredIf\" on \"Reason\" targets \"IsActive\" more than once; combine the conditions or remove the duplicate",
+      "status": "Intentional",
+      "reason": "Which duplicate to keep is user intent; the generator cannot merge two different conditions safely.",
+      "guidance": "Keep one condition per attribute type and target. Different conditional attribute types may target the same member; their conditions are combined with AND."
+    },
+    {
+      "id": "VAL0032",
+      "severity": "Error",
+      "title": "Relative date rule requires a date/time member",
+      "principle": "II. Declarative-First",
+      "summary": "[FutureDate] and [PastDate] compare a member with the current instant, so the member must have a date/time type.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class Subscription",
+        "{",
+        "    [FutureDate]",
+        "    public string? When { get; set; }",
+        "}"
+      ],
+      "message": "error VAL0032: [FutureDate] on \"When\" requires DateTime, DateTimeOffset, or DateOnly; \"string\" is not supported",
+      "status": "Intentional",
+      "reason": "The member type or the rule must change based on intent; TimeOnly has no date component and is not a substitute.",
+      "guidance": "Use DateTime, DateTimeOffset, or DateOnly for the member, or use a custom/fluent rule for another representation."
+    },
+    {
+      "id": "VAL0033",
+      "severity": "Error",
+      "title": "Exclusive range has equal bounds",
+      "principle": "III. Compile-Time Safe & Diagnostic-Rich",
+      "summary": "An exclusive range with equal bounds can never match. The declaration describes an impossible validation.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class User",
+        "{",
+        "    [ExclusiveBetween(5, 5)]",
+        "    public int Score { get; set; }",
+        "}"
+      ],
+      "message": "error VAL0033: [ExclusiveBetween] on \"Score\" has equal bounds (5); an exclusive range can never match. Widen the bounds or use an inclusive range.",
+      "status": "Intentional",
+      "reason": "Widening the bounds or switching to an inclusive range changes semantics; the author must choose the intended range.",
+      "guidance": "Use a strict lower < upper range such as [ExclusiveBetween(4, 6)], or use [InclusiveBetween(5, 5)] when the single value is intended."
+    },
+    {
+      "id": "VAL0034",
+      "severity": "Error",
+      "title": "Invalid multiple-of divisor",
+      "principle": "III. Compile-Time Safe & Diagnostic-Rich",
+      "summary": "A multiple-of rule uses a divisor that is zero, negative, NaN, or infinite. The rule cannot produce a meaningful result.",
+      "trigger": [
+        "[Validate]",
+        "public sealed class Payment",
+        "{",
+        "    [MultipleOf(0)]",
+        "    public decimal Amount { get; set; }",
+        "}"
+      ],
+      "message": "error VAL0034: The divisor \"0\" for [MultipleOf] on \"Amount\" must be a positive finite number",
+      "status": "Intentional",
+      "reason": "The intended positive divisor is user intent; the generator cannot choose a replacement divisor.",
+      "guidance": "Use a positive finite divisor such as [MultipleOf(0.01)] for currency or [MultipleOf(5)] for a required increment."
+    }
+  ]
+}

@@ -47,8 +47,10 @@ for redundant `[NotNull]` (`VAL0014`) and tautological rules (`VAL0017`).
 
 The other 22 diagnostics are intentional omissions: the correct change depends on the author's
 intent (the rule, the member type, the member name, or the missing method). The public
-[diagnostics matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/03-reference/03-diagnostics.md)
-records the reason for every row, and `scripts/quality/check-analyzer-fix-coverage.ps1` verifies
+[diagnostic gallery](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/03-reference/09-diagnostic-gallery/index.md)
+provides a minimal trigger, compiler output, and either a tested fix or the reason no fix is safe
+for every ID. The [diagnostics matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/03-reference/03-diagnostics.md)
+remains the compact status view, and `scripts/quality/check-analyzer-fix-coverage.ps1` verifies
 that the table, the providers, and `AnalyzerReleases.Shipped.md`/`Unshipped.md` agree.
 
 ## Dependencies

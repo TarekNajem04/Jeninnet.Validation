@@ -768,6 +768,12 @@ try {
         $gate.LogPath = Join-Path $logsDirectory '10a-analyzer-fix-coverage.log'
         [void]$gates.Add($gate)
 
+        $gate = New-Gate -Name 'diagnostic-gallery' -Category 'Docs' -Command 'generate-diagnostic-gallery.ps1 -Check' -Evidence 'Generated diagnostic pages match the data source byte-for-byte.' -Skip:$SkipDocs -Action {
+            Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/docs/generate-diagnostic-gallery.ps1') -Arguments @('-Check')
+        }
+        $gate.LogPath = Join-Path $logsDirectory '10c-diagnostic-gallery.log'
+        [void]$gates.Add($gate)
+
         $gate = New-Gate -Name 'contract-fingerprint' -Category 'Quality' -Command 'check-contract-fingerprints.ps1' -Evidence 'Descriptor fingerprints are deterministic on net10/net11 and match the reviewed baseline.' -DependsOn @('build') -Skip:$SkipContractFingerprint -Action {
             Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/quality/check-contract-fingerprints.ps1')
         }

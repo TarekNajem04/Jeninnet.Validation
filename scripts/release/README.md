@@ -61,6 +61,8 @@ pwsh scripts/release/run-release-gates.ps1 -IncludeCoverage -IncludeSonar
 | `message-keys` | `-SkipMessageKeys` | — | Message-key catalog vs resource packs |
 | `docs-links` | `-SkipDocs` | — | Local Markdown links |
 | `readme-claims` | `-SkipDocs` | — | README project and packable-count claims |
+| `analyzer-fix-coverage` | `-SkipAnalyzerFixes` | — | Diagnostic → fix → docs matrix and release tracking |
+| `diagnostic-gallery` | `-SkipDocs` | — | Generated diagnostic pages match the data source byte-for-byte |
 | `arabic-text` | `-SkipDocs` | — | Arabic text and hidden-control check |
 | `client-support` | `-SkipClientSupport` | — | C#/JS support lists match the manifest |
 | `client` | `-SkipClient` | — | JavaScript client runtime tests |

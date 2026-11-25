@@ -97,6 +97,8 @@
       href: en/03-reference/02-rule-reference.md
     - name: Diagnostics
       href: en/03-reference/03-diagnostics.md
+    - name: Diagnostic gallery
+      href: en/03-reference/09-diagnostic-gallery/index.md
     - name: Metadata
       href: en/03-reference/04-metadata.md
     - name: Integration packages

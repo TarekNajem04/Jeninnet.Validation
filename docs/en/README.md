@@ -92,11 +92,12 @@ It is written for application developers and library authors.
 2. [Core API](03-reference/01-core-api.md)
 3. [Rule reference](03-reference/02-rule-reference.md)
 4. [Diagnostics](03-reference/03-diagnostics.md)
-5. [Metadata](03-reference/04-metadata.md)
-6. [Integration packages](03-reference/05-integration-packages.md)
-7. [Compatibility and versions](03-reference/06-compatibility-and-versions.md)
-8. [Known limitations](03-reference/07-known-limitations.md)
-9. [API reference](03-reference/08-api-reference.md)
+5. [Diagnostic gallery](03-reference/09-diagnostic-gallery/index.md)
+6. [Metadata](03-reference/04-metadata.md)
+7. [Integration packages](03-reference/05-integration-packages.md)
+8. [Compatibility and versions](03-reference/06-compatibility-and-versions.md)
+9. [Known limitations](03-reference/07-known-limitations.md)
+10. [API reference](03-reference/08-api-reference.md)
 
 ### Part 5 — Operations
 
