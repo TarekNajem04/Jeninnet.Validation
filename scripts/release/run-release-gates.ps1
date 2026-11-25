@@ -68,6 +68,9 @@
 .PARAMETER SkipAnalyzerFixes
     Skip the analyzer diagnostic/code-fix coverage check.
 
+.PARAMETER SkipContractFingerprint
+    Skip the validation contract fingerprint check.
+
 .PARAMETER SkipClientSupport
     Skip the client rule-support drift check.
 
@@ -108,7 +111,7 @@
     pwsh scripts/release/run-release-gates.ps1 -SkipPackages -SkipAot
 
 .EXAMPLE
-    pwsh scripts/release/run-release-gates.ps1 -SkipRestore -SkipBuild -SkipTests -SkipFormat -SkipSourceHeaders -SkipApiBaselines -SkipApiGateSelfTest -SkipApiDiff -SkipMessageKeys -SkipAnalyzerFixes -SkipClientSupport -SkipClient -SkipVulnerability -SkipPackages -SkipConsumer -SkipAotSupport -SkipAot -SkipCoverage -SkipSonar
+    pwsh scripts/release/run-release-gates.ps1 -SkipRestore -SkipBuild -SkipTests -SkipFormat -SkipSourceHeaders -SkipApiBaselines -SkipApiGateSelfTest -SkipApiDiff -SkipMessageKeys -SkipAnalyzerFixes -SkipContractFingerprint -SkipClientSupport -SkipClient -SkipVulnerability -SkipPackages -SkipConsumer -SkipAotSupport -SkipAot -SkipCoverage -SkipSonar
 #>
 
 [CmdletBinding()]
@@ -129,6 +132,7 @@ param(
     [switch]$SkipMessageKeys,
     [switch]$SkipDocs,
     [switch]$SkipAnalyzerFixes,
+    [switch]$SkipContractFingerprint,
     [switch]$SkipClientSupport,
     [switch]$SkipClient,
     [switch]$SkipVulnerability,
@@ -762,6 +766,12 @@ try {
             Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/quality/check-analyzer-fix-coverage.ps1')
         }
         $gate.LogPath = Join-Path $logsDirectory '10a-analyzer-fix-coverage.log'
+        [void]$gates.Add($gate)
+
+        $gate = New-Gate -Name 'contract-fingerprint' -Category 'Quality' -Command 'check-contract-fingerprints.ps1' -Evidence 'Descriptor fingerprints are deterministic on net10/net11 and match the reviewed baseline.' -DependsOn @('build') -Skip:$SkipContractFingerprint -Action {
+            Invoke-PwshScript -Path (Join-Path $repositoryRoot 'scripts/quality/check-contract-fingerprints.ps1')
+        }
+        $gate.LogPath = Join-Path $logsDirectory '10b-contract-fingerprint.log'
         [void]$gates.Add($gate)
 
         $gate = New-Gate -Name 'arabic-text' -Category 'Docs' -Command 'check-arabic-text.ps1' -Evidence 'Arabic text passes the repository check.' -Skip:$SkipDocs -Action {

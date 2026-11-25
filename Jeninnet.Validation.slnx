@@ -33,6 +33,8 @@
   </Folder>
   <Folder Name="/scripts/quality/">
     <File Path="scripts/quality/check-source-headers.ps1" />
+    <File Path="scripts/quality/check-contract-fingerprints.ps1" />
+    <File Path="scripts/quality/test-contract-fingerprint-gate.ps1" />
   </Folder>
   <Folder Name="/scripts/api/">
     <File Path="scripts/api/README.md" />
@@ -271,5 +273,9 @@
   </Folder>
   <Folder Name="/benchmarks/">
     <Project Path="src/Jeninnet.Validation.Benchmarks/Jeninnet.Validation.Benchmarks.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/Jeninnet.Validation.ContractFingerprint/Jeninnet.Validation.ContractFingerprint.csproj" />
+    <File Path="tools/Jeninnet.Validation.ContractFingerprint/README.md" />
   </Folder>
 </Solution>

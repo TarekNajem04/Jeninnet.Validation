@@ -139,6 +139,10 @@ jobs:
         shell: pwsh
         run: pwsh scripts/api/test-public-api-gate.ps1
 
+      - name: Check validation contract fingerprints
+        shell: pwsh
+        run: pwsh scripts/quality/check-contract-fingerprints.ps1
+
   message-keys:
 
     name: Message key catalog
