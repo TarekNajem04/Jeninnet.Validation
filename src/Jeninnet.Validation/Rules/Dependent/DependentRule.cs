@@ -24,13 +24,19 @@ public sealed class DependentRule<T> : IValidationRule<T>, IRuleMetadataProvider
     private static readonly object _passedState = new();
     private static readonly object _failedState = new();
 
-    private readonly ISyncValidationRule<T>? _parentSync;
-    private readonly IAsyncValidationRule<T>? _parentAsync;
     private readonly ISyncValidationRule<T>[] _syncRules;
     private readonly IAsyncValidationRule<T>[] _asyncRules;
     private readonly MemberRuleGroup<T> _parentGroup;
     private readonly object _stateKey = new();
     private readonly bool _tracksState;
+
+    internal ISyncValidationRule<T>? ParentSync { get; }
+
+    internal IAsyncValidationRule<T>? ParentAsync { get; }
+
+    internal IReadOnlyList<ISyncValidationRule<T>> SyncRules => _syncRules;
+
+    internal IReadOnlyList<IAsyncValidationRule<T>> AsyncRules => _asyncRules;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DependentRule{T}"/> class.
@@ -54,8 +60,8 @@ public sealed class DependentRule<T> : IValidationRule<T>, IRuleMetadataProvider
 
         ArgumentNullException.ThrowIfNull(parentGroup);
 
-        _parentSync = parentSync;
-        _parentAsync = parentAsync;
+        ParentSync = parentSync;
+        ParentAsync = parentAsync;
         _syncRules = [.. syncRules ?? []];
         _asyncRules = [.. asyncRules ?? []];
         _parentGroup = parentGroup;
@@ -66,21 +72,26 @@ public sealed class DependentRule<T> : IValidationRule<T>, IRuleMetadataProvider
     public void Validate(in ValidationContext<T> context, ValidationErrorCollector errors) {
         ArgumentNullException.ThrowIfNull(errors);
 
-        if(_parentSync is null) {
+        if(ParentSync is null) {
             // The parent is asynchronous and never runs on the synchronous path.
             return;
         }
 
+        var trace = RuleDecisionTrace.Current(in context);
         var countBefore = errors.Count;
-        _parentSync.Validate(in context, errors);
+        var startedAt = RuleDecisionTraceSession.Start(trace);
+        ParentSync.Validate(in context, errors);
 
         var passed = errors.Count == countBefore;
+        trace?.Complete(ParentSync, in context, startedAt, failed: !passed);
 
         if(_tracksState) {
             StorePassed(context, passed);
         }
 
         if(!passed) {
+            trace?.SkipRemaining(_syncRules, 0, in context, RuleTracePhase.Sync);
+            trace?.SkipRemaining(_asyncRules, 0, in context, RuleTracePhase.Async);
             return;
         }
 
@@ -94,11 +105,18 @@ public sealed class DependentRule<T> : IValidationRule<T>, IRuleMetadataProvider
         CancellationToken cancellationToken = default) {
         ArgumentNullException.ThrowIfNull(errors);
 
-        if(_parentAsync is not null) {
-            var countBefore = errors.Count;
-            await _parentAsync.ValidateAsync(context, errors, cancellationToken).ConfigureAwait(false);
+        var trace = RuleDecisionTrace.Current(in context);
 
-            if(errors.Count > countBefore) {
+        if(ParentAsync is not null) {
+            var countBefore = errors.Count;
+            var startedAt = RuleDecisionTraceSession.Start(trace);
+            await ParentAsync.ValidateAsync(context, errors, cancellationToken).ConfigureAwait(false);
+            var parentPassed = errors.Count == countBefore;
+            trace?.Complete(ParentAsync, in context, startedAt, failed: !parentPassed);
+
+            if(!parentPassed) {
+                trace?.SkipRemaining(_syncRules, 0, in context, RuleTracePhase.All);
+                trace?.SkipRemaining(_asyncRules, 0, in context, RuleTracePhase.Async);
                 return;
             }
 
@@ -122,12 +140,18 @@ public sealed class DependentRule<T> : IValidationRule<T>, IRuleMetadataProvider
         }
 
         var stopOnError = StopOnError(in context);
+        var trace = RuleDecisionTrace.Current(in context);
 
         for(var i = 0; i < _syncRules.Length; i++) {
             var countBefore = errors.Count;
+            var startedAt = RuleDecisionTraceSession.Start(trace);
             _syncRules[i].Validate(in context, errors);
 
-            if(stopOnError && errors.Count > countBefore) {
+            var failed = errors.Count > countBefore;
+            trace?.Complete(_syncRules[i], in context, startedAt, failed);
+
+            if(stopOnError && failed) {
+                trace?.SkipRemaining(_syncRules, i + 1, in context, RuleTracePhase.Sync);
                 return;
             }
         }
@@ -142,12 +166,18 @@ public sealed class DependentRule<T> : IValidationRule<T>, IRuleMetadataProvider
         }
 
         var stopOnError = StopOnError(in context);
+        var trace = RuleDecisionTrace.Current(in context);
 
         for(var i = 0; i < _asyncRules.Length; i++) {
             var countBefore = errors.Count;
+            var startedAt = RuleDecisionTraceSession.Start(trace);
             await _asyncRules[i].ValidateAsync(context, errors, cancellationToken).ConfigureAwait(false);
 
-            if(stopOnError && errors.Count > countBefore) {
+            var failed = errors.Count > countBefore;
+            trace?.Complete(_asyncRules[i], in context, startedAt, failed);
+
+            if(stopOnError && failed) {
+                trace?.SkipRemaining(_asyncRules, i + 1, in context, RuleTracePhase.Async);
                 return;
             }
         }
@@ -187,10 +217,10 @@ public sealed class DependentRule<T> : IValidationRule<T>, IRuleMetadataProvider
 
     IEnumerable<object> IValidationRuleContainer.InnerRules {
         get {
-            if(_parentSync is not null) {
-                yield return _parentSync;
-            } else if(_parentAsync is not null) {
-                yield return _parentAsync;
+            if(ParentSync is not null) {
+                yield return ParentSync;
+            } else if(ParentAsync is not null) {
+                yield return ParentAsync;
             }
 
             foreach(var rule in _syncRules) {
@@ -203,7 +233,7 @@ public sealed class DependentRule<T> : IValidationRule<T>, IRuleMetadataProvider
         }
     }
 
-    bool IValidationRuleContainer.HasSyncContent => _parentSync is not null;
+    bool IValidationRuleContainer.HasSyncContent => ParentSync is not null;
 
     IReadOnlyDictionary<string, object?>? IValidationRuleContainer.Parameters =>
         new Dictionary<string, object?> { { "Dependent", true } };

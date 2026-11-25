@@ -326,6 +326,204 @@
       "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
       "approvedBy": "Maintainer",
       "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.IValidationDiagnosticsScope.IsRuleTraceEnabled.get -> bool",
+      "reason": "P3-027 per-rule decision trace: additive opt-in diagnostics contract; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.IValidationDiagnosticsScope.Rule(in Jeninnet.Validation.ValidationRuleTraceEvent traceEvent) -> void",
+      "reason": "P3-027 per-rule decision trace: additive opt-in diagnostics contract; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDecision",
+      "reason": "P3-027 per-rule decision trace: additive rule outcome vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDecision.Failed = 1 -> Jeninnet.Validation.ValidationRuleDecision",
+      "reason": "P3-027 per-rule decision trace: additive rule outcome vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDecision.Passed = 0 -> Jeninnet.Validation.ValidationRuleDecision",
+      "reason": "P3-027 per-rule decision trace: additive rule outcome vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDecision.ShortCircuited = 3 -> Jeninnet.Validation.ValidationRuleDecision",
+      "reason": "P3-027 per-rule decision trace: additive rule outcome vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDecision.SkippedCondition = 2 -> Jeninnet.Validation.ValidationRuleDecision",
+      "reason": "P3-027 per-rule decision trace: additive rule outcome vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDurationBucket",
+      "reason": "P3-027 per-rule decision trace: additive coarse duration vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDurationBucket.LessThanOneHundredMilliseconds = 3 -> Jeninnet.Validation.ValidationRuleDurationBucket",
+      "reason": "P3-027 per-rule decision trace: additive coarse duration vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDurationBucket.LessThanOneMillisecond = 1 -> Jeninnet.Validation.ValidationRuleDurationBucket",
+      "reason": "P3-027 per-rule decision trace: additive coarse duration vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDurationBucket.LessThanTenMilliseconds = 2 -> Jeninnet.Validation.ValidationRuleDurationBucket",
+      "reason": "P3-027 per-rule decision trace: additive coarse duration vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDurationBucket.NotMeasured = 0 -> Jeninnet.Validation.ValidationRuleDurationBucket",
+      "reason": "P3-027 per-rule decision trace: additive coarse duration vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDurationBucket.OneHundredMillisecondsOrMore = 4 -> Jeninnet.Validation.ValidationRuleDurationBucket",
+      "reason": "P3-027 per-rule decision trace: additive coarse duration vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleTraceEvent",
+      "reason": "P3-027 per-rule decision trace: additive privacy-safe rule event; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleTraceEvent.Decision.get -> Jeninnet.Validation.ValidationRuleDecision",
+      "reason": "P3-027 per-rule decision trace: additive privacy-safe rule event; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleTraceEvent.Duration.get -> Jeninnet.Validation.ValidationRuleDurationBucket",
+      "reason": "P3-027 per-rule decision trace: additive privacy-safe rule event; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleTraceEvent.Kind.get -> string!",
+      "reason": "P3-027 per-rule decision trace: additive privacy-safe rule event; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleTraceEvent.MemberPath.get -> string!",
+      "reason": "P3-027 per-rule decision trace: additive privacy-safe rule event; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleTraceEvent.ValidationRuleTraceEvent() -> void",
+      "reason": "P3-027 per-rule decision trace: additive privacy-safe rule event; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleTraceEvent.ValidationRuleTraceEvent(string! kind, string! memberPath, Jeninnet.Validation.ValidationRuleDecision decision, Jeninnet.Validation.ValidationRuleDurationBucket duration) -> void",
+      "reason": "P3-027 per-rule decision trace: additive privacy-safe rule event; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Diagnostics",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.EnableRuleTrace.get -> bool",
+      "reason": "P3-027 per-rule decision trace: opt-in diagnostics switch, off by default; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Diagnostics",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.EnableRuleTrace.set -> void",
+      "reason": "P3-027 per-rule decision trace: opt-in diagnostics switch, off by default; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
     }
   ]
 }

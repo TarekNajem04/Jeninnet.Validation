@@ -102,12 +102,19 @@ public sealed class MemberRuleGroup<T> : ISyncValidationRule<T>, IAsyncValidatio
         // Instead, the INDIVIDUAL rules must use the context to build the path.
         var startCount = errors.Count;
         var effectiveCascadeMode = ResolveCascadeMode(in context);
+        var trace = RuleDecisionTrace.Current(in context);
 
         for(var i = 0; i < SyncRules.Count; i++) {
             var rule = SyncRules[i];
+            var countBefore = errors.Count;
+            var startedAt = RuleDecisionTraceSession.Start(trace);
             rule.Validate(in context, errors);
 
+            var failed = errors.Count > countBefore;
+            trace?.Complete(rule, in context, startedAt, failed);
+
             if((effectiveCascadeMode is Jeninnet.Validation.CascadeMode.Stop || context.FailFast) && errors.Count > startCount) {
+                trace?.SkipRemaining(SyncRules, i + 1, in context, RuleTracePhase.Sync);
                 break;
             }
         }
@@ -128,12 +135,19 @@ public sealed class MemberRuleGroup<T> : ISyncValidationRule<T>, IAsyncValidatio
         // Instead, the INDIVIDUAL rules must use the context to build the path.
         var startCount = errors.Count;
         var effectiveCascadeMode = ResolveCascadeMode(in context);
+        var trace = RuleDecisionTrace.Current(in context);
 
         for(var i = 0; i < AsyncRules.Count; i++) {
             var rule = AsyncRules[i];
+            var countBefore = errors.Count;
+            var startedAt = RuleDecisionTraceSession.Start(trace);
             await rule.ValidateAsync(context, errors, cancellationToken).ConfigureAwait(false);
 
+            var failed = errors.Count > countBefore;
+            trace?.Complete(rule, in context, startedAt, failed);
+
             if((effectiveCascadeMode is Jeninnet.Validation.CascadeMode.Stop || context.FailFast) && errors.Count > startCount) {
+                trace?.SkipRemaining(AsyncRules, i + 1, in context, RuleTracePhase.Async);
                 break;
             }
         }

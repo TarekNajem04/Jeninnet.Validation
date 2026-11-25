@@ -24,6 +24,12 @@ adds one volatile null check per `CompositeValidator` call and allocates nothing
 creates one short-lived diagnostics scope plus an Activity only when a listener is attached; the
 histogram/counter use `TagList` and type/rule-set labels, never messages or values.
 
+Per-rule tracing is a second opt-in layer (`EnableRuleTrace`, default `false`). With a sink installed
+but tracing off, the engine checks one boolean per validation operation and allocates nothing extra.
+When enabled, each executed or skipped rule pays for a timestamp, a member path, and an
+`ActivityEvent`; that cost is bounded by the number of configured rules and is never paid on the
+default path.
+
 ## Why it is fast
 
 - `ValidationErrorCollector` and `RootContextData` are pooled per thread.

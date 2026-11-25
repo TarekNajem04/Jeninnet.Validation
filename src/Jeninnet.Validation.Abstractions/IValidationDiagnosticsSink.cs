@@ -31,6 +31,20 @@ public interface IValidationDiagnosticsSink {
 /// </summary>
 public interface IValidationDiagnosticsScope : IDisposable {
     /// <summary>
+    /// Gets a value indicating whether per-rule decision tracing is enabled for this operation.
+    /// Implementations return <see langword="false"/> by default, so rule tracing stays off unless
+    /// a diagnostics implementation opts in.
+    /// </summary>
+    bool IsRuleTraceEnabled => false;
+
+    /// <summary>
+    /// Records one rule decision. The default implementation ignores the event so existing
+    /// diagnostics implementations remain source-compatible.
+    /// </summary>
+    /// <param name="traceEvent">The rule decision event.</param>
+    void Rule(in ValidationRuleTraceEvent traceEvent) => _ = traceEvent;
+
+    /// <summary>
     /// Completes the operation with a validation result.
     /// </summary>
     /// <param name="result">The completed validation result.</param>

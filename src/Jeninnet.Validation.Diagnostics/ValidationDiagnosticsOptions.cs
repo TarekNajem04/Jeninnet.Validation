@@ -42,6 +42,14 @@ public sealed class ValidationDiagnosticsOptions {
     public double SamplingProbability { get; set; } = 1.0;
 
     /// <summary>
+    /// Gets or sets a value indicating whether per-rule decision tracing is enabled. Defaults to
+    /// <see langword="false"/>. Rule tracing requires tracing to be enabled and emits one
+    /// <c>validation.rule</c> activity event per executed or skipped rule; it never includes
+    /// property values or messages.
+    /// </summary>
+    public bool EnableRuleTrace { get; set; }
+
+    /// <summary>
     /// Gets or sets a value indicating whether rule-set names are added to tags. Defaults to
     /// <see langword="true"/>. Rule-set names are configuration labels, not user data.
     /// </summary>
@@ -54,6 +62,10 @@ public sealed class ValidationDiagnosticsOptions {
 
         if(string.IsNullOrWhiteSpace(MeterName)) {
             throw new ArgumentException("A Meter name is required.");
+        }
+
+        if(EnableRuleTrace && !EnableTracing) {
+            throw new ArgumentException("Rule tracing requires tracing to be enabled.");
         }
 
         if(double.IsNaN(SamplingProbability) || SamplingProbability is < 0 or > 1) {

@@ -18,6 +18,10 @@ public sealed class ConditionalRule<T> : ISyncValidationRule<T>, IAsyncValidatio
     private readonly ISyncValidationRule<T>[] _rules;
     private readonly IAsyncValidationRule<T>[] _asyncRules;
 
+    internal IReadOnlyList<ISyncValidationRule<T>> SyncRules => _rules;
+
+    internal IReadOnlyList<IAsyncValidationRule<T>> AsyncRules => _asyncRules;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ConditionalRule{T}"/> class.
     /// </summary>
@@ -61,6 +65,8 @@ public sealed class ConditionalRule<T> : ISyncValidationRule<T>, IAsyncValidatio
 
     /// <inheritdoc />
     public void Validate(in ValidationContext<T> context, ValidationErrorCollector errors) {
+        ArgumentNullException.ThrowIfNull(errors);
+
         if(_rules.Length is 0) {
             return;
         }
@@ -74,13 +80,19 @@ public sealed class ConditionalRule<T> : ISyncValidationRule<T>, IAsyncValidatio
             ? _contextCondition(context.Instance, context)
             : _condition!(context.Instance);
 
+        var trace = RuleDecisionTrace.Current(in context);
+
         if(!shouldRun) {
+            trace?.Skip(this, in context, ValidationRuleDecision.SkippedCondition, RuleTracePhase.Sync);
             return;
         }
 
         for(var i = 0; i < _rules.Length; i++) {
             var rule = _rules[i];
+            var countBefore = errors.Count;
+            var startedAt = RuleDecisionTraceSession.Start(trace);
             rule.Validate(in context, errors);
+            trace?.Complete(rule, in context, startedAt, errors.Count > countBefore);
         }
     }
 
@@ -90,6 +102,8 @@ public sealed class ConditionalRule<T> : ISyncValidationRule<T>, IAsyncValidatio
         ValidationErrorCollector errors,
         CancellationToken cancellationToken = default
     ) {
+        ArgumentNullException.ThrowIfNull(errors);
+
         var hasSyncCondition = _condition is not null || _contextCondition is not null;
         var hasAsyncCondition = _asyncCondition is not null;
 
@@ -97,21 +111,30 @@ public sealed class ConditionalRule<T> : ISyncValidationRule<T>, IAsyncValidatio
             return;
         }
 
+        var trace = RuleDecisionTrace.Current(in context);
+
         if(!await EvaluateConditionAsync(context, cancellationToken).ConfigureAwait(false)) {
+            trace?.Skip(this, in context, ValidationRuleDecision.SkippedCondition, RuleTracePhase.All);
             return;
         }
 
         if(_rules.Length > 0) {
             for(var i = 0; i < _rules.Length; i++) {
                 var rule = _rules[i];
+                var countBefore = errors.Count;
+                var startedAt = RuleDecisionTraceSession.Start(trace);
                 rule.Validate(in context, errors);
+                trace?.Complete(rule, in context, startedAt, errors.Count > countBefore);
             }
         }
 
         if(_asyncRules.Length > 0) {
             for(var i = 0; i < _asyncRules.Length; i++) {
                 var rule = _asyncRules[i];
+                var countBefore = errors.Count;
+                var startedAt = RuleDecisionTraceSession.Start(trace);
                 await rule.ValidateAsync(context, errors, cancellationToken).ConfigureAwait(false);
+                trace?.Complete(rule, in context, startedAt, errors.Count > countBefore);
             }
         }
     }

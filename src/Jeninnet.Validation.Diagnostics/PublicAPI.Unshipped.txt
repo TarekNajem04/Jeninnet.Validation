@@ -1,1 +1,3 @@
 #nullable enable
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.EnableRuleTrace.get -> bool
+Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.EnableRuleTrace.set -> void

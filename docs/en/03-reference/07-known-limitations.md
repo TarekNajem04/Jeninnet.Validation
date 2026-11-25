@@ -49,6 +49,12 @@ These are deliberate boundaries or tracked follow-ups, not surprises.
   one collector for the nesting duration. Bounded by nesting depth; a stack-based pool is future
   work.
 - Hooks receive `RuleSets` and `FailFast`, but not `RootData` or `ServiceProvider`.
+- Per-rule decision traces (`ValidationDiagnosticsOptions.EnableRuleTrace`) are opt-in and only
+  enabled when an activity is recorded. They report one event per configured rule with kind,
+  member path, decision, and a coarse duration bucket. They never carry property values, messages,
+  parameters, or custom state. Predicate bodies and condition inputs remain opaque, nested child
+  validators emit events on their own nested activity, and a manually constructed
+  `ValidationContext<T>` without engine-provided `RootContextData` is not traced.
 
 ## Emptiness and equality semantics
 

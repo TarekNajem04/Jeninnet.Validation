@@ -176,6 +176,7 @@ public sealed class CompositeValidator<T>(
     internal ValidationResult Validate(T instance, ValidationContext<T> context, CascadeMode? classLevelCascadeMode) {
         var diagnostics = ValidationDiagnostics.Sink?.Begin(
             typeof(T), _validatorName, context.RuleSets, isAsync: false);
+        var trace = RuleDecisionTrace.Begin(diagnostics, context.RootData);
 
         try {
             if(!HasSyncContent) {
@@ -224,6 +225,7 @@ public sealed class CompositeValidator<T>(
             throw;
         }
         finally {
+            trace?.Dispose();
             diagnostics?.Dispose();
         }
     }
@@ -248,6 +250,7 @@ public sealed class CompositeValidator<T>(
 
             var errors = RentCollector();
             var rootData = RootContextData.Rent();
+            var trace = RuleDecisionTrace.Begin(diagnostics, rootData);
 
             try {
                 var effectiveOptions = ResolveOptions(filter.ServiceProvider, contextOptions: null);
@@ -272,6 +275,7 @@ public sealed class CompositeValidator<T>(
                 return result;
             }
             finally {
+                trace?.Dispose();
                 ReturnCollector(errors);
                 RootContextData.Return(rootData);
             }
@@ -342,6 +346,7 @@ public sealed class CompositeValidator<T>(
         CancellationToken cancellationToken = default) {
         var diagnostics = ValidationDiagnostics.Sink?.Begin(
             typeof(T), _validatorName, context.RuleSets, isAsync: true);
+        var trace = RuleDecisionTrace.Begin(diagnostics, context.RootData);
 
         try {
             var hasSync = SyncRules.Length > 0;
@@ -385,6 +390,9 @@ public sealed class CompositeValidator<T>(
                         effectiveClassLevelCascadeMode,
                         context.FailFast,
                         cancellationToken).ConfigureAwait(false);
+                } else if(RuleDecisionTrace.Current(in effectiveContext) is { } activeTrace) {
+                    var skippedAsync = SelectRules(AsyncRules, context.RuleSets, filter, context.MemberPath, in effectiveContext);
+                    activeTrace.SkipRemaining(skippedAsync, 0, in effectiveContext, RuleTracePhase.Async);
                 }
 
                 var result = ValidationResult.FromErrors(errors);
@@ -400,6 +408,7 @@ public sealed class CompositeValidator<T>(
             throw;
         }
         finally {
+            trace?.Dispose();
             diagnostics?.Dispose();
         }
     }
@@ -428,6 +437,7 @@ public sealed class CompositeValidator<T>(
 
             var errors = RentCollector();
             var rootData = RootContextData.Rent();
+            var trace = RuleDecisionTrace.Begin(diagnostics, rootData);
 
             try {
                 var effectiveOptions = ResolveOptions(filter.ServiceProvider, contextOptions: null);
@@ -453,6 +463,9 @@ public sealed class CompositeValidator<T>(
                 if(!stopOnError || errors.Count == 0) {
                     var selectedAsync = SelectRules(AsyncRules, ruleSets, filter, string.Empty, in context);
                     await ValidateRulesAsync(context, selectedAsync, errors, effectiveClassLevelCascadeMode, failFast, cancellationToken).ConfigureAwait(false);
+                } else if(RuleDecisionTrace.Current(in context) is { } activeTrace) {
+                    var skippedAsync = SelectRules(AsyncRules, ruleSets, filter, string.Empty, in context);
+                    activeTrace.SkipRemaining(skippedAsync, 0, in context, RuleTracePhase.Async);
                 }
 
                 var result = ValidationResult.FromErrors(errors);
@@ -460,6 +473,7 @@ public sealed class CompositeValidator<T>(
                 return result;
             }
             finally {
+                trace?.Dispose();
                 ReturnCollector(errors);
                 RootContextData.Return(rootData);
             }
@@ -480,12 +494,18 @@ public sealed class CompositeValidator<T>(
         CascadeMode classLevelCascadeMode,
         bool failFast) {
         var stopOnError = failFast || classLevelCascadeMode is CascadeMode.Stop;
+        var trace = RuleDecisionTrace.Current(in context);
 
         for(var i = 0; i < rules.Length; i++) {
             var countBefore = errors.Count;
+            var startedAt = RuleDecisionTraceSession.Start(trace);
             rules[i].Validate(in context, errors);
 
-            if(stopOnError && errors.Count > countBefore) {
+            var failed = errors.Count > countBefore;
+            trace?.Complete(rules[i], in context, startedAt, failed);
+
+            if(stopOnError && failed) {
+                trace?.SkipRemaining(rules, i + 1, in context, RuleTracePhase.Sync);
                 break;
             }
         }
@@ -499,13 +519,19 @@ public sealed class CompositeValidator<T>(
         bool failFast,
         CancellationToken cancellationToken) {
         var stopOnError = failFast || classLevelCascadeMode is CascadeMode.Stop;
+        var trace = RuleDecisionTrace.Current(in context);
 
         for(var i = 0; i < rules.Length; i++) {
             var countBefore = errors.Count;
+            var startedAt = RuleDecisionTraceSession.Start(trace);
             await rules[i].ValidateAsync(context, errors, cancellationToken)
                           .ConfigureAwait(false);
 
-            if(stopOnError && errors.Count > countBefore) {
+            var failed = errors.Count > countBefore;
+            trace?.Complete(rules[i], in context, startedAt, failed);
+
+            if(stopOnError && failed) {
+                trace?.SkipRemaining(rules, i + 1, in context, RuleTracePhase.Async);
                 break;
             }
         }
