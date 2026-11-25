@@ -37,7 +37,10 @@ public sealed class HostConformanceTests {
 
         var detailsEntry = caught!.Trailers.Single(entry => entry.Key == "grpc-status-details-bin");
         var status = GoogleRpcStatus.Parser.ParseFrom(detailsEntry.ValueBytes);
-        var badRequest = status.Details.Select(static detail => detail.Unpack<GoogleBadRequest>()).Single();
+        var badRequest = status.Details
+            .Where(static detail => detail.Is(GoogleBadRequest.Descriptor))
+            .Select(static detail => detail.Unpack<GoogleBadRequest>())
+            .Single();
 
         MSTestAssertions.That(() => badRequest.FieldViolations.Should().HaveCount(2));
     }

@@ -22,11 +22,19 @@ Jeninnet.Validation.ValidationErrorCollector.Add(Jeninnet.Validation.ValidationE
 Jeninnet.Validation.ValidationErrorCollector.Add(string! memberName, string? message, Jeninnet.Validation.ValidationErrorSeverity severity, bool messageIsAuthored) -> void
 Jeninnet.Validation.ValidationErrorCollector.Equals(Jeninnet.Validation.ValidationErrorCollector? other) -> bool
 Jeninnet.Validation.ValidationErrorCollector.ValidationErrorCollector() -> void
+Jeninnet.Validation.ValidationErrorProjection
+Jeninnet.Validation.ValidationErrorProjection.ErrorCode.get -> string?
+Jeninnet.Validation.ValidationErrorProjection.Field.get -> string!
+Jeninnet.Validation.ValidationErrorProjection.Message.get -> string!
+Jeninnet.Validation.ValidationErrorProjection.Severity.get -> Jeninnet.Validation.ValidationErrorSeverity
+Jeninnet.Validation.ValidationErrorProjection.ValidationErrorProjection() -> void
+Jeninnet.Validation.ValidationErrorProjection.ValidationErrorProjection(string! field, string! message, string? errorCode, Jeninnet.Validation.ValidationErrorSeverity severity) -> void
 const Jeninnet.Validation.Configuration.MessageParameterNames.Divisor = "Divisor" -> string!
 const Jeninnet.Validation.Configuration.ValidationMessageKeys.FUTURE_DATE = "FutureDate" -> string!
 const Jeninnet.Validation.Configuration.ValidationMessageKeys.MULTIPLE_OF = "MultipleOf" -> string!
 const Jeninnet.Validation.Configuration.ValidationMessageKeys.PAST_DATE = "PastDate" -> string!
 const Jeninnet.Validation.Configuration.ValidationMessageKeys.UNIQUE_ITEMS = "UniqueItems" -> string!
+const Jeninnet.Validation.ValidationErrorProjection.ModelLevelField = "$" -> string!
 override Jeninnet.Validation.MessageId.GetHashCode() -> int
 override Jeninnet.Validation.ValidationError.GetHashCode() -> int
 override Jeninnet.Validation.ValidationErrorCollector.Equals(object? obj) -> bool
@@ -38,6 +46,7 @@ static Jeninnet.Validation.ValidationError.operator !=(Jeninnet.Validation.Valid
 static Jeninnet.Validation.ValidationError.operator ==(Jeninnet.Validation.ValidationError left, Jeninnet.Validation.ValidationError right) -> bool
 static Jeninnet.Validation.ValidationErrorCollector.operator !=(Jeninnet.Validation.ValidationErrorCollector? left, Jeninnet.Validation.ValidationErrorCollector? right) -> bool
 static Jeninnet.Validation.ValidationErrorCollector.operator ==(Jeninnet.Validation.ValidationErrorCollector? left, Jeninnet.Validation.ValidationErrorCollector? right) -> bool
+static Jeninnet.Validation.ValidationErrorProjection.From(Jeninnet.Validation.ValidationError error) -> Jeninnet.Validation.ValidationErrorProjection
 ~override Jeninnet.Validation.MessageId.Equals(object obj) -> bool
 ~override Jeninnet.Validation.MessageId.ToString() -> string
 ~override Jeninnet.Validation.ValidationError.Equals(object obj) -> bool

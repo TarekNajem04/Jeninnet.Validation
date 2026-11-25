@@ -137,6 +137,87 @@
       "reason": "P3-017 UI-thread contract: caller-provided dispatcher post delegate for async completion; additive observable API approved for preview.3.",
       "approvedBy": "Maintainer",
       "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationErrorProjection",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationErrorProjection.ErrorCode.get -> string?",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationErrorProjection.Field.get -> string!",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationErrorProjection.Message.get -> string!",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationErrorProjection.Severity.get -> Jeninnet.Validation.ValidationErrorSeverity",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationErrorProjection.ValidationErrorProjection() -> void",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationErrorProjection.ValidationErrorProjection(string! field, string! message, string? errorCode, Jeninnet.Validation.ValidationErrorSeverity severity) -> void",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "const Jeninnet.Validation.ValidationErrorProjection.ModelLevelField = \"$\" -> string!",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "static Jeninnet.Validation.ValidationErrorProjection.From(Jeninnet.Validation.ValidationError error) -> Jeninnet.Validation.ValidationErrorProjection",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
     }
   ]
 }

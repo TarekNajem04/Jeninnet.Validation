@@ -10,7 +10,8 @@ ASP.NET Core integration for `Jeninnet.Validation`:
 - **Interceptors:** `AddValidationInterceptor<T>()` observes or replaces validation in both
   pipelines (`BeforeValidationAsync`/`AfterValidationAsync`).
 - **ProblemDetails:** `ValidationException` → 400 handler and privacy-preserving
-  error-code/severity options.
+  error-code/severity options. Model-level errors use the `$` key; the shared
+  `ValidationErrorProjection` keeps field, code, and severity aligned with gRPC details.
 
 ## Requirements
 
