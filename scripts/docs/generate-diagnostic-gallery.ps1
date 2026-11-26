@@ -319,7 +319,9 @@ foreach ($entry in $entries) {
 
     $serialized = $entry | ConvertTo-Json -Depth 10 -Compress
 
-    if ($serialized -match '(?i)(private[\\/]|[A-Za-z]:\\|/Users/|/home/|FluentValidation|ValidatorB|competitor)') {
+    # "comparison" alone is a legitimate validation term ("comparison rule"), so this guard
+    # targets library-comparison language, private paths, and machine-specific paths instead.
+    if ($serialized -match '(?i)(private[\\/]|[A-Za-z]:\\|/Users/|/home/|\bpeer\b|\brival\b|\bcompetitor\b|\bbenchmark\b|\bversus\b|compared\s+to|comparison\s+(?:with|against)|better\s+than|worse\s+than)') {
         Add-Failure "$($entry.id) contains a private path or comparison language."
     }
 }
