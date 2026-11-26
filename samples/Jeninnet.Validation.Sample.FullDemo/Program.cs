@@ -158,12 +158,72 @@ var validOrder = new Order(
         new OrderLine("Gadget", 1, 49.99m),
         new OrderLine("Extra", 3, 9.99m),
     ],
-    Discount: 10m);
+    Discount: 20m);
 
 var validResult = await validator.ValidateAsync(validOrder,
     ruleSets: ["Default", "Premium"]);
 Console.WriteLine($"  IsValid: {validResult.IsValid}");
 Console.WriteLine($"  Errors:  {validResult.Errors.Count}");
+foreach(var err in validResult.Errors)
+    Console.WriteLine($"    [{err.MemberName}] {err.ErrorCode}: {err.Message}");
+
+Console.WriteLine();
+
+// ---- Part 6: Polymorphic inheritance validation ----
+Console.WriteLine("--- 6. Inheritance Validation ---");
+Console.WriteLine();
+
+var paymentValidator = new PaymentEnvelopeValidator();
+#pragma warning disable S6966 // This section deliberately demonstrates the synchronous overload.
+var invalidCard = paymentValidator.Validate(
+    new PaymentEnvelope(new CardPayment("CARD-1", "12")));
+var invalidBank = paymentValidator.Validate(
+    new PaymentEnvelope(new BankPayment("BANK-1", string.Empty)));
+#pragma warning restore S6966
+
+Console.WriteLine($"  Invalid card — Errors: {invalidCard.Errors.Count}");
+foreach(var err in invalidCard.Errors)
+    Console.WriteLine($"    [{err.MemberName}] {err.ErrorCode}: {err.Message}");
+Console.WriteLine($"  Invalid bank — Errors: {invalidBank.Errors.Count}");
+foreach(var err in invalidBank.Errors)
+    Console.WriteLine($"    [{err.MemberName}] {err.ErrorCode}: {err.Message}");
+
+Console.WriteLine();
+
+// ---- Part 7: Filtered collection validation ----
+Console.WriteLine("--- 7. Filtered Collection Validation ---");
+Console.WriteLine();
+
+var filteredValidator = new FilteredOrderValidator();
+var filteredResult = await filteredValidator.ValidateAsync(validOrder with {
+    Lines =
+    [
+        new OrderLine(string.Empty, 0, 1m),     // skipped: quantity filter
+        new OrderLine(string.Empty, 1, 1m),     // validated: invalid product
+        new OrderLine("Valid", 1, -1m)          // skipped: async price filter
+    ]
+});
+
+Console.WriteLine($"  Errors after Where/WhereAsync: {filteredResult.Errors.Count}");
+foreach(var err in filteredResult.Errors)
+    Console.WriteLine($"    [{err.MemberName}] {err.ErrorCode}: {err.Message}");
+
+Console.WriteLine();
+
+// ---- Part 8: Reusable rule template ----
+Console.WriteLine("--- 8. Reusable Rule Template ---");
+Console.WriteLine();
+
+var templateResult = await validator.ValidateAsync(
+    validOrder with { OrderNumber = "TBD" },
+    ruleSets: ["Default"]);
+var templateErrors = templateResult.Errors
+    .Where(static error => error.ErrorCode == "ORD_PLACEHOLDER")
+    .ToArray();
+
+Console.WriteLine($"  Template errors: {templateErrors.Length}");
+foreach(var err in templateErrors)
+    Console.WriteLine($"    [{err.MemberName}] {err.ErrorCode}: {err.Message}");
 
 Console.WriteLine();
 Console.WriteLine("=== FULL DEMO COMPLETE ===");
@@ -171,7 +231,7 @@ Console.WriteLine("=== FULL DEMO COMPLETE ===");
 // =============================================================
 // MODELS and VALIDATORS — declared at end of file
 // =============================================================
-#pragma warning disable S3903 // Move into named namespace
+#pragma warning disable S3903, RCS1110 // Sample types are intentionally file-local in this single-file demo
 file sealed record Address(string Street, string City, string Country);
 file sealed record Customer(string Name, string Email, Address? Address);
 file sealed record OrderLine(string ProductName, int Quantity, decimal UnitPrice);
@@ -180,6 +240,11 @@ file sealed record Order(
     Customer Customer,
     List<OrderLine> Lines,
     decimal Discount);
+
+file abstract record PaymentMethod(string Reference);
+file sealed record CardPayment(string Reference, string Last4) : PaymentMethod(Reference);
+file sealed record BankPayment(string Reference, string Iban) : PaymentMethod(Reference);
+file sealed record PaymentEnvelope(PaymentMethod? Payment);
 
 file sealed class AddressValidator : Validator<Address>
 {
@@ -208,6 +273,12 @@ file sealed class OrderLineValidator : Validator<OrderLine>
 
 file sealed class OrderValidator : Validator<Order>
 {
+    private static readonly RuleTemplate<string?> s_orderNumberTemplate = new(
+        "OrderNumberNotPlaceholder",
+        static value => !string.Equals(value, "TBD", StringComparison.OrdinalIgnoreCase),
+        "Order number must be a real value, not a placeholder.",
+        errorCode: "ORD_PLACEHOLDER");
+
     protected override void Configure(ValidatorRuleBuilder<Order> builder)
     {
         ArgumentNullException.ThrowIfNull(builder);
@@ -218,12 +289,13 @@ file sealed class OrderValidator : Validator<Order>
                 .NotEmpty().WithCode("ORD_REQUIRED")
                     .WithSeverity(ValidationErrorSeverity.Error)
                 .Length(5, 20).WithCode("ORD_LENGTH")
-                    .WithSeverity(ValidationErrorSeverity.Error);
+                    .WithSeverity(ValidationErrorSeverity.Error)
+                .Rule(s_orderNumberTemplate);
 
             rules.Include(extra =>
             {
                 extra.RuleFor(static o => o.OrderNumber, "OrderNumber")
-                    .Matches(@"^ORD-").WithCode("ORD_PREFIX")
+                    .Matches("^ORD-").WithCode("ORD_PREFIX")
                     .WithState(new { ExpectedPrefix = "ORD-" });
             });
 
@@ -260,4 +332,71 @@ file sealed class OrderValidator : Validator<Order>
         });
     }
 }
-#pragma warning restore S3903
+
+file sealed class AsyncOrderLineValidator : Validator<OrderLine>
+{
+    protected override void Configure(ValidatorRuleBuilder<OrderLine> builder)
+    {
+        ArgumentNullException.ThrowIfNull(builder);
+
+        builder.RuleFor(static l => l.ProductName, "ProductName")
+            .NotEmpty().Length(2, 200);
+        builder.RuleFor(static l => l.Quantity, "Quantity")
+            .GreaterThan(0).WithCode("QTY_POSITIVE");
+        builder.RuleFor(static l => l.UnitPrice, "UnitPrice")
+            .GreaterThan(0m).WithCode("PRICE_POSITIVE");
+    }
+}
+
+file sealed class FilteredOrderValidator : Validator<Order>
+{
+    protected override void Configure(ValidatorRuleBuilder<Order> builder)
+    {
+        ArgumentNullException.ThrowIfNull(builder);
+
+        builder.RuleFor(static o => o.Lines, "Lines")
+            .ForEach((IAsyncValidator<OrderLine>)new AsyncOrderLineValidator())
+            .Where(static line => line.Quantity > 0)
+            .WhereAsync(static (line, _) => new ValueTask<bool>(line.UnitPrice > 0m));
+    }
+}
+
+file sealed class CardPaymentValidator : Validator<CardPayment>
+{
+    protected override void Configure(ValidatorRuleBuilder<CardPayment> builder)
+    {
+        ArgumentNullException.ThrowIfNull(builder);
+
+        builder.RuleFor(static payment => payment.Last4, "Last4")
+            .NotEmpty()
+            .Length(4, 4)
+            .WithCode("CARD_LAST4");
+    }
+}
+
+file sealed class BankPaymentValidator : Validator<BankPayment>
+{
+    protected override void Configure(ValidatorRuleBuilder<BankPayment> builder)
+    {
+        ArgumentNullException.ThrowIfNull(builder);
+
+        builder.RuleFor(static payment => payment.Iban, "Iban")
+            .NotEmpty()
+            .Length(15, 34)
+            .WithCode("BANK_IBAN");
+    }
+}
+
+file sealed class PaymentEnvelopeValidator : Validator<PaymentEnvelope>
+{
+    protected override void Configure(ValidatorRuleBuilder<PaymentEnvelope> builder)
+    {
+        ArgumentNullException.ThrowIfNull(builder);
+
+        builder.RuleFor(static envelope => envelope.Payment, "Payment")
+            .SetInheritanceValidator(static map => map
+                .Add<CardPayment>(new CardPaymentValidator())
+                .Add<BankPayment>(new BankPaymentValidator()));
+    }
+}
+#pragma warning restore S3903, RCS1110

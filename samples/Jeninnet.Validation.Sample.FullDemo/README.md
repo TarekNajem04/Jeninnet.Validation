@@ -17,6 +17,9 @@ Reference sample demonstrating every major feature of Jeninnet.Validation togeth
 | **Severity** | Error, Warning, and Info levels on different rules |
 | **ErrorCode** | Programmatic error codes on every rule |
 | **Nested Validation** | Full property paths: Customer.Address.City, Lines[0].ProductName |
+| **Inheritance** | Runtime dispatch to card/bank payment validators |
+| **Filtered collections** | `Where` and `WhereAsync` element filters preserve original indices |
+| **Rule templates** | Reusable `RuleTemplate<string>` for placeholder rejection |
 
 ## Scenario
 
@@ -34,6 +37,18 @@ An e-commerce order processing system validates incoming orders with:
 ...
 === FULL DEMO COMPLETE ===
 ```
+
+## Advanced examples
+
+- [Minimal API](../Jeninnet.Validation.Sample.MinimalApi/README.md) — endpoint filters and ProblemDetails.
+- [MVC](../Jeninnet.Validation.Sample.Mvc/README.md) — controllers and model-state projection.
+- [MediatR](../Jeninnet.Validation.Sample.MediatR/README.md) — pipeline behavior and result adapters.
+- [Nested validation](../Jeninnet.Validation.Sample.NestedValidation/README.md) — deep object graphs.
+- [E-commerce](../Jeninnet.Validation.Sample.ECommerce/README.md) — SetValidator, RuleForEach, ChildRules, Include.
+- [Authentication](../Jeninnet.Validation.Sample.Authentication/README.md) — RuleSet and localization.
+- [Clean architecture](../CleanArchitecture/README.md) — layered application structure.
+- [Localization](../Jeninnet.Validation.Sample.Localization.Composite/README.md) — provider composition.
+- [Customization](../Jeninnet.Validation.Sample.Customization/README.md) — application-specific rules.
 
 ## Run
 
