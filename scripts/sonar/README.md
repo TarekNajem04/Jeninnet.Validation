@@ -25,6 +25,7 @@ An explicit `-Token` always wins. Create a User Token at
   `dotnet-sonarscanner` automatically when it is missing.
 - Java 17 or newer (required by SonarScanner); the script resolves a JDK automatically from
   `SONAR_JAVA_PATH` (path to `java.exe`), `JAVA_HOME`, and the common install locations.
+- Node.js 20 or newer with npm, for the client coverage step.
 - Local mode: SonarQube Community Build running at <http://localhost:9000> (default).
 
 ## Local SonarQube (Community Build)
@@ -85,8 +86,9 @@ must always receive an explicit solution/project in this repository (MSB1011).
 ## Coverage and duplication scope
 
 `-WithCoverage` runs **the whole solution** with `XPlat Code Coverage;Format=opencover`,
-matching CI; there is no `.runsettings` file to maintain. The scanner imports the
-OpenCover reports and the TRX results.
+matching CI; there is no `.runsettings` file to maintain. It also runs the client Node tests with
+`--experimental-test-coverage` and normalizes the LCOV source paths. The scanner imports the
+OpenCover reports, the TRX results, and `artifacts/coverage/client/lcov.info`.
 
 The Sonar scope focuses on runtime code:
 
