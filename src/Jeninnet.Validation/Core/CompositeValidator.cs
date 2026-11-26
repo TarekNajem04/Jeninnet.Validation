@@ -253,19 +253,14 @@ public sealed class CompositeValidator<T>(
             var trace = RuleDecisionTrace.Begin(diagnostics, rootData);
 
             try {
-                var effectiveOptions = ResolveOptions(filter.ServiceProvider, contextOptions: null);
-                var context = new ValidationContext<T>(
+                var context = CreateFilteredContext(
                     instance,
-                    MemberPath: string.Empty,
                     ruleSets,
                     failFast,
-                    Root: instance,
-                    RootData: rootData,
-                    ServiceProvider: filter.ServiceProvider,
-                    Options: effectiveOptions);
-                var effectiveClassLevelCascadeMode = classLevelCascadeMode ?? effectiveOptions.DefaultClassLevelCascadeMode;
-
-                rootData.Filter = filter;
+                    filter,
+                    rootData,
+                    classLevelCascadeMode,
+                    out var effectiveClassLevelCascadeMode);
                 var selected = SelectRules(SyncRules, ruleSets, filter, string.Empty, in context);
 
                 ValidateRules(in context, selected, errors, effectiveClassLevelCascadeMode, failFast);
@@ -416,19 +411,14 @@ public sealed class CompositeValidator<T>(
             var trace = RuleDecisionTrace.Begin(diagnostics, rootData);
 
             try {
-                var effectiveOptions = ResolveOptions(filter.ServiceProvider, contextOptions: null);
-                var context = new ValidationContext<T>(
+                var context = CreateFilteredContext(
                     instance,
-                    MemberPath: string.Empty,
                     ruleSets,
                     failFast,
-                    Root: instance,
-                    RootData: rootData,
-                    ServiceProvider: filter.ServiceProvider,
-                    Options: effectiveOptions);
-                var effectiveClassLevelCascadeMode = classLevelCascadeMode ?? effectiveOptions.DefaultClassLevelCascadeMode;
-
-                rootData.Filter = filter;
+                    filter,
+                    rootData,
+                    classLevelCascadeMode,
+                    out var effectiveClassLevelCascadeMode);
                 var stopOnError = failFast || effectiveClassLevelCascadeMode is CascadeMode.Stop;
 
                 // 1. Sync Rules
@@ -485,6 +475,29 @@ public sealed class CompositeValidator<T>(
             cancellationToken).ConfigureAwait(false);
 
         return options.ThrowOnFailures ? ThrowIfRequested(result, options) : result;
+    }
+
+    private ValidationContext<T> CreateFilteredContext(
+        T instance,
+        IEnumerable<string>? ruleSets,
+        bool failFast,
+        ValidationFilter filter,
+        RootContextData rootData,
+        CascadeMode? classLevelCascadeMode,
+        out CascadeMode effectiveClassLevelCascadeMode) {
+        var effectiveOptions = ResolveOptions(filter.ServiceProvider, contextOptions: null);
+        effectiveClassLevelCascadeMode = classLevelCascadeMode ?? effectiveOptions.DefaultClassLevelCascadeMode;
+        rootData.Filter = filter;
+
+        return new ValidationContext<T>(
+            instance,
+            MemberPath: string.Empty,
+            ruleSets,
+            failFast,
+            Root: instance,
+            RootData: rootData,
+            ServiceProvider: filter.ServiceProvider,
+            Options: effectiveOptions);
     }
 
     private static void ValidateRules(
