@@ -72,7 +72,7 @@ added without another explicit re-cut.
 | Public API | **Verified:** 25 package baselines, including the per-TFM net11 DataAnnotations override |
 | Release gates | **Verified locally:** 31 gates — 29 passed, 2 reported-only; report under `artifacts/release/local/1.0.0-preview.3/` |
 | API freeze | **Verified:** diff against `v1.0.0-preview.2`; 1 approved additive API, 0 removals, 0 signature changes |
-| Coverage | **Local SonarQube:** 81.5% coverage, 0.0% duplicated lines, 0 open issues; CI SonarCloud/ReportGenerator remains a pre-publication check |
+| Coverage | **Local SonarQube:** 81.6% coverage, 0.0% duplicated lines, 0 open issues; CI SonarCloud/ReportGenerator remains a pre-publication check |
 
 ## Open gates
 
@@ -81,7 +81,7 @@ added without another explicit re-cut.
 - [x] **MUST — Release gate runner.** Local run green with 31 gates: 29 passed and 2 reported-only
   external gates; the publish workflow uploads `release-gates-1.0.0-preview.3` from
   `scripts/release/run-release-gates.ps1`.
-- [x] **MUST — Local coverage/Sonar evidence.** Local SonarQube at `2ba52b5`: 81.5% coverage,
+- [x] **MUST — Local coverage/Sonar evidence.** Local SonarQube at `c35344c`: 81.6% coverage,
   0.0% duplicated lines, 0 open issues; client JavaScript coverage is imported via LCOV.
 - [ ] **MUST — CI SonarCloud/ReportGenerator** on the release commit; run after the branch is
   pushed and before NuGet publication, then fix any workflow findings.

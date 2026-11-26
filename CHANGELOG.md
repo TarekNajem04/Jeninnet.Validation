@@ -31,7 +31,7 @@ pending. The latest published preview remains `1.0.0-preview.2`.
 - Fixed nine `RCS9004`, `RCS9006`, and `RCS9007` diagnostics instead of suppressing them.
 - The two .NET 11 async capabilities are implemented; the .NET 10 baseline remains unchanged.
 - Release preparation is complete locally: **1,142/1,142 tests**, 31 release gates
-  (29 passed, 2 reported-only), and local SonarQube **81.5% coverage / 0.0% duplication /
+  (29 passed, 2 reported-only), and local SonarQube **81.6% coverage / 0.0% duplication /
   0 open issues**. CI SonarCloud/ReportGenerator remains a pre-publication check.
 - Client JavaScript tests now feed their coverage into Sonar through a normalized LCOV report.
 - The runnable samples were reviewed as the example matrix for core, advanced, async,

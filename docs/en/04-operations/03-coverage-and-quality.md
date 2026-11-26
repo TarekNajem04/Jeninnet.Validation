@@ -20,7 +20,7 @@ Two scopes are published:
 | Scope | Result | Purpose |
 |---|---|---|
 | ReportGenerator, all assemblies | **79.1% line / 65.2% branch / 84.6% method** (2026-11-12, 25 assemblies) | Broad historical baseline including analyzer tooling |
-| SonarQube local preview.3 (2026-11-26, `2ba52b5`) | **81.5% coverage** (line 85.2%, branch 73.5%), **0.0% duplication**, 0 issues | Release-candidate runtime and client scope |
+| SonarQube local preview.3 (2026-11-26, `c35344c`) | **81.6% coverage** (line 85.4%, branch 73.5%), **0.0% duplication**, 0 issues | Release-candidate runtime and client scope |
 | SonarCloud runtime scope (2026-11-13) | **80.2% coverage** (line 83.4%, branch 73.6%) | Previous published-preview quality gate |
 
 Sonar excludes analyzer/code-fix tooling, metadata-only attributes, benchmarks, tests, and
