@@ -25,6 +25,7 @@ clone.
 | **MinimalApi** | `AddRequestValidation<T>`, ProblemDetails, `/client-rules` export. |
 | **Mvc** | `AddMvcValidation`, `ModelState`, rule sets per action. |
 | **MediatR** | `AddValidationPipeline`, aggregated errors, throw/continue strategies. |
+| **FullDemo** | Core + advanced: rule sets, nesting, inheritance, filtered collections, rule templates, localization. |
 | **Analyzers.Sample.Console** | Attribute-driven validation and the source generator. |
 | **Localization.\*** | Provider scenarios using the sibling `Jeninnet.Localization` packages. |
 | **AotSmoke** | NativeAOT publish/run harness (not a test project). |
@@ -76,7 +77,7 @@ These projects are not part of the solution build but can be run individually:
 - **DtoVsDomain** — DTO validation versus domain invariants.
 - **ECommerce** — a larger end-to-end scenario.
 - **ErrorHandling** — mapping validation errors to responses.
-- **FullDemo** — a combined demonstration.
+- **FullDemo** — combined core and advanced demonstration.
 
 ```bash
 dotnet run --project samples/Jeninnet.Validation.Sample.ErrorHandling

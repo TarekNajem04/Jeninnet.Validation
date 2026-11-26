@@ -9,16 +9,17 @@ All notable changes to the Jeninnet.Validation solution are documented here.
 
 | Version | Status |
 |---|---|
-| `1.0.0-preview.3` | Current, implemented on branch; not yet published |
+| `1.0.0-preview.3` | Current, prepared for publication; not yet published |
 | `1.0.0-preview.2` | Released 2026-11-17 |
 | `1.0.0-preview.1` | Released 2026-11-13 |
 | `Pre-1.0.0` | Historical development (2026-06 – 2026-11) |
 
 ---
 
-## 1.0.0-preview.3 — implemented on branch; not yet published
+## 1.0.0-preview.3 — prepared for publication; not yet published
 
-**Status:** Implemented on `release/1.0.0-preview.3`; not yet published.
+**Status:** Prepared on `release/1.0.0-preview.3`; NuGet publication and the release tag are
+pending. The latest published preview remains `1.0.0-preview.2`.
 
 ### Summary
 
@@ -29,8 +30,12 @@ All notable changes to the Jeninnet.Validation solution are documented here.
   every C# project through `Directory.Build.props`, with `PrivateAssets=all`.
 - Fixed nine `RCS9004`, `RCS9006`, and `RCS9007` diagnostics instead of suppressing them.
 - The two .NET 11 async capabilities are implemented; the .NET 10 baseline remains unchanged.
-- Tests and build evidence are refreshed on the preview.3 branch; see the release notes for the
-  final numbers.
+- Release preparation is complete locally: **1,142/1,142 tests**, 31 release gates
+  (29 passed, 2 reported-only), and local SonarQube **81.5% coverage / 0.0% duplication /
+  0 open issues**. CI SonarCloud/ReportGenerator remains a pre-publication check.
+- Client JavaScript tests now feed their coverage into Sonar through a normalized LCOV report.
+- The runnable samples were reviewed as the example matrix for core, advanced, async,
+  integration, localization, diagnostics, and client-rule scenarios.
 - Product version is `1.0.0-preview.3`.
 
 ### Async DataAnnotations (.NET 11)

@@ -1,4 +1,4 @@
-﻿# Roadmap
+# Roadmap
 
 This is the public delivery plan for Jeninnet.Validation. It is organized by **release**, not by
 feature. Each release lists what shipped, what remains open, and what moved to a later version.
@@ -27,7 +27,7 @@ and `Not planned`.
 |---|---|---|
 | `1.0.0-preview.1` | **Released 2026-11-13** | .NET 11 (STS) first preview; .NET 11 + C# 15 platform and authoring features |
 | `1.0.0-preview.2` | **Released 2026-11-17** | .NET 10 (LTS) baseline restored; .NET 11 bridge packages and OpenAPI keep net11 assets |
-| `1.0.0-preview.3` | **Current — implemented on `release/1.0.0-preview.3`; not yet published** | Async DataAnnotations and async Options promoted from 1.1.0; release gates and Roslynator setup |
+| `1.0.0-preview.3` | **Current — prepared for publication; not yet published** | Async DataAnnotations and async Options promoted from 1.1.0; release gates, coverage, and examples |
 | `1.0.0-preview.4` … `preview.N` | **Conditional** | Post-preview fixes and API feedback; no unrelated scope |
 | `1.0.0-rc.1` … `rc.N` | **Conditional** | Release-candidate hardening; release-blocking fixes only |
 | `1.0.0` | **Planned** | First stable release |
@@ -37,7 +37,7 @@ and `Not planned`.
 
 ---
 
-# 1.0.0-preview.3 — Current, implemented on branch; not yet published
+# 1.0.0-preview.3 — Current, prepared for publication; not yet published
 
 **Goal:** ship the two .NET 11 async bridges promoted from `1.1.0`, keep the `net10.0` baseline
 unchanged, and close the preview release gates.
@@ -70,22 +70,29 @@ added without another explicit re-cut.
 | AOT/trimming | **Verified:** 10 AOT-compatible packages; 25-package matrix; NativeAOT smoke covers core, JSON Schema, client rules, and the Microsoft OpenAPI applier; CI verifies `linux-x64` |
 | Packages | **Verified:** 25 packable packages; contents, central-version alignment, dual-TFM consumer smoke, and local-feed dry run |
 | Public API | **Verified:** 25 package baselines, including the per-TFM net11 DataAnnotations override |
-| Release gates | **Verified locally:** `scripts/release/run-release-gates.ps1`; report under `artifacts/release/1.0.0-preview.3/` |
+| Release gates | **Verified locally:** 31 gates — 29 passed, 2 reported-only; report under `artifacts/release/local/1.0.0-preview.3/` |
 | API freeze | **Verified:** diff against `v1.0.0-preview.2`; 1 approved additive API, 0 removals, 0 signature changes |
-| Coverage | Pending refresh on the preview.3 commit |
+| Coverage | **Local SonarQube:** 81.5% coverage, 0.0% duplicated lines, 0 open issues; CI SonarCloud/ReportGenerator remains a pre-publication check |
 
 ## Open gates
 
 - [x] **MUST — Build, test, format, headers, docs, AOT, package, and consumer evidence.** Verified on
   the preview.3 branch.
-- [x] **MUST — Release gate runner.** Local run green with 19 passed and 2 reported-only external
-  gates; the publish workflow uploads `release-gates-1.0.0-preview.3` from
+- [x] **MUST — Release gate runner.** Local run green with 31 gates: 29 passed and 2 reported-only
+  external gates; the publish workflow uploads `release-gates-1.0.0-preview.3` from
   `scripts/release/run-release-gates.ps1`.
-- [ ] **MUST — Coverage/Sonar refresh** on the preview.3 commit.
+- [x] **MUST — Local coverage/Sonar evidence.** Local SonarQube at `2ba52b5`: 81.5% coverage,
+  0.0% duplicated lines, 0 open issues; client JavaScript coverage is imported via LCOV.
+- [ ] **MUST — CI SonarCloud/ReportGenerator** on the release commit; run after the branch is
+  pushed and before NuGet publication, then fix any workflow findings.
+- [x] **SHOULD — Examples matrix.** The runnable samples cover core, advanced, async, integration,
+  localization, diagnostics, and client-rule scenarios.
 - [ ] **MUST — Version alignment.** Central and package versions agree; the tag and published
   packages are created at publication.
 - [ ] **MUST — Preview.3 publication.** Push to NuGet and tag only after the gates are green.
 - [x] **SHOULD — Release notes** with the preview delta.
+- [ ] **SHOULD — Template package.** Publish `Jeninnet.Validation.Templates` after the preview feed
+  is live.
 
 ---
 
@@ -209,74 +216,19 @@ It was published to NuGet on 2026-11-17.
 
 ---
 
-# 1.0.0-preview.4 … 1.0.0-preview.N — Conditional
+# Later release lines
 
-**Goal:** absorb preview feedback without expanding scope.
+Detailed checklists for `preview.4`, `rc`, `1.0.0`, `1.1.0`, and post-1.0 candidates are
+maintained in version-specific internal planning folders and are not part of the preview.3
+commitment. The public commitments remain:
 
-- [ ] **MUST — Fix preview blockers.** Correct release-blocking bugs and API feedback.
-- [ ] **MUST — Re-run every release gate.** Build/test/format/docs/AOT/package/consumer/Sonar.
-- [ ] **MUST — No new features.** A feature is added only by an explicit roadmap re-cut.
-- [ ] **SHOULD — Refresh release notes** with the preview delta.
-
----
-
-# 1.0.0-rc.1 … 1.0.0-rc.N — Conditional
-
-**Goal:** harden the release candidate; no new features.
-
-- [ ] **MUST — API freeze.** Freeze the public surface and refresh every baseline.
-- [ ] **MUST — Release-blocking fixes only.**
-- [ ] **MUST — Final release notes and supported-runtime matrix.**
-- [ ] **MUST — Full quality gate on the release commit.**
-- [ ] **SHOULD — Community preview soak.** Resolve reported issues before the stable decision.
-
----
-
-# 1.0.0 — Stable
-
-**Goal:** ship the first stable release with `net10.0` baseline assets and `net11.0` bridge assets.
-
-- [ ] **MUST — Preview/RC soak and feedback.** Resolve release-blocking bugs and API feedback.
-- [ ] **MUST — API freeze and baselines.** Refresh every baseline and publish the compatibility
-  policy.
-- [ ] **MUST — Final release notes and migration package.**
-- [ ] **MUST — Final quality gate.** Build/test/format/docs/AOT/package/consumer/Sonar green on the
-  release commit.
-- [ ] **MUST — Long-run benchmark baseline.** Re-run the suite on a quiet machine before the stable
-  release; decide whether a pinned CI budget is justified.
-- [ ] **SHOULD — SBOM, checksums, and signing decision.**
-- [ ] **SHOULD — Additional consumer reference app** for the stable announcement.
-- [ ] **SHOULD — Mutation testing evaluation** for the rule engine and evaluator.
-
----
-
-# 1.1.0-preview.1 … 1.1.0 — Follow-up additive .NET 11
-
-**Goal:** absorb follow-up .NET 11 async feedback without breaking the 1.0 API. The two original
-async bridges were promoted to `1.0.0-preview.3` on 2026-11-23.
-
-- [x] **Moved — Async DataAnnotations bridge.** Promoted to preview.3; see the preview.3 section.
-- [x] **Moved — Async Options validation.** Promoted to preview.3; see the preview.3 section.
-- [ ] **SHOULD — Additive API review.** Stage any new surface in `PublicAPI.Unshipped.txt`.
-- [ ] **SHOULD — Release notes** for follow-up async changes.
-
----
-
-# Post-1.0 — Demand-driven candidates
-
-These are **not commitments**. Each starts only after a user request and a maintainer decision.
-
-| Feature | Status | Target | Notes |
-|---|---|---|---|
-| ReactiveUI/ReactiveValidation integration | `Deferred` | Post-1.0 | The `Observable` adapter already covers `INotifyDataErrorInfo`; an Rx-specific wrapper is demand-driven. |
-| Custom-attribute source generation | `Deferred` | Post-1.0 | Lets user-defined attributes emit rules through the generator. |
-| Client message packs | `Deferred` | Post-1.0 | Localized message templates for client-rules consumers. |
-
-## Explicitly not planned
-
-- Porting the validation engine to JavaScript.
-- A WYSIWYG form builder or schema designer.
-- Localization provider composition (the exactly-one-provider rule is deliberate).
+- **`1.0.0-preview.4 … preview.N`:** preview fixes only; no new features.
+- **`1.0.0-rc.1 … rc.N`:** API freeze and release-blocking fixes only.
+- **`1.0.0` stable:** full quality gate, long-run benchmark, SBOM/checksums/signing decision,
+  mutation evaluation, and the curated example matrix.
+- **`1.1.0`:** follow-up additive .NET 11 work; the two original async bridges already ship in
+  `1.0.0-preview.3`.
+- **Post-1.0:** demand-driven candidates only; no commitment.
 
 ---
 

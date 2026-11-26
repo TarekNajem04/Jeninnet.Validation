@@ -11,20 +11,22 @@
 
 ## Coverage
 
-> Preview.2 note: the coverage figures below are the `1.0.0-preview.1` baseline. The dual-target
-> preview re-runs SonarCloud and ReportGenerator on the release commit; replace these numbers when
-> that run completes.
+> Preview.3 note: the local SonarQube result below is the current release-candidate check. The CI
+> SonarCloud/ReportGenerator run remains part of the publication gate; replace the local row when
+> the CI run completes.
 
 Two scopes are published:
 
 | Scope | Result | Purpose |
 |---|---|---|
-| ReportGenerator, all assemblies | **79.1% line / 65.2% branch / 84.6% method** (2026-11-12, 25 assemblies) | Broad baseline including analyzer tooling |
-| SonarCloud runtime scope (2026-11-13) | **80.2% coverage** (line 83.4%, branch 73.6%) | Quality gate on runtime code |
+| ReportGenerator, all assemblies | **79.1% line / 65.2% branch / 84.6% method** (2026-11-12, 25 assemblies) | Broad historical baseline including analyzer tooling |
+| SonarQube local preview.3 (2026-11-26, `2ba52b5`) | **81.5% coverage** (line 85.2%, branch 73.5%), **0.0% duplication**, 0 issues | Release-candidate runtime and client scope |
+| SonarCloud runtime scope (2026-11-13) | **80.2% coverage** (line 83.4%, branch 73.6%) | Previous published-preview quality gate |
 
 Sonar excludes analyzer/code-fix tooling, metadata-only attributes, benchmarks, tests, and
-`IRuleDefinition.cs` from coverage; duplication excludes the same tooling. The gate requires
-coverage above 80% and zero duplicated lines.
+`IRuleDefinition.cs` from coverage; duplication excludes the same tooling. The local preview also
+imports JavaScript client coverage through LCOV. The gate requires coverage above 80% and zero
+duplicated lines.
 
 ## Duplication
 

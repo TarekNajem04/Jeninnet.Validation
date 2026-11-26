@@ -13,7 +13,7 @@
 
 **📖 Documentation:** [tareknajem04.github.io/Jeninnet.Validation](https://tareknajem04.github.io/Jeninnet.Validation/) — the complete reference book, guides, API reference, and samples.
 
-- **Status:** `1.0.0-preview.3` — implemented and verified on `release/1.0.0-preview.3`; not yet
+- **Status:** `1.0.0-preview.3` — prepared for publication on `release/1.0.0-preview.3`; not yet
   published. The latest published preview is `1.0.0-preview.2` on
   [NuGet](https://www.nuget.org/packages/Jeninnet.Validation/1.0.0-preview.2).
 - **Documentation:** [Jeninnet.Validation reference book](https://tareknajem04.github.io/Jeninnet.Validation/)
