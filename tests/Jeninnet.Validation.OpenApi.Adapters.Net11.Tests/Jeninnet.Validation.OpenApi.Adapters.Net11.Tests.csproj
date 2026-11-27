@@ -27,7 +27,7 @@
           TargetFramework; force the net11 OpenAPI dependency line explicitly.
         -->
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" VersionOverride="11.0.0" />
-        <PackageReference Include="Microsoft.OpenApi" VersionOverride="3.11.0" />
+        <PackageReference Include="Microsoft.OpenApi" VersionOverride="3.11.1" />
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" VersionOverride="11.0.1" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" VersionOverride="11.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging" VersionOverride="11.0.0" />

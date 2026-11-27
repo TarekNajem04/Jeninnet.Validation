@@ -15,24 +15,24 @@
     <PackageVersion Include="coverlet.collector" Version="10.1.1" />
     <PackageVersion Include="Jeninnet.Assertions" Version="1.2.0" />
     <PackageVersion Include="Jeninnet.Assertions.MSTest" Version="1.2.0" />
-    <PackageVersion Include="Jeninnet.Localization.Abstractions" Version="1.0.0-preview.2" />
-    <PackageVersion Include="Jeninnet.Localization.Core" Version="1.0.0-preview.2" />
-    <PackageVersion Include="Jeninnet.Localization.Providers.Database.SQLite" Version="1.0.0-preview.2" />
-    <PackageVersion Include="Jeninnet.Localization.Providers.Json" Version="1.0.0-preview.2" />
-    <PackageVersion Include="Jeninnet.Localization.Providers.Memory" Version="1.0.0-preview.2" />
-    <PackageVersion Include="Jeninnet.Localization.Providers.ResX" Version="1.0.0-preview.2" />
-    <PackageVersion Include="Jeninnet.Localization.Providers.Xml" Version="1.0.0-preview.2" />
+    <PackageVersion Include="Jeninnet.Localization.Abstractions" Version="1.0.0-preview.3" />
+    <PackageVersion Include="Jeninnet.Localization.Core" Version="1.0.0-preview.3" />
+    <PackageVersion Include="Jeninnet.Localization.Providers.Database.SQLite" Version="1.0.0-preview.3" />
+    <PackageVersion Include="Jeninnet.Localization.Providers.Json" Version="1.0.0-preview.3" />
+    <PackageVersion Include="Jeninnet.Localization.Providers.Memory" Version="1.0.0-preview.3" />
+    <PackageVersion Include="Jeninnet.Localization.Providers.ResX" Version="1.0.0-preview.3" />
+    <PackageVersion Include="Jeninnet.Localization.Providers.Xml" Version="1.0.0-preview.3" />
     <!--
       The platform baseline is .NET 10 (LTS). The bridge and OpenAPI packages also target
       .NET 11 (STS), so the Roslyn and immutable stack stays on the current line.
     -->
-    <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="5.9.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="5.12.0" />
     <!-- 5.6.0 includes compiler-generated record members in RS0016; baselines are regenerated for the current analyzer. -->
     <PackageVersion Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="5.6.0" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.Common" Version="5.9.0" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="5.9.0" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="5.9.0" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="5.9.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.Common" Version="5.12.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="5.12.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="5.12.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="5.12.0" />
     <PackageVersion Include="Microsoft.Data.Sqlite" Version="$(MicrosoftDataSqliteVersion)" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="$(MicrosoftExtensionsVersion)" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftExtensionsVersion)" />
@@ -64,9 +64,9 @@
   </ItemGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0'">
-    <MicrosoftAspNetCoreOpenApiVersion>10.0.14</MicrosoftAspNetCoreOpenApiVersion>
+    <MicrosoftAspNetCoreOpenApiVersion>10.0.15</MicrosoftAspNetCoreOpenApiVersion>
     <MicrosoftAspNetCoreTestHostVersion>10.0.15</MicrosoftAspNetCoreTestHostVersion>
-    <MicrosoftOpenApiVersion>2.12.2</MicrosoftOpenApiVersion>
+    <MicrosoftOpenApiVersion>2.13.1</MicrosoftOpenApiVersion>
     <SwashbuckleSwaggerGenVersion>10.3.1</SwashbuckleSwaggerGenVersion>
     <MicrosoftExtensionsVersion>10.0.15</MicrosoftExtensionsVersion>
     <MicrosoftDataSqliteVersion>10.0.15</MicrosoftDataSqliteVersion>
@@ -75,7 +75,7 @@
   <PropertyGroup>
     <MicrosoftAspNetCoreOpenApiVersion Condition="'$(MicrosoftAspNetCoreOpenApiVersion)' == ''">11.0.0</MicrosoftAspNetCoreOpenApiVersion>
     <MicrosoftAspNetCoreTestHostVersion Condition="'$(MicrosoftAspNetCoreTestHostVersion)' == ''">11.0.0</MicrosoftAspNetCoreTestHostVersion>
-    <MicrosoftOpenApiVersion Condition="'$(MicrosoftOpenApiVersion)' == ''">3.11.0</MicrosoftOpenApiVersion>
+    <MicrosoftOpenApiVersion Condition="'$(MicrosoftOpenApiVersion)' == ''">3.11.1</MicrosoftOpenApiVersion>
     <SwashbuckleSwaggerGenVersion Condition="'$(SwashbuckleSwaggerGenVersion)' == ''">11.0.1</SwashbuckleSwaggerGenVersion>
     <MicrosoftExtensionsVersion Condition="'$(MicrosoftExtensionsVersion)' == ''">11.0.0</MicrosoftExtensionsVersion>
     <MicrosoftDataSqliteVersion Condition="'$(MicrosoftDataSqliteVersion)' == ''">11.0.0</MicrosoftDataSqliteVersion>

@@ -41,7 +41,7 @@
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" ExcludeAssets="runtime" />
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" PrivateAssets="all" ExcludeAssets="runtime" />
         <!--
-            Microsoft.CodeAnalysis 5.9 targets System.Collections.Immutable 10.0.x. Keep the
+            Microsoft.CodeAnalysis 5.12 targets System.Collections.Immutable 10.0.x. Keep the
             analyzer project on the same line so its ImmutableArray identity matches the Roslyn
             host used by Visual Studio; the rest of the solution can stay on 11.0.0.
         -->
