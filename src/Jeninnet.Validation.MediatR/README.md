@@ -12,7 +12,7 @@ throws, exposes the result to the handler, or maps it to a result type.
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.MediatR --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.MediatR --version 1.0.0-preview.3
 ```
 
 ## Usage
@@ -116,6 +116,10 @@ rules.
   throws an actionable `InvalidOperationException`.
 - Validators are resolved from DI; register them explicitly or through your
   existing scanning setup.
+
+## AOT position
+
+**Trim-compatible only.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

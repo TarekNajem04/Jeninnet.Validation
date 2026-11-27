@@ -37,11 +37,13 @@
 | `Jeninnet.Validation.MediatR.CSharpFunctionalExtensions` | MediatR failures as `CSharpFunctionalExtensions.Result<T>`. |
 | `Jeninnet.Validation.Migration` | `jeninnet` migration assistant (dotnet tool). |
 
-The current preview version is `1.0.0-preview.2`.
+The current preview is `1.0.0-preview.3`, implemented on the release branch; it is not yet
+published. The latest published preview is `1.0.0-preview.2`. The examples below use
+`1.0.0-preview.3`; substitute `1.0.0-preview.2` when installing before publication.
 
 ```bash
-dotnet add package Jeninnet.Validation --version 1.0.0-preview.2
-dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation --version 1.0.0-preview.3
+dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.3
 ```
 
 ## Create a project from the template
@@ -54,7 +56,7 @@ dotnet new jeninnet-validator -n MyCompany.Validation -o src/MyCompany.Validatio
 ```
 
 The generated class library targets .NET 10 and references `Jeninnet.Validation`
-`1.0.0-preview.2`. Replace the sample `Customer` rules with your own.
+`1.0.0-preview.3`. Replace the sample `Customer` rules with your own.
 
 ## Register validators
 
@@ -97,7 +99,7 @@ should use `AddValidation()` or explicit registration.
 Reference the analyzer project/package:
 
 ```xml
-<PackageReference Include="Jeninnet.Validation.Analyzers" Version="1.0.0-preview.2"
+<PackageReference Include="Jeninnet.Validation.Analyzers" Version="1.0.0-preview.3"
                   PrivateAssets="all" />
 ```
 

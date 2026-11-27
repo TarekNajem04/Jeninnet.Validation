@@ -59,7 +59,7 @@
     Overrides the export path used by -ExportIssues.
 
 .PARAMETER WithCoverage
-    Runs the test suite with coverage like CI does.
+    Runs the .NET test suite and the JavaScript client tests with coverage like CI does.
     Required to preview the coverage condition of the Quality Gate.
 
 .PARAMETER FailOnQualityGate
@@ -703,6 +703,42 @@ function Invoke-DotNetCommand {
 }
 
 
+function Invoke-ClientCoverage {
+
+    $clientDirectory = Join-Path $script:RepositoryRoot 'client'
+    $coverageDirectory = Join-Path $script:RepositoryRoot 'artifacts/coverage/client'
+    $rawPath = Join-Path $coverageDirectory 'lcov.raw'
+    $lcovPath = Join-Path $coverageDirectory 'lcov.info'
+
+    New-Item -ItemType Directory -Force -Path $coverageDirectory | Out-Null
+
+    $npm = if ($IsWindows) { 'npm.cmd' } else { 'npm' }
+
+    Write-Step 'Run client tests with coverage...'
+
+    Push-Location $clientDirectory
+
+    try {
+        & $npm test -- --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=$rawPath
+
+        if ($LASTEXITCODE -ne 0) {
+            throw "Client tests with coverage failed (exit code $LASTEXITCODE)."
+        }
+    }
+    finally {
+        Pop-Location
+    }
+
+    & node (Join-Path $PSScriptRoot 'normalize-lcov-paths.mjs') $rawPath $lcovPath
+
+    if ($LASTEXITCODE -ne 0) {
+        throw "Client coverage path normalization failed (exit code $LASTEXITCODE)."
+    }
+
+    Write-Step "Client coverage written to $lcovPath" -Color Green
+}
+
+
 try {
 
     Write-ToolBanner -Name "Sonar Preview Tool"
@@ -797,9 +833,10 @@ try {
         "/d:sonar.token=$Token",
         "/d:sonar.cs.vstest.reportsPaths=TestResults/**/*.trx",
         "/d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml",
-        # src/tooling/**: the CLI executable is validated end-to-end out-of-process (ParityToolTests),
-        # so it carries no in-process coverage; it stays fully analyzed for issues.
-        "/d:sonar.coverage.exclusions=**/*.ps1,**/*.md,docs/**,scripts/**,.github/**,assets/**,badges/**,src/Jeninnet.Validation.Benchmarks/**,src/Jeninnet.Validation.Analyzers/**,src/Jeninnet.Validation/Attributes/**,tests/**,src/Jeninnet.Validation.Abstractions/Abstractions/IRuleDefinition.cs",
+        "/d:sonar.javascript.lcov.reportPaths=artifacts/coverage/client/lcov.info",
+        # tools/**: the internal CLI executables are validated end-to-end out-of-process, so they
+        # carry no in-process coverage; they stay fully analyzed for issues.
+        "/d:sonar.coverage.exclusions=**/*.ps1,**/*.md,docs/**,scripts/**,tools/**,.github/**,assets/**,badges/**,src/Jeninnet.Validation.Benchmarks/**,src/Jeninnet.Validation.Analyzers/**,src/Jeninnet.Validation/Attributes/**,tests/**,src/Jeninnet.Validation.Abstractions/Abstractions/IRuleDefinition.cs",
         "/d:sonar.cpd.exclusions=src/Jeninnet.Validation.Analyzers/**,src/Jeninnet.Validation/Attributes/**,src/Jeninnet.Validation.Benchmarks/**,tests/**",
         "/d:sonar.scm.provider=git",
         "/d:sonar.scm.forceReloadAll=true",
@@ -837,6 +874,8 @@ try {
                     "--logger", "trx;LogFileName=results.trx",
                     "--results-directory", "TestResults"
                 )
+
+                Invoke-ClientCoverage
             }
             else {
 

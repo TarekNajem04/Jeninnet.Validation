@@ -11,6 +11,8 @@ The harness exits `0` only when all checks pass:
 - generated validator executes
 - generated email and range rules execute
 - generated custom rule executes
+- descriptor generation, JSON Schema output, and client-rules export work
+- Microsoft OpenAPI applier applies constraints with source-generated JSON metadata
 - rule sets select rules
 - fluent async validation executes
 - strict-async guard throws on a synchronous call to an async-only validator
@@ -43,8 +45,9 @@ NativeAOT prerequisites: the .NET 11 SDK plus a C/C++ toolchain (`clang` and
 ## CI
 
 `.github/workflows/aot-smoke.yml` publishes and runs the harness on
-`linux-x64` for changes under `src/**` or this folder. The workflow also builds
-the two shipping libraries with trim/AOT analyzers in Release.
+`linux-x64` for changes under `src/**`, `scripts/quality/**`, this folder, or the AOT page. The
+workflow also checks the 25-package support matrix and builds the shipping libraries with
+trim/AOT analyzers in Release.
 
 ## Notes
 

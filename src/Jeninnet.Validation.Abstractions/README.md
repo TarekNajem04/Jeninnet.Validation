@@ -10,7 +10,7 @@ Core value types and interfaces for the Jeninnet validation framework. This libr
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.Abstractions --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Abstractions --version 1.0.0-preview.3
 ```
 
 ## Types
@@ -39,6 +39,10 @@ dotnet add package Jeninnet.Validation.Abstractions --version 1.0.0-preview.2
 ## Dependencies
 
 Zero external dependencies.
+
+## AOT position
+
+**AOT-compatible.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

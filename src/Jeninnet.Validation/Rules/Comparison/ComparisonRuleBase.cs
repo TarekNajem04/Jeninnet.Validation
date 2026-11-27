@@ -37,7 +37,7 @@ public abstract class ComparisonRuleBase<T, TValue>(IPropertyAccessor<T, TValue>
 
     /// <inheritdoc />
     protected override IDictionary<string, object>? GetMessageParameters(ValidationContext<T> context)
-        => new Dictionary<string, object> {
+        => new MessageParameterDictionary(ruleParameterCount: 2) {
             { "0", Threshold! },
             { MessageParameterNames.ComparisonValue, Threshold! }
         };

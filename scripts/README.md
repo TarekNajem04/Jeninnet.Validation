@@ -9,11 +9,14 @@ PowerShell tooling for repository maintenance. Each script is preview-first unle
 | `scripts/coverage` | Runs tests with XPlat Code Coverage and generates an HTML report | [README](coverage/README.md) |
 | `scripts/format` | Applies and verifies .NET formatting | [README](format/README.md) |
 | `scripts/sonar` | Runs the SonarScanner preview used by CI | [README](sonar/README.md) |
+| `scripts/release` | Runs the full release gate and writes a Markdown/JSON report | [README](release/README.md) |
+| `scripts/client` | Generates and checks the single-sourced client-rule support list | [README](client/README.md) |
 | `scripts/badges` | Generates the repository README badges | `generate.ps1` |
 | `scripts/assets` | Generates the brand icon master and the 128×128 NuGet package icon | `generate-icon.ps1` |
-| `scripts/quality` | Verifies the standard source-file attribution header | `check-source-headers.ps1` |
-| `scripts/docs` | Verifies documentation links, root README claims, generated API coverage, and Arabic text | `check-doc-links.ps1`, `check-readme-claims.ps1`, `check-api-reference.ps1`, `check-arabic-text.ps1` |
-| `scripts/api` | Checks public-API baselines, proves the RS0016/RS0017 gate, and syncs Unshipped/Shipped entries | [README](api/README.md) |
+| `scripts/quality` | Verifies source headers, the explicit AOT/trim support matrix, analyzer fix coverage, localization review status, and deterministic validation contract fingerprints | `check-source-headers.ps1`, `check-aot-support-matrix.ps1`, `check-analyzer-fix-coverage.ps1`, `check-localization-review-status.ps1`, `check-contract-fingerprints.ps1` |
+| `scripts/docs` | Verifies documentation links, README project/count/state claims, generated API coverage, Arabic text, and generates/checks the diagnostic gallery | `check-doc-links.ps1`, `check-readme-claims.ps1`, `check-api-reference.ps1`, `check-arabic-text.ps1`, `generate-diagnostic-gallery.ps1` |
+| `scripts/api` | Checks public-API baselines, diffs the surface against a release tag, proves the RS0016/RS0017 gate, and syncs Unshipped/Shipped entries | [README](api/README.md) |
+| `scripts/package` | Verifies package contents, dependency/asset/size budgets, and the consumer smoke test | [README](package/README.md) |
 | `scripts/localization` | Checks the message-key catalog (constants vs packs), with an allow-list and a deterministic report | [README](localization/README.md) |
 
 The documentation scripts are part of the documentation gate:
@@ -22,7 +25,14 @@ The documentation scripts are part of the documentation gate:
 pwsh scripts/docs/check-doc-links.ps1
 pwsh scripts/docs/check-readme-claims.ps1
 pwsh scripts/docs/check-api-reference.ps1
+pwsh scripts/docs/generate-diagnostic-gallery.ps1 -Check
 ```
+
+The diagnostic gallery generator reads
+`docs/en/03-reference/09-diagnostic-gallery/diagnostics.json`, cross-checks IDs, titles,
+severities, and fix availability against the analyzer descriptors and code-fix providers, and
+writes one page per diagnostic. `-Check` compares the bytes and is part of the local release gate
+and the documentation workflow.
 
 The API coverage check (`check-api-reference.ps1`) runs after DocFX metadata generation
 (`dotnet docfx metadata docs/docfx.json`) and verifies that at least one public type from every

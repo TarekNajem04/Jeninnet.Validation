@@ -13,7 +13,7 @@ right fields.
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.Blazor --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Blazor --version 1.0.0-preview.3
 ```
 
 ## Usage
@@ -152,6 +152,10 @@ into `wwwroot/js`; update those copies when the client runtime changes.
   target.
 - Arrays and `IList` implementations are supported for indexed paths; other
   collection shapes fall back to the root model and the full path.
+
+## AOT position
+
+**Reflection-dependent.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

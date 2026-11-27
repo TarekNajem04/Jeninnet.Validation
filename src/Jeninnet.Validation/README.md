@@ -10,13 +10,13 @@ high-throughput services, trimming, and Native AOT.
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation --version 1.0.0-preview.3
 ```
 
 Attribute-driven validation also requires the analyzer package:
 
 ```bash
-dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.3
 ```
 
 The analyzer package is a build-time dependency. It is applied to the consuming project
@@ -159,6 +159,10 @@ for the complete list.
 - [Attribute authoring](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/02-guides/02-attribute-authoring.md)
 - [Dependency injection](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/02-guides/17-dependency-injection.md)
 - [API reference](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/03-reference/08-api-reference.md)
+
+## AOT position
+
+**AOT-compatible.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

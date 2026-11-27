@@ -56,7 +56,7 @@ public class IbanRule<T, TProperty>(
 
     /// <inheritdoc />
     protected override IDictionary<string, object>? GetMessageParameters(ValidationContext<T> context) =>
-        new Dictionary<string, object> {
+        new MessageParameterDictionary(ruleParameterCount: 1) {
             { MessageParameterNames.Country, Country ?? string.Empty }
         };
 

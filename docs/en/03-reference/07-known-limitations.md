@@ -19,14 +19,25 @@ These are deliberate boundaries or tracked follow-ups, not surprises.
 
 ## Async vs sync adapters
 
-- DataAnnotations is synchronous. Async-only validators throw
-  `AsyncValidatorInvokedSynchronouslyException` on that path.
+- DataAnnotations is synchronous on `net10.0`; async-only validators throw
+  `AsyncValidatorInvokedSynchronouslyException` there. On `net11.0`, the DataAnnotations attributes
+  derive from `AsyncValidationAttribute` and run through `Validator.ValidateObjectAsync` /
+  `TryValidateObjectAsync`; the synchronous path still throws for async-only validators.
 - Blazor validates synchronously by default; enable `UseAsyncValidation` and call
   `JeninnetValidator.ValidateAsync()` from `EditForm.OnSubmit` for async rules.
 - Use ASP.NET Core, Minimal API, or MediatR for server-side async rules.
 - Sync `Validate` never silently skips async rules.
 - `PreValidateAsync` is stricter: synchronous `Validate` throws `InvalidOperationException` because
   the guard cannot run.
+- Async Options validation runs only through `IAsyncStartupValidator.ValidateAsync(token)`. This is
+  the only path that awaits async validators and the only one that observes cancellation.
+- `IOptions<T>.Value`, `IOptionsSnapshot<T>.Value`, and `IOptionsMonitor<T>.CurrentValue` / `Get(name)`
+  use synchronous validation. On `net11.0` an async-only validator returns `Skip`, so an invalid
+  async-only value is accepted on these paths and the async rules do not run. Synchronous validators
+  still run on reload and throw `OptionsValidationException` when the value is invalid.
+- Named options use the same per-name synchronous path. A successful `IOptionsMonitor<T>` reload is
+  not evidence that async rules passed; call the startup validator or the domain validator's
+  `ValidateAsync` when async rules must gate a reload.
 
 ## Execution and filtering
 
@@ -38,6 +49,12 @@ These are deliberate boundaries or tracked follow-ups, not surprises.
   one collector for the nesting duration. Bounded by nesting depth; a stack-based pool is future
   work.
 - Hooks receive `RuleSets` and `FailFast`, but not `RootData` or `ServiceProvider`.
+- Per-rule decision traces (`ValidationDiagnosticsOptions.EnableRuleTrace`) are opt-in and only
+  enabled when an activity is recorded. They report one event per configured rule with kind,
+  member path, decision, and a coarse duration bucket. They never carry property values, messages,
+  parameters, or custom state. Predicate bodies and condition inputs remain opaque, nested child
+  validators emit events on their own nested activity, and a manually constructed
+  `ValidationContext<T>` without engine-provided `RootContextData` is not traced.
 
 ## Emptiness and equality semantics
 
@@ -103,12 +120,17 @@ These are deliberate boundaries or tracked follow-ups, not surprises.
   normalize input at the boundary when the source is local.
 - A null date/time value passes relative-date rules; combine with `[NotNull]` when it is required.
 
-- `[Validate]` supports classes, `struct`, and `record struct` models. It does not discover
-  validation rules on fields or static properties.
-- Models must declare a namespace. The generator emits validators under
-  `<model namespace>.Validators`; a model in the global namespace is not supported in this preview.
+- `[Validate]` supports classes, `struct`, and `record struct` models. Validation attributes target
+  properties, so fields cannot carry them; static properties are rejected with `VAL0022` rather than
+  silently skipped.
+- Models must declare a namespace. A global-namespace model is rejected with `VAL0022`; the
+  generator does not emit a partial validator.
 - Open generic model declarations are rejected with `VAL0022`; use a non-generic model or a fluent
   validator. This avoids ambiguous generated type names and DI registrations.
+- A derived type without `[Validate]` has no generated validator even when its base type is
+  annotated. Annotate the derived type explicitly or use a fluent validator.
+- `SetInheritanceValidator` resolves the exact runtime type; an unregistered runtime type is
+  skipped without base-type or interface fallback. Register every runtime type explicitly.
 - `[After]` / `[Before]` parse against the property type (`DateTime`, `DateTimeOffset`, `DateOnly`,
   or `TimeOnly`) with `CultureInfo.InvariantCulture`. `TimeOnly` accepts clock values such as
   `"09:30"`; date-carrying strings are rejected. Invalid values produce `VAL0021`; there is no
@@ -199,8 +221,10 @@ These are deliberate boundaries or tracked follow-ups, not surprises.
   before use.
 - `ValidationResult` errors with an empty member name are attributed to the property or model path;
   explicit member paths are preserved unchanged.
-- Class-level custom rules execute during validation but are not listed in the generated static
-  descriptor. Descriptor completeness for model-level rules remains tracked as future work.
+- Class-level `[CustomValidator]` rules and rules added through `AddCustomValidators()` are present
+  in the runtime `Describe()` output. Model-level rules appear under `*`; rules without metadata are
+  emitted as `Custom` advisories. The build-time `ClientRulesCatalog` remains attribute-only and
+  omits runtime-added rules and model-level custom rules; those rules are server-only by design.
 
 ## OpenAPI naming policies
 
@@ -279,7 +303,7 @@ override to change localized default text; the pack remains the fallback for non
 - Culture packs preserve script and region subtags (`zh-Hans`, `pt-BR`), while the pipeline still
   resolves regional requests such as `fr-FR` through the neutral `fr` pack.
 - `ar`, `he`, `ur`, and `fa` contain RTL text; the package does not set UI direction.
-- The catalog test enforces key completeness and placeholder parity with English. A missing key or
+- The catalog test enforces key completeness and placeholder consistency with English. A missing key or
   changed placeholder fails the test rather than falling back silently.
 - `AddDefaultMessagePacks` exposes a mutable `IValidationMessageCatalog` for runtime additions,
   overrides, and removals. It is process-local and in-memory; changes do not survive a restart or
@@ -370,6 +394,24 @@ override to change localized default text; the pack remains the fallback for non
   are not AOT targets.
 - Benchmarks and samples are outside the runtime AOT claim; the assertions package is
   AOT-compatible but test-only.
+
+## Microsoft.Extensions.Validation boundary (net11 GA)
+
+`Jeninnet.Validation.Extensions.Validation` is a resolver adapter for the platform validation
+pipeline, not a replacement. On `net11.0` the platform owns metadata discovery and the source
+generator, nested object/collection traversal, `MaxDepth`, Blazor `EditForm` async submit and static
+SSR, minimal API ProblemDetails, `[SkipValidation]`, and `.DisableValidation()`.
+
+The bridge adds explicit `AddJeninnetValidation<TModel>()` / `AddJeninnetValidation(...)`
+registration, resolves `IValidator<TModel>` from `ValidateContext.ServiceProvider`, and maps
+`ValidationResult` errors to the platform's `ValidationError` (`Name`, `Path`, `ErrorMessage`,
+`Container`). `TryFindProperty` returns false: property-level metadata remains with the platform or
+the DataAnnotations bridge.
+
+Jeninnet rule messages stay under the validator's control: authored message first, then message key,
+then error code. The platform `LocalizerProvider` localizes platform display names and
+DataAnnotations messages; the bridge does not run Jeninnet rule messages through it. MVC and Razor
+Pages are outside the platform package; use `Jeninnet.Validation.AspNetCore` there.
 
 ## Related
 

@@ -10,7 +10,8 @@ ASP.NET Core integration for `Jeninnet.Validation`:
 - **Interceptors:** `AddValidationInterceptor<T>()` observes or replaces validation in both
   pipelines (`BeforeValidationAsync`/`AfterValidationAsync`).
 - **ProblemDetails:** `ValidationException` → 400 handler and privacy-preserving
-  error-code/severity options.
+  error-code/severity options. Model-level errors use the `$` key; the shared
+  `ValidationErrorProjection` keeps field, code, and severity aligned with gRPC details.
 
 ## Requirements
 
@@ -20,7 +21,7 @@ ASP.NET Core integration for `Jeninnet.Validation`:
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.AspNetCore --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.AspNetCore --version 1.0.0-preview.3
 ```
 
 ## Minimal API
@@ -78,6 +79,10 @@ public IActionResult Health() => Ok();
 
 The package is an integration shell; `Jeninnet.Validation` and
 `Jeninnet.Validation.Abstractions` remain free of ASP.NET Core references.
+
+## AOT position
+
+**Reflection-dependent.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

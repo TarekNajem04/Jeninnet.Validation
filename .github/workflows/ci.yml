@@ -139,6 +139,10 @@ jobs:
         shell: pwsh
         run: pwsh scripts/api/test-public-api-gate.ps1
 
+      - name: Check validation contract fingerprints
+        shell: pwsh
+        run: pwsh scripts/quality/check-contract-fingerprints.ps1
+
   message-keys:
 
     name: Message key catalog
@@ -181,6 +185,10 @@ jobs:
         uses: actions/setup-node@v7.1.0
         with:
           node-version: '24'
+
+      - name: Verify client rule support
+        shell: pwsh
+        run: pwsh scripts/client/check-client-rule-support.ps1
 
       - name: Test client evaluator
         run: npm test --prefix client
@@ -227,6 +235,16 @@ jobs:
           --no-build
           --blame-hang-timeout 3m
           --logger "trx;LogFileName=results.trx"
+          --results-directory TestResults/${{ matrix.os }}
+
+      - name: Host conformance
+        run: >
+          dotnet test Jeninnet.Validation.slnx
+          --configuration Release
+          --no-build
+          --no-restore
+          --filter "TestCategory=HostConformance"
+          --logger "trx;LogFileName=host-conformance.trx"
           --results-directory TestResults/${{ matrix.os }}
 
       - name: Upload test results
@@ -353,6 +371,10 @@ jobs:
       - name: Verify package contents
         shell: pwsh
         run: ./scripts/package/check-package-contents.ps1 -PackagesPath artifacts/packages
+
+      - name: Verify package dependency budget
+        shell: pwsh
+        run: ./scripts/package/check-package-dependency-budget.ps1 -PackagesPath artifacts/packages
 
       - name: Verify package version
         shell: pwsh

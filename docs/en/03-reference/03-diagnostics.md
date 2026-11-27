@@ -3,45 +3,66 @@
 The analyzer and source generator report rule misuse at compile time. All diagnostics use the
 `VAL` prefix and the `ValidationGenerator` category.
 
+For a page-per-diagnostic learning path with a minimal trigger, compiler output, and either a
+tested fix or the reason no automatic fix is safe, see the
+[diagnostic gallery](09-diagnostic-gallery/index.md).
+
 ## Diagnostic reference
 
-| ID | Severity | Title | Code fix |
-|---|---|---|---|
-| `VAL0001` | Error | Invalid rule parameter | Converts the literal to the expected type (Boolean, DateOnly, DateTime, Decimal, Enum, Guid, TimeSpan). |
-| `VAL0002` | Error | Rule applied to incompatible property type | — |
-| `VAL0003` | Error | Rule parameter type mismatch | — |
-| `VAL0004` | Warning | Nested validator not found | — |
-| `VAL0005` | Warning | Collection element validator not found | — |
-| `VAL0006` | Warning | Rule cannot be used on nullable type | Adds `[NotNull]` before the numeric rule. |
-| `VAL0007` | Error | Conflicting rules on property | Removes the conflicting rule. |
-| `VAL0008` | Error | Unsupported attribute argument type | — |
-| `VAL0009` | Error | Invalid rule combination | Removes `[NotEmpty]` or changes `[Length(0, …)]` to `[Length(1, …)]`. |
-| `VAL0010` | Error | Rule parameter out of range | Swaps reversed `InclusiveBetween` bounds. |
-| `VAL0011` | Info | Consider adding `[NotEmpty]` for string property | Adds `[NotEmpty]`. |
-| `VAL0012` | Info | Consider adding `[NotNull]` for nullable property | Adds `[NotNull]`. |
-| `VAL0013` | Info | Rule can be simplified | — |
-| `VAL0014` | Warning | Redundant `[NotNull]` attribute | — |
-| `VAL0015` | Error | Target property not found | — |
-| `VAL0016` | Warning | Synchronous `Validate` on async-only validator | Rewrites the call to `await ValidateAsync(...)`. |
-| `VAL0017` | Info | Tautological validation rule | — |
-| `VAL0018` | Error | Invalid condition method | — |
-| `VAL0019` | Error | Invalid lifecycle hook | — |
-| `VAL0020` | Error | Invalid custom validator | — |
-| `VAL0021` | Error | Invalid date/time rule value | — |
-| `VAL0022` | Error | Generic model is not supported | — |
-| `VAL0023` | Warning | `RuleFor` member name mismatch | Rewrites the argument to `nameof(Model.Member)`. |
-| `VAL0024` | Warning | Collection rule requires a collection | — |
-| `VAL0025` | Warning | Async-only validator in synchronous adapter | — |
-| `VAL0027` | Error | `[Sanitize]` cannot be applied to the member | — |
-| `VAL0028` | Warning | `[SkipValidation]` conflicts with validation attributes | — |
-| `VAL0029` | Error | Conditional attribute has an invalid target | — |
-| `VAL0030` | Error | Conditional attribute value is not supported | — |
-| `VAL0031` | Error | Conditional attribute is duplicated | — |
-| `VAL0032` | Error | Relative date rule requires a date/time member | — |
-| `VAL0033` | Error | Exclusive range has equal bounds | — |
-| `VAL0034` | Error | Invalid multiple-of divisor | — |
+| ID | Severity | Title | Code fix | Fix status |
+|---|---|---|---|---|
+| `VAL0001` | Error | Invalid rule parameter | Converts the literal to the expected type (Boolean, DateOnly, DateTime, Decimal, Enum, Guid, TimeSpan). | Available |
+| `VAL0002` | Error | Rule applied to incompatible property type | — | Intentional — choosing between changing the rule or the member type is a design decision |
+| `VAL0003` | Error | Rule parameter type mismatch | — | Intentional — the rule or the literal may be wrong; the intended change is ambiguous |
+| `VAL0004` | Warning | Nested validator not found | — | Intentional — the missing nested validator must be authored |
+| `VAL0005` | Warning | Collection element validator not found | — | Intentional — the missing element validator must be authored |
+| `VAL0006` | Warning | Rule cannot be used on nullable type | Adds `[NotNull]` before the numeric rule. | Available |
+| `VAL0007` | Error | Conflicting rules on property | Removes the conflicting rule. | Available |
+| `VAL0008` | Error | Unsupported attribute argument type | — | Intentional — the supported argument contract depends on the rule's intended shape |
+| `VAL0009` | Error | Invalid rule combination | Removes `[NotEmpty]` or changes `[Length(0, …)]` to `[Length(1, …)]`. | Available |
+| `VAL0010` | Error | Rule parameter out of range | Swaps reversed `InclusiveBetween` bounds. | Available |
+| `VAL0011` | Info | Consider adding `[NotEmpty]` for string property | Adds `[NotEmpty]`. | Available |
+| `VAL0012` | Info | Consider adding `[NotNull]` for nullable property | Adds `[NotNull]`. | Available |
+| `VAL0013` | Info | Rule can be simplified | — | Intentional — replacing two rules with one changes the documented rule set |
+| `VAL0014` | Warning | Redundant `[NotNull]` attribute | Removes the redundant `[NotNull]`. | Available |
+| `VAL0015` | Error | Target property not found | — | Intentional — the intended sibling member name is user intent |
+| `VAL0016` | Warning | Synchronous `Validate` on async-only validator | Rewrites the call to `await ValidateAsync(...)`. | Available |
+| `VAL0017` | Info | Tautological validation rule | Removes the tautological rule. | Available |
+| `VAL0018` | Error | Invalid condition method | — | Intentional — the condition method must be authored or its signature chosen |
+| `VAL0019` | Error | Invalid lifecycle hook | — | Intentional — the lifecycle hook must be authored or its signature chosen |
+| `VAL0020` | Error | Invalid custom validator | — | Intentional — the custom validator method must be authored or its signature chosen |
+| `VAL0021` | Error | Invalid date/time rule value | — | Intentional — the literal is unparseable; the intended date is unknown |
+| `VAL0022` | Error | Model shape is not supported | — | Intentional — the model shape must change or move to a fluent validator |
+| `VAL0023` | Warning | `RuleFor` member name mismatch | Rewrites the argument to `nameof(Model.Member)`. | Available |
+| `VAL0024` | Warning | Collection rule requires a collection | — | Intentional — the target member or the rule must change based on intent |
+| `VAL0025` | Warning | Async-only validator in synchronous adapter | — | Intentional — the integration path or the validator must change based on intent |
+| `VAL0027` | Error | `[Sanitize]` cannot be applied to the member | — | Intentional — fixing the member setter or removing sanitization is a design decision |
+| `VAL0028` | Warning | `[SkipValidation]` conflicts with validation attributes | — | Intentional — removing the skip marker or the attributes depends on intent |
+| `VAL0029` | Error | Conditional attribute has an invalid target | — | Intentional — the intended sibling member is user intent |
+| `VAL0030` | Error | Conditional attribute value is not supported | — | Intentional — the intended comparison value is user intent |
+| `VAL0031` | Error | Conditional attribute is duplicated | — | Intentional — which duplicate to keep is user intent |
+| `VAL0032` | Error | Relative date rule requires a date/time member | — | Intentional — the member type or the rule must change based on intent |
+| `VAL0033` | Error | Exclusive range has equal bounds | — | Intentional — widening or switching to inclusive changes semantics |
+| `VAL0034` | Error | Invalid multiple-of divisor | — | Intentional — the intended positive divisor is user intent |
 
-The catalog has 33 diagnostics; `VAL0026` is intentionally unused.
+The catalog has 33 diagnostics; `VAL0026` is intentionally unused. Eleven have code fixes; the other
+twenty-two are intentional omissions because the correct change depends on the author's intent (the
+rule, the member type, or the member name). The `Fix status` column records that decision, and
+`scripts/quality/check-analyzer-fix-coverage.ps1` verifies that every diagnostic has a row, every
+provider is marked `Available`, and the release-tracking files cover the catalog.
+
+## Fix coverage
+
+| Status | Count |
+|---|---:|
+| Available | 11 |
+| Intentional omission | 22 |
+| Missing | 0 |
+
+`VAL0014` (redundant `[NotNull]`) and `VAL0017` (tautological rule) have safe removal fixes. The
+remaining omissions are deliberate: for example, `VAL0002`/`VAL0003` require a rule/member design
+decision, `VAL0018`–`VAL0020` require a method implementation, and `VAL0027`–`VAL0034` require a
+member, value, or intent choice. The analyzer never guesses which change the author intended.
 
 The generator emits `[AsyncOnlyValidator]` when every attribute-driven rule is asynchronous. The
 runtime guard throws for async-only validators even when the marker is absent, so `VAL0016` is a
@@ -87,6 +108,16 @@ public int Score { get; init; }
 
 Swap the bounds; the code fix does it automatically.
 
+### `VAL0014` — redundant `[NotNull]`
+
+```csharp
+[NotNull]                       // VAL0014: int is already non-nullable
+public int Quantity { get; init; }
+```
+
+`[NotNull]` only affects nullable members. The code fix removes the redundant attribute while
+keeping any sibling validation attributes.
+
 ### `VAL0015` — target property not found
 
 ```csharp
@@ -106,6 +137,16 @@ var result = await validator.ValidateAsync(request); // correct
 
 Async-only validators throw `AsyncValidatorInvokedSynchronouslyException` at runtime. Use the async
 path or add a synchronous rule.
+
+### `VAL0017` — tautological rule
+
+```csharp
+[MinimumLength(0)]              // VAL0017: every string has length >= 0
+public string Name { get; set; } = string.Empty;
+```
+
+The rule is always satisfied. The code fix removes the attribute; keep it only when the explicit
+range is useful documentation and suppress the diagnostic locally with a reason.
 
 ### `VAL0018` — invalid condition method
 
@@ -153,15 +194,26 @@ The value must parse under `CultureInfo.InvariantCulture` as the property type (
 `DateTimeOffset`, `DateOnly`, or `TimeOnly`). The generator never substitutes `DateTime.Now` for an
 invalid value. Fix the literal or the property type.
 
-### `VAL0022` — generic model is not supported
+### `VAL0022` — model shape is not supported
 
 ```csharp
 [Validate]
-public sealed class Box<T> { /* ... */ } // VAL0022
+public sealed class Box<T> { /* ... */ } // VAL0022: generic model
+
+[Validate]
+public sealed class GlobalModel { /* ... */ } // VAL0022: no namespace
+
+[Validate]
+public sealed class StaticModel
+{
+    [NotEmpty]
+    public static string? Name { get; set; } // VAL0022: static property
+}
 ```
 
-The source generator emits a closed, non-generic validator class. Use a non-generic model or a
-fluent validator for generic types.
+The source generator emits a closed, non-generic validator class in an explicit namespace and reads
+instance properties. Use a non-generic model with a namespace and instance properties, or use a
+fluent validator for the unsupported shape.
 
 ### `VAL0023` — RuleFor member name mismatch
 
@@ -300,6 +352,18 @@ a single value is the intended range. Reversed bounds are reported as `VAL0010` 
 generator rejects both before the generated validator can run. The fluent
 `ExclusiveBetween(5, 5)` call throws `ArgumentException` at configuration time for the same reason.
 
+### `VAL0034` — invalid multiple-of divisor
+
+```csharp
+[MultipleOf(0)]               // VAL0034: divisor must be positive and finite
+public decimal Amount { get; init; }
+```
+
+`MultipleOf` accepts a positive, finite decimal divisor. Zero, negative, `NaN`, and infinite
+literals are rejected at build time; the same rule applies to the fluent overload.
+
+`VAL0029`–`VAL0034` are errors and always block the build.
+
 ## Suppression
 
 Suppress at the narrowest scope and explain why:
@@ -318,17 +382,7 @@ configuration error.
 The repository builds with warnings as errors. If your application does the same, `VAL0004`,
 `VAL0005`, `VAL0006`, `VAL0014`, `VAL0016`, `VAL0023`, `VAL0024`, `VAL0025`, `VAL0027`, and
 `VAL0028` become build blockers. Fix them rather than lowering the severity; each one points at a
-rule that would behave differently at runtime. ### `VAL0034` — invalid multiple-of divisor
-
-```csharp
-[MultipleOf(0)]               // VAL0034: divisor must be positive and finite
-public decimal Amount { get; init; }
-```
-
-`MultipleOf` accepts a positive, finite decimal divisor. Zero, negative, `NaN`, and infinite
-literals are rejected at build time; the same rule applies to the fluent overload.
-
-`VAL0029`–`VAL0034` are errors and always block the build.
+rule that would behave differently at runtime.
 
 ## Related
 

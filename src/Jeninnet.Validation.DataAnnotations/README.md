@@ -12,7 +12,7 @@ MVC model binding, Blazor's `DataAnnotationsValidator`, and custom
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.DataAnnotations --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.DataAnnotations --version 1.0.0-preview.3
 ```
 
 ## Class-level attribute
@@ -100,18 +100,43 @@ public IEnumerable<ValidationResult> Validate(ValidationContext validationContex
 
 For a single member, call `JeninnetDataAnnotationsAdapter.ValidateProperty(...)`.
 
-## Sync-only
+## Async validation (.NET 11)
 
-DataAnnotations validation is synchronous. Validators with asynchronous rules
-throw `AsyncValidatorInvokedSynchronouslyException`; keep async rules on the
-MediatR/ASP.NET Core async paths. Reflection invocation unwraps the original
-exception instead of leaking `TargetInvocationException`.
+On .NET 11, `JeninnetValidatableAttribute` and `JeninnetValidatePropertyAttribute` derive from
+`AsyncValidationAttribute`. The same annotations participate in the framework's asynchronous
+DataAnnotations pipeline:
+
+```csharp
+var results = new List<ValidationResult>();
+
+var valid = await Validator.TryValidateObjectAsync(
+    model,
+    new ValidationContext(model),
+    results,
+    validateAllProperties: true,
+    cancellationToken);
+```
+
+Async-only validators now run through `IAsyncValidator<T>` instead of failing the synchronous
+guard. Models implementing `IAsyncValidatableObject` are also invoked by the framework's async
+pipeline. The synchronous `Validator.ValidateObject` path remains available and still throws
+`AsyncValidatorInvokedSynchronouslyException` for async-only validators.
+
+On .NET 10, DataAnnotations remains synchronous; use the ASP.NET Core, MediatR, or Blazor async
+paths for async rules.
+
+Reflection invocation unwraps the original exception instead of leaking
+`TargetInvocationException` on both paths.
 
 ## Dependency direction
 
 Only this optional bridge references `System.ComponentModel.DataAnnotations`.
 `Jeninnet.Validation` and `Jeninnet.Validation.Abstractions` remain free of it;
 the architecture suite guards that direction.
+
+## AOT position
+
+**Reflection-dependent.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

@@ -1,1 +1,5 @@
 #nullable enable
+Jeninnet.Validation.Observable.ObservableValidationOptions.CaptureSynchronizationContext.get -> bool
+Jeninnet.Validation.Observable.ObservableValidationOptions.CaptureSynchronizationContext.set -> void
+Jeninnet.Validation.Observable.ObservableValidationOptions.Post.get -> System.Action<System.Action!>?
+Jeninnet.Validation.Observable.ObservableValidationOptions.Post.set -> void

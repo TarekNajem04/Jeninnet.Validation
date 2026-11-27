@@ -89,40 +89,50 @@ public sealed class ValidationInterceptor : Interceptor {
 
     private static RpcException CreateException(ValidationResult result) {
         var badRequest = new GoogleBadRequest();
+        var errorInfos = new List<GoogleErrorInfo>(result.Errors.Count);
+        var messages = new List<string>(result.Errors.Count);
 
         foreach(var error in result.Errors) {
+            var projection = ValidationErrorProjection.From(error);
+
             badRequest.FieldViolations.Add(new GoogleBadRequest.Types.FieldViolation {
-                Field = error.MemberName ?? string.Empty,
-                Description = GetMessage(error)
+                Field = projection.Field,
+                Description = projection.Message
             });
+            messages.Add(projection.Message);
+
+            var info = new GoogleErrorInfo {
+                Reason = string.IsNullOrWhiteSpace(projection.ErrorCode)
+                    ? "VALIDATION_ERROR"
+                    : projection.ErrorCode,
+                Domain = "jeninnet.validation/v1"
+            };
+            info.Metadata["field"] = projection.Field;
+            info.Metadata["severity"] = projection.Severity.ToString();
+
+            if(!string.IsNullOrWhiteSpace(projection.ErrorCode)) {
+                info.Metadata["code"] = projection.ErrorCode;
+            }
+
+            errorInfos.Add(info);
         }
 
-        var message = string.Join("; ", result.Errors.Select(GetMessage));
+        var message = string.Join("; ", messages);
         var status = new GoogleRpcStatus {
             Code = (int)StatusCode.InvalidArgument,
             Message = message
         };
         status.Details.Add(GoogleAny.Pack(badRequest));
 
+        foreach(var info in errorInfos) {
+            status.Details.Add(GoogleAny.Pack(info));
+        }
+
         var trailers = new GrpcMetadata {
             { "grpc-status-details-bin", status.ToByteArray() }
         };
 
         return new RpcException(new Status(StatusCode.InvalidArgument, message), trailers);
-    }
-
-    private static string GetMessage(ValidationError error) {
-        var message = error.Message;
-
-        if(string.IsNullOrWhiteSpace(message)) {
-            message = error.MessageKey;
-        }
-
-        if(string.IsNullOrWhiteSpace(message)) {
-            message = error.MessageId.Id;
-        }
-
-        return string.IsNullOrWhiteSpace(message) ? "Invalid" : message;
     }
 }
 

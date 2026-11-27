@@ -54,7 +54,7 @@ internal sealed class FileMigration {
 }
 
 /// <summary>
-/// Migrates one C# source text from FluentValidation / DataAnnotations idioms to Jeninnet
+/// Migrates one C# source text from supported validation idioms to Jeninnet
 /// idioms using syntax analysis only (no project references required). Only known-safe patterns
 /// are rewritten; everything else is reported for human review.
 /// </summary>
@@ -151,15 +151,14 @@ internal static class MigrationEngine {
 
             var constructors = node.Members.OfType<ConstructorDeclarationSyntax>().ToList();
 
-            if(constructors.Count != 1 || constructors[0].ParameterList.Parameters.Count != 0) {
+            if(constructors is not [var originalConstructor] || originalConstructor.ParameterList.Parameters.Any()) {
                 migration.AddNeedsReview(new MigrationFinding(
                     MigrationFinding.NeedsReview,
                     GetLine(node),
-                    $"Class '{node.Identifier.Text}' derives from FluentValidation AbstractValidator<{modelType}> but has no single parameterless constructor; Jeninnet Configure has a fixed builder signature, so convert it to Configure manually."));
+                    $"Class '{node.Identifier.Text}' derives from the source validator base class but has no single parameterless constructor; Jeninnet Configure has a fixed builder signature, so convert it to Configure manually."));
                 return base.VisitClassDeclaration(node);
             }
 
-            var originalConstructor = constructors[0];
             var originalConstructorLine = GetLine(originalConstructor);
 
             // Record RuleFor findings from the ORIGINAL syntax. Nodes reached through ancestors
@@ -228,7 +227,7 @@ internal static class MigrationEngine {
             migration.AddConverted(new MigrationFinding(
                 MigrationFinding.ValidatorConverted,
                 GetLine(node),
-                $"Class '{node.Identifier.Text}' converts from FluentValidation AbstractValidator<{modelType}> to Jeninnet Validator<{modelType}> with Configure: Jeninnet builds rules in the overridden Configure method instead of the constructor."));
+                $"Class '{node.Identifier.Text}' converts from the source validator base class to Jeninnet Validator<{modelType}> with Configure: Jeninnet builds rules in the overridden Configure method instead of the constructor."));
 
             return rewritten;
         }
@@ -300,7 +299,7 @@ internal static class MigrationEngine {
                     migration.AddNeedsReview(new MigrationFinding(
                         MigrationFinding.NeedsReview,
                         GetLine(invocation),
-                        "FluentValidation RuleFor uses a complex selector; Jeninnet needs an explicit member name for paths and localized messages — add the member-name argument manually."));
+                        "The source RuleFor uses a complex selector; Jeninnet needs an explicit member name for paths and localized messages — add the member-name argument manually."));
                 }
 
                 return invocation.WithExpression(builderCall);
@@ -314,7 +313,7 @@ internal static class MigrationEngine {
                 migration.AddConverted(new MigrationFinding(
                     MigrationFinding.RuleForMemberName,
                     GetLine(invocation),
-                    $"FluentValidation RuleFor member '{path}' gained the explicit member name Jeninnet requires for member paths and localized messages."));
+                    $"Source RuleFor member '{path}' gained the explicit member name Jeninnet requires for member paths and localized messages."));
             }
 
             return invocation
@@ -330,7 +329,7 @@ internal static class MigrationEngine {
                 migration.AddConverted(new MigrationFinding(
                     MigrationFinding.WithCodeRenamed,
                     GetLine(node),
-                    "FluentValidation WithErrorCode was renamed to Jeninnet WithCode: error codes travel on WithCode in Jeninnet."));
+                    "The source WithErrorCode was renamed to Jeninnet WithCode: error codes travel on WithCode in Jeninnet."));
                 return node.WithExpression(member.WithName(SyntaxFactory.IdentifierName("WithCode")));
             }
 
@@ -339,7 +338,7 @@ internal static class MigrationEngine {
                 migration.AddConverted(new MigrationFinding(
                     MigrationFinding.WithCodeRenamed,
                     GetLine(node),
-                    "FluentValidation WithErrorCode was renamed to Jeninnet WithCode: error codes travel on WithCode in Jeninnet."));
+                    "The source WithErrorCode was renamed to Jeninnet WithCode: error codes travel on WithCode in Jeninnet."));
                 return node.WithExpression(SyntaxFactory.IdentifierName("WithCode"));
             }
 
@@ -349,7 +348,7 @@ internal static class MigrationEngine {
                 migration.AddNeedsReview(new MigrationFinding(
                     MigrationFinding.NeedsReview,
                     GetLine(node),
-                    $"'{unsupported.Name.Identifier.Text}' is a FluentValidation escape hatch with no direct equivalent in Jeninnet: rewrite it against Jeninnet's error collector (value, context, errors) and remove this marker."));
+                    $"'{unsupported.Name.Identifier.Text}' is a source escape hatch with no direct equivalent in Jeninnet: rewrite it against Jeninnet's error collector (value, context, errors) and remove this marker."));
             }
 
             return base.VisitInvocationExpression(node);

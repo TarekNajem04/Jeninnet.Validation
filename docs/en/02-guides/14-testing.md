@@ -7,7 +7,7 @@ failed expectation and the actual errors.
 ## Install
 
 ```xml
-<PackageReference Include="Jeninnet.Validation.Assertions" Version="1.0.0-preview.2" />
+<PackageReference Include="Jeninnet.Validation.Assertions" Version="1.0.0-preview.3" />
 ```
 
 ## Assert a result
@@ -68,7 +68,7 @@ validators throw on the synchronous path by design.
 `GeneratedConformanceTests` compiles a real source-generated validator and a hand-written fluent
 validator for the same model in one assembly, then compares `IsValid`, error count, member name,
 message key, error code, severity, and custom state across a 23-case matrix. The old simulated
-`ParityTests` harness was removed so parity is never asserted against a hand-built imitation.
+The earlier hand-built comparison harness was removed; generated behavior is asserted against the real fluent validator.
 
 ## Test strategy
 
@@ -78,7 +78,7 @@ For every validator, cover:
 2. each member’s invalid case;
 3. rule sets and conditions;
 4. async rules on the async path;
-5. the generated/fluent parity case when both authoring styles exist.
+5. the generated/fluent conformance case when both authoring styles exist.
 
 ## Related
 

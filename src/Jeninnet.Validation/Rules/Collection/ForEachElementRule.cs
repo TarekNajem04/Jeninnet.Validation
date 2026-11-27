@@ -23,15 +23,39 @@ public sealed class ForEachElementRule<T, TElement>(
     IReadOnlyList<ISyncValidationRule<TElement>> syncRules,
     IReadOnlyList<IAsyncValidationRule<TElement>> asyncRules,
     CascadeMode? cascadeMode = null
-) : ISyncValidationRule<T>, IAsyncValidationRule<T>, IValidationMemberRule, IRuleOptionsTarget {
+) : ISyncValidationRule<T>, IAsyncValidationRule<T>, IValidationMemberRule, IRuleOptionsTarget, IValidationSchemaRuleMetadata {
     private readonly ISyncValidationRule<TElement>[] _syncRules = [.. syncRules];
     private readonly IAsyncValidationRule<TElement>[] _asyncRules = [.. asyncRules];
     private readonly RuleOptionOverrides _options = new();
     private Func<TElement, bool>? _filter;
     private Func<TElement, CancellationToken, ValueTask<bool>>? _asyncFilter;
     private Func<T, int, string>? _indexer;
+    private IValidationDescriptor? _nestedDescriptor;
 
     string? IValidationMemberRule.MemberName => accessor.MemberName;
+
+    string IValidationSchemaRuleMetadata.Kind => "ForEachElement";
+
+    bool IValidationSchemaRuleMetadata.IsCollection => true;
+
+    IValidationDescriptor? IValidationSchemaRuleMetadata.NestedDescriptor =>
+        _nestedDescriptor ??= BuildNestedDescriptor();
+
+    private ValidationDescriptor BuildNestedDescriptor() {
+        var builder = new ValidationDescriptorBuilder(
+            typeof(TElement).FullName ?? nameof(TElement),
+            typeof(TElement));
+
+        foreach(var rule in _syncRules) {
+            builder.AddRule(rule);
+        }
+
+        foreach(var rule in _asyncRules) {
+            builder.AddRule(rule);
+        }
+
+        return builder.Build();
+    }
 
     void IRuleOptionsTarget.ApplyOptions(RuleOptionOverrides options) {
         ArgumentNullException.ThrowIfNull(options);

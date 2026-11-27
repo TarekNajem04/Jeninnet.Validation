@@ -6,6 +6,7 @@
         <IsTestProject>true</IsTestProject>
         <DisableArtifacts>true</DisableArtifacts>
         <AssemblyName>Jeninnet.Validation.DataAnnotations.Net11.Tests</AssemblyName>
+        <RootNamespace>Jeninnet.Validation.DataAnnotations.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

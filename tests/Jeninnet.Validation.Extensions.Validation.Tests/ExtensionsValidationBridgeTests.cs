@@ -56,7 +56,7 @@ public sealed class ExtensionsValidationBridgeTests {
         MSTestAssertions.That(() => found.Should().BeTrue());
 
         if(info is null) {
-            Assert.Fail("The Jeninnet validation resolver was not selected.");
+            false.Should().BeTrue("The Jeninnet validation resolver was not selected.");
             return;
         }
 
@@ -84,7 +84,7 @@ public sealed class ExtensionsValidationBridgeTests {
         MSTestAssertions.That(() => found.Should().BeTrue());
 
         if(info is null) {
-            Assert.Fail("The Jeninnet validation resolver was not selected.");
+            false.Should().BeTrue("The Jeninnet validation resolver was not selected.");
             return;
         }
 
@@ -110,7 +110,7 @@ public sealed class ExtensionsValidationBridgeTests {
         MSTestAssertions.That(() => found.Should().BeTrue());
 
         if(info is null) {
-            Assert.Fail("The Jeninnet validation resolver was not selected.");
+            false.Should().BeTrue("The Jeninnet validation resolver was not selected.");
             return;
         }
 

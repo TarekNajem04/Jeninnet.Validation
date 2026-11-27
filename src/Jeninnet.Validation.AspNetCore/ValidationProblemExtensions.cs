@@ -37,10 +37,11 @@ public static class ValidationProblemExtensions {
         var includeSeverities = options?.IncludeSeverities ?? false;
 
         return errors
-            .GroupBy(static error => error.MemberName, StringComparer.Ordinal)
+            .Select(static error => (Error: error, Projection: ValidationErrorProjection.From(error)))
+            .GroupBy(static pair => pair.Projection.Field, StringComparer.Ordinal)
             .ToDictionary(
                 static group => group.Key,
-                group => group.Select(error => Format(error, includeErrorCodes, includeSeverities)).ToArray(),
+                group => group.Select(pair => Format(pair.Projection, includeErrorCodes, includeSeverities)).ToArray(),
                 StringComparer.Ordinal);
     }
 
@@ -67,17 +68,19 @@ public static class ValidationProblemExtensions {
         var grouped = new Dictionary<string, List<string>>(StringComparer.Ordinal);
 
         foreach(var error in errors) {
+            var projection = ValidationErrorProjection.From(error);
             var message = await FormatAsync(
                 error,
+                projection,
                 includeErrorCodes,
                 includeSeverities,
                 localizer,
                 culture,
                 cancellationToken).ConfigureAwait(false);
 
-            if(!grouped.TryGetValue(error.MemberName, out var messages)) {
+            if(!grouped.TryGetValue(projection.Field, out var messages)) {
                 messages = [];
-                grouped[error.MemberName] = messages;
+                grouped[projection.Field] = messages;
             }
 
             messages.Add(message);
@@ -158,11 +161,15 @@ public static class ValidationProblemExtensions {
         return httpContext.TraceIdentifier;
     }
 
-    private static string Format(ValidationError error, bool includeErrorCodes, bool includeSeverities) =>
-        Decorate(error.Message ?? error.MessageKey ?? error.ErrorCode ?? "Invalid", error, includeErrorCodes, includeSeverities);
+    private static string Format(
+        ValidationErrorProjection projection,
+        bool includeErrorCodes,
+        bool includeSeverities) =>
+        Decorate(projection.Message, projection, includeErrorCodes, includeSeverities);
 
     private static async ValueTask<string> FormatAsync(
         ValidationError error,
+        ValidationErrorProjection projection,
         bool includeErrorCodes,
         bool includeSeverities,
         IMessageLocalizer? localizer,
@@ -182,24 +189,24 @@ public static class ValidationProblemExtensions {
         }
 
         return Decorate(
-            message ?? error.MessageKey ?? error.ErrorCode ?? "Invalid",
-            error,
+            message ?? projection.Message,
+            projection,
             includeErrorCodes,
             includeSeverities);
     }
 
     private static string Decorate(
         string message,
-        ValidationError error,
+        ValidationErrorProjection projection,
         bool includeErrorCodes,
         bool includeSeverities) {
-        if(includeErrorCodes && error.ErrorCode is not null &&
-           !string.Equals(error.ErrorCode, message, StringComparison.Ordinal)) {
-            message = $"{message} [{error.ErrorCode}]";
+        if(includeErrorCodes && projection.ErrorCode is not null &&
+           !string.Equals(projection.ErrorCode, message, StringComparison.Ordinal)) {
+            message = $"{message} [{projection.ErrorCode}]";
         }
 
         if(includeSeverities) {
-            message = $"{message} ({error.Severity})";
+            message = $"{message} ({projection.Severity})";
         }
 
         return message;

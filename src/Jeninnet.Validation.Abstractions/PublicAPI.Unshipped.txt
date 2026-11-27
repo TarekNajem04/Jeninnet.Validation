@@ -9,6 +9,8 @@ Jeninnet.Validation.Abstractions.IRuleDefinitionOptions.Severity.set -> void
 Jeninnet.Validation.AsyncValidatorInvokedSynchronouslyException.AsyncValidatorInvokedSynchronouslyException() -> void
 Jeninnet.Validation.AsyncValidatorInvokedSynchronouslyException.AsyncValidatorInvokedSynchronouslyException(string? message) -> void
 Jeninnet.Validation.AsyncValidatorInvokedSynchronouslyException.AsyncValidatorInvokedSynchronouslyException(string? message, System.Exception? innerException) -> void
+Jeninnet.Validation.IValidationDiagnosticsScope.IsRuleTraceEnabled.get -> bool
+Jeninnet.Validation.IValidationDiagnosticsScope.Rule(in Jeninnet.Validation.ValidationRuleTraceEvent traceEvent) -> void
 Jeninnet.Validation.MessageId.Deconstruct(out string! Id) -> void
 Jeninnet.Validation.MessageId.Equals(Jeninnet.Validation.MessageId other) -> bool
 Jeninnet.Validation.Metadata.IValidationRuleDescriptor.MessageIsAuthored.get -> bool
@@ -22,11 +24,47 @@ Jeninnet.Validation.ValidationErrorCollector.Add(Jeninnet.Validation.ValidationE
 Jeninnet.Validation.ValidationErrorCollector.Add(string! memberName, string? message, Jeninnet.Validation.ValidationErrorSeverity severity, bool messageIsAuthored) -> void
 Jeninnet.Validation.ValidationErrorCollector.Equals(Jeninnet.Validation.ValidationErrorCollector? other) -> bool
 Jeninnet.Validation.ValidationErrorCollector.ValidationErrorCollector() -> void
+Jeninnet.Validation.ValidationErrorProjection
+Jeninnet.Validation.ValidationErrorProjection.ErrorCode.get -> string?
+Jeninnet.Validation.ValidationErrorProjection.Field.get -> string!
+Jeninnet.Validation.ValidationErrorProjection.Message.get -> string!
+Jeninnet.Validation.ValidationErrorProjection.Severity.get -> Jeninnet.Validation.ValidationErrorSeverity
+Jeninnet.Validation.ValidationErrorProjection.ValidationErrorProjection() -> void
+Jeninnet.Validation.ValidationErrorProjection.ValidationErrorProjection(string! field, string! message, string? errorCode, Jeninnet.Validation.ValidationErrorSeverity severity) -> void
+Jeninnet.Validation.ValidationRuleDecision
+Jeninnet.Validation.ValidationRuleDecision.Failed = 1 -> Jeninnet.Validation.ValidationRuleDecision
+Jeninnet.Validation.ValidationRuleDecision.Passed = 0 -> Jeninnet.Validation.ValidationRuleDecision
+Jeninnet.Validation.ValidationRuleDecision.ShortCircuited = 3 -> Jeninnet.Validation.ValidationRuleDecision
+Jeninnet.Validation.ValidationRuleDecision.SkippedCondition = 2 -> Jeninnet.Validation.ValidationRuleDecision
+Jeninnet.Validation.ValidationRuleDurationBucket
+Jeninnet.Validation.ValidationRuleDurationBucket.LessThanOneHundredMilliseconds = 3 -> Jeninnet.Validation.ValidationRuleDurationBucket
+Jeninnet.Validation.ValidationRuleDurationBucket.LessThanOneMillisecond = 1 -> Jeninnet.Validation.ValidationRuleDurationBucket
+Jeninnet.Validation.ValidationRuleDurationBucket.LessThanTenMilliseconds = 2 -> Jeninnet.Validation.ValidationRuleDurationBucket
+Jeninnet.Validation.ValidationRuleDurationBucket.NotMeasured = 0 -> Jeninnet.Validation.ValidationRuleDurationBucket
+Jeninnet.Validation.ValidationRuleDurationBucket.OneHundredMillisecondsOrMore = 4 -> Jeninnet.Validation.ValidationRuleDurationBucket
+Jeninnet.Validation.ValidationRuleTraceEvent
+Jeninnet.Validation.ValidationRuleTraceEvent.Decision.get -> Jeninnet.Validation.ValidationRuleDecision
+Jeninnet.Validation.ValidationRuleTraceEvent.Duration.get -> Jeninnet.Validation.ValidationRuleDurationBucket
+Jeninnet.Validation.ValidationRuleTraceEvent.Kind.get -> string!
+Jeninnet.Validation.ValidationRuleTraceEvent.MemberPath.get -> string!
+Jeninnet.Validation.ValidationRuleTraceEvent.ValidationRuleTraceEvent() -> void
+Jeninnet.Validation.ValidationRuleTraceEvent.ValidationRuleTraceEvent(string! kind, string! memberPath, Jeninnet.Validation.ValidationRuleDecision decision, Jeninnet.Validation.ValidationRuleDurationBucket duration) -> void
+Jeninnet.Validation.ValidationTimeoutException
+Jeninnet.Validation.ValidationTimeoutException.Timeout.get -> System.TimeSpan
+Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException() -> void
+Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(System.Threading.CancellationToken token) -> void
+Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(System.TimeSpan timeout) -> void
+Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(System.TimeSpan timeout, System.Exception? innerException) -> void
+Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(string? message) -> void
+Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(string? message, System.Exception? innerException) -> void
+Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(string? message, System.Exception? innerException, System.Threading.CancellationToken token) -> void
+Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(string? message, System.Threading.CancellationToken token) -> void
 const Jeninnet.Validation.Configuration.MessageParameterNames.Divisor = "Divisor" -> string!
 const Jeninnet.Validation.Configuration.ValidationMessageKeys.FUTURE_DATE = "FutureDate" -> string!
 const Jeninnet.Validation.Configuration.ValidationMessageKeys.MULTIPLE_OF = "MultipleOf" -> string!
 const Jeninnet.Validation.Configuration.ValidationMessageKeys.PAST_DATE = "PastDate" -> string!
 const Jeninnet.Validation.Configuration.ValidationMessageKeys.UNIQUE_ITEMS = "UniqueItems" -> string!
+const Jeninnet.Validation.ValidationErrorProjection.ModelLevelField = "$" -> string!
 override Jeninnet.Validation.MessageId.GetHashCode() -> int
 override Jeninnet.Validation.ValidationError.GetHashCode() -> int
 override Jeninnet.Validation.ValidationErrorCollector.Equals(object? obj) -> bool
@@ -38,6 +76,7 @@ static Jeninnet.Validation.ValidationError.operator !=(Jeninnet.Validation.Valid
 static Jeninnet.Validation.ValidationError.operator ==(Jeninnet.Validation.ValidationError left, Jeninnet.Validation.ValidationError right) -> bool
 static Jeninnet.Validation.ValidationErrorCollector.operator !=(Jeninnet.Validation.ValidationErrorCollector? left, Jeninnet.Validation.ValidationErrorCollector? right) -> bool
 static Jeninnet.Validation.ValidationErrorCollector.operator ==(Jeninnet.Validation.ValidationErrorCollector? left, Jeninnet.Validation.ValidationErrorCollector? right) -> bool
+static Jeninnet.Validation.ValidationErrorProjection.From(Jeninnet.Validation.ValidationError error) -> Jeninnet.Validation.ValidationErrorProjection
 ~override Jeninnet.Validation.MessageId.Equals(object obj) -> bool
 ~override Jeninnet.Validation.MessageId.ToString() -> string
 ~override Jeninnet.Validation.ValidationError.Equals(object obj) -> bool

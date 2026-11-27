@@ -13,6 +13,15 @@ translations are machine-assisted drafts; native-speaker review is tracked befor
 release, and corrections are welcome through the contribution path. Norwegian Nynorsk is out of
 scope; `no` is Bokmål.
 
+## Review status
+
+All 40 built-in packs are **machine-assisted** today; no native-speaker review is recorded. The
+per-culture status matrix is
+[`localization-review-status.json`](../../scripts/quality/localization-review-status.json), and
+`scripts/quality/check-localization-review-status.ps1` fails when a culture has no status or a
+`reviewed` entry has no reviewer/date. Do not describe a pack as natively reviewed without that
+record.
+
 ## Requirements
 
 - .NET 10.0 or later.
@@ -21,7 +30,7 @@ scope; `no` is Bokmål.
 ## Installation
 
 ```xml
-<PackageReference Include="Jeninnet.Validation.Localization" Version="1.0.0-preview.2" />
+<PackageReference Include="Jeninnet.Validation.Localization" Version="1.0.0-preview.3" />
 ```
 
 ## Register
@@ -151,7 +160,7 @@ mutate the caller's global culture.
    (`{PropertyName}`, `{0}`, `{1}`, `{Min}`, `{Max}`, `{Count}`, `{Length}`, `{Extensions}`).
 3. Run the catalog tests:
    `dotnet test tests/Jeninnet.Validation.Tests --filter DefaultMessagePackTests`.
-   The tests enforce key completeness, placeholder parity with English, non-empty values, and RTL
+   The tests enforce key completeness, placeholder consistency with English, non-empty values, and RTL
    script presence for `ar`, `he`, `ur`, and `fa`.
 4. Obtain a native-speaker review before merging. Machine translation without review is not
    accepted.
@@ -159,6 +168,10 @@ mutate the caller's global culture.
 
 The provider discovers every embedded `Resources/*.json` file, so no registration list needs to be
 updated.
+
+## AOT position
+
+**AOT-compatible.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

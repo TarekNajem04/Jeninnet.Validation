@@ -8,7 +8,7 @@ This directory is the entry point for the Jeninnet.Validation documentation book
 
 The book explains the library from the first package reference to production concerns:
 authoring, rules, execution, integrations, schema/client emission, localization, testing,
-performance, AOT, migration, and troubleshooting.
+performance, AOT, and troubleshooting.
 
 English is the source of truth. Arabic text checks cover the built-in message packs and any Arabic
 documentation that is added.

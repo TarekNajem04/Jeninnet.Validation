@@ -61,7 +61,7 @@ public class PasswordStrengthRule<T, TProperty>(
         var text = value as string ?? string.Empty;
         var violations = Policy.FindViolations(text);
 
-        return new Dictionary<string, object> {
+        return new MessageParameterDictionary(ruleParameterCount: 3) {
             { MessageParameterNames.Policy, Policy.Name },
             { MessageParameterNames.MinLength, Policy.MinLength },
             { MessageParameterNames.MissingRequirements, string.Join(", ", violations) }

@@ -20,6 +20,8 @@ public sealed class RootContextData {
 
     internal ValidationFilter Filter { get; set; }
 
+    internal RuleDecisionTraceSession? RuleTrace { get; set; }
+
     /// <summary>
     /// Gets the number of values currently stored in the bag.
     /// </summary>
@@ -94,6 +96,7 @@ public sealed class RootContextData {
         _values?.Clear();
         _state?.Clear();
         Filter = default;
+        RuleTrace = null;
     }
 
     internal void SetState(object key, object value) {

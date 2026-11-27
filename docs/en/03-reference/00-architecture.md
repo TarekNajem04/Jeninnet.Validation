@@ -50,11 +50,13 @@ not execute validation.
 
 ## AOT and trimming
 
-The AOT-compatible libraries (`Jeninnet.Validation`, `Abstractions`, `JsonSchema`, `ClientRules`,
-`Localization`, and `Assertions`) declare `IsAotCompatible`. The engine uses no runtime reflection on
+The AOT-compatible libraries (`Jeninnet.Validation`, `Abstractions`, `Assertions`, `ClientRules`,
+`Diagnostics`, `Extensions.Validation`, `JsonSchema`, `Localization`, `OpenApi`, and `Rules.Domain`)
+declare `IsAotCompatible`. The engine uses no runtime reflection on
 the hot path; descriptors are frozen. Reflection-based assembly scanning is annotated and has
 explicit registration alternatives. The NativeAOT smoke harness publishes and runs the engine,
-generator, localization, and source-generated JSON.
+generator, localization, JSON Schema, client rules, the Microsoft OpenAPI applier, and
+source-generated JSON.
 
 ## Error model
 

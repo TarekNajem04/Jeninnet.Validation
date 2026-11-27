@@ -45,6 +45,30 @@
         </PackageReference>
     </ItemGroup>
 
+    <!--
+        Roslynator analyzers are centralized for every C# project in the solution.
+        Versions live in Directory.Packages.props; PrivateAssets keeps the
+        analyzers out of package dependencies and public API surfaces.
+
+        Roslynator.Formatting.Analyzers ships its rules disabled by default.
+        Enabling them is a deliberate .roslynatorconfig/EditorConfig decision,
+        not a per-project package change.
+    -->
+    <ItemGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
+        <PackageReference Include="Roslynator.Analyzers">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>analyzers</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Roslynator.CodeAnalysis.Analyzers">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>analyzers</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Roslynator.Formatting.Analyzers">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
     <!-- SourceLink runs only in CI: local clones may lack the git remote, and its
          "no remote / empty source link" warnings must not pollute local builds.
          The publish workflow always runs with CI=true. -->
@@ -76,7 +100,7 @@
             Projects must NOT declare their own <Version>.
             AssemblyVersion and FileVersion must stay numeric because they cannot carry a prerelease label.
         -->
-        <Version>1.0.0-preview.2</Version>
+        <Version>1.0.0-preview.3</Version>
         <FileVersion>1.0.0.0</FileVersion>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
         <PackageVersion>$(Version)</PackageVersion>
@@ -149,7 +173,7 @@
     -->
     <PropertyGroup Condition="'$(IsUnitTestProject)' == ''">
         <IsUnitTestProject>false</IsUnitTestProject>
-        <IsUnitTestProject Condition="$(MSBuildProjectName.EndsWith('.Tests'))">true</IsUnitTestProject>
+        <IsUnitTestProject Condition="$(MSBuildProjectName.EndsWith('Tests'))">true</IsUnitTestProject>
         <!-- Ensure this line copies the test result files to a unified folder in the root of the Solution -->
         <VSTestResultsDirectory>$(MSBuildThisFileDirectory)TestResults</VSTestResultsDirectory>
     </PropertyGroup>
@@ -157,6 +181,15 @@
     <PropertyGroup>
         <IsSampleProject Condition="$(MSBuildProjectName.Contains('.Sample.'))">true</IsSampleProject>
         <IsNonShippingProject Condition="$(MSBuildProjectName.EndsWith('.Benchmarks'))">true</IsNonShippingProject>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(IsUnitTestProject)' == 'true'">
+        <!--
+          Jeninnet.Assertions 1.2.0 ships a qps-Ploc satellite whose locale casing the SDK
+          normalizes (NETSDK1187). The package is external; this repository cannot fix its
+          folder names. Remove this suppression once a corrected package is published.
+        -->
+        <NoWarn>$(NoWarn);NETSDK1187</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup>

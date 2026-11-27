@@ -1,0 +1,529 @@
+{
+  "schemaVersion": 1,
+  "baselineRef": "v1.0.0-preview.2",
+  "targetVersion": "1.0.0-preview.3",
+  "approvals": [
+    {
+      "package": "Jeninnet.Validation.DataAnnotations",
+      "tfm": "net11.0",
+      "kind": "added",
+      "signature": "override Jeninnet.Validation.DataAnnotations.JeninnetValidatePropertyAttribute.IsValidAsync(object? value, System.ComponentModel.DataAnnotations.ValidationContext! validationContext, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<System.ComponentModel.DataAnnotations.ValidationResult?>!",
+      "reason": "N1 async DataAnnotations bridge, approved in the 2026-11-23 preview.3 roadmap re-cut.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-24"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.CodeFixes.RemoveRedundantNotNullCodeFix",
+      "reason": "P3-018 safe removal code fix for VAL0014; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.CodeFixes.RemoveRedundantNotNullCodeFix.RemoveRedundantNotNullCodeFix() -> void",
+      "reason": "P3-018 safe removal code fix for VAL0014; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.CodeFixes.RemoveTautologicalRuleCodeFix",
+      "reason": "P3-018 safe removal code fix for VAL0017; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.CodeFixes.RemoveTautologicalRuleCodeFix.RemoveTautologicalRuleCodeFix() -> void",
+      "reason": "P3-018 safe removal code fix for VAL0017; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "override Jeninnet.Validation.CodeFixes.RemoveRedundantNotNullCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>",
+      "reason": "P3-018 safe removal code fix for VAL0014; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "override Jeninnet.Validation.CodeFixes.RemoveRedundantNotNullCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!",
+      "reason": "P3-018 safe removal code fix for VAL0014; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "override Jeninnet.Validation.CodeFixes.RemoveRedundantNotNullCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!",
+      "reason": "P3-018 safe removal code fix for VAL0014; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "override Jeninnet.Validation.CodeFixes.RemoveTautologicalRuleCodeFix.FixableDiagnosticIds.get -> System.Collections.Immutable.ImmutableArray<string!>",
+      "reason": "P3-018 safe removal code fix for VAL0017; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "override Jeninnet.Validation.CodeFixes.RemoveTautologicalRuleCodeFix.GetFixAllProvider() -> Microsoft.CodeAnalysis.CodeFixes.FixAllProvider!",
+      "reason": "P3-018 safe removal code fix for VAL0017; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "tfm": "netstandard2.0",
+      "kind": "added",
+      "signature": "override Jeninnet.Validation.CodeFixes.RemoveTautologicalRuleCodeFix.RegisterCodeFixesAsync(Microsoft.CodeAnalysis.CodeFixes.CodeFixContext context) -> System.Threading.Tasks.Task!",
+      "reason": "P3-018 safe removal code fix for VAL0017; additive analyzer API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Observable",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.Observable.ObservableValidationOptions.CaptureSynchronizationContext.get -> bool",
+      "reason": "P3-017 UI-thread contract: opt-in synchronization-context capture for async completion; additive observable API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Observable",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.Observable.ObservableValidationOptions.CaptureSynchronizationContext.set -> void",
+      "reason": "P3-017 UI-thread contract: opt-in synchronization-context capture for async completion; additive observable API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Observable",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.Observable.ObservableValidationOptions.Post.get -> System.Action<System.Action!>?",
+      "reason": "P3-017 UI-thread contract: caller-provided dispatcher post delegate for async completion; additive observable API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Observable",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.Observable.ObservableValidationOptions.Post.set -> void",
+      "reason": "P3-017 UI-thread contract: caller-provided dispatcher post delegate for async completion; additive observable API approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationErrorProjection",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationErrorProjection.ErrorCode.get -> string?",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationErrorProjection.Field.get -> string!",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationErrorProjection.Message.get -> string!",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationErrorProjection.Severity.get -> Jeninnet.Validation.ValidationErrorSeverity",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationErrorProjection.ValidationErrorProjection() -> void",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationErrorProjection.ValidationErrorProjection(string! field, string! message, string? errorCode, Jeninnet.Validation.ValidationErrorSeverity severity) -> void",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "const Jeninnet.Validation.ValidationErrorProjection.ModelLevelField = \"$\" -> string!",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "static Jeninnet.Validation.ValidationErrorProjection.From(Jeninnet.Validation.ValidationError error) -> Jeninnet.Validation.ValidationErrorProjection",
+      "reason": "P3-016 canonical validation error projection shared by HTTP ProblemDetails and gRPC status details; additive abstraction approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationCallOptions.Timeout.get -> System.TimeSpan?",
+      "reason": "P3-026 async validation deadline: additive per-call Timeout budget; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationCallOptions.Timeout.init -> void",
+      "reason": "P3-026 async validation deadline: additive per-call Timeout budget; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.Timeout.get -> System.TimeSpan",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException() -> void",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(System.Threading.CancellationToken token) -> void",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(System.TimeSpan timeout) -> void",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(System.TimeSpan timeout, System.Exception? innerException) -> void",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(string? message) -> void",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(string? message, System.Exception? innerException) -> void",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(string? message, System.Exception? innerException, System.Threading.CancellationToken token) -> void",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationTimeoutException.ValidationTimeoutException(string? message, System.Threading.CancellationToken token) -> void",
+      "reason": "P3-026 async validation deadline: additive timeout exception; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.IValidationDiagnosticsScope.IsRuleTraceEnabled.get -> bool",
+      "reason": "P3-027 per-rule decision trace: additive opt-in diagnostics contract; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.IValidationDiagnosticsScope.Rule(in Jeninnet.Validation.ValidationRuleTraceEvent traceEvent) -> void",
+      "reason": "P3-027 per-rule decision trace: additive opt-in diagnostics contract; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDecision",
+      "reason": "P3-027 per-rule decision trace: additive rule outcome vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDecision.Failed = 1 -> Jeninnet.Validation.ValidationRuleDecision",
+      "reason": "P3-027 per-rule decision trace: additive rule outcome vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDecision.Passed = 0 -> Jeninnet.Validation.ValidationRuleDecision",
+      "reason": "P3-027 per-rule decision trace: additive rule outcome vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDecision.ShortCircuited = 3 -> Jeninnet.Validation.ValidationRuleDecision",
+      "reason": "P3-027 per-rule decision trace: additive rule outcome vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDecision.SkippedCondition = 2 -> Jeninnet.Validation.ValidationRuleDecision",
+      "reason": "P3-027 per-rule decision trace: additive rule outcome vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDurationBucket",
+      "reason": "P3-027 per-rule decision trace: additive coarse duration vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDurationBucket.LessThanOneHundredMilliseconds = 3 -> Jeninnet.Validation.ValidationRuleDurationBucket",
+      "reason": "P3-027 per-rule decision trace: additive coarse duration vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDurationBucket.LessThanOneMillisecond = 1 -> Jeninnet.Validation.ValidationRuleDurationBucket",
+      "reason": "P3-027 per-rule decision trace: additive coarse duration vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDurationBucket.LessThanTenMilliseconds = 2 -> Jeninnet.Validation.ValidationRuleDurationBucket",
+      "reason": "P3-027 per-rule decision trace: additive coarse duration vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDurationBucket.NotMeasured = 0 -> Jeninnet.Validation.ValidationRuleDurationBucket",
+      "reason": "P3-027 per-rule decision trace: additive coarse duration vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleDurationBucket.OneHundredMillisecondsOrMore = 4 -> Jeninnet.Validation.ValidationRuleDurationBucket",
+      "reason": "P3-027 per-rule decision trace: additive coarse duration vocabulary; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleTraceEvent",
+      "reason": "P3-027 per-rule decision trace: additive privacy-safe rule event; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleTraceEvent.Decision.get -> Jeninnet.Validation.ValidationRuleDecision",
+      "reason": "P3-027 per-rule decision trace: additive privacy-safe rule event; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleTraceEvent.Duration.get -> Jeninnet.Validation.ValidationRuleDurationBucket",
+      "reason": "P3-027 per-rule decision trace: additive privacy-safe rule event; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleTraceEvent.Kind.get -> string!",
+      "reason": "P3-027 per-rule decision trace: additive privacy-safe rule event; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleTraceEvent.MemberPath.get -> string!",
+      "reason": "P3-027 per-rule decision trace: additive privacy-safe rule event; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleTraceEvent.ValidationRuleTraceEvent() -> void",
+      "reason": "P3-027 per-rule decision trace: additive privacy-safe rule event; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.ValidationRuleTraceEvent.ValidationRuleTraceEvent(string! kind, string! memberPath, Jeninnet.Validation.ValidationRuleDecision decision, Jeninnet.Validation.ValidationRuleDurationBucket duration) -> void",
+      "reason": "P3-027 per-rule decision trace: additive privacy-safe rule event; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Diagnostics",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.EnableRuleTrace.get -> bool",
+      "reason": "P3-027 per-rule decision trace: opt-in diagnostics switch, off by default; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    },
+    {
+      "package": "Jeninnet.Validation.Diagnostics",
+      "tfm": "net10.0",
+      "kind": "added",
+      "signature": "Jeninnet.Validation.Diagnostics.ValidationDiagnosticsOptions.EnableRuleTrace.set -> void",
+      "reason": "P3-027 per-rule decision trace: opt-in diagnostics switch, off by default; approved for preview.3.",
+      "approvedBy": "Maintainer",
+      "approvedOn": "2026-11-25"
+    }
+  ]
+}

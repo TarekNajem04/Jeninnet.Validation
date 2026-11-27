@@ -48,10 +48,21 @@ internal static class ValidatorRuleSelection {
         return _descriptors.GetValue(rule, static instance => CreateDescriptor(instance));
     }
 
-    private static ValidationRuleDescriptor CreateDescriptor(object rule) {
-        var kind = rule is IRuleMetadataKindProvider kindProvider
+    /// <summary>
+    /// Gets a cached stable rule kind for a rule instance without building a full descriptor.
+    /// </summary>
+    /// <param name="rule">The rule instance.</param>
+    /// <returns>The stable kind.</returns>
+    public static string GetKind(object rule) {
+        ArgumentNullException.ThrowIfNull(rule);
+
+        return rule is IRuleMetadataKindProvider kindProvider
             ? kindProvider.Kind
             : _kinds.GetOrAdd(rule.GetType(), static type => RuleMetadataKind.FromType(type));
+    }
+
+    private static ValidationRuleDescriptor CreateDescriptor(object rule) {
+        var kind = GetKind(rule);
 
         if(rule is IRuleMetadataProvider metadata) {
             return new ValidationRuleDescriptor(

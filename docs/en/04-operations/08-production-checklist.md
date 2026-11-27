@@ -4,7 +4,7 @@ Use this list before shipping an application that depends on Jeninnet.Validation
 
 ## Packages and versions
 
-- [ ] Reference the current preview explicitly (`1.0.0-preview.2`) or pin a central version in
+- [ ] Reference the current preview explicitly (`1.0.0-preview.3`) or pin a central version in
       `Directory.Packages.props`.
 - [ ] Add only the integration packages you use; Core and Abstractions stay framework-free.
 - [ ] Keep all Jeninnet.Validation packages on the same version.
@@ -93,7 +93,7 @@ services.AddScoped<IValidator<Customer>, CustomerValidator>();
 - [ ] Cover a valid model and every member’s invalid case.
 - [ ] Cover rule sets, conditions, dependent rules, and cascade behavior.
 - [ ] Cover async rules on the async path.
-- [ ] Cover generated/fluent parity when both authoring styles exist.
+- [ ] Cover generated/fluent conformance when both authoring styles exist.
 - [ ] Use `Jeninnet.Validation.Assertions` for readable failures; it is test-framework agnostic.
 - [ ] Add an integration test for each host adapter you ship (ASP.NET Core, MediatR, Blazor, MVC).
 

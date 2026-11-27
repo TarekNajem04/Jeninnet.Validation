@@ -222,9 +222,12 @@ throws `OptionsValidationException` during startup; each failure reads
 validation — warnings are ignored. Missing validator registrations produce an explicit failure
 message, and scoped validators are resolved from a dedicated scope.
 
-Options validation is synchronous in `1.0.x`. Async-only validators throw
-`AsyncValidatorInvokedSynchronouslyException`; the .NET 11 async path (`IAsyncStartupValidator`)
-is planned for `1.1.0-preview.1`.
+On `net10.0`, options validation is synchronous; async-only validators throw
+`AsyncValidatorInvokedSynchronouslyException`. On `net11.0`, `AddValidatedOptions()` registers the
+asynchronous `IAsyncValidateOptions<T>` path as well, and `ValidateOnStart()` exposes the async
+startup validator. Async-only validators run during asynchronous startup; the synchronous pass
+returns `Skip` for them. Complete host startup before accessing async-validated options
+synchronously. `IOptionsMonitor<T>` reloads remain synchronous and do not run async validators.
 
 ## Testing with DI
 

@@ -54,7 +54,7 @@ public sealed class CountRule<T, TProperty>(
         var value = Accessor.GetValue(context.Instance);
         var count = value is IEnumerable enumerable ? CollectionCounting.Count(enumerable) : 0;
 
-        return new Dictionary<string, object> {
+        return new MessageParameterDictionary(ruleParameterCount: 7) {
             { "0", Min },
             { "1", Max },
             { MessageParameterNames.Min, Min },
@@ -111,7 +111,7 @@ public sealed class MinCountRule<T, TProperty>(
         var value = Accessor.GetValue(context.Instance);
         var count = value is IEnumerable enumerable ? CollectionCounting.Count(enumerable) : 0;
 
-        return new Dictionary<string, object> {
+        return new MessageParameterDictionary(ruleParameterCount: 5) {
             { "0", Min },
             { MessageParameterNames.Min, Min },
             { MessageParameterNames.Count, count },
@@ -163,7 +163,7 @@ public sealed class MaxCountRule<T, TProperty>(
         var value = Accessor.GetValue(context.Instance);
         var count = value is IEnumerable enumerable ? CollectionCounting.Count(enumerable) : 0;
 
-        return new Dictionary<string, object> {
+        return new MessageParameterDictionary(ruleParameterCount: 5) {
             { "0", Max },
             { MessageParameterNames.Max, Max },
             { MessageParameterNames.Count, count },

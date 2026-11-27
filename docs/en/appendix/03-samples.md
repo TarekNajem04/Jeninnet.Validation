@@ -1,4 +1,4 @@
-# Samples
+﻿# Samples
 
 The repository contains 26 sample projects across 23 directories; 21 are in the solution. Use them
 as executable documentation after reading the quick start.
@@ -25,6 +25,7 @@ clone.
 | **MinimalApi** | `AddRequestValidation<T>`, ProblemDetails, `/client-rules` export. |
 | **Mvc** | `AddMvcValidation`, `ModelState`, rule sets per action. |
 | **MediatR** | `AddValidationPipeline`, aggregated errors, throw/continue strategies. |
+| **FullDemo** | Core + advanced: rule sets, nesting, inheritance, filtered collections, rule templates, localization. |
 | **Analyzers.Sample.Console** | Attribute-driven validation and the source generator. |
 | **Localization.\*** | Provider scenarios using the sibling `Jeninnet.Localization` packages. |
 | **AotSmoke** | NativeAOT publish/run harness (not a test project). |
@@ -76,7 +77,7 @@ These projects are not part of the solution build but can be run individually:
 - **DtoVsDomain** — DTO validation versus domain invariants.
 - **ECommerce** — a larger end-to-end scenario.
 - **ErrorHandling** — mapping validation errors to responses.
-- **FullDemo** — a combined demonstration.
+- **FullDemo** — combined core and advanced demonstration.
 
 ```bash
 dotnet run --project samples/Jeninnet.Validation.Sample.ErrorHandling
@@ -90,7 +91,7 @@ dotnet test tests/Jeninnet.Validation.Analyzers.Tests/Jeninnet.Validation.Analyz
 dotnet test tests/Jeninnet.Validation.ArchitectureTests/Jeninnet.Validation.ArchitectureTests.csproj
 ```
 
-The full suite is 1,038 tests across the core, analyzer, architecture, and integration test projects;
+The full suite is 1,142 tests across 18 test assemblies on `net10.0` and `net11.0`;
 the baseline runs on `net10.0`, and the bridge/OpenAPI adapter tests also run on `net11.0`.
 Use `dotnet test Jeninnet.Validation.slnx` to run everything the solution includes.
 

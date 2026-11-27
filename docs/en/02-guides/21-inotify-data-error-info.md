@@ -90,6 +90,41 @@ and a superseded result is discarded. `PendingValidation` exposes the current pr
 
 The debounce is opt-in and requires async validation; no delay is applied by default.
 
+## Threading and UI context
+
+By default, async completion (the state update and `ErrorsChanged`) runs on the thread that
+completes validation. In WPF, MAUI, and Avalonia, opt in to marshaling so control affinity is
+respected:
+
+```csharp
+var adapter = new ObservableValidationAdapter<Order>(
+    order,
+    validator,
+    new ObservableValidationOptions
+    {
+        UseAsyncValidation = true,
+        CaptureSynchronizationContext = true
+    });
+```
+
+The adapter captures `SynchronizationContext.Current` at construction. If the framework has no
+synchronization context, or you prefer a dispatcher-specific API, pass a post delegate; it takes
+precedence over the captured context:
+
+```csharp
+// WPF
+Post = action => Application.Current.Dispatcher.InvokeAsync(action);
+// Avalonia
+Post = action => Dispatcher.UIThread.Post(action);
+// MAUI
+Post = action => MainThread.BeginInvokeOnMainThread(action);
+```
+
+Synchronous `Validate()` and `ClearErrors()` always run inline on the calling thread. With neither
+option set, completion stays inline on the validation thread, which is safe for console/test hosts
+but not for UI control affinity. `ValidateAsync` waits for the posted action, so errors are visible
+when it completes. Disposal cancels pending validation and suppresses later notifications.
+
 ## Severity
 
 `MinimumSeverity` filters what the adapter exposes. The default is

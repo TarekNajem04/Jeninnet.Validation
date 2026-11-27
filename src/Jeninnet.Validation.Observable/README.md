@@ -12,7 +12,7 @@ instead of inheriting a base class.
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.Observable --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Observable --version 1.0.0-preview.3
 ```
 
 ## Usage
@@ -72,6 +72,40 @@ var adapter = new ObservableValidationAdapter<Order>(
 Async validation does not block the UI thread. A newer validation cancels the previous one, and
 superseded results are discarded. `PendingValidation` exposes the current field-change run.
 
+## Threading and UI context
+
+By default, async completion (the state update and `ErrorsChanged`) runs on the thread that
+completes validation. In a UI app, opt in to marshaling:
+
+```csharp
+var adapter = new ObservableValidationAdapter<Order>(
+    order,
+    validator,
+    new ObservableValidationOptions
+    {
+        UseAsyncValidation = true,
+        CaptureSynchronizationContext = true
+    });
+```
+
+The adapter captures `SynchronizationContext.Current` at construction. If the framework has no
+synchronization context, or you prefer a dispatcher-specific API, pass a post delegate; it takes
+precedence over the captured context:
+
+```csharp
+// WPF
+Post = action => Application.Current.Dispatcher.InvokeAsync(action);
+// Avalonia
+Post = action => Dispatcher.UIThread.Post(action);
+// MAUI
+Post = action => MainThread.BeginInvokeOnMainThread(action);
+```
+
+Synchronous `Validate()` and `ClearErrors()` always run inline on the calling thread. With neither
+option set, completion stays inline on the validation thread, which is safe for console/test hosts
+but not for UI control affinity. `ValidateAsync` waits for the posted action, so errors are visible
+when it completes. Disposal cancels pending validation and suppresses later notifications.
+
 ## Error mapping
 
 `GetErrors("Address")` includes errors from `Address.Street`, and `GetErrors("Lines")` includes
@@ -91,6 +125,10 @@ messages.
 - The adapter is not an AOT target; it is intended for desktop/UI stacks.
 - DataAnnotations and Blazor use their own adapters; do not run both the Blazor component and this
   adapter for the same model unless one of them is configured to skip validation.
+
+## AOT position
+
+**Reflection-dependent.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

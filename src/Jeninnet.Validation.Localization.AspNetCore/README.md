@@ -11,7 +11,7 @@ explicit culture control without mutating the caller's global culture.
 ## Installation
 
 ```xml
-<PackageReference Include="Jeninnet.Validation.Localization.AspNetCore" Version="1.0.0-preview.2" />
+<PackageReference Include="Jeninnet.Validation.Localization.AspNetCore" Version="1.0.0-preview.3" />
 ```
 
 ## Register
@@ -88,6 +88,10 @@ formatting is intentionally not used because validation parameters are named.
 - `WithMessage` remains a runtime fallback and does not override a resx or pack template for the
   same `MessageKey`.
 - The bridge is a reader, not a second message provider.
+
+## AOT position
+
+**Trim-compatible only.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

@@ -12,7 +12,7 @@ constraints (`required`, `format`, `pattern`, `minimum`/`maximum`, `minLength`/`
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.OpenApi.NSwag --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.OpenApi.NSwag --version 1.0.0-preview.3
 ```
 
 ## Use
@@ -34,6 +34,10 @@ Nested models are covered when the nested type has its own validator, because NJ
 generates a schema definition for each type and the processor runs once per definition. Rules
 that cannot be expressed in OpenAPI (conditional rules, async rules, custom predicates) remain
 server-side only.
+
+## AOT position
+
+**Reflection-dependent.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "supportedRules": [
+    "NotNull",
+    "NotEmpty",
+    "StringNotEmpty",
+    "Length",
+    "ExactLength",
+    "Regex",
+    "Email",
+    "Url",
+    "IPAddress",
+    "Phone",
+    "CreditCard",
+    "Base64String",
+    "FileExtensions",
+    "Contains",
+    "StartsWith",
+    "EndsWith",
+    "Count",
+    "MinCount",
+    "MaxCount",
+    "UniqueItems",
+    "MultipleOf",
+    "GreaterThan",
+    "GreaterThanOrEqual",
+    "LessThan",
+    "LessThanOrEqual",
+    "InclusiveBetween",
+    "ExclusiveBetween",
+    "Range",
+    "In",
+    "NotIn",
+    "ScalePrecision",
+    "After",
+    "Before"
+  ],
+  "serverOnlyGroups": [
+    {
+      "name": "conditions",
+      "rules": [ "Conditional" ],
+      "reason": "Conditions are opaque delegates; the server must decide whether the rule applies."
+    },
+    {
+      "name": "custom-and-async",
+      "rules": [ "Must", "MustAsync", "Custom", "CustomAsync" ],
+      "reason": "Custom code and asynchronous execution cannot be serialized into a synchronous browser evaluator."
+    },
+    {
+      "name": "nested-and-collection",
+      "rules": [ "Nested", "NestedValidator", "ChildRules", "Include", "ForEach", "ForEachElement" ],
+      "reason": "Child validators, collection rules, and included validators require server-side descriptor composition."
+    },
+    {
+      "name": "cross-field-and-dependent",
+      "rules": [
+        "PropertyEqual",
+        "PropertyNotEqual",
+        "PropertyGreaterThan",
+        "PropertyGreaterThanOrEqual",
+        "PropertyLessThan",
+        "PropertyLessThanOrEqual",
+        "Dependent"
+      ],
+      "reason": "Cross-field and dependent rules need the full model and server execution order."
+    },
+    {
+      "name": "rule-sets-and-templates",
+      "rules": [ "RuleSet", "RuleTemplate" ],
+      "reason": "Rule selection and template expansion are host policy and cannot be evaluated in isolation."
+    },
+    {
+      "name": "domain-reference-data",
+      "rules": [ "Iban", "VatNumber", "PostalCode", "NationalId", "PasswordStrength", "Uuid", "Ulid" ],
+      "reason": "These rules use reference data, checksum logic, or policy that belongs on the server."
+    },
+    {
+      "name": "remaining-descriptor-rules",
+      "rules": [ "Null", "NotDefault", "Empty", "Enum", "IsEnumName", "Equal", "NotEqual", "FutureDate", "PastDate" ],
+      "reason": "These rules are outside the expression-friendly synchronous subset; the server remains authoritative."
+    },
+    {
+      "name": "unknown-or-future",
+      "rules": [ "*" ],
+      "reason": "Unknown rules are marked serverOnly by the fail-safe default."
+    }
+  ]
+}

@@ -12,7 +12,7 @@ measurement work when enabled.
 ## Installation
 
 ```xml
-<PackageReference Include="Jeninnet.Validation.Diagnostics" Version="1.0.0-preview.2" />
+<PackageReference Include="Jeninnet.Validation.Diagnostics" Version="1.0.0-preview.3" />
 ```
 
 ## Register
@@ -42,11 +42,12 @@ builder.Services.AddOpenTelemetry()
 | Signal | Type | Tags |
 |---|---|---|
 | `Validate` / `ValidateAsync` | Activity | `validation.model_type`, `validation.validator`, `validation.async`, `validation.rule_sets`, `validation.outcome`, `validation.error_count`, `validation.duration_ms` |
+| `validation.rule` | Activity event | `validation.rule.kind`, `validation.rule.member`, `validation.rule.outcome`, `validation.rule.duration` |
 | `validation.duration` | Histogram (ms) | model type, validator, async, rule sets, outcome, error count |
 | `validation.errors` | Counter | same tags; records the error count of failed validations |
 
-Rule-set names and type names are configuration labels. Messages, property values, and custom state
-never reach tags, so the signals stay free of user data.
+Rule-set names and type names are configuration labels. Messages, property values, parameter values,
+and custom state never reach tags or rule events, so the signals stay free of user data.
 
 ## Options
 
@@ -59,10 +60,38 @@ never reach tags, so the signals stay free of user data.
 | `Version` | `null` | Optional instrumentation version. |
 | `SamplingProbability` | `1.0` | Trace sampling probability; metrics are never sampled. |
 | `IncludeRuleSets` | `true` | Adds the rule-set label when one is requested. |
+| `EnableRuleTrace` | `false` | Adds one `validation.rule` event per executed, skipped, or short-circuited rule. Requires `EnableTracing`; events are only emitted when an activity is recorded. |
 
 `AddValidationDiagnostics` is explicit. With no call, `ValidationDiagnostics.Sink` is null and the
 core allocates nothing. Diagnostics are process-wide; call `ValidationDiagnostics.Sink = null` (or
 dispose the sink) when a host shuts down and the process keeps running.
+
+## Rule decision trace
+
+Enable rule tracing when you need to know *which* rule ran, failed, was skipped by a condition, or
+was never reached because of cascade/fail-fast:
+
+```csharp
+services.AddValidationDiagnostics(options =>
+{
+    options.EnableRuleTrace = true;
+});
+```
+
+Each rule produces an activity event named `validation.rule` with a stable rule kind (for example
+`NotEmpty`), the code-facing member path, one of `passed`, `failed`, `skipped-condition`, or
+`short-circuited`, and a coarse duration bucket (`<1ms`, `<10ms`, `<100ms`, `>=100ms`, or
+`not-measured`). Events are ordered like the descriptor: rule sets, conditions, and member groups
+are transparent, and one event is emitted per configured rule.
+
+Rule tracing is opt-in and off by default. With no listener or with `EnableRuleTrace = false`, the
+engine skips event construction. Traces never include property values, messages, message
+parameters, or custom state. A rule that ignores its cancellation token can still run past a
+deadline; the trace reports what ran, not a hard deadline guarantee.
+
+## AOT position
+
+**AOT-compatible.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

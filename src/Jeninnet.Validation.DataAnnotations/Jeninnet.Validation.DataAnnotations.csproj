@@ -16,4 +16,8 @@
         <ProjectReference Include="..\Jeninnet.Validation\Jeninnet.Validation.csproj" />
     </ItemGroup>
 
+    <ItemGroup Condition="'$(TargetFramework)' == 'net11.0'">
+        <AdditionalFiles Include="PublicAPI.Unshipped.net11.0.txt" />
+    </ItemGroup>
+
 </Project>

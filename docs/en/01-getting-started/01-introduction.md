@@ -25,20 +25,14 @@ trimming and Native AOT.
 
 - It does not rewrite C# expressions into JavaScript. Client rules are data, and the server remains
   authoritative.
-- It does not replace ASP.NET Core model binding or DataAnnotations; it plugs into them.
+- It does not replace the host's model binding or built-in validation pipeline; it plugs into them.
 - It does not provide a form builder or UI controls.
-
-## Relationship to other libraries
-
-| Library | Relationship |
-|---|---|
-| FluentValidation | Similar fluent surface; Jeninnet covers its .NET 10 capability set at full strength and adds generated validators, descriptors, schema/client emission, and integration packages. See [Why Jeninnet?](00-why-jeninnet.md). |
-| DataAnnotations | Jeninnet has its own attribute set; the DataAnnotations bridge lets existing pipelines run Jeninnet validators. |
-| `Microsoft.Extensions.Validation` | Async DataAnnotations/Options bridges are tracked for `1.1.0-preview.1`; the synchronous bridge and DataAnnotations path cover today’s common cases. |
 
 ## Project status
 
-The current preview is `1.0.0-preview.2`. The public surface can still change before `1.0.0`.
+The current preview is `1.0.0-preview.3`, implemented on the release branch; it is not yet
+published. The latest published preview is `1.0.0-preview.2`. The public surface can still change
+before `1.0.0`.
 See [Compatibility and versions](../03-reference/06-compatibility-and-versions.md) and the
 [roadmap](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/ROADMAP.md).
 

@@ -13,7 +13,7 @@ Swashbuckle schema filter that turns `Jeninnet.Validation` validators into OpenA
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.OpenApi.Swashbuckle --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.OpenApi.Swashbuckle --version 1.0.0-preview.3
 ```
 
 ## Use
@@ -35,6 +35,10 @@ Nested models are covered when the nested type has its own validator, because Sw
 generates a schema definition for each type and the filter runs once per definition. Rules that
 cannot be expressed in OpenAPI (conditional rules, async rules, custom predicates) remain
 server-side only.
+
+## AOT position
+
+**Reflection-dependent.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

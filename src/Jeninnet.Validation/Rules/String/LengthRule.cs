@@ -58,7 +58,7 @@ public class LengthRule<T, TProperty>(IPropertyAccessor<T, TProperty> accessor, 
         var value = Accessor.GetValue(context.Instance);
         var totalLength = value is string text ? text.Length : 0;
 
-        return new Dictionary<string, object> {
+        return new MessageParameterDictionary(ruleParameterCount: 6) {
             { "0", Min },
             { "1", Max },
             { MessageParameterNames.Min, Min },

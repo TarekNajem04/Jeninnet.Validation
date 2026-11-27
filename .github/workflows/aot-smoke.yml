@@ -9,6 +9,8 @@ on:
     paths:
       - 'src/**'
       - 'samples/Jeninnet.Validation.AotSmoke/**'
+      - 'scripts/quality/**'
+      - 'docs/en/04-operations/02-aot-and-trimming.md'
       - 'Directory.Build.props'
       - 'Directory.Build.targets'
       - 'Directory.Packages.props'
@@ -21,6 +23,8 @@ on:
     paths:
       - 'src/**'
       - 'samples/Jeninnet.Validation.AotSmoke/**'
+      - 'scripts/quality/**'
+      - 'docs/en/04-operations/02-aot-and-trimming.md'
       - 'Directory.Build.props'
       - 'Directory.Build.targets'
       - 'Directory.Packages.props'
@@ -69,6 +73,10 @@ jobs:
 
       - name: Restore
         run: dotnet restore Jeninnet.Validation.slnx
+
+      - name: Check AOT support matrix
+        shell: pwsh
+        run: pwsh scripts/quality/check-aot-support-matrix.ps1
 
       - name: Build shipping projects with trim/AOT analyzers (Release)
         run: |

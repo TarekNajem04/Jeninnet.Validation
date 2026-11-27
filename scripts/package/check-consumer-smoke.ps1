@@ -7,7 +7,7 @@
 
 param(
     [string]$PackagesPath = "artifacts/packages",
-    [string]$Version = "1.0.0-preview.2",
+    [string]$Version = "1.0.0-preview.3",
     [string[]]$TargetFrameworks = @("net10.0", "net11.0"),
     [switch]$Keep
 )

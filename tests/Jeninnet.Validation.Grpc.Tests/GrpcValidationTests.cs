@@ -59,6 +59,68 @@ public sealed class AsyncRequestMessageValidator : Validator<AsyncRequestMessage
     }
 }
 
+/// <summary>
+/// Returns the same fixed result for HTTP and gRPC parity checks: three member errors (including a
+/// nested path) with codes and severities, plus one model-level error.
+/// </summary>
+public sealed class ParityRequestValidator : IValidator<CreateRequestMessage> {
+    public static ValidationResult Result { get; } = CreateResult();
+
+    public ValidationResult Validate(CreateRequestMessage instance) => Result;
+
+    public ValidationResult Validate(CreateRequestMessage instance, IEnumerable<string> ruleSets) => Result;
+
+    public ValueTask<ValidationResult> ValidateAsync(
+        CreateRequestMessage instance,
+        CancellationToken cancellationToken = default) =>
+        ValueTask.FromResult(Result);
+
+    public ValueTask<ValidationResult> ValidateAsync(
+        CreateRequestMessage instance,
+        IEnumerable<string> ruleSets,
+        CancellationToken cancellationToken = default) =>
+        ValueTask.FromResult(Result);
+
+    private static ValidationResult CreateResult() {
+        var errors = new ValidationErrorCollector {
+            new ValidationError(
+                nameof(CreateRequestMessage.Name),
+                messageId: new MessageId("NameRequired"),
+                messageKey: null,
+                messageParameters: null,
+                message: "Name is required.",
+                errorCode: "NAME_REQUIRED",
+                severity: ValidationErrorSeverity.Error),
+            new ValidationError(
+                nameof(CreateRequestMessage.Email),
+                messageId: new MessageId("EmailSuspicious"),
+                messageKey: null,
+                messageParameters: null,
+                message: "Email is suspicious.",
+                errorCode: "EMAIL_SUSPICIOUS",
+                severity: ValidationErrorSeverity.Warning),
+            new ValidationError(
+                "Address.Street",
+                messageId: new MessageId("StreetRequired"),
+                messageKey: null,
+                messageParameters: null,
+                message: "Street is required.",
+                errorCode: "STREET_REQUIRED",
+                severity: ValidationErrorSeverity.Error),
+            new ValidationError(
+                memberName: string.Empty,
+                messageId: new MessageId("RequestInvalid"),
+                messageKey: null,
+                messageParameters: null,
+                message: "Request is invalid.",
+                errorCode: "REQUEST_INVALID",
+                severity: ValidationErrorSeverity.Error)
+        };
+
+        return ValidationResult.FromErrors(errors);
+    }
+}
+
 public sealed class ValidationTestService : ValidationTest.ValidationTestBase {
     public static int Calls { get; set; }
 
@@ -115,7 +177,10 @@ public sealed class GrpcValidationTests {
 
         var detailsEntry = caught!.Trailers.Single(entry => entry.Key == "grpc-status-details-bin");
         var status = GoogleRpcStatus.Parser.ParseFrom(detailsEntry.ValueBytes);
-        var badRequest = status.Details.Select(static detail => detail.Unpack<GoogleBadRequest>()).Single();
+        var badRequest = status.Details
+            .Where(static detail => detail.Is(GoogleBadRequest.Descriptor))
+            .Select(static detail => detail.Unpack<GoogleBadRequest>())
+            .Single();
 
         MSTestAssertions.That(() => badRequest.FieldViolations.Should().HaveCount(2));
         MSTestAssertions.That(() => badRequest.FieldViolations
@@ -124,6 +189,103 @@ public sealed class GrpcValidationTests {
         MSTestAssertions.That(() => badRequest.FieldViolations
             .Any(static violation => violation.Field == nameof(CreateRequestMessage.Email))
             .Should().BeTrue());
+        MSTestAssertions.That(() => badRequest.FieldViolations
+            .Single(static violation => violation.Field == nameof(CreateRequestMessage.Name))
+            .Description.Should().Be("Name is required."));
+
+        var errorInfos = status.Details
+            .Where(static detail => detail.Is(GoogleErrorInfo.Descriptor))
+            .Select(static detail => detail.Unpack<GoogleErrorInfo>())
+            .ToArray();
+        var nameInfo = errorInfos.Single(
+            static info => info.Metadata["field"] == nameof(CreateRequestMessage.Name));
+
+        MSTestAssertions.That(() => errorInfos.Should().HaveCount(2));
+        MSTestAssertions.That(() => nameInfo.Domain.Should().Be("jeninnet.validation/v1"));
+        MSTestAssertions.That(() => nameInfo.Reason.Should().Be("NAME_REQUIRED"));
+        MSTestAssertions.That(() => nameInfo.Metadata["code"].Should().Be("NAME_REQUIRED"));
+        MSTestAssertions.That(() => nameInfo.Metadata["severity"].Should().Be("Error"));
+    }
+
+    [TestMethod]
+    public async Task Unary_ModelLevelError_UsesDollarFieldAsync() {
+        await using var app = await StartAppAsync(services =>
+            services.AddSingleton<IValidator<CreateRequestMessage>, ParityRequestValidator>());
+        using var channel = CreateChannel(app);
+        var client = new ValidationTest.ValidationTestClient(channel);
+        RpcException? caught = null;
+
+        try {
+            await client.CreateAsync(
+                new CreateRequestMessage { Name = "order-1", Email = "buyer@example.com" },
+                cancellationToken: TestContext.CancellationToken);
+        }
+        catch(RpcException exception) {
+            caught = exception;
+        }
+
+        var status = ReadStatus(caught!);
+        var badRequest = status.Details
+            .Where(static detail => detail.Is(GoogleBadRequest.Descriptor))
+            .Select(static detail => detail.Unpack<GoogleBadRequest>())
+            .Single();
+        var modelLevel = badRequest.FieldViolations.Single(
+            static violation => violation.Field == ValidationErrorProjection.ModelLevelField);
+
+        MSTestAssertions.That(() => modelLevel.Description.Should().Be("Request is invalid."));
+        MSTestAssertions.That(() => modelLevel.Field.Should().Be("$"));
+    }
+
+    [TestMethod]
+    public async Task Unary_HttpAndGrpc_ExposeTheSameProjectionAsync() {
+        await using var app = await StartAppAsync(services =>
+            services.AddSingleton<IValidator<CreateRequestMessage>, ParityRequestValidator>());
+        using var channel = CreateChannel(app);
+        var client = new ValidationTest.ValidationTestClient(channel);
+        RpcException? caught = null;
+
+        try {
+            await client.CreateAsync(
+                new CreateRequestMessage { Name = "order-1", Email = "buyer@example.com" },
+                cancellationToken: TestContext.CancellationToken);
+        }
+        catch(RpcException exception) {
+            caught = exception;
+        }
+
+        var status = ReadStatus(caught!);
+        var badRequest = status.Details
+            .Where(static detail => detail.Is(GoogleBadRequest.Descriptor))
+            .Select(static detail => detail.Unpack<GoogleBadRequest>())
+            .Single();
+        var errorInfos = status.Details
+            .Where(static detail => detail.Is(GoogleErrorInfo.Descriptor))
+            .Select(static detail => detail.Unpack<GoogleErrorInfo>())
+            .ToArray();
+        var http = ParityRequestValidator.Result.ToProblemErrors(new ValidationProblemOptions {
+            IncludeErrorCodes = true,
+            IncludeSeverities = true
+        });
+
+        MSTestAssertions.That(() => badRequest.FieldViolations.Should().HaveCount(4));
+        MSTestAssertions.That(() => errorInfos.Should().HaveCount(4));
+
+        foreach(var violation in badRequest.FieldViolations) {
+            MSTestAssertions.That(() => http.ContainsKey(violation.Field).Should().BeTrue());
+            var httpMessage = http[violation.Field].Single();
+            var info = errorInfos.Single(
+                candidate => candidate.Metadata["field"] == violation.Field);
+
+            MSTestAssertions.That(() => httpMessage.Should().StartWith(violation.Description));
+            MSTestAssertions.That(() => info.Domain.Should().Be("jeninnet.validation/v1"));
+
+            if(info.Metadata.TryGetValue("code", out var code)) {
+                MSTestAssertions.That(() => info.Reason.Should().Be(code));
+                MSTestAssertions.That(() => httpMessage.Should().Contain($"[{code}]"));
+            }
+
+            MSTestAssertions.That(() => httpMessage.Should().Contain($"({info.Metadata["severity"]})"));
+        }
     }
 
     [TestMethod]
@@ -203,6 +365,12 @@ public sealed class GrpcValidationTests {
         MSTestAssertions.That(() => caught.Should().NotBeNull());
         MSTestAssertions.That(() => caught!.StatusCode.Should().Be(StatusCode.InvalidArgument));
         MSTestAssertions.That(() => AsyncRequestMessageValidator.Captured.CanBeCanceled.Should().BeTrue());
+    }
+
+    private static GoogleRpcStatus ReadStatus(RpcException exception) {
+        var detailsEntry = exception.Trailers.Single(entry => entry.Key == "grpc-status-details-bin");
+
+        return GoogleRpcStatus.Parser.ParseFrom(detailsEntry.ValueBytes);
     }
 
     private static async Task<WebApplication> StartAppAsync(Action<IServiceCollection>? configure = null) {

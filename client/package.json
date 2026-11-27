@@ -1,6 +1,6 @@
 {
     "name": "@jeninnet/validation-client",
-    "version": "1.0.0-preview.2",
+    "version": "1.0.0-preview.3",
     "description": "Dependency-free browser-side evaluator for Jeninnet.Validation client rules.",
     "type": "module",
     "main": "./src/client-validator.js",

@@ -54,7 +54,7 @@ public sealed class IsEnumNameRule<T, TValue> : SyncValidateRule<T, TValue> {
 
     /// <inheritdoc />
     protected override IDictionary<string, object>? GetMessageParameters(ValidationContext<T> context)
-        => new Dictionary<string, object> {
+        => new MessageParameterDictionary(ruleParameterCount: 2) {
             { "0", EnumType.Name },
             { MessageParameterNames.EnumType, EnumType.Name }
         };

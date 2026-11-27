@@ -19,6 +19,7 @@ global using Jeninnet.Localization.Providers.Memory.Options;
 global using Jeninnet.Localization.Providers.Memory;
 global using Jeninnet.Validation.Abstractions;
 global using Jeninnet.Validation.Fluent;
+global using Jeninnet.Validation.Rules;
 global using Jeninnet.Validation;
 global using Microsoft.Extensions.DependencyInjection;
 global using System.Globalization;

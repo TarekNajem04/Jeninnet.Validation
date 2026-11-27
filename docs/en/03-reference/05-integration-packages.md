@@ -43,8 +43,10 @@
   validator contract. Missing validators bypass validation in both adapters.
 - `AddJeninnetValidation<TModel>()` is the AOT-safe registration; the non-generic overload scans
   existing `IValidator<T>` registrations, so call it after registering validators.
-- `AddValidatedOptions<T>()` requires a registered `IValidator<T>` and validates options
-  synchronously at startup; .NET 11 async options validation is planned for `1.1.0-preview.1`.
+- `AddValidatedOptions<T>()` requires a registered `IValidator<T>` and validates options at startup.
+  On `net10.0` the path is synchronous. On `net11.0` the registration also exposes the async
+  validator, so async-only validators run through the async startup path; complete host startup
+  before accessing those options synchronously.
 - Models using `[JeninnetValidatable]` are skipped by the `Microsoft.Extensions.Validation` bridge
   to avoid double validation through the DataAnnotations bridge.
 - Schema/OpenAPI/client packages never execute validation.
@@ -71,6 +73,25 @@ The Swashbuckle and NSwag adapters preserve an existing schema type (for example
 only add constraints the validator declares. Nested models are covered when the nested type has its
 own validator; rules that cannot be represented in OpenAPI (conditional, async, custom predicates)
 remain server-side only. `[JsonPropertyName]` and the application's JSON naming policy are honored.
+
+### Adapter conformance snapshots
+
+The adapter test project generates normalized snapshots for Microsoft OpenAPI, Swashbuckle, NSwag,
+and the JSON Schema writer. The snapshots are committed under
+`tests/Jeninnet.Validation.OpenApi.Adapters.Tests/Snapshots/`; `approved.json` contains their SHA-256
+hashes. A changed snapshot fails the test until the diff is reviewed and the approval is regenerated
+with `UPDATE_OPENAPI_SNAPSHOTS=1`.
+
+Known differences are intentional and normalized before comparison:
+
+| Difference | Decision | Rationale |
+|---|---|---|
+| Numeric type spelling (`integer` vs `number`) and formats (`int32`, `double`) | Normalized to `number`; numeric formats are not constraints | Swashbuckle/NSwag preserve the host schema type; JSON Schema and the Microsoft applier use the mapped numeric type |
+| Nested objects and collections | Compared by logical CLR type and nested constraints | Microsoft OpenAPI inlines composed descriptors; Swashbuckle/NSwag use `$ref`; JSON Schema uses `$defs`/`$ref` |
+| JSON member names | Compared by CLR member name; full snapshots record `jsonName` | OpenAPI adapters honor serializer naming; the JSON Schema writer has no serializer context |
+| Conditional, custom, and async rules | OpenAPI adapters emit no structural constraint; JSON Schema may emit advisory `x-validation-rules` | Conditions/custom code are server-authoritative and cannot be inferred into a schema |
+| Exclusive bounds | Normalized to the numeric exclusive value | Microsoft.OpenApi/Swashbuckle use exclusive strings; NJsonSchema uses a value plus `IsExclusiveMinimum`/`IsExclusiveMaximum` flags |
+| `Enum` type | Compared through `x-enum-type` | The CLR enum name is metadata; the value list comes from the generated model schema |
 
 ## Related
 

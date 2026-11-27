@@ -36,7 +36,7 @@ public class StartsWithRule<T, TProperty>(IPropertyAccessor<T, TProperty> access
 
     /// <inheritdoc />
     protected override IDictionary<string, object>? GetMessageParameters(ValidationContext<T> context) =>
-        new Dictionary<string, object> {
+        new MessageParameterDictionary(ruleParameterCount: 2) {
             { "0", Prefix },
             { MessageParameterNames.Value, Prefix }
         };

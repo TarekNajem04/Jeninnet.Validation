@@ -20,5 +20,6 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.DependencyInjection.Extensions;
 global using GoogleAny = Google.Protobuf.WellKnownTypes.Any;
 global using GoogleBadRequest = Google.Rpc.BadRequest;
+global using GoogleErrorInfo = Google.Rpc.ErrorInfo;
 global using GoogleRpcStatus = Google.Rpc.Status;
 global using GrpcMetadata = Grpc.Core.Metadata;

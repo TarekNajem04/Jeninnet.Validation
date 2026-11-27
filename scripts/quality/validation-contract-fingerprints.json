@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "algorithm": "sha256",
+  "validators": {
+    "MinimalValidator": "v1:sha256:f92ac1accbdc3e73ce4b7ba875e6ee7ad7c6d1472de606ca87e4d18d9b276756",
+    "OrderValidator": "v1:sha256:cc7983299b6cd0f67dbf50fe6b36aaaee509e64d6503a63dc95ce10787a0b483"
+  }
+}

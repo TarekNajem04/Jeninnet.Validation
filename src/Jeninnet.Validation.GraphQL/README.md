@@ -11,7 +11,7 @@ errors with `extensions.member` and `extensions.code` and skips the resolver.
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.GraphQL --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.GraphQL --version 1.0.0-preview.3
 ```
 
 ## Usage
@@ -68,6 +68,10 @@ built-in and generated validators do.
 - Subscriptions are not specially handled; the same field middleware applies to subscription
   fields when they run.
 - The package is optional; Core and Abstractions have no HotChocolate dependency.
+
+## AOT position
+
+**Reflection-dependent.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

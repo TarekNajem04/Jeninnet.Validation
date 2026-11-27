@@ -89,7 +89,7 @@ public abstract class PropertyComparisonRuleBase<T, TProperty>(
         var leftValue = Left.GetValue(context.Instance)!;
         var rightValue = Right.GetValue(context.Instance)!;
 
-        return new Dictionary<string, object> {
+        return new MessageParameterDictionary(ruleParameterCount: 5) {
             { "0", leftValue },
             { "1", rightValue },
             { MessageParameterNames.PropertyValue, leftValue },

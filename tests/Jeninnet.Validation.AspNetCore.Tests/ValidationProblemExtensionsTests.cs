@@ -76,6 +76,43 @@ public sealed class ValidationProblemExtensionsTests {
     }
 
     [TestMethod]
+    public void ToProblemErrors_UsesTheCanonicalModelLevelProjection() {
+        var error = new ValidationError(
+            memberName: string.Empty,
+            messageId: new MessageId("ModelInvalid"),
+            messageKey: null,
+            messageParameters: null,
+            message: "Request is invalid.",
+            errorCode: "REQUEST_INVALID",
+            severity: ValidationErrorSeverity.Error);
+
+        var projection = ValidationErrorProjection.From(error);
+        var map = new[] { error }.ToProblemErrors(new ValidationProblemOptions {
+            IncludeErrorCodes = true,
+            IncludeSeverities = true
+        });
+
+        MSTestAssertions.That(() => projection.Field.Should().Be(ValidationErrorProjection.ModelLevelField));
+        MSTestAssertions.That(() => projection.Message.Should().Be("Request is invalid."));
+        MSTestAssertions.That(() => projection.ErrorCode.Should().Be("REQUEST_INVALID"));
+        MSTestAssertions.That(() => projection.Severity.Should().Be(ValidationErrorSeverity.Error));
+        MSTestAssertions.That(() => map.ContainsKey("$").Should().BeTrue());
+        MSTestAssertions.That(() => map["$"][0].Should().Be("Request is invalid. [REQUEST_INVALID] (Error)"));
+    }
+
+    [TestMethod]
+    public void ValidationErrorProjection_FallsBackToTheMessageId() {
+        var error = new ValidationError("Name", new MessageId("NotEmpty"));
+
+        var projection = ValidationErrorProjection.From(error);
+
+        MSTestAssertions.That(() => projection.Field.Should().Be("Name"));
+        MSTestAssertions.That(() => projection.Message.Should().Be("NotEmpty"));
+        MSTestAssertions.That(() => projection.ErrorCode.Should().BeNull());
+        MSTestAssertions.That(() => projection.Severity.Should().Be(ValidationErrorSeverity.Error));
+    }
+
+    [TestMethod]
     public void BuildProblemExtensions_AddsConfiguredDiagnostics() {
         var httpContext = new DefaultHttpContext {
             TraceIdentifier = "trace-1"

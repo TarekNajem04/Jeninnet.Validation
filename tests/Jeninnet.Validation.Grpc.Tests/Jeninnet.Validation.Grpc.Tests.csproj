@@ -29,6 +29,7 @@
         <ProjectReference Include="..\..\src\Jeninnet.Validation.Grpc\Jeninnet.Validation.Grpc.csproj" />
         <ProjectReference Include="..\..\src\Jeninnet.Validation\Jeninnet.Validation.csproj" />
         <ProjectReference Include="..\..\src\Jeninnet.Validation.Abstractions\Jeninnet.Validation.Abstractions.csproj" />
+        <ProjectReference Include="..\..\src\Jeninnet.Validation.AspNetCore\Jeninnet.Validation.AspNetCore.csproj" />
     </ItemGroup>
 
 </Project>

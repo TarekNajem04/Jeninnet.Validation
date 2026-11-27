@@ -11,7 +11,7 @@ Validates gRPC request messages before the service method runs. Invalid requests
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.Grpc --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Grpc --version 1.0.0-preview.3
 ```
 
 ## Usage
@@ -32,10 +32,33 @@ with no registered validator bypass validation.
 
 ## Failure details
 
-The status description contains the joined messages. The `grpc-status-details-bin` trailer
-contains a `google.rpc.BadRequest` with one `FieldViolation` per error, preserving
-`ValidationError.MemberName` as the field. Clients that understand Google RPC status details can
-read the structured errors.
+The status description contains the joined human-readable messages. The
+`grpc-status-details-bin` trailer contains two kinds of details:
+
+- **`google.rpc.BadRequest`** — one `FieldViolation` per error. `Field` is the member path, or
+  `$` for a model-level error; `Description` is the same message used in the status description.
+- **`google.rpc.ErrorInfo`** — one detail per error. `Reason` is the error code (or
+  `VALIDATION_ERROR` when no code is present), `Domain` is `jeninnet.validation/v1`, and
+  `Metadata` contains `field`, `severity`, and `code` when an error code exists.
+
+Codes and severities are not appended to the human-readable description. Old clients that only
+read `google.rpc.BadRequest` keep working; clients that need the structured metadata can read
+`ErrorInfo` and ignore it when absent.
+
+```csharp
+var details = ex.Trailers.Single(entry => entry.Key == "grpc-status-details-bin");
+var status = Google.Rpc.Status.Parser.ParseFrom(details.ValueBytes);
+var badRequest = status.Details
+    .Where(detail => detail.Is(Google.Rpc.BadRequest.Descriptor))
+    .Select(detail => detail.Unpack<Google.Rpc.BadRequest>())
+    .Single();
+var errorInfos = status.Details
+    .Where(detail => detail.Is(Google.Rpc.ErrorInfo.Descriptor))
+    .Select(detail => detail.Unpack<Google.Rpc.ErrorInfo>())
+    .ToArray();
+```
+
+The same projection feeds HTTP ProblemDetails; model-level errors use the `$` key there too.
 
 ## Rule sets
 
@@ -51,6 +74,10 @@ Without the attribute, `GrpcValidationOptions.RuleSets` applies. An empty list m
 - Unary and server-streaming calls are validated.
 - Client-streaming and duplex-streaming calls are not intercepted in this version.
 - The package is optional; Core and Abstractions have no gRPC dependency.
+
+## AOT position
+
+**Trim-compatible only.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

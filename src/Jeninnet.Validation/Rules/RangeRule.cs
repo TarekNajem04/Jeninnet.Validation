@@ -41,7 +41,7 @@ public sealed class RangeRule<T, TProperty> : SyncValidateRule<T, TProperty> whe
 
     /// <inheritdoc />
     protected override IDictionary<string, object>? GetMessageParameters(ValidationContext<T> context)
-        => new Dictionary<string, object> {
+        => new MessageParameterDictionary(ruleParameterCount: 6) {
             { "0", _min },
             { "1", _max },
             { MessageParameterNames.Min, _min },

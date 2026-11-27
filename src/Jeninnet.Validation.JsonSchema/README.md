@@ -12,7 +12,7 @@ AOT-safe: it consumes the frozen validation descriptor contract.
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.JsonSchema --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.JsonSchema --version 1.0.0-preview.3
 ```
 
 ## Usage
@@ -58,6 +58,10 @@ Nullability and requiredness follow the validation rules: `NotNull`/`NotEmpty`
 mark a member required; other rules do not invent requiredness. `required` is
 omitted for non-nullable value-type members because presence is implied by
 serialization, not by a non-default value.
+
+## AOT position
+
+**AOT-compatible.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

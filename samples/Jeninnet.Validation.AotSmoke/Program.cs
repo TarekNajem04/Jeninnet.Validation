@@ -34,7 +34,7 @@ services.AddSingleton<IInnerMessageProvider>(
 
 // One-call registration: the generated module initializer fills the catalog with typeof pairs,
 // so AddValidation() registers every generated validator without assembly scanning.
-services.AddValidation();
+Jeninnet.Validation.Catalog.ValidationCatalogServiceCollectionExtensions.AddValidation(services);
 
 // Fluent validators are not generated from [Validate]; register them explicitly.
 services.AddScoped<ShipmentValidator>();
@@ -67,6 +67,24 @@ var orderDescriptor = ((IValidationDescriptorProvider)orderValidator).Describe()
 await CheckAsync("generated descriptor executes", orderDescriptor
     .RulesForMember(nameof(Order.Reference))
     .Any(static rule => rule.Kind == "Must"));
+
+var jsonSchema = ValidationSchemaWriter.WriteToString(orderDescriptor);
+await CheckAsync("JSON Schema writer executes",
+    jsonSchema.Contains("\"Email\"", StringComparison.Ordinal) &&
+    jsonSchema.Contains("\"format\": \"email\"", StringComparison.Ordinal));
+
+var clientRules = ClientRulesWriter.WriteToString([orderDescriptor]);
+await CheckAsync("client rules export executes",
+    clientRules.Contains("\"rule\": \"Email\"", StringComparison.Ordinal));
+
+var emailMember = orderDescriptor.Members.Single(static member => member.Name == nameof(Order.Email));
+var emailSchema = new OpenApiSchema();
+ValidationSchemaApplier.Apply(
+    ValidationSchemaMapper.MapMember(emailMember),
+    emailSchema,
+    SmokeJsonContext.Default.Options);
+await CheckAsync("OpenAPI applier executes",
+    emailSchema.Format == "email" && emailSchema.MinLength == 1);
 
 var strictResult = orderValidator.Validate(order, ["strict"]);
 await CheckAsync("rule sets select rules", strictResult.IsValid);

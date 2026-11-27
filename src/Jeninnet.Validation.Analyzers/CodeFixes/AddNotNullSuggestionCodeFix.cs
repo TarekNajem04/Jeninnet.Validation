@@ -52,8 +52,8 @@ public sealed class AddNotNullSuggestionCodeFix : CodeFixProvider {
         var notNullAttr = SyntaxFactory.Attribute(SyntaxFactory.ParseName("NotNull"));
 
         AttributeListSyntax newList;
-        if(property.AttributeLists.Any()) {
-            var firstList = property.AttributeLists.First();
+        var firstList = property.AttributeLists.FirstOrDefault();
+        if(firstList is not null) {
             newList = firstList.AddAttributes(notNullAttr);
             var newProperty = property.WithAttributeLists(
                 property.AttributeLists.Replace(firstList, newList));

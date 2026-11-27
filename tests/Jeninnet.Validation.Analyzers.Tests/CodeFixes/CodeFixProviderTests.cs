@@ -372,10 +372,77 @@ public sealed class CodeFixProviderTests {
     }
 
     [TestMethod]
+    public async Task RemoveRedundantNotNull_RemovesOnlyTheNotNullAttributeAsync() {
+        const string source =
+            """
+            using Jeninnet.Validation.Attributes;
+
+            namespace TestNamespace;
+
+            public sealed class Model {
+                [NotNull, Range(1, 10)]
+                public int Age { get; set; }
+            }
+            """;
+
+        using var workspace = new AdhocWorkspace();
+        var document = CodeFixTestSupport.CreateDocument(workspace, source);
+        var root = await document.GetSyntaxRootAsync(TestCancellation).ConfigureAwait(false);
+        var property = root!.DescendantNodes().OfType<PropertyDeclarationSyntax>()
+                            .Single(static node => node.Identifier.ValueText == "Age");
+        var diagnostic = CodeFixTestSupport.CreateDiagnostic(
+            DiagnosticDescriptors.RedundantNotNull.Id,
+            property.GetLocation());
+
+        var text = await CodeFixTestSupport.ApplyFixAndGetTextAsync(
+            document,
+            diagnostic,
+            new RemoveRedundantNotNullCodeFix(),
+            cancellationToken: TestCancellation).ConfigureAwait(false);
+
+        MSTestAssertions.That(() => text.Should().NotBeNull());
+        MSTestAssertions.That(() => text.Should().NotContain("NotNull"));
+        MSTestAssertions.That(() => text.Should().Contain("Range(1, 10)"));
+    }
+
+    [TestMethod]
+    public async Task RemoveTautologicalRule_RemovesOnlyTheTautologicalAttributeAsync() {
+        const string source =
+            """
+            using Jeninnet.Validation.Attributes;
+
+            namespace TestNamespace;
+
+            public sealed class Model {
+                [MinimumLength(0), MaxLength(100)]
+                public string Name { get; set; } = string.Empty;
+            }
+            """;
+
+        using var workspace = new AdhocWorkspace();
+        var document = CodeFixTestSupport.CreateDocument(workspace, source);
+        var root = await document.GetSyntaxRootAsync(TestCancellation).ConfigureAwait(false);
+        var attribute = FindAttribute(root!, "MinimumLength");
+        var diagnostic = CodeFixTestSupport.CreateDiagnostic(
+            DiagnosticDescriptors.TautologicalRule.Id,
+            attribute.GetLocation());
+
+        var text = await CodeFixTestSupport.ApplyFixAndGetTextAsync(
+            document,
+            diagnostic,
+            new RemoveTautologicalRuleCodeFix(),
+            cancellationToken: TestCancellation).ConfigureAwait(false);
+
+        MSTestAssertions.That(() => text.Should().NotBeNull());
+        MSTestAssertions.That(() => text.Should().NotContain("MinimumLength"));
+        MSTestAssertions.That(() => text.Should().Contain("MaxLength(100)"));
+    }
+
+    [TestMethod]
     public void AllProviders_ExposeABatchFixAllProvider() {
         var providers = AllProviders();
 
-        MSTestAssertions.That(() => providers.Should().HaveCount(15));
+        MSTestAssertions.That(() => providers.Should().HaveCount(17));
 
         foreach(var provider in providers) {
             MSTestAssertions.That(() => provider.GetFixAllProvider().Should().NotBeNull(
@@ -437,23 +504,9 @@ public sealed class CodeFixProviderTests {
                 literal.Token.ValueText == value);
 
     private static CodeFixProvider[] AllProviders() =>
-        [
-            new AddNotEmptySuggestionCodeFix(),
-            new AddNotNullBeforeNumericRuleCodeFix(),
-            new AddNotNullSuggestionCodeFix(),
-            new ConvertToBooleanLiteralCodeFix(),
-            new ConvertToDateOnlyLiteralCodeFix(),
-            new ConvertToDateTimeLiteralCodeFix(),
-            new ConvertToDecimalLiteralCodeFix(),
-            new ConvertToEnumLiteralCodeFix(),
-            new ConvertToGuidLiteralCodeFix(),
-            new ConvertToTimeSpanLiteralCodeFix(),
-            new FixLengthAndNotEmptyConflictCodeFix(),
-            new RemoveConflictingRuleCodeFix(),
-            new SwapInclusiveBetweenParametersCodeFix(),
-            new UseNameofForRuleForMemberCodeFix(),
-            new UseValidateAsyncCodeFix()
-        ];
+        [.. typeof(RemoveConflictingRuleCodeFix).Assembly.GetTypes()
+            .Where(static type => !type.IsAbstract && typeof(CodeFixProvider).IsAssignableFrom(type))
+            .Select(static type => (CodeFixProvider)Activator.CreateInstance(type)!)];
 
     private CancellationToken TestCancellation =>
         TestContext?.CancellationToken ?? CancellationToken.None;

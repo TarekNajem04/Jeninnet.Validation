@@ -1,4 +1,4 @@
-# Jeninnet.Validation
+﻿# Jeninnet.Validation
 
 [![CI](https://img.shields.io/github/actions/workflow/status/TarekNajem04/Jeninnet.Validation/ci.yml?branch=main&label=CI)](https://github.com/TarekNajem04/Jeninnet.Validation/actions/workflows/ci.yml)
 [![Documentation](https://img.shields.io/github/actions/workflow/status/TarekNajem04/Jeninnet.Validation/docs-build.yml?branch=main&label=docs)](https://tareknajem04.github.io/Jeninnet.Validation/)
@@ -13,8 +13,9 @@
 
 **📖 Documentation:** [tareknajem04.github.io/Jeninnet.Validation](https://tareknajem04.github.io/Jeninnet.Validation/) — the complete reference book, guides, API reference, and samples.
 
-- **Status:** `1.0.0-preview.2` — current preview, published on
-  [NuGet](https://www.nuget.org/packages/Jeninnet.Validation/).
+- **Status:** `1.0.0-preview.3` — prepared for publication on `release/1.0.0-preview.3`; not yet
+  published. The latest published preview is `1.0.0-preview.2` on
+  [NuGet](https://www.nuget.org/packages/Jeninnet.Validation/1.0.0-preview.2).
 - **Documentation:** [Jeninnet.Validation reference book](https://tareknajem04.github.io/Jeninnet.Validation/)
   ([source](docs/en/README.md)) and the
   [Why Jeninnet?](docs/en/01-getting-started/00-why-jeninnet.md) decision page.
@@ -30,8 +31,8 @@
 Jeninnet.Validation is a modular validation framework for .NET. It combines **attribute-driven rule
 declaration** with a **Roslyn source generator** to produce efficient, type-safe validators at
 compile time. A fully typed fluent API is available for dynamic rules, dependency injection, and
-cross-cutting scenarios. Both authoring paths feed one engine and are pinned by executable parity
-tests.
+cross-cutting scenarios. Both authoring paths feed one engine and are pinned by executable
+conformance tests.
 
 ## Documentation
 
@@ -48,9 +49,8 @@ The complete reference book is published at
 
 ## Why Jeninnet?
 
-- **Compare first.** [Best C# validation libraries in 2026](docs/en/01-getting-started/00b-best-csharp-validation-libraries.md) — an honest comparison with FluentValidation and DataAnnotations, including when not to choose Jeninnet.
-- **Capability parity, measured.** Covers **93/93 (100%)** of the .NET 10 peer-capability union;
-  [per-peer coverage and honest limits](docs/en/03-reference/09-capability-parity.md).
+- **.NET 11 async bridges.** Async DataAnnotations (`ValidateObjectAsync`) and async Options
+  validation run on the `net11.0` assets; the `net10.0` baseline remains synchronous.
 - **One model → validator + JSON Schema + OpenAPI + client rules.** One compile-time metadata
   pipeline, no hand-maintained second source.
 - **Compile-time safety.** 33 `VAL` diagnostics and code fixes reject invalid rule configurations
@@ -63,7 +63,7 @@ The complete reference book is published at
   ([custom rules](docs/en/02-guides/07-custom-rules.md#why-built-in-rules-are-sealed)).
 - **40 cultures and real integrations.** Multi-source localization, ICU plural/select, ASP.NET Core,
   MediatR, DataAnnotations, Blazor, GraphQL, gRPC, and desktop `INotifyDataErrorInfo`.
-- **Migration in minutes.** The optional `jeninnet` tool reports a readiness score, applies safe
+- **Adoption tooling.** The optional `jeninnet` tool reports a readiness score, applies safe
   codemods, and marks every uncertain pattern for review.
 
 ## Conceptual model
@@ -93,7 +93,7 @@ The complete reference book is published at
 | Tests (`tests/`) | 18 MSTest projects (15 on the net10 baseline plus 3 net11 bridge/OpenAPI suites) covering the engine, analyzers, integrations, architecture, packaging, and the `net10.0`/`net11.0` matrix |
 | Samples (`samples/`) | 26 sample projects, including the Clean Architecture and XML-localization samples |
 | Templates (`templates/`) | `jeninnet-validator` `dotnet new` template |
-| Tooling (`scripts/`) | Build, coverage, Sonar, package, API, localization, badge, template, and cleanup tools |
+| Tooling (`scripts/`) | Release gates, build, coverage, Sonar, package, API, localization, badge, template, and cleanup tools; see [`scripts/README.md`](scripts/README.md) |
 | Client (`client/`) | Dependency-free JavaScript/TypeScript client evaluator |
 | Documentation (`docs/`) | The reference book, DocFX site, and release evidence |
 
@@ -105,8 +105,8 @@ The repository builds **25 packable projects** (25 packages). See the
 ## Quick start
 
 ```bash
-dotnet add package Jeninnet.Validation --version 1.0.0-preview.2
-dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation --version 1.0.0-preview.3
+dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.3
 ```
 
 ```csharp
@@ -163,14 +163,24 @@ dotnet test  Jeninnet.Validation.slnx -c Release
 dotnet format Jeninnet.Validation.slnx --verify-no-changes --no-restore --exclude samples/Jeninnet.Validation.Analyzers.Sample.Console samples/Jeninnet.Validation.AotSmoke
 ```
 
-The current suite runs **1,038 tests** across `net10.0` and `net11.0` (997 on the `net10.0`
-baseline). Package validation uses the packed local feed:
+The current suite runs **1,142 tests** across 18 test assemblies on `net10.0` and `net11.0`.
+Package validation uses the packed local feed:
 
 ```bash
 dotnet pack Jeninnet.Validation.slnx -c Release -o artifacts/packages
 pwsh scripts/package/check-package-contents.ps1 -PackagesPath artifacts/packages
 pwsh scripts/package/check-consumer-smoke.ps1 -PackagesPath artifacts/packages
 ```
+
+Run the full release gate with one command:
+
+```powershell
+pwsh scripts/release/run-release-gates.ps1
+```
+
+It writes `artifacts/release/<version>/release-gates.md` and `release-gates.json`, plus one log per
+gate. See [`scripts/release/README.md`](scripts/release/README.md) for skip switches and report
+details.
 
 ## Documentation
 
@@ -191,9 +201,7 @@ pwsh scripts/package/check-consumer-smoke.ps1 -PackagesPath artifacts/packages
 | [Roadmap](ROADMAP.md) | Release plan by version |
 | [Changelog](CHANGELOG.md) | Work grouped by release |
 
-Release notes: [.github/release-notes/v1.0.0-preview.2.md](.github/release-notes/v1.0.0-preview.2.md).
-Migration guides: [FluentValidation](docs/en/02-guides/15-migration-from-fluentvalidation.md) and
-[DataAnnotations](docs/en/02-guides/16-migration-from-dataannotations.md).
+Release notes: [.github/release-notes/v1.0.0-preview.3.md](.github/release-notes/v1.0.0-preview.3.md).
 
 ## Contributing
 

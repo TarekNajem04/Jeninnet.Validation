@@ -61,6 +61,18 @@ public sealed record ValidationCallOptions {
     public IReadOnlyCollection<string>? ExcludeRuleSets { get; init; }
 
     /// <summary>
+    /// Gets the optional cooperative deadline for an asynchronous validation run. The deadline is
+    /// relative to the start of <c>ValidateAsync</c> and includes asynchronous lifecycle hooks.
+    /// <para>
+    /// A deadline is cooperative: a rule that ignores its cancellation token can run past the
+    /// budget. Synchronous <c>Validate</c> calls reject a non-null value; zero and negative values
+    /// are rejected by <c>ValidateAsync</c>. Caller cancellation takes precedence and is not
+    /// replaced by <see cref="ValidationTimeoutException"/>.
+    /// </para>
+    /// </summary>
+    public TimeSpan? Timeout { get; init; }
+
+    /// <summary>
     /// Gets the optional service provider exposed to rules through
     /// <see cref="ValidationContext{T}.ServiceProvider"/>. The engine never resolves services itself;
     /// integration packages use this hook.

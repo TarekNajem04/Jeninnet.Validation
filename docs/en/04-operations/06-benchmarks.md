@@ -3,37 +3,36 @@
 Measured evidence for the performance claims in this book.
 These are **local ShortRun results**, not a CI gate; hardware variance is real
 and the error columns are wide. Treat them as directional evidence, not as
-absolute numbers. For the same-model comparison against FluentValidation and
-DataAnnotations, see [Peer benchmarks](10-peer-benchmarks.md).
+absolute numbers.
 
 ## Machine profile
 
 | Item | Value |
 |---|---|
-| OS | Windows 11 (10.0.26300.9818) |
+| OS | Windows 11 (10.0.26300.9974) |
 | CPU | Intel Core i7-8850H 2.60 GHz (Coffee Lake), 1 CPU, 12 logical / 6 physical cores |
-| Runtime | .NET 10.0.14, X64 RyuJIT x86-64-v3 |
-| SDK | .NET SDK 10.0.204 |
-| Tool | BenchmarkDotNet 0.15.8 (historical) |
+| Runtime | .NET 10.0.15, X64 RyuJIT x86-64-v3 |
+| SDK | .NET SDK 11.0.100 |
+| Tool | BenchmarkDotNet 0.16.0-preview.2 |
 | Job | `ShortRun`: 3 warmup, 3 measured iterations, 1 launch |
 | Configuration | Release, no debugger, pre-JIT |
 
-> **Historical measurement.** These numbers were captured with the .NET 10 SDK. The repository now
-> pins .NET 11 SDK `11.0.100` and C# 15 while the benchmark project targets the `net10.0` baseline;
-> re-run the suite before treating the numbers as a current performance claim.
+> **Measurement date.** The validation table below was re-measured on 2026-11-24 on the pinned
+> toolchain. The `net11.0` run measured identical allocations (2,496 / 4,936 / 14,456 B and 456 B);
+> its means are comparable within `ShortRun` noise. Means are directional; allocation counters are
+> deterministic. The localization and Base64 tables remain from an earlier run and are still
+> directional.
 >
-> **Tooling.** BenchmarkDotNet 0.15.8 does not recognize the `net11.0` runtime moniker and throws
-> `GetRuntimeVersion not implemented for NotRecognized` before running any benchmark. The
-> repository now uses **BenchmarkDotNet 0.16.0-preview.2**, the first release with .NET 11
-> support. In 0.16 an `Allocated` value of `-` means zero managed allocations; older versions
-> printed `0 B` for the same result.
+> **Tooling.** In BenchmarkDotNet 0.16 an `Allocated` value of `-` means zero managed allocations;
+> the table shows `0 B` for readability.
 
 Reproduce with:
 
 ```powershell
-dotnet run -c Release --project src/Jeninnet.Validation.Benchmarks -- --filter '*ValidationBenchmarks*'
-dotnet run -c Release --project src/Jeninnet.Validation.Benchmarks -- --filter '*LocalizationBenchmarks*'
-dotnet run -c Release --project src/Jeninnet.Validation.Benchmarks -- --filter '*Base64ValidationBenchmarks*'
+dotnet run -c Release -f net10.0 --project src/Jeninnet.Validation.Benchmarks -- --filter '*ValidationBenchmarks*'
+dotnet run -c Release -f net11.0 --project src/Jeninnet.Validation.Benchmarks -- --filter '*ValidationBenchmarks*'
+dotnet run -c Release -f net10.0 --project src/Jeninnet.Validation.Benchmarks -- --filter '*LocalizationBenchmarks*'
+dotnet run -c Release -f net10.0 --project src/Jeninnet.Validation.Benchmarks -- --filter '*Base64ValidationBenchmarks*'
 ```
 
 ## Validation engine
@@ -45,37 +44,41 @@ stops at the first error.
 
 | Method | Mean | Error | StdDev | Ratio | Allocated | Alloc Ratio |
 |---|---:|---:|---:|---:|---:|---:|
-| Fluent_Small_Valid | 165.24 ns | 152.51 ns | 8.360 ns | 1.00 | 0 B | NA |
-| Generated_Small_Valid | 134.63 ns | 186.36 ns | 10.215 ns | 0.82 | 0 B | NA |
-| Fluent_Small_Invalid | 712.51 ns | 716.75 ns | 39.288 ns | 4.32 | 968 B | NA |
-| Generated_Small_Invalid | 676.21 ns | 312.56 ns | 17.132 ns | 4.10 | 968 B | NA |
-| Fluent_Medium_Valid | 147.78 ns | 235.06 ns | 12.884 ns | 0.90 | 0 B | NA |
-| Generated_Medium_Valid | 95.76 ns | 32.42 ns | 1.777 ns | 0.58 | 0 B | NA |
-| Fluent_Medium_Invalid | 1,358.55 ns | 2,213.67 ns | 121.339 ns | 8.24 | 2,104 B | NA |
-| Generated_Medium_Invalid | 1,397.88 ns | 303.95 ns | 16.660 ns | 8.47 | 2,104 B | NA |
-| Fluent_Large_Valid | 401.29 ns | 230.56 ns | 12.638 ns | 2.43 | 0 B | NA |
-| Generated_Large_Valid | 257.71 ns | 227.69 ns | 12.481 ns | 1.56 | 0 B | NA |
-| Fluent_Large_Invalid | 4,087.47 ns | 4,375.20 ns | 239.820 ns | 24.78 | 6,024 B | NA |
-| Generated_Large_Invalid | 3,871.51 ns | 1,529.07 ns | 83.813 ns | 23.47 | 6,024 B | NA |
-| Fluent_Small_Invalid_FailFast | 178.67 ns | 88.25 ns | 4.837 ns | 1.08 | 208 B | NA |
+| Fluent_Small_Valid | 223.7 ns | 319.6 ns | 17.52 ns | 1.00 | 0 B | NA |
+| Generated_Small_Valid | 172.9 ns | 186.6 ns | 10.23 ns | 0.78 | 0 B | NA |
+| Fluent_Small_Invalid | 2,091.8 ns | 608.1 ns | 33.33 ns | 9.39 | 2,496 B | NA |
+| Generated_Small_Invalid | 1,850.1 ns | 3,105.9 ns | 170.25 ns | 8.30 | 2,496 B | NA |
+| Fluent_Medium_Valid | 219.3 ns | 303.7 ns | 16.65 ns | 0.98 | 0 B | NA |
+| Generated_Medium_Valid | 135.1 ns | 201.7 ns | 11.06 ns | 0.61 | 0 B | NA |
+| Fluent_Medium_Invalid | 3,258.9 ns | 2,330.1 ns | 127.72 ns | 14.63 | 4,936 B | NA |
+| Generated_Medium_Invalid | 3,586.1 ns | 7,595.1 ns | 416.31 ns | 16.09 | 4,936 B | NA |
+| Fluent_Large_Valid | 576.8 ns | 151.7 ns | 8.32 ns | 2.59 | 0 B | NA |
+| Generated_Large_Valid | 387.2 ns | 718.5 ns | 39.39 ns | 1.74 | 0 B | NA |
+| Fluent_Large_Invalid | 10,656.6 ns | 25,027.5 ns | 1,371.84 ns | 47.82 | 14,456 B | NA |
+| Generated_Large_Invalid | 11,003.5 ns | 21,957.6 ns | 1,203.57 ns | 49.38 | 14,456 B | NA |
+| Fluent_Small_Invalid_FailFast | 389.1 ns | 715.5 ns | 39.22 ns | 1.75 | 456 B | NA |
 
 ### Reading the numbers
 
 - **Generated vs fluent:** generated validators are faster on the valid path
-  (135 vs 165 ns for 5 properties, 96 vs 148 ns for 10, 258 vs 401 ns for 30).
+  (173 vs 224 ns for 5 properties, 135 vs 219 ns for 10, 387 vs 577 ns for 30).
   Invalid paths are within run-to-run noise; error construction dominates.
 - **Happy-path allocation:** **0 B per operation**. The
   `ValidationErrorCollector` and `RootContextData` are pooled and reused, and
   the rule-selection fast path returns the rule array without materialization.
   This confirms the zero-allocation happy-path contract.
 - **Error path:** allocations scale with the number of errors
-  (968 B for 5 errors, 2,104 B for 10, 6,024 B for 30). Fail-fast cuts both
-  time and allocation (179 ns / 208 B vs 713 ns / 968 B).
-- **Benchmark-driven change:** `CompositeValidator` now uses an indexed array
+  (2,496 B for 5 errors, 4,936 B for 10, 14,456 B for 30). Fail-fast cuts both
+  time and allocation (389 ns / 456 B vs 2,092 ns / 2,496 B). Each error carries
+  its rule parameters plus `PropertyName`, `PropertyPath`, and `PropertyValue`
+  in one pre-sized dictionary.
+- **Benchmark-driven change:** `CompositeValidator` uses an indexed array
   fast path and a no-filter `SelectRules` return instead of `foreach` over
   `IEnumerable` plus materialization. Together these removed the residual
-  32 B/op measured during early benchmarking; the happy path is now zero. The
-  allocation contract and stress evidence live in
+  32 B/op measured during early benchmarking; the happy path is now zero. A
+  later allocation audit removed the second error dictionary and cut
+  invalid-path allocation by 46–48% without changing the public error shape.
+  The allocation contract and stress evidence live in
   [`07-allocation-audit.md`](07-allocation-audit.md).
 
 ## Localization
@@ -98,15 +101,6 @@ exactly-one-provider model used by the localization pipeline.
 | ValidBase64 | 80.70 ns | 59.50 ns | 3.262 ns | 0 B |
 
 The Base64 rule and the engine's happy path are both allocation-free.
-
-## Peer comparison
-
-A direct peer run is published in [Peer benchmarks](10-peer-benchmarks.md):
-on the repository machine the valid path measured 81.7 ns / 0 B for Jeninnet
-versus 226.7 ns / 632 B for FluentValidation. Treat those numbers as a
-machine-specific baseline, not a universal guarantee; run the benchmark harness
-on your own hardware before making capacity decisions. Generated and fluent
-validators share the same engine and allocation profile.
 
 ## CI decision
 

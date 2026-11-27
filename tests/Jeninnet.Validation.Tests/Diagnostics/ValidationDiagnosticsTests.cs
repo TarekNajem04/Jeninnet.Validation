@@ -149,6 +149,69 @@ public sealed class ValidationDiagnosticsTests {
         MSTestAssertions.That(() => ValidationDiagnostics.IsEnabled.Should().BeFalse());
     }
 
+    [TestMethod]
+    public void RuleTrace_AddsActivityEvents_WhenEnabled() {
+        var options = new ValidationDiagnosticsOptions {
+            EnableMetrics = false,
+            EnableRuleTrace = true,
+            SamplingProbability = 1
+        };
+
+        using var sink = new ValidationDiagnosticsSink(options);
+        ValidationDiagnostics.Sink = sink;
+
+        Activity? captured = null;
+        using var listener = new ActivityListener {
+            ShouldListenTo = source => string.Equals(source.Name, options.SourceName, StringComparison.Ordinal),
+            Sample = static (ref _) => ActivitySamplingResult.AllDataAndRecorded,
+            ActivityStopped = activity => captured = activity
+        };
+
+        ActivitySource.AddActivityListener(listener);
+
+        try {
+            _ = new DiagnosticsValidator().Validate(new DiagnosticsModel { Name = string.Empty });
+
+            MSTestAssertions.That(() => captured.Should().NotBeNull());
+            var ruleEvents = captured!.Events.Where(static activityEvent => activityEvent.Name == "validation.rule").ToArray();
+
+            MSTestAssertions.That(() => ruleEvents.Should().HaveCount(1));
+            MSTestAssertions.That(() => ReadTag(ruleEvents[0], "validation.rule.kind").Should().Be("NotEmpty"));
+            MSTestAssertions.That(() => ReadTag(ruleEvents[0], "validation.rule.member").Should().Be(nameof(DiagnosticsModel.Name)));
+            MSTestAssertions.That(() => ReadTag(ruleEvents[0], "validation.rule.outcome").Should().Be("failed"));
+            MSTestAssertions.That(() => ReadTag(ruleEvents[0], "validation.rule.duration").Should().NotBe("not-measured"));
+        }
+        finally {
+            ValidationDiagnostics.Sink = null;
+        }
+    }
+
+    [TestMethod]
+    public void RuleTrace_RequiresTracing() {
+        var options = new ValidationDiagnosticsOptions {
+            EnableTracing = false,
+            EnableRuleTrace = true
+        };
+
+        var act = () => new ValidationDiagnosticsSink(options);
+
+        MSTestAssertions.That(() => act.Should().ThrowExactly<ArgumentException>());
+    }
+
+    private static string? ReadTag(ActivityEvent activityEvent, string key) {
+        if(activityEvent.Tags is null) {
+            return null;
+        }
+
+        foreach(var tag in activityEvent.Tags) {
+            if(string.Equals(tag.Key, key, StringComparison.Ordinal)) {
+                return tag.Value?.ToString();
+            }
+        }
+
+        return null;
+    }
+
     private static string? ReadTag(ReadOnlySpan<KeyValuePair<string, object?>> tags, string key) {
         foreach(var tag in tags) {
             if(string.Equals(tag.Key, key, StringComparison.Ordinal)) {

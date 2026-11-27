@@ -10,7 +10,7 @@ Roslyn incremental source generator and diagnostic analyzers for the Jeninnet va
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Analyzers --version 1.0.0-preview.3
 ```
 
 ## Source Generation
@@ -39,7 +39,19 @@ The `ValidatorGenerator` (`IIncrementalGenerator`) scans for types decorated wit
 
 ## Code Fixes
 
-Includes code fix providers for converting attribute parameters to type-safe literals (`ConvertToEnumLiteralCodeFix`, `ConvertToDateTimeLiteralCodeFix`, etc.), resolving rule conflicts, and rewriting mismatched `RuleFor` member names to `nameof(...)` (`UseNameofForRuleForMemberCodeFix`).
+Ships 17 code-fix providers covering 11 diagnostics: converting attribute parameters to type-safe
+literals (`ConvertToEnumLiteralCodeFix`, `ConvertToDateTimeLiteralCodeFix`, etc.), resolving rule
+conflicts, rewriting mismatched `RuleFor` member names to `nameof(...)`
+(`UseNameofForRuleForMemberCodeFix`), rewriting sync calls to `ValidateAsync()`, and removal fixes
+for redundant `[NotNull]` (`VAL0014`) and tautological rules (`VAL0017`).
+
+The other 22 diagnostics are intentional omissions: the correct change depends on the author's
+intent (the rule, the member type, the member name, or the missing method). The public
+[diagnostic gallery](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/03-reference/09-diagnostic-gallery/index.md)
+provides a minimal trigger, compiler output, and either a tested fix or the reason no fix is safe
+for every ID. The [diagnostics matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/03-reference/03-diagnostics.md)
+remains the compact status view, and `scripts/quality/check-analyzer-fix-coverage.ps1` verifies
+that the table, the providers, and `AnalyzerReleases.Shipped.md`/`Unshipped.md` agree.
 
 ## Dependencies
 
@@ -47,6 +59,10 @@ Includes code fix providers for converting attribute parameters to type-safe lit
 - `Microsoft.CodeAnalysis.CSharp`
 - `Microsoft.CodeAnalysis.CSharp.Workspaces`
 - `Microsoft.CodeAnalysis.Workspaces.Common`
+
+## AOT position
+
+**Unsupported (build-time only).** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

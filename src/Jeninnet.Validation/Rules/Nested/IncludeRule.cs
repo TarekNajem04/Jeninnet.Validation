@@ -13,9 +13,17 @@ namespace Jeninnet.Validation.Rules;
 /// <typeparam name="T">The type being validated.</typeparam>
 /// <param name="validator">The sync validator to include.</param>
 /// <param name="asyncValidator">The async validator to include.</param>
-public sealed class IncludeRule<T>(IValidator<T> validator, IAsyncValidator<T>? asyncValidator) : ISyncValidationRule<T>, IAsyncValidationRule<T> {
+public sealed class IncludeRule<T>(IValidator<T> validator, IAsyncValidator<T>? asyncValidator) : ISyncValidationRule<T>, IAsyncValidationRule<T>, IValidationSchemaRuleMetadata {
     private readonly IValidator<T> _validator = validator ?? throw new ArgumentNullException(nameof(validator));
     private readonly IAsyncValidator<T>? _asyncValidator = asyncValidator;
+
+    string IValidationSchemaRuleMetadata.Kind => "Include";
+
+    bool IValidationSchemaRuleMetadata.IsCollection => false;
+
+    IValidationDescriptor? IValidationSchemaRuleMetadata.NestedDescriptor =>
+        (_validator as IValidationDescriptorProvider)?.Describe()
+        ?? (_asyncValidator as IValidationDescriptorProvider)?.Describe();
 
     /// <summary>
     /// Initializes a new instance of the <see cref="IncludeRule{T}"/> class with a combined sync/async validator.

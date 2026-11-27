@@ -6,8 +6,6 @@
 
 - name: Getting started
   items:
-    - name: Best C# validation libraries (comparison)
-      href: en/01-getting-started/00b-best-csharp-validation-libraries.md
     - name: Why Jeninnet?
       href: en/01-getting-started/00-why-jeninnet.md
     - name: Introduction
@@ -49,10 +47,6 @@
       href: en/02-guides/13-localization.md
     - name: Testing
       href: en/02-guides/14-testing.md
-    - name: Migration from FluentValidation
-      href: en/02-guides/15-migration-from-fluentvalidation.md
-    - name: Migration from DataAnnotations
-      href: en/02-guides/16-migration-from-dataannotations.md
     - name: Dependency injection and lifetimes
       href: en/02-guides/17-dependency-injection.md
     - name: Error handling
@@ -95,8 +89,6 @@
 
 - name: Reference
   items:
-    - name: Capability parity
-      href: en/03-reference/09-capability-parity.md
     - name: Architecture
       href: en/03-reference/00-architecture.md
     - name: Core API
@@ -105,6 +97,8 @@
       href: en/03-reference/02-rule-reference.md
     - name: Diagnostics
       href: en/03-reference/03-diagnostics.md
+    - name: Diagnostic gallery
+      href: en/03-reference/09-diagnostic-gallery/index.md
     - name: Metadata
       href: en/03-reference/04-metadata.md
     - name: Integration packages
@@ -118,8 +112,6 @@
 
 - name: Operations
   items:
-    - name: Peer benchmarks
-      href: en/04-operations/10-peer-benchmarks.md
     - name: Performance
       href: en/04-operations/01-performance.md
     - name: AOT and trimming

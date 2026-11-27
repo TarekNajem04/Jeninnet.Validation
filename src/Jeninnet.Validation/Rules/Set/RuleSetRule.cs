@@ -77,8 +77,15 @@ public sealed class RuleSetRule<T> : IValidationRule<T>, IRuleMetadataProvider, 
     /// <param name="context">The validation context.</param>
     /// <param name="errors">The collector for validation errors.</param>
     public void Validate(in ValidationContext<T> context, ValidationErrorCollector errors) {
+        ArgumentNullException.ThrowIfNull(errors);
+
+        var trace = RuleDecisionTrace.Current(in context);
+
         foreach(var rule in _rules) {
+            var countBefore = errors.Count;
+            var startedAt = RuleDecisionTraceSession.Start(trace);
             rule.Validate(in context, errors);
+            trace?.Complete(rule, in context, startedAt, errors.Count > countBefore);
         }
     }
 
@@ -93,9 +100,16 @@ public sealed class RuleSetRule<T> : IValidationRule<T>, IRuleMetadataProvider, 
         ValidationErrorCollector errors,
         CancellationToken cancellationToken = default
     ) {
+        ArgumentNullException.ThrowIfNull(errors);
+
+        var trace = RuleDecisionTrace.Current(in context);
+
         for(var i = 0; i < _asyncRules.Length; i++) {
             var rule = _asyncRules[i];
+            var countBefore = errors.Count;
+            var startedAt = RuleDecisionTraceSession.Start(trace);
             await rule.ValidateAsync(context, errors, cancellationToken).ConfigureAwait(false);
+            trace?.Complete(rule, in context, startedAt, errors.Count > countBefore);
         }
     }
 

@@ -9,7 +9,7 @@ dotnet new install ./templates/jeninnet-validator
 dotnet new jeninnet-validator -n MyCompany.Validation -o src/MyCompany.Validation
 ```
 
-The generated project references `Jeninnet.Validation` `1.0.0-preview.2` and targets .NET 10.
+The generated project references `Jeninnet.Validation` `1.0.0-preview.3` and targets .NET 10.
 Restore works once the preview package is available from your configured feed.
 
 To uninstall the template:
@@ -24,7 +24,7 @@ Add the generated project to your solution and replace the sample model/rules wi
 ## Requirements
 
 - .NET 10 SDK.
-- A configured NuGet feed that can resolve `Jeninnet.Validation` `1.0.0-preview.2`.
+- A configured NuGet feed that can resolve `Jeninnet.Validation` `1.0.0-preview.3`.
 
 ## Related
 

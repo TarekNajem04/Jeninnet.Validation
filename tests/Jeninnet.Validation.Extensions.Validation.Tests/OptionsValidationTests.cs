@@ -189,7 +189,12 @@ public sealed class OptionsValidationTests {
         var validators = provider.GetServices<IValidateOptions<OptionsSettings>>().ToArray();
         var options = provider.GetRequiredService<IOptions<OptionsSettings>>().Value;
 
+#if NET11_0_OR_GREATER
+        MSTestAssertions.That(() => validators.Should().HaveCount(2));
+        MSTestAssertions.That(() => validators.OfType<IAsyncValidateOptions<OptionsSettings>>().Should().ContainSingle());
+#else
         MSTestAssertions.That(() => validators.Should().HaveCount(1));
+#endif
         MSTestAssertions.That(() => options.Name.Should().Be("worker"));
     }
 }

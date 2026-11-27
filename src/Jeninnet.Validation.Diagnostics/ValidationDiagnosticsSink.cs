@@ -9,8 +9,8 @@ namespace Jeninnet.Validation.Diagnostics;
 
 /// <summary>
 /// Creates OpenTelemetry-compatible activities and metrics for validation calls. The sink only
-/// records type, validator, rule-set, outcome, and error-count metadata; messages and values never
-/// reach tags.
+/// records type, validator, rule-set, outcome, error-count, and opt-in rule decision metadata;
+/// messages and values never reach tags or rule events.
 /// </summary>
 public sealed class ValidationDiagnosticsSink : IValidationDiagnosticsSink, IDisposable {
     private readonly ValidationDiagnosticsOptions _options;
@@ -200,6 +200,40 @@ public sealed class ValidationDiagnosticsSink : IValidationDiagnosticsSink, IDis
         public bool IsAsync { get; } = isAsync;
 
         public Activity? Activity { get; } = activity;
+
+        public bool IsRuleTraceEnabled =>
+            owner._options.EnableRuleTrace && Activity is { IsAllDataRequested: true };
+
+        public void Rule(in ValidationRuleTraceEvent traceEvent) {
+            if(Activity is not { IsAllDataRequested: true } currentActivity) {
+                return;
+            }
+
+            var tags = new ActivityTagsCollection {
+                { "validation.rule.kind", traceEvent.Kind },
+                { "validation.rule.member", traceEvent.MemberPath },
+                { "validation.rule.outcome", GetDecisionTag(traceEvent.Decision) },
+                { "validation.rule.duration", GetDurationTag(traceEvent.Duration) }
+            };
+
+            currentActivity.AddEvent(new ActivityEvent("validation.rule", tags: tags));
+        }
+
+        private static string GetDecisionTag(ValidationRuleDecision decision) => decision switch {
+            ValidationRuleDecision.Passed => "passed",
+            ValidationRuleDecision.Failed => "failed",
+            ValidationRuleDecision.SkippedCondition => "skipped-condition",
+            ValidationRuleDecision.ShortCircuited => "short-circuited",
+            _ => "unknown"
+        };
+
+        private static string GetDurationTag(ValidationRuleDurationBucket duration) => duration switch {
+            ValidationRuleDurationBucket.NotMeasured => "not-measured",
+            ValidationRuleDurationBucket.LessThanOneMillisecond => "<1ms",
+            ValidationRuleDurationBucket.LessThanTenMilliseconds => "<10ms",
+            ValidationRuleDurationBucket.LessThanOneHundredMilliseconds => "<100ms",
+            _ => ">=100ms"
+        };
 
         public void Complete(ValidationResult result) {
             if(_completed) {

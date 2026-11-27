@@ -7,10 +7,10 @@ The engine is designed for a zero-allocation happy path and predictable error co
 | Scenario | Allocation |
 |---|---|
 | Valid model, 5/10/30 properties | **0 B/op** |
-| Invalid model, 5 errors | 968 B |
-| Invalid model, 10 errors | 2,104 B |
-| Invalid model, 30 errors | 6,024 B |
-| Fail-fast, 5-property model | 208 B |
+| Invalid model, 5 errors | 2,496 B |
+| Invalid model, 10 errors | 4,936 B |
+| Invalid model, 30 errors | 14,456 B |
+| Fail-fast, 5-property model | 456 B |
 | Base64 rule | 0 B |
 | Localization lookup | 0 B |
 
@@ -23,6 +23,12 @@ paths are dominated by error construction and are effectively equal.
 adds one volatile null check per `CompositeValidator` call and allocates nothing. When enabled, it
 creates one short-lived diagnostics scope plus an Activity only when a listener is attached; the
 histogram/counter use `TagList` and type/rule-set labels, never messages or values.
+
+Per-rule tracing is a second opt-in layer (`EnableRuleTrace`, default `false`). With a sink installed
+but tracing off, the engine checks one boolean per validation operation and allocates nothing extra.
+When enabled, each executed or skipped rule pays for a timestamp, a member path, and an
+`ActivityEvent`; that cost is bounded by the number of configured rules and is never paid on the
+default path.
 
 ## Why it is fast
 

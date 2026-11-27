@@ -18,7 +18,11 @@ namespace Jeninnet.Validation.DataAnnotations;
 /// with its parameterless constructor.
 /// </remarks>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]
+#if NET11_0_OR_GREATER
+public sealed class JeninnetValidatableAttribute : AsyncValidationAttribute {
+#else
 public sealed class JeninnetValidatableAttribute : ValidationAttribute {
+#endif
     /// <summary>
     /// Initializes a new instance of the <see cref="JeninnetValidatableAttribute"/> class.
     /// </summary>
@@ -61,11 +65,7 @@ public sealed class JeninnetValidatableAttribute : ValidationAttribute {
     protected override DataAnnotationsValidationResult? IsValid(object? value, ValidationContext validationContext) {
         ArgumentNullException.ThrowIfNull(validationContext);
 
-        if(validationContext.ObjectType.GetCustomAttribute<SkipValidationAttribute>(inherit: true) is not null) {
-            return DataAnnotationsValidationResult.Success;
-        }
-
-        if(value is null) {
+        if(ShouldSkip(validationContext) || value is null) {
             return DataAnnotationsValidationResult.Success;
         }
 
@@ -76,6 +76,39 @@ public sealed class JeninnetValidatableAttribute : ValidationAttribute {
             validationContext.GetService,
             RuleSets);
 
+        return ToResult(result, validationContext);
+    }
+
+#if NET11_0_OR_GREATER
+    /// <inheritdoc />
+    protected override async Task<DataAnnotationsValidationResult?> IsValidAsync(
+        object? value,
+        ValidationContext validationContext,
+        CancellationToken cancellationToken) {
+        ArgumentNullException.ThrowIfNull(validationContext);
+
+        if(ShouldSkip(validationContext) || value is null) {
+            return DataAnnotationsValidationResult.Success;
+        }
+
+        var result = await JeninnetDataAnnotationsAdapter.ValidateAsync(
+            value,
+            validationContext.ObjectType,
+            ValidatorType,
+            validationContext.GetService,
+            RuleSets,
+            cancellationToken).ConfigureAwait(false);
+
+        return ToResult(result, validationContext);
+    }
+#endif
+
+    private static bool ShouldSkip(ValidationContext validationContext) =>
+        validationContext.ObjectType.GetCustomAttribute<SkipValidationAttribute>(inherit: true) is not null;
+
+    private DataAnnotationsValidationResult? ToResult(
+        JeninnetValidationResult result,
+        ValidationContext validationContext) {
         if(result.IsValid) {
             return DataAnnotationsValidationResult.Success;
         }

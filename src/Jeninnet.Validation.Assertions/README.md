@@ -12,7 +12,7 @@ with the failed expectation and the actual errors, so any test framework can con
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.Assertions --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.Assertions --version 1.0.0-preview.3
 ```
 
 ## Quick start
@@ -73,6 +73,10 @@ asyncTest.ShouldNotHaveValidationErrors();
 - `Jeninnet.Validation.Abstractions`
 
 No test-framework packages, no reflection, and the assembly is built with `IsAotCompatible`.
+
+## AOT position
+
+**AOT-compatible.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

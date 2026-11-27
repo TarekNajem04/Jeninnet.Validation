@@ -8,10 +8,12 @@ long-term API stability.
 
 ## Current Project Status
 
-Jeninnet.Validation is in an API stabilization phase. The current public preview,
-`1.0.0-preview.2`, is prepared for the 25 packable packages and adds .NET 11 + C# 15 support. The project remains pre-stable, and
-the public surface can still change before `1.0.0`; every change is nevertheless recorded in a
-committed public-API baseline.
+Jeninnet.Validation is in an API stabilization phase. The current preview, `1.0.0-preview.3`, is
+implemented on the release branch; it is not yet published. It is built for the 25 packable
+packages on the .NET 10 baseline and adds the .NET 11 async DataAnnotations and Options bridges
+plus the central Roslynator setup. The latest published preview is `1.0.0-preview.2`. The project remains pre-stable, and the public surface can
+still change before `1.0.0`; every change is nevertheless recorded in a committed public-API
+baseline.
 
 During this stage, the project's internal architecture, CI/CD pipelines, quality gates, release
 process, and public APIs are still being refined and validated.
@@ -83,7 +85,7 @@ src/
     shared/                               Shared source units imported via .projitems
 
 tests/
-    Jeninnet.Validation.Tests/            Engine, rules, parity, generator snapshots
+    Jeninnet.Validation.Tests/            Engine, rules, conformance, generator snapshots
     Jeninnet.Validation.Analyzers.Tests/  Analyzer + emitter tests
     Jeninnet.Validation.ArchitectureTests/  Layering + dependency-direction guards
     Jeninnet.Validation.AspNetCore.Tests/ ASP.NET Core integration
@@ -93,7 +95,7 @@ tests/
 
 samples/                                  26 sample projects (21 in the solution)
     Jeninnet.Validation.AotSmoke/         NativeAOT publish/run harness
-docs/                                     Guides, feature/rule catalogs, migration notes
+docs/                                     Guides, feature/rule catalogs, and reference pages
 scripts/                                  Build, format, coverage, Sonar, and docs checks
 ```
 
@@ -104,7 +106,7 @@ The architecture emphasizes:
 - Attribute-driven rule declaration by default; the fluent API (`Validator<T>`) is the supported
   alternative authoring path for dynamic and cross-cutting scenarios
 - Both authoring paths feed the same `IValidator<T>` contracts and must not diverge (enforced by
-  executable parity tests)
+  executable conformance tests)
 - Compile-time safety: invalid rule configurations produce analyzer errors
 - Allocation-free success path, verified by the release allocation test and benchmarks
 - Trimming and Native AOT compatibility for every runtime library

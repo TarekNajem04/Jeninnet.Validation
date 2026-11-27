@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 1,
+  "packages": [
+    {
+      "package": "Jeninnet.Validation",
+      "targetFrameworks": "net10.0",
+      "position": "aot-compatible",
+      "reason": "Core engine, generated descriptors, and explicit registration are reflection-free on the validation path; NativeAOT smoke exercises it.",
+      "fallback": "Use the generated registry or explicit validator registration."
+    },
+    {
+      "package": "Jeninnet.Validation.Abstractions",
+      "targetFrameworks": "net10.0",
+      "position": "aot-compatible",
+      "reason": "Contracts and value types only; no runtime reflection or dynamic code.",
+      "fallback": "None required."
+    },
+    {
+      "package": "Jeninnet.Validation.Analyzers",
+      "targetFrameworks": "netstandard2.0",
+      "position": "unsupported",
+      "reason": "Roslyn analyzer/source generator runs at build time and is not part of the application runtime.",
+      "fallback": "Reference as an analyzer; use the generated code in the AOT application."
+    },
+    {
+      "package": "Jeninnet.Validation.AspNetCore",
+      "targetFrameworks": "net10.0",
+      "position": "reflection-dependent",
+      "reason": "The filters resolve IValidator<T> through MakeGenericType and the runtime model type.",
+      "fallback": "Use explicit or generated validators; follow the ASP.NET Core host's AOT posture."
+    },
+    {
+      "package": "Jeninnet.Validation.Assertions",
+      "targetFrameworks": "net10.0",
+      "position": "aot-compatible",
+      "reason": "Test assertions use explicit checks and are AOT-compatible, but are not runtime application code.",
+      "fallback": "Test-only; do not ship in production applications."
+    },
+    {
+      "package": "Jeninnet.Validation.Blazor",
+      "targetFrameworks": "net10.0",
+      "position": "reflection-dependent",
+      "reason": "FieldIdentifierResolver uses cached reflection to walk nested objects and IList collections.",
+      "fallback": "Not an AOT target; use the server or an interactive host that supports reflection."
+    },
+    {
+      "package": "Jeninnet.Validation.ClientRules",
+      "targetFrameworks": "net10.0",
+      "position": "aot-compatible",
+      "reason": "Descriptor-to-JSON projection is deterministic and reflection-free; parity tests cover the shared rule subset.",
+      "fallback": "Use the generated client-rules catalog or the runtime writer."
+    },
+    {
+      "package": "Jeninnet.Validation.DataAnnotations",
+      "targetFrameworks": "net10.0;net11.0",
+      "position": "reflection-dependent",
+      "reason": "The bridge resolves generic validator interfaces and invokes validators through reflection.",
+      "fallback": "Not an AOT target; use the core/generated validator path on AOT hosts."
+    },
+    {
+      "package": "Jeninnet.Validation.Diagnostics",
+      "targetFrameworks": "net10.0",
+      "position": "aot-compatible",
+      "reason": "ActivitySource/Meter integration and explicit sinks use no runtime reflection.",
+      "fallback": "None required."
+    },
+    {
+      "package": "Jeninnet.Validation.Extensions.Validation",
+      "targetFrameworks": "net10.0;net11.0",
+      "position": "aot-compatible",
+      "reason": "The generic AddJeninnetValidation<TModel>() and AddValidatedOptions<T>() paths are trim/AOT-safe; non-generic overloads are annotated with RequiresUnreferencedCode/RequiresDynamicCode.",
+      "fallback": "Use the generic overloads in trimmed or NativeAOT hosts."
+    },
+    {
+      "package": "Jeninnet.Validation.GraphQL",
+      "targetFrameworks": "net10.0",
+      "position": "reflection-dependent",
+      "reason": "Middleware resolves IValidator<T> from the runtime model type and generic type construction.",
+      "fallback": "Follow the HotChocolate host's AOT posture; use explicit validators where possible."
+    },
+    {
+      "package": "Jeninnet.Validation.Grpc",
+      "targetFrameworks": "net10.0",
+      "position": "trim-compatible-only",
+      "reason": "The interceptor uses explicit request types and does not add reflection on the validation path; trim/AOT posture is inherited from the gRPC host.",
+      "fallback": "Use an AOT-capable gRPC host; no independent NativeAOT claim."
+    },
+    {
+      "package": "Jeninnet.Validation.JsonSchema",
+      "targetFrameworks": "net10.0",
+      "position": "aot-compatible",
+      "reason": "Consumes frozen descriptors and writes JsonNode schemas without reflection or expression compilation.",
+      "fallback": "None required."
+    },
+    {
+      "package": "Jeninnet.Validation.Localization",
+      "targetFrameworks": "net10.0",
+      "position": "aot-compatible",
+      "reason": "Message packs and catalog access use explicit data and no reflection.",
+      "fallback": "None required."
+    },
+    {
+      "package": "Jeninnet.Validation.Localization.AspNetCore",
+      "targetFrameworks": "net10.0",
+      "position": "trim-compatible-only",
+      "reason": "The IStringLocalizer bridge uses host services and adds no reflection; trim/AOT posture follows ASP.NET Core localization.",
+      "fallback": "Follow the ASP.NET Core host's AOT posture; no independent NativeAOT claim."
+    },
+    {
+      "package": "Jeninnet.Validation.MediatR",
+      "targetFrameworks": "net10.0",
+      "position": "trim-compatible-only",
+      "reason": "The pipeline behavior uses MediatR's generic pipeline and adds no reflection on the validation path; trim/AOT posture follows the host.",
+      "fallback": "Follow the MediatR host's AOT posture; no independent NativeAOT claim."
+    },
+    {
+      "package": "Jeninnet.Validation.MediatR.CSharpFunctionalExtensions",
+      "targetFrameworks": "net10.0",
+      "position": "trim-compatible-only",
+      "reason": "Result mapping is explicit and adds no reflection; trim/AOT posture follows the host.",
+      "fallback": "Follow the host's AOT posture; no independent NativeAOT claim."
+    },
+    {
+      "package": "Jeninnet.Validation.MediatR.ErrorOr",
+      "targetFrameworks": "net10.0",
+      "position": "trim-compatible-only",
+      "reason": "Result mapping is explicit and adds no reflection; trim/AOT posture follows the host.",
+      "fallback": "Follow the host's AOT posture; no independent NativeAOT claim."
+    },
+    {
+      "package": "Jeninnet.Validation.MediatR.FluentResults",
+      "targetFrameworks": "net10.0",
+      "position": "trim-compatible-only",
+      "reason": "Result mapping is explicit and adds no reflection; trim/AOT posture follows the host.",
+      "fallback": "Follow the host's AOT posture; no independent NativeAOT claim."
+    },
+    {
+      "package": "Jeninnet.Validation.Migration",
+      "targetFrameworks": "net10.0",
+      "position": "unsupported",
+      "reason": "The dotnet migration tool uses Roslyn and runs at development/migration time; it is not an application runtime component.",
+      "fallback": "Use the tool outside the AOT application; commit the migrated source."
+    },
+    {
+      "package": "Jeninnet.Validation.Observable",
+      "targetFrameworks": "net10.0",
+      "position": "reflection-dependent",
+      "reason": "The INotifyDataErrorInfo adapter targets desktop/UI stacks and is not an AOT target.",
+      "fallback": "Use a non-AOT desktop/UI host."
+    },
+    {
+      "package": "Jeninnet.Validation.OpenApi",
+      "targetFrameworks": "net10.0;net11.0",
+      "position": "aot-compatible",
+      "reason": "The applier is smoke-tested with source-generated metadata; the transformer consumes host-provided JsonTypeInfo and the package builds clean with AOT/trim analyzers.",
+      "fallback": "Use source-generated JsonSerializerContext metadata; the host OpenAPI pipeline must also support AOT."
+    },
+    {
+      "package": "Jeninnet.Validation.OpenApi.NSwag",
+      "targetFrameworks": "net10.0;net11.0",
+      "position": "reflection-dependent",
+      "reason": "NJsonSchema/NSwag schema generation uses reflection and is not independently AOT-safe.",
+      "fallback": "Use the JSON Schema writer or the Microsoft OpenAPI applier with source-generated metadata."
+    },
+    {
+      "package": "Jeninnet.Validation.OpenApi.Swashbuckle",
+      "targetFrameworks": "net10.0;net11.0",
+      "position": "reflection-dependent",
+      "reason": "Swashbuckle schema generation uses reflection and is not independently AOT-safe.",
+      "fallback": "Use the JSON Schema writer or the Microsoft OpenAPI applier with source-generated metadata."
+    },
+    {
+      "package": "Jeninnet.Validation.Rules.Domain",
+      "targetFrameworks": "net10.0",
+      "position": "aot-compatible",
+      "reason": "Domain rules use explicit checks and reference data; no runtime reflection or dynamic code.",
+      "fallback": "None required."
+    }
+  ]
+}

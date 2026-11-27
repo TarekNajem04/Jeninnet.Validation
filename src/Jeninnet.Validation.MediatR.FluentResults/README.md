@@ -11,7 +11,7 @@ skipped for invalid requests.
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.MediatR.FluentResults --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.MediatR.FluentResults --version 1.0.0-preview.3
 ```
 
 ## Usage
@@ -34,6 +34,10 @@ The adapter creates one `Error` per validation error with the message and metada
 
 `Throw` and `Continue` remain available and unchanged. Without a registered validator the request
 bypasses validation and reaches the handler.
+
+## AOT position
+
+**Trim-compatible only.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

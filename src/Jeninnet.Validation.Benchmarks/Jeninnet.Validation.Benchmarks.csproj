@@ -3,6 +3,8 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <IsPackable>false</IsPackable>
+        <DisableGlobalFramework>true</DisableGlobalFramework>
+        <TargetFrameworks>net10.0;net11.0</TargetFrameworks>
         <NoWarn>$(NoWarn);VAL0011;VAL0012</NoWarn>
     </PropertyGroup>
 
@@ -11,7 +13,6 @@
         <PackageReference Include="Jeninnet.Localization.Core" />
         <PackageReference Include="Jeninnet.Localization.Providers.Memory" />
         <PackageReference Include="BenchmarkDotNet" />
-        <PackageReference Include="FluentValidation" />
     </ItemGroup>
 
     <ItemGroup>

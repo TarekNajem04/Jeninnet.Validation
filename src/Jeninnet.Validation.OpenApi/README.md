@@ -13,7 +13,7 @@ schemas.
 ## Installation
 
 ```bash
-dotnet add package Jeninnet.Validation.OpenApi --version 1.0.0-preview.2
+dotnet add package Jeninnet.Validation.OpenApi --version 1.0.0-preview.3
 ```
 
 ## Usage
@@ -42,6 +42,15 @@ Member names are resolved through the active `JsonSerializerOptions` and
 and `[JsonPropertyName]`. The mapping is cached per type metadata. Rules without
 a direct OpenAPI equivalent remain available through the descriptor and are not
 silently dropped from validation.
+
+The adapter is covered by normalized conformance snapshots shared with
+Swashbuckle, NSwag, and the JSON Schema writer. The difference table and approval
+workflow are documented in
+[Integration Packages](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/03-reference/05-integration-packages.md#adapter-conformance-snapshots).
+
+## AOT position
+
+**AOT-compatible.** See the [25-package AOT matrix](https://github.com/TarekNajem04/Jeninnet.Validation/blob/main/docs/en/04-operations/02-aot-and-trimming.md#package-matrix).
 
 ## Related packages
 

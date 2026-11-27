@@ -62,7 +62,15 @@ internal sealed class RuleTemplateRule<T, TValue> :
     }
 
     protected override IDictionary<string, object>? GetMessageParameters(ValidationContext<T> context) {
-        var parameters = new Dictionary<string, object>(StringComparer.Ordinal);
+        var ruleParameterCount = _metadataParameters.Count;
+
+        if(_valueTemplate is not null) {
+            ruleParameterCount += _valueTemplate.DynamicParameters.Count;
+        } else if(_instanceTemplate is not null) {
+            ruleParameterCount += _instanceTemplate.DynamicParameters.Count;
+        }
+
+        var parameters = new MessageParameterDictionary(ruleParameterCount);
 
         foreach(var parameter in _metadataParameters.Where(static parameter => parameter.Value is not null)) {
             parameters[parameter.Key] = parameter.Value!;
@@ -88,7 +96,7 @@ internal sealed class RuleTemplateRule<T, TValue> :
             }
         }
 
-        return parameters.Count == 0 ? null : parameters;
+        return parameters;
     }
 
     protected override IReadOnlyDictionary<string, object?> GetMetadataParameters() => _metadataParameters;

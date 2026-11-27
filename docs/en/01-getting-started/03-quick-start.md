@@ -108,7 +108,7 @@ public sealed class Customer
 ```
 
 The generated `CustomerValidator` has the same runtime contract. Both authoring styles are pinned by
-executable parity tests.
+executable conformance tests.
 
 ## Next
 

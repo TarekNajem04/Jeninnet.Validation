@@ -117,6 +117,10 @@ var errors = result.ToProblemErrors(new ValidationProblemOptions
 });
 ```
 
+Model-level errors use the `$` key. `IncludeErrorCodes` and `IncludeSeverities` decorate each
+message with `[code]` and `(severity)` for display; the shared `ValidationErrorProjection` keeps
+the field, message, code, and severity aligned with the gRPC status details.
+
 `AddValidationEndpoints()` also registers an exception handler that converts `ValidationException`
 to a 400 response.
 

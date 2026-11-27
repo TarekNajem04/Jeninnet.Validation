@@ -220,11 +220,11 @@ public static class DiagnosticDescriptors {
         isEnabledByDefault: true
     );
 
-    /// <summary>Reported when a generic model cannot be validated by the source generator.</summary>
+    /// <summary>Reported when a model shape cannot be validated by the source generator.</summary>
     public static readonly DiagnosticDescriptor UnsupportedGenericModel = new(
         id: "VAL0022",
-        title: "Generic model is not supported",
-        messageFormat: "Generic type \"{0}\" cannot be validated by the source generator; use a non-generic model or a fluent validator",
+        title: "Model shape is not supported",
+        messageFormat: "Type \"{0}\" cannot be validated by the source generator: {1}",
         category: CATEGORY_VALIDATION_GENERATOR,
         defaultSeverity: DiagnosticSeverity.Error,
         isEnabledByDefault: true

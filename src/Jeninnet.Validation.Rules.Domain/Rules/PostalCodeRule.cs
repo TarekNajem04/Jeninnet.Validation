@@ -56,7 +56,7 @@ public class PostalCodeRule<T, TProperty>(
 
     /// <inheritdoc />
     protected override IDictionary<string, object>? GetMessageParameters(ValidationContext<T> context) =>
-        new Dictionary<string, object> { { MessageParameterNames.Country, Country } };
+        new MessageParameterDictionary(ruleParameterCount: 1) { { MessageParameterNames.Country, Country } };
 
     /// <inheritdoc />
     protected override IReadOnlyDictionary<string, object?> GetMetadataParameters() =>
