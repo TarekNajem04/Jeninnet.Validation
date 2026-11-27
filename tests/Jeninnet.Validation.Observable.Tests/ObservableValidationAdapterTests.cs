@@ -623,6 +623,47 @@ public sealed class ObservableValidationAdapterTests {
         MSTestAssertions.That(() => invalidSeverity.Should().ThrowExactly<ArgumentOutOfRangeException>());
     }
 
+    [TestMethod]
+    public void Adapter_SyncValidate_WhenAsyncEnabled_ThrowsInvalidOperation() {
+        var model = new CountingModel { Value = "valid" };
+        using var adapter = new ObservableValidationAdapter<CountingModel>(
+            model,
+            new CountingValidator(),
+            new ObservableValidationOptions { UseAsyncValidation = true });
+
+        var act = adapter.Validate;
+
+        MSTestAssertions.That(() => act.Should().ThrowExactly<InvalidOperationException>());
+    }
+
+    [TestMethod]
+    public void Adapter_GetValidationErrors_ReturnsTypedErrorsAndEmptyUnknownPath() {
+        var model = CreateInvalidOrder();
+        using var adapter = new ObservableValidationAdapter<ObservableOrder>(model, new ObservableOrderValidator());
+        adapter.Validate();
+
+        var errors = adapter.GetValidationErrors(nameof(ObservableOrder.CustomerName));
+
+        MSTestAssertions.That(() => errors.Should().Contain(
+            static error => error.MemberName == nameof(ObservableOrder.CustomerName)));
+        MSTestAssertions.That(() => adapter.GetValidationErrors("Missing").Should().BeEmpty());
+    }
+
+    [TestMethod]
+    public void Adapter_ClearErrors_ResetsStateAndRaisesChanges() {
+        var model = CreateInvalidOrder();
+        using var adapter = new ObservableValidationAdapter<ObservableOrder>(model, new ObservableOrderValidator());
+        adapter.Validate();
+        var changed = new List<string>();
+        adapter.ErrorsChanged += (_, args) => changed.Add(args.PropertyName ?? string.Empty);
+
+        adapter.ClearErrors();
+
+        MSTestAssertions.That(() => adapter.HasErrors.Should().BeFalse());
+        MSTestAssertions.That(() => adapter.GetValidationErrors(nameof(ObservableOrder.CustomerName)).Should().BeEmpty());
+        MSTestAssertions.That(() => changed.Should().NotBeEmpty());
+    }
+
     private static ObservableOrder CreateInvalidOrder() => new() {
         CustomerName = string.Empty,
         Address = new ObservableAddress { Street = string.Empty },
