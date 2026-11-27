@@ -55,8 +55,8 @@ before the stable release. `no` is Norwegian Bokmål; Nynorsk is not included.
 
 All 40 built-in packs are currently **machine-assisted**; no native-speaker review is recorded.
 That declaration is machine-readable in
-[`localization-review-status.json`](../../../scripts/quality/localization-review-status.json) and
-is checked by `scripts/quality/check-localization-review-status.ps1`. A culture cannot ship without
+`scripts/quality/localization-review-status.json` and is checked by
+`scripts/quality/check-localization-review-status.ps1`. A culture cannot ship without
 an explicit status, and a `reviewed` status requires a reviewer and date. Do not describe a pack as
 natively reviewed unless that record exists.
 
