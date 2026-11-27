@@ -14,6 +14,7 @@ namespace Jeninnet.Validation.ContractFingerprint;
 /// codes without loading a user assembly or using reflection.
 /// </summary>
 internal static class ContractFixtures {
+    private const string NotEmpty = "NotEmpty";
     private static readonly string[] _strictRuleSet = ["strict"];
 
     public static IReadOnlyList<(string Name, IValidationDescriptor Descriptor)> All { get; } = [
@@ -22,8 +23,8 @@ internal static class ContractFixtures {
     ];
 
     internal static ValidationDescriptor MinimalWith(
-        string kind = "NotEmpty",
-        string messageKey = "NotEmpty",
+        string kind = NotEmpty,
+        string messageKey = NotEmpty,
         ValidationErrorSeverity severity = ValidationErrorSeverity.Error,
         bool hasCondition = false,
         IReadOnlyDictionary<string, object?>? parameters = null) =>
@@ -44,7 +45,7 @@ internal static class ContractFixtures {
             [
                 new ValidationMemberDescriptor(
                     "Street",
-                    [new ValidationRuleDescriptor("NotEmpty", "NotEmpty")])
+                    [new ValidationRuleDescriptor(NotEmpty, NotEmpty)])
             ],
             typeof(AddressModel));
 
@@ -53,7 +54,7 @@ internal static class ContractFixtures {
             [
                 new ValidationMemberDescriptor(
                     "ProductName",
-                    [new ValidationRuleDescriptor("NotEmpty", "NotEmpty")])
+                    [new ValidationRuleDescriptor(NotEmpty, NotEmpty)])
             ],
             typeof(LineModel));
 
@@ -116,7 +117,7 @@ internal static class ContractFixtures {
                 new ValidationMemberDescriptor(
                     "Name",
                     [
-                        new ValidationRuleDescriptor("NotEmpty", "NotEmpty"),
+                        new ValidationRuleDescriptor(NotEmpty, NotEmpty),
                         new ValidationRuleDescriptor(
                             "Custom",
                             "ConditionalName",

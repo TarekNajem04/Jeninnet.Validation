@@ -188,40 +188,50 @@ internal sealed class RuleDecisionTraceSession : IDisposable {
 
     private static IEnumerable<object> EnumerateDependent<T>(DependentRule<T> dependent, RuleTracePhase phase) {
         if(phase is RuleTracePhase.Sync or RuleTracePhase.All) {
-            var parent = dependent.ParentSync;
+            foreach(var leaf in EnumerateSyncDependent(dependent)) {
+                yield return leaf;
+            }
+        }
 
-            if(parent is not null) {
-                foreach(var leaf in EnumerateLeaves<T>(parent, RuleTracePhase.Sync)) {
-                    yield return leaf;
-                }
+        if(phase is RuleTracePhase.Async or RuleTracePhase.All) {
+            foreach(var leaf in EnumerateAsyncDependent(dependent, phase)) {
+                yield return leaf;
+            }
+        }
+    }
+
+    private static IEnumerable<object> EnumerateSyncDependent<T>(DependentRule<T> dependent) {
+        if(dependent.ParentSync is { } parent) {
+            foreach(var leaf in EnumerateLeaves<T>(parent, RuleTracePhase.Sync)) {
+                yield return leaf;
+            }
+        }
+
+        foreach(var rule in dependent.SyncRules) {
+            foreach(var leaf in EnumerateLeaves<T>(rule, RuleTracePhase.Sync)) {
+                yield return leaf;
+            }
+        }
+    }
+
+    private static IEnumerable<object> EnumerateAsyncDependent<T>(
+        DependentRule<T> dependent,
+        RuleTracePhase phase) {
+        if(dependent.ParentAsync is { } asyncParent && phase is RuleTracePhase.Async) {
+            foreach(var leaf in EnumerateLeaves<T>(asyncParent, RuleTracePhase.All)) {
+                yield return leaf;
             }
 
             foreach(var rule in dependent.SyncRules) {
-                foreach(var leaf in EnumerateLeaves<T>(rule, RuleTracePhase.Sync)) {
+                foreach(var leaf in EnumerateLeaves<T>(rule, RuleTracePhase.All)) {
                     yield return leaf;
                 }
             }
         }
 
-        if(phase is RuleTracePhase.Async or RuleTracePhase.All) {
-            var asyncParent = dependent.ParentAsync;
-
-            if(asyncParent is not null && phase is RuleTracePhase.Async) {
-                foreach(var leaf in EnumerateLeaves<T>(asyncParent, RuleTracePhase.All)) {
-                    yield return leaf;
-                }
-
-                foreach(var rule in dependent.SyncRules) {
-                    foreach(var leaf in EnumerateLeaves<T>(rule, RuleTracePhase.All)) {
-                        yield return leaf;
-                    }
-                }
-            }
-
-            foreach(var rule in dependent.AsyncRules) {
-                foreach(var leaf in EnumerateLeaves<T>(rule, RuleTracePhase.All)) {
-                    yield return leaf;
-                }
+        foreach(var rule in dependent.AsyncRules) {
+            foreach(var leaf in EnumerateLeaves<T>(rule, RuleTracePhase.All)) {
+                yield return leaf;
             }
         }
     }
