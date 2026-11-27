@@ -4,8 +4,6 @@
 // Repository: https://github.com/TarekNajem04/Jeninnet.Validation
 // Licensed under the MIT License.
 //
-using Jeninnet.Validation.Metadata;
-
 namespace Jeninnet.Validation.ContractFingerprint;
 
 /// <summary>
@@ -14,7 +12,7 @@ namespace Jeninnet.Validation.ContractFingerprint;
 /// codes without loading a user assembly or using reflection.
 /// </summary>
 internal static class ContractFixtures {
-    private const string NotEmpty = "NotEmpty";
+    private const string NOT_EMPTY = "NotEmpty";
     private static readonly string[] _strictRuleSet = ["strict"];
 
     public static IReadOnlyList<(string Name, IValidationDescriptor Descriptor)> All { get; } = [
@@ -23,8 +21,8 @@ internal static class ContractFixtures {
     ];
 
     internal static ValidationDescriptor MinimalWith(
-        string kind = NotEmpty,
-        string messageKey = NotEmpty,
+        string kind = NOT_EMPTY,
+        string messageKey = NOT_EMPTY,
         ValidationErrorSeverity severity = ValidationErrorSeverity.Error,
         bool hasCondition = false,
         IReadOnlyDictionary<string, object?>? parameters = null) =>
@@ -45,7 +43,7 @@ internal static class ContractFixtures {
             [
                 new ValidationMemberDescriptor(
                     "Street",
-                    [new ValidationRuleDescriptor(NotEmpty, NotEmpty)])
+                    [new ValidationRuleDescriptor(NOT_EMPTY, NOT_EMPTY)])
             ],
             typeof(AddressModel));
 
@@ -54,7 +52,7 @@ internal static class ContractFixtures {
             [
                 new ValidationMemberDescriptor(
                     "ProductName",
-                    [new ValidationRuleDescriptor(NotEmpty, NotEmpty)])
+                    [new ValidationRuleDescriptor(NOT_EMPTY, NOT_EMPTY)])
             ],
             typeof(LineModel));
 
@@ -117,7 +115,7 @@ internal static class ContractFixtures {
                 new ValidationMemberDescriptor(
                     "Name",
                     [
-                        new ValidationRuleDescriptor(NotEmpty, NotEmpty),
+                        new ValidationRuleDescriptor(NOT_EMPTY, NOT_EMPTY),
                         new ValidationRuleDescriptor(
                             "Custom",
                             "ConditionalName",
@@ -148,3 +146,4 @@ internal sealed class AddressModel {
 internal sealed class LineModel {
     public string? ProductName { get; set; }
 }
+
