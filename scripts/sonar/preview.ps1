@@ -834,9 +834,9 @@ try {
         "/d:sonar.cs.vstest.reportsPaths=TestResults/**/*.trx",
         "/d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml",
         "/d:sonar.javascript.lcov.reportPaths=artifacts/coverage/client/lcov.info",
-        # src/tooling/**: the CLI executable is validated end-to-end out-of-process (ParityToolTests),
-        # so it carries no in-process coverage; it stays fully analyzed for issues.
-        "/d:sonar.coverage.exclusions=**/*.ps1,**/*.md,docs/**,scripts/**,.github/**,assets/**,badges/**,src/Jeninnet.Validation.Benchmarks/**,src/Jeninnet.Validation.Analyzers/**,src/Jeninnet.Validation/Attributes/**,tests/**,src/Jeninnet.Validation.Abstractions/Abstractions/IRuleDefinition.cs",
+        # tools/**: the internal CLI executables are validated end-to-end out-of-process, so they
+        # carry no in-process coverage; they stay fully analyzed for issues.
+        "/d:sonar.coverage.exclusions=**/*.ps1,**/*.md,docs/**,scripts/**,tools/**,.github/**,assets/**,badges/**,src/Jeninnet.Validation.Benchmarks/**,src/Jeninnet.Validation.Analyzers/**,src/Jeninnet.Validation/Attributes/**,tests/**,src/Jeninnet.Validation.Abstractions/Abstractions/IRuleDefinition.cs",
         "/d:sonar.cpd.exclusions=src/Jeninnet.Validation.Analyzers/**,src/Jeninnet.Validation/Attributes/**,src/Jeninnet.Validation.Benchmarks/**,tests/**",
         "/d:sonar.scm.provider=git",
         "/d:sonar.scm.forceReloadAll=true",
