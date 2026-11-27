@@ -6,8 +6,8 @@
       "id": "Jeninnet.Validation",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 180117,
-      "sizeBudgetBytes": 198656,
+      "sizeBytes": 189367,
+      "sizeBudgetBytes": 208896,
       "developmentDependency": false,
       "metadata": {
         "readme": "README.md",
@@ -45,8 +45,8 @@
       "id": "Jeninnet.Validation.Abstractions",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 47496,
-      "sizeBudgetBytes": 56320,
+      "sizeBytes": 49979,
+      "sizeBudgetBytes": 58368,
       "developmentDependency": false,
       "metadata": {
         "readme": "README.md",
@@ -68,8 +68,8 @@
       "id": "Jeninnet.Validation.Analyzers",
       "kind": "analyzer",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 134309,
-      "sizeBudgetBytes": 148480,
+      "sizeBytes": 136805,
+      "sizeBudgetBytes": 150528,
       "developmentDependency": true,
       "metadata": {
         "readme": "README.md",
@@ -92,8 +92,8 @@
       "id": "Jeninnet.Validation.AspNetCore",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 52108,
-      "sizeBudgetBytes": 60416,
+      "sizeBytes": 52437,
+      "sizeBudgetBytes": 61440,
       "developmentDependency": false,
       "metadata": {
         "readme": "README.md",
@@ -120,7 +120,7 @@
             },
             {
               "id": "Jeninnet.Localization.Abstractions",
-              "version": "1.0.0-preview.2",
+              "version": "1.0.0-preview.3",
               "exclude": "Build,Analyzers"
             }
           ]
@@ -131,7 +131,7 @@
       "id": "Jeninnet.Validation.Assertions",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 33812,
+      "sizeBytes": 33820,
       "sizeBudgetBytes": 43008,
       "developmentDependency": false,
       "metadata": {
@@ -175,7 +175,7 @@
       "id": "Jeninnet.Validation.Blazor",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 43499,
+      "sizeBytes": 43498,
       "sizeBudgetBytes": 52224,
       "developmentDependency": false,
       "metadata": {
@@ -209,7 +209,7 @@
       "id": "Jeninnet.Validation.ClientRules",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 34658,
+      "sizeBytes": 34660,
       "sizeBudgetBytes": 43008,
       "developmentDependency": false,
       "metadata": {
@@ -238,7 +238,7 @@
       "id": "Jeninnet.Validation.DataAnnotations",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 51124,
+      "sizeBytes": 51123,
       "sizeBudgetBytes": 59392,
       "developmentDependency": false,
       "metadata": {
@@ -305,8 +305,8 @@
       "id": "Jeninnet.Validation.Diagnostics",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 32837,
-      "sizeBudgetBytes": 41984,
+      "sizeBytes": 34308,
+      "sizeBudgetBytes": 43008,
       "developmentDependency": false,
       "metadata": {
         "readme": "README.md",
@@ -339,7 +339,7 @@
       "id": "Jeninnet.Validation.Extensions.Validation",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 45385,
+      "sizeBytes": 45494,
       "sizeBudgetBytes": 54272,
       "developmentDependency": false,
       "metadata": {
@@ -445,8 +445,8 @@
       "id": "Jeninnet.Validation.Grpc",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 35440,
-      "sizeBudgetBytes": 44032,
+      "sizeBytes": 36044,
+      "sizeBudgetBytes": 45056,
       "developmentDependency": false,
       "metadata": {
         "readme": "README.md",
@@ -484,7 +484,7 @@
       "id": "Jeninnet.Validation.JsonSchema",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 42072,
+      "sizeBytes": 42077,
       "sizeBudgetBytes": 51200,
       "developmentDependency": false,
       "metadata": {
@@ -513,7 +513,7 @@
       "id": "Jeninnet.Validation.Localization",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 74583,
+      "sizeBytes": 74734,
       "sizeBudgetBytes": 82944,
       "developmentDependency": false,
       "metadata": {
@@ -536,12 +536,12 @@
             },
             {
               "id": "Jeninnet.Localization.Abstractions",
-              "version": "1.0.0-preview.2",
+              "version": "1.0.0-preview.3",
               "exclude": "Build,Analyzers"
             },
             {
               "id": "Jeninnet.Localization.Core",
-              "version": "1.0.0-preview.2",
+              "version": "1.0.0-preview.3",
               "exclude": "Build,Analyzers"
             },
             {
@@ -567,7 +567,7 @@
       "id": "Jeninnet.Validation.Localization.AspNetCore",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 37785,
+      "sizeBytes": 37782,
       "sizeBudgetBytes": 46080,
       "developmentDependency": false,
       "metadata": {
@@ -590,7 +590,7 @@
             },
             {
               "id": "Jeninnet.Localization.Abstractions",
-              "version": "1.0.0-preview.2",
+              "version": "1.0.0-preview.3",
               "exclude": "Build,Analyzers"
             }
           ]
@@ -601,7 +601,7 @@
       "id": "Jeninnet.Validation.MediatR",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 38121,
+      "sizeBytes": 38117,
       "sizeBudgetBytes": 47104,
       "developmentDependency": false,
       "metadata": {
@@ -645,7 +645,7 @@
       "id": "Jeninnet.Validation.MediatR.CSharpFunctionalExtensions",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 28820,
+      "sizeBytes": 28822,
       "sizeBudgetBytes": 37888,
       "developmentDependency": false,
       "metadata": {
@@ -699,7 +699,7 @@
       "id": "Jeninnet.Validation.MediatR.ErrorOr",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 28961,
+      "sizeBytes": 28960,
       "sizeBudgetBytes": 37888,
       "developmentDependency": false,
       "metadata": {
@@ -753,7 +753,7 @@
       "id": "Jeninnet.Validation.MediatR.FluentResults",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 29033,
+      "sizeBytes": 29040,
       "sizeBudgetBytes": 37888,
       "developmentDependency": false,
       "metadata": {
@@ -807,8 +807,8 @@
       "id": "Jeninnet.Validation.Migration",
       "kind": "tool",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 5626141,
-      "sizeBudgetBytes": 6189056,
+      "sizeBytes": 5637066,
+      "sizeBudgetBytes": 6201344,
       "developmentDependency": false,
       "metadata": {
         "readme": "README.md",
@@ -862,8 +862,8 @@
       "id": "Jeninnet.Validation.Observable",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 36713,
-      "sizeBudgetBytes": 45056,
+      "sizeBytes": 38791,
+      "sizeBudgetBytes": 47104,
       "developmentDependency": false,
       "metadata": {
         "readme": "README.md",
@@ -891,8 +891,8 @@
       "id": "Jeninnet.Validation.OpenApi",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 88769,
-      "sizeBudgetBytes": 98304,
+      "sizeBytes": 93080,
+      "sizeBudgetBytes": 102400,
       "developmentDependency": false,
       "metadata": {
         "readme": "README.md",
@@ -919,12 +919,12 @@
             },
             {
               "id": "Microsoft.AspNetCore.OpenApi",
-              "version": "10.0.14",
+              "version": "10.0.15",
               "exclude": "Build,Analyzers"
             },
             {
               "id": "Microsoft.OpenApi",
-              "version": "2.12.2",
+              "version": "2.13.1",
               "exclude": "Build,Analyzers"
             }
           ]
@@ -952,7 +952,7 @@
             },
             {
               "id": "Microsoft.OpenApi",
-              "version": "3.11.0",
+              "version": "3.11.1",
               "exclude": "Build,Analyzers"
             }
           ]
@@ -963,7 +963,7 @@
       "id": "Jeninnet.Validation.OpenApi.NSwag",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 61976,
+      "sizeBytes": 61971,
       "sizeBudgetBytes": 70656,
       "developmentDependency": false,
       "metadata": {
@@ -1001,12 +1001,12 @@
             },
             {
               "id": "Microsoft.AspNetCore.OpenApi",
-              "version": "10.0.14",
+              "version": "10.0.15",
               "exclude": "Build,Analyzers"
             },
             {
               "id": "Microsoft.OpenApi",
-              "version": "2.12.2",
+              "version": "2.13.1",
               "exclude": "Build,Analyzers"
             }
           ]
@@ -1054,7 +1054,7 @@
             },
             {
               "id": "Microsoft.OpenApi",
-              "version": "3.11.0",
+              "version": "3.11.1",
               "exclude": "Build,Analyzers"
             }
           ]
@@ -1065,7 +1065,7 @@
       "id": "Jeninnet.Validation.OpenApi.Swashbuckle",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 62029,
+      "sizeBytes": 62025,
       "sizeBudgetBytes": 70656,
       "developmentDependency": false,
       "metadata": {
@@ -1103,12 +1103,12 @@
             },
             {
               "id": "Microsoft.AspNetCore.OpenApi",
-              "version": "10.0.14",
+              "version": "10.0.15",
               "exclude": "Build,Analyzers"
             },
             {
               "id": "Microsoft.OpenApi",
-              "version": "2.12.2",
+              "version": "2.13.1",
               "exclude": "Build,Analyzers"
             }
           ]
@@ -1156,7 +1156,7 @@
             },
             {
               "id": "Microsoft.OpenApi",
-              "version": "3.11.0",
+              "version": "3.11.1",
               "exclude": "Build,Analyzers"
             }
           ]
@@ -1167,8 +1167,8 @@
       "id": "Jeninnet.Validation.Rules.Domain",
       "kind": "library",
       "version": "1.0.0-preview.3",
-      "sizeBytes": 47094,
-      "sizeBudgetBytes": 55296,
+      "sizeBytes": 47123,
+      "sizeBudgetBytes": 56320,
       "developmentDependency": false,
       "metadata": {
         "readme": "README.md",
